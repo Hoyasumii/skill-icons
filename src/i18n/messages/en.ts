@@ -71,6 +71,9 @@ export const en = {
     copy: 'Copy',
     copied: 'Copied to clipboard',
     copyFailed: 'Could not copy. Select the text and copy it manually.',
+    libraryTitle: 'Use it as a library',
+    libraryDescription:
+      'Prefer components over image links? Install the package, available for React, Vue, Svelte, Solid, Angular, Astro and Web Components:',
   },
 };
 

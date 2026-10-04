@@ -22,6 +22,69 @@ const FORMATS = {
 
 type Format = keyof typeof FORMATS;
 
+const PACKAGE_NAME = '@hoyasumii/skill-icons';
+const PACKAGE_URL = `https://www.npmjs.com/package/${PACKAGE_NAME}`;
+
+const LIBRARIES = {
+  react: {
+    label: 'React',
+    render: ({ names, props }: LibraryInput) =>
+      `import { Icons } from '${PACKAGE_NAME}/react';\n\n<Icons names={${names}}${props.jsx} />`,
+  },
+  vue: {
+    label: 'Vue',
+    render: ({ names, props }: LibraryInput) =>
+      `<script setup lang="ts">\nimport { Icons } from '${PACKAGE_NAME}/vue';\n</script>\n\n<template>\n  <Icons :names="${names}"${props.vue} />\n</template>`,
+  },
+  svelte: {
+    label: 'Svelte',
+    render: ({ names, props }: LibraryInput) =>
+      `<script lang="ts">\n  import { Icons } from '${PACKAGE_NAME}/svelte';\n</script>\n\n<Icons names={${names}}${props.jsx} />`,
+  },
+  solid: {
+    label: 'Solid',
+    render: ({ names, props }: LibraryInput) =>
+      `import { Icons } from '${PACKAGE_NAME}/solid';\n\n<Icons names={${names}}${props.jsx} />`,
+  },
+  angular: {
+    label: 'Angular',
+    render: ({ names, props }: LibraryInput) =>
+      `import { Component } from '@angular/core';\nimport { Icons } from '${PACKAGE_NAME}/angular';\n\n@Component({\n  imports: [Icons],\n  template: \`<skill-icons [names]="${names}"${props.angular} />\`,\n})\nexport class Skills {}`,
+  },
+  astro: {
+    label: 'Astro',
+    render: ({ names, props }: LibraryInput) =>
+      `---\nimport { Icons } from '${PACKAGE_NAME}/astro';\n---\n\n<Icons names={${names}}${props.jsx} />`,
+  },
+  element: {
+    label: 'Web Component',
+    render: ({ icons, theme, perLine }: LibraryInput) =>
+      `<script type="module">\n  import '${PACKAGE_NAME}/element/define';\n</script>\n\n<skill-icons names="${icons.join(',')}" theme="${theme}" per-line="${perLine}"></skill-icons>`,
+  },
+} as const;
+
+type Library = keyof typeof LIBRARIES;
+
+interface LibraryInput extends IconsUrlOptions {
+  names: string;
+  props: { jsx: string; vue: string; angular: string };
+}
+
+function libraryInput({ icons, theme, perLine }: IconsUrlOptions): LibraryInput {
+  const names = `[${icons.map(icon => `'${icon}'`).join(', ')}]`;
+  return {
+    icons,
+    theme,
+    perLine,
+    names,
+    props: {
+      jsx: ` theme="${theme}" perLine={${perLine}}`,
+      vue: ` theme="${theme}" :per-line="${perLine}"`,
+      angular: ` theme="${theme}" [perLine]="${perLine}"`,
+    },
+  };
+}
+
 function CopyBlock({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
   const { t } = useI18n();
@@ -81,6 +144,34 @@ export function Output(options: IconsUrlOptions) {
           </TabsContent>
         ))}
       </Tabs>
+
+      <div className="flex flex-col gap-2">
+        <h3 className="font-heading text-sm font-medium">{t.output.libraryTitle}</h3>
+        <p className="text-sm text-muted-foreground">
+          {t.output.libraryDescription}{' '}
+          <a
+            href={PACKAGE_URL}
+            className="font-mono underline underline-offset-4 hover:text-foreground"
+          >
+            {PACKAGE_NAME}
+          </a>
+        </p>
+        <CopyBlock value={`npm install ${PACKAGE_NAME}`} />
+        <Tabs defaultValue={'react' satisfies Library}>
+          <TabsList className="flex-wrap h-auto">
+            {(Object.keys(LIBRARIES) as Library[]).map(library => (
+              <TabsTrigger key={library} value={library}>
+                {LIBRARIES[library].label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {(Object.keys(LIBRARIES) as Library[]).map(library => (
+            <TabsContent key={library} value={library}>
+              <CopyBlock value={LIBRARIES[library].render(libraryInput(options))} />
+            </TabsContent>
+          ))}
+        </Tabs>
+      </div>
     </div>
   );
 }

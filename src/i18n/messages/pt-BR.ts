@@ -71,5 +71,8 @@ export const ptBR: Messages = {
     copy: 'Copiar',
     copied: 'Copiado para a área de transferência',
     copyFailed: 'Não foi possível copiar. Selecione o texto e copie manualmente.',
+    libraryTitle: 'Use como biblioteca',
+    libraryDescription:
+      'Prefere componentes em vez de links de imagem? Instale o pacote, disponível para React, Vue, Svelte, Solid, Angular, Astro e Web Components:',
   },
 };
