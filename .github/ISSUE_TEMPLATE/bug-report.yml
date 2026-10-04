@@ -1,29 +1,48 @@
-name: 🐛 Bug Report
-title: '[BUG REPORT] Bug'
-description: A bug in the API or elsewhere
-labels: 'bug report'
+name: 🐛 Bug report
+description: Something in the site, the API or the tooling does not work.
+title: '[BUG] Short description'
+labels: ['bug']
 body:
-
-- type: input
-  id: bug
-  attributes:
-    label: The bug
-    description: "A complete of what the bug is"
-  validations:
-    required: true
-    
-- type: input
-  id: steps
-  attributes:
-    label: Steps to reproduce
-    description: "What'd you do to make the bug happen?"
-    placeholder: "1. Request API..."
-  validations:
-    required: false
-    
-- type: input
-  id: extra
-  attributes:
-    label: Any extra info
-  validations:
-    required: false
+  - type: markdown
+    attributes:
+      value: |
+        A wrong or outdated logo is not a bug: use the **Icon error** form.
+        Security problems do not go here: report them privately, as [SECURITY.md](https://github.com/Hoyasumii/skill-icons/blob/main/SECURITY.md) describes.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Builder site
+        - API (/icons, /api/icons, /api/svgs)
+        - skill-icon CLI or build scripts
+        - Docs or readme
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you got instead. Include the full error.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to reproduce
+      description: The URL, request or command that shows it.
+      placeholder: |
+        1. Open /icons?i=...
+        2. ...
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser, OS and runtime
+      description: For the CLI or build scripts, the Bun version too.
+      placeholder: 'Firefox 140, macOS 15, Bun 1.3'
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else

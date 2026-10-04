@@ -1,0 +1,52 @@
+name: 🎨 Icon error
+description: An icon has an outdated logo, the wrong logo, or looks broken.
+title: '[ICON ERROR] Icon Name'
+labels: ['icon error']
+body:
+  - type: input
+    id: icon
+    attributes:
+      label: Icon
+      description: The icon's name, as shown on the site, or its file name in `icons/`.
+      placeholder: 'Next.js (icons/NextJS-Dark.svg)'
+    validations:
+      required: true
+  - type: dropdown
+    id: problem
+    attributes:
+      label: What is wrong
+      options:
+        - Outdated logo (the brand changed it)
+        - Wrong logo (it is another brand or product)
+        - Bad colors or contrast (Dark or Light variant)
+        - Broken or distorted SVG
+        - Wrong category
+        - Wrong display name or spelling
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What you see, and what it should look like.
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Official source
+      description: A link to the brand's current logo, press kit or brand guidelines page.
+      placeholder: 'https://example.com/brand'
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot or SVG
+      description: Drag and drop an image or the corrected SVG here.
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I can open a pull request with the fix.

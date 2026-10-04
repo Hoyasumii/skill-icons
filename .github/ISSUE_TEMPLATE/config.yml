@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/Hoyasumii/skill-icons/security/advisories/new
+    about: Report it privately, never in a public issue.
+  - name: Upstream project
+    url: https://github.com/tandpfun/skill-icons/issues
+    about: This repository is a fork. Issues about the original Skill Icons project belong upstream.

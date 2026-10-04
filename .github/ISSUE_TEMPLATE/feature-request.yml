@@ -1,15 +1,34 @@
-name: 💡 Feature Request
-title: '[FEATURE REQUEST] Feature'
-description: Request a feature with the API
-labels: 'feature request'
+name: 💡 Feature request
+description: A missing option, endpoint or site feature.
+title: '[FEATURE] Short description'
+labels: ['feature request']
 body:
-
-# skill name block
-- type: input
-  id: request
-  attributes:
-    label: Feature requested
-    description: "The feature you're requesting. Should have to do with the API."
-    placeholder: "Add this endpoint because..."
-  validations:
-    required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Builder site
+        - API (/icons, /api/icons, /api/svgs)
+        - skill-icon CLI or build scripts
+        - Docs or readme
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What you are trying to do
+      description: The task, and what gets in the way today.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you would like
+      description: The option, endpoint or behavior you have in mind.
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I can open a pull request for it.
