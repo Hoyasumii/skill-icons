@@ -8,7 +8,7 @@ Two variants, matching the design canvas (artboards "OG · site" and "OG · pilh
 Icons always use the dark variant (-Dark.svg) in both images.
 
 Examples:
-  python render_og.py site  --icons-dir ./icons --out public/og.png
+  python render_og.py site  --icons-dir ./icons --out public/og-site.png
   python render_og.py stack --icons-dir ./icons --url "https://hoyasumii.github.io/skill-icons/?i=ts,react,bun" --out og-stack.png
   python render_og.py stack --icons-dir ./icons --icons ts,react,bun --title "Stack do trabalho" --out og.png
 """

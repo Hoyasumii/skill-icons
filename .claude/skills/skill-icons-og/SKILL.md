@@ -10,7 +10,7 @@ Renders the two Open Graph images from the design system v3 (artboards **OG · s
 
 | Variant | When | Look |
 |---|---|---|
-| `site` | the home page's `og:image` (`public/og.png`) | stone `#EDEDE8` background, wordmark, headline "Build your stack. Paste it in your README." with a yellow highlight, a tilted 4×4 cluster of icons, footer with the site URL |
+| `site` | the home page's `og:image` (`public/og-site.png`) | stone `#EDEDE8` background, wordmark, headline "Build your stack. Paste it in your README." with a yellow highlight, a tilted 4×4 cluster of icons, footer with the site URL |
 | `stack` | a shared link with `?i=…` | white background, ink text, yellow pill "N skills", the stack title (default "My skills"), icons in up to 8 columns × 2 rows (`+N` tile when there are more), footer with the share URL and "build yours →" |
 
 Rules that must not drift: icons in both images always use the **dark variant** (`-Dark.svg`),
@@ -28,7 +28,7 @@ Run from the repo root (the script reads aliases such as `ts` → `typescript` f
 
 ```sh
 # Site image
-python .claude/skills/skill-icons-og/scripts/render_og.py site --icons-dir icons --out public/og.png
+python .claude/skills/skill-icons-og/scripts/render_og.py site --icons-dir icons --out public/og-site.png
 
 # A shared link (icons and optional title come from the URL: ?i=ts,react&title=…)
 python .claude/skills/skill-icons-og/scripts/render_og.py stack --icons-dir icons \
@@ -45,7 +45,7 @@ Unknown names are skipped and listed on stderr; the command fails only if no ico
 
 ## Workflow
 
-1. Confirm which variant is needed and where the PNG goes (`public/og.png` for the site).
+1. Confirm which variant is needed and where the PNG goes (`public/og-site.png` for the site).
 2. Run the script. Open the PNG and look at it before reporting: the title must not be cut,
    icons must all load (no empty squares), the footer must stay on one line.
 3. For the site image, make sure `index.html` has `og:image` (absolute URL),
