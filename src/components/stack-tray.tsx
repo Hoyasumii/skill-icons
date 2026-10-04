@@ -153,7 +153,7 @@ export function StackTray({ stack, compact, actions, onShuffle, onClear }: Stack
         </p>
       ) : (
         <>
-          <ol aria-label={t.stack.title} className="flex flex-wrap gap-1.5 rounded-lg bg-muted p-2">
+          <ol aria-label={t.stack.title} className="flex flex-wrap gap-1.5 rounded-lg bg-background p-2">
             {stack.icons.map((name, index) => (
               <StackItem
                 key={name}
