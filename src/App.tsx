@@ -8,7 +8,7 @@ import { ThemeToggle } from '@/components/theme-toggle';
 import { useBuilderState } from '@/hooks/use-builder-state';
 import { useI18n } from '@/i18n';
 
-const REPO_URL = 'https://github.com/tandpfun/skill-icons';
+const REPO_URL = 'https://github.com/Hoyasumii/skill-icons';
 
 export function App() {
   const { state, toggleIcon, moveIcon, clearIcons, setTheme, setPerLine } = useBuilderState();
