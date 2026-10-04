@@ -74,6 +74,32 @@ describe('/icons', () => {
   });
 });
 
+describe('/icons opened in a browser', () => {
+  const open = (path: string, headers: Record<string, string>) =>
+    exports.default.fetch(`https://example.com${path}`, { headers, redirect: 'manual' });
+
+  it('redirects a navigation to the home page', async () => {
+    const res = await open('/icons?i=js,ts&theme=light', {
+      'Sec-Fetch-Dest': 'document',
+      Accept: 'text/html,application/xhtml+xml,*/*;q=0.8',
+    });
+    expect(res.status).toBe(302);
+    expect(res.headers.get('Location')).toBe('https://hoyasumii.github.io/skill-icons/');
+    expect(res.headers.get('Cache-Control')).toBe('no-store');
+  });
+
+  it('redirects browsers without Fetch Metadata that ask for HTML', async () => {
+    const res = await open('/icons?i=js', { Accept: 'text/html,*/*;q=0.8' });
+    expect(res.status).toBe(302);
+  });
+
+  it('keeps serving the SVG to an <img>', async () => {
+    const res = await open('/icons?i=js', { 'Sec-Fetch-Dest': 'image', Accept: 'image/*' });
+    expect(res.headers.get('Content-Type')).toBe('image/svg+xml');
+    expect(res.headers.get('Vary')).toContain('Sec-Fetch-Dest');
+  });
+});
+
 describe('/api', () => {
   it('lists icon names', async () => {
     const names = await (await get('/api/icons')).json<string[]>();

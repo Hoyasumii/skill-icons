@@ -10,6 +10,9 @@ export const MAX_PER_LINE = 50;
 /** Worker deploy serving the menu, /icons and /api/*. */
 export const API_URL = 'https://skill-icons.alanreisanjo.workers.dev';
 
+/** GitHub Pages deploy of the builder; people opening an /icons link land here. */
+export const PAGES_URL = 'https://hoyasumii.github.io/skill-icons/';
+
 export const shortNames: Record<string, string> = {
   js: 'javascript',
   ts: 'typescript',

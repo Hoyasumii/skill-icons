@@ -4,6 +4,7 @@ import {
   DEFAULT_THEME,
   MAX_PER_LINE,
   MIN_PER_LINE,
+  PAGES_URL,
   shortNames,
   type Theme,
 } from '../shared/icons';
@@ -98,7 +99,22 @@ function parseIconsRequest(searchParams: URLSearchParams): IconsRequest | Respon
   return { iconNames, theme, perLine };
 }
 
+/** A person opening the link in a tab, as opposed to an <img>, GitHub camo or a crawler. */
+function isBrowserNavigation(request: Request): boolean {
+  const dest = request.headers.get('Sec-Fetch-Dest');
+  if (dest) return dest === 'document';
+  // Browsers without Fetch Metadata still ask for HTML first when navigating.
+  return request.headers.get('Accept')?.includes('text/html') ?? false;
+}
+
 function handleIcons(request: Request, url: URL): Response {
+  // People opening the link get the site's home page instead of a bare SVG.
+  if (isBrowserNavigation(request) && !isPreviewBot(request))
+    return new Response(null, {
+      status: 302,
+      headers: { Location: PAGES_URL, 'Cache-Control': 'no-store' },
+    });
+
   const parsed = parseIconsRequest(url.searchParams);
   if (parsed instanceof Response) return parsed;
 
@@ -106,7 +122,8 @@ function handleIcons(request: Request, url: URL): Response {
   if (isPreviewBot(request)) return ogPage(url, parsed.iconNames);
 
   return new Response(generateSvg(parsed.iconNames, parsed.perLine), {
-    headers: { 'Content-Type': 'image/svg+xml', ...CACHE_HEADERS },
+    // A cached SVG must not answer a later navigation to the same URL.
+    headers: { 'Content-Type': 'image/svg+xml', Vary: 'Sec-Fetch-Dest, Accept', ...CACHE_HEADERS },
   });
 }
 
