@@ -129,379 +129,379 @@ Here's a list of all the icons currently supported. Feel free to open an issue t
 
 Short aliases also work: `js`, `ts`, `py`, `k8s`, `postgres`, `tailwind`, `next` and more (see `shortNames` in [`shared/icons.ts`](./shared/icons.ts)).
 
-|      Icon ID       |                                             Icon                                             |
-| :----------------: | :------------------------------------------------------------------------------------------: |
-|    `abacatepay`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=abacatepay" width="48">    |
-|     `ableton`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=ableton" width="48">      |
-|   `activitypub`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=activitypub" width="48">    |
-|      `actix`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=actix" width="48">       |
-|      `adonis`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=adonis" width="48">      |
-|      `adyen`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=adyen" width="48">       |
-|   `aftereffects`   |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=aftereffects" width="48">   |
-|     `aiscript`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=aiscript" width="48">     |
-|     `alpinejs`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=alpinejs" width="48">     |
-|     `anaconda`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=anaconda" width="48">     |
-|     `android`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=android" width="48">      |
-|  `androidstudio`   |  <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=androidstudio" width="48">   |
-|     `angular`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=angular" width="48">      |
-|     `ansible`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=ansible" width="48">      |
-|   `antigravity`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=antigravity" width="48">    |
-|      `apollo`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=apollo" width="48">      |
-|      `apple`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=apple" width="48">       |
-|     `applepay`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=applepay" width="48">     |
-|     `appwrite`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=appwrite" width="48">     |
-|       `arch`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=arch" width="48">       |
-|     `arduino`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=arduino" width="48">      |
-|      `argocd`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=argocd" width="48">      |
-|      `astro`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=astro" width="48">       |
-|       `atom`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=atom" width="48">       |
-|     `audition`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=audition" width="48">     |
-|      `auth0`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=auth0" width="48">       |
-|      `authjs`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=authjs" width="48">      |
-|     `autocad`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=autocad" width="48">      |
-|       `aws`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=aws" width="48">        |
-|       `azul`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=azul" width="48">       |
-|      `azure`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=azure" width="48">       |
-|      `babel`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=babel" width="48">       |
-|       `bash`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=bash" width="48">       |
-|    `betterauth`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=betterauth" width="48">    |
-|       `bevy`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=bevy" width="48">       |
-|      `biome`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=biome" width="48">       |
-|    `bitbucket`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=bitbucket" width="48">     |
-|     `blender`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=blender" width="48">      |
-|     `bluesky`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=bluesky" width="48">      |
-|    `bootstrap`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=bootstrap" width="48">     |
-|       `bsd`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=bsd" width="48">        |
-|       `bun`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=bun" width="48">        |
-|        `c`         |        <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=c" width="48">         |
-|      `canva`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=canva" width="48">       |
-|    `cassandra`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=cassandra" width="48">     |
-|     `chatgpt`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=chatgpt" width="48">      |
-|      `claude`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=claude" width="48">      |
-|      `clerk`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=clerk" width="48">       |
-|    `clickhouse`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=clickhouse" width="48">    |
-|      `cline`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=cline" width="48">       |
-|      `clion`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=clion" width="48">       |
-|     `clojure`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=clojure" width="48">      |
-|    `cloudflare`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=cloudflare" width="48">    |
-|      `cmake`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=cmake" width="48">       |
-|     `codepen`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=codepen" width="48">      |
-|      `codex`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=codex" width="48">       |
-|   `coffeescript`   |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=coffeescript" width="48">   |
-|      `convex`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=convex" width="48">      |
-|     `coolify`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=coolify" width="48">      |
-|       `cpp`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=cpp" width="48">        |
-|     `crystal`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=crystal" width="48">      |
-|        `cs`        |        <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=cs" width="48">        |
-|       `css`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=css" width="48">        |
-|      `cursor`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=cursor" width="48">      |
-|     `cypress`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=cypress" width="48">      |
-|        `d3`        |        <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=d3" width="48">        |
-|     `daisyui`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=daisyui" width="48">      |
-|       `dart`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=dart" width="48">       |
-|     `datadog`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=datadog" width="48">      |
-|     `datagrip`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=datagrip" width="48">     |
-|      `debian`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=debian" width="48">      |
-|     `deepseek`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=deepseek" width="48">     |
-|      `defold`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=defold" width="48">      |
-|       `deno`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=deno" width="48">       |
-|      `devto`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=devto" width="48">       |
-|   `digitalocean`   |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=digitalocean" width="48">   |
-|     `discord`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=discord" width="48">      |
-|   `discordbots`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=discordbots" width="48">    |
-|    `discordjs`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=discordjs" width="48">     |
-|      `django`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=django" width="48">      |
-|      `docker`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=docker" width="48">      |
-|    `docusaurus`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=docusaurus" width="48">    |
-|      `dotnet`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=dotnet" width="48">      |
-|     `drizzle`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=drizzle" width="48">      |
-|      `duckdb`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=duckdb" width="48">      |
-|     `dynamodb`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=dynamodb" width="48">     |
-|     `eclipse`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=eclipse" width="48">      |
-|  `elasticsearch`   |  <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=elasticsearch" width="48">   |
-|     `electron`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=electron" width="48">     |
-|      `elixir`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=elixir" width="48">      |
-|      `elysia`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=elysia" width="48">      |
-|      `emacs`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=emacs" width="48">       |
-|      `ember`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=ember" width="48">       |
-|     `emotion`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=emotion" width="48">      |
-|     `esbuild`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=esbuild" width="48">      |
-|      `eslint`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=eslint" width="48">      |
-|       `expo`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=expo" width="48">       |
-|    `expressjs`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=expressjs" width="48">     |
-|     `fastapi`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=fastapi" width="48">      |
-|     `fastify`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=fastify" width="48">      |
-|    `fediverse`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=fediverse" width="48">     |
-|      `fiber`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=fiber" width="48">       |
-|      `figma`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=figma" width="48">       |
-|     `firebase`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=firebase" width="48">     |
-|      `flask`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=flask" width="48">       |
-|     `flutter`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=flutter" width="48">      |
-|       `fly`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=fly" width="48">        |
-|      `forth`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=forth" width="48">       |
-|     `fortran`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=fortran" width="48">      |
-| `gamemakerstudio`  | <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gamemakerstudio" width="48">  |
-|      `gatsby`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gatsby" width="48">      |
-|       `gcp`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gcp" width="48">        |
-|      `gemini`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gemini" width="48">      |
-|     `gherkin`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gherkin" width="48">      |
-|       `gin`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gin" width="48">        |
-|       `git`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=git" width="48">        |
-|      `github`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=github" width="48">      |
-|  `githubactions`   |  <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=githubactions" width="48">   |
-|  `githubcopilot`   |  <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=githubcopilot" width="48">   |
-|      `gitlab`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gitlab" width="48">      |
-|      `gleam`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gleam" width="48">       |
-|      `gmail`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gmail" width="48">       |
-|      `godot`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=godot" width="48">       |
-|      `goland`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=goland" width="48">      |
-|      `golang`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=golang" width="48">      |
-|    `googlepay`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=googlepay" width="48">     |
-|      `gradle`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gradle" width="48">      |
-|     `grafana`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=grafana" width="48">      |
-|     `graphql`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=graphql" width="48">      |
-|       `grok`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=grok" width="48">       |
-|       `gtk`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gtk" width="48">        |
-|       `gulp`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=gulp" width="48">       |
-|     `haskell`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=haskell" width="48">      |
-|       `haxe`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=haxe" width="48">       |
-|    `haxeflixel`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=haxeflixel" width="48">    |
-|      `helix`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=helix" width="48">       |
-|       `helm`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=helm" width="48">       |
-|      `heroku`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=heroku" width="48">      |
-|    `hibernate`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=hibernate" width="48">     |
-|       `hono`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=hono" width="48">       |
-|       `html`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=html" width="48">       |
-|       `htmx`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=htmx" width="48">       |
-|   `huggingface`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=huggingface" width="48">    |
-|      `husky`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=husky" width="48">       |
-|       `idea`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=idea" width="48">       |
-|   `illustrator`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=illustrator" width="48">    |
-|     `inkscape`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=inkscape" width="48">     |
-|    `instagram`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=instagram" width="48">     |
-|       `ios`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=ios" width="48">        |
-|       `ipfs`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=ipfs" width="48">       |
-|       `java`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=java" width="48">       |
-|    `javascript`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=javascript" width="48">    |
-|     `jenkins`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=jenkins" width="48">      |
-|       `jest`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=jest" width="48">       |
-|       `jira`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=jira" width="48">       |
-|      `jquery`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=jquery" width="48">      |
-|       `json`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=json" width="48">       |
-|      `julia`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=julia" width="48">       |
-|     `jupyter`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=jupyter" width="48">      |
-|      `kafka`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=kafka" width="48">       |
-|       `kali`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=kali" width="48">       |
-|     `keycloak`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=keycloak" width="48">     |
-|       `knip`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=knip" width="48">       |
-|      `kotlin`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=kotlin" width="48">      |
-|       `ktor`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=ktor" width="48">       |
-|    `kubernetes`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=kubernetes" width="48">    |
-|    `langchain`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=langchain" width="48">     |
-|     `langfuse`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=langfuse" width="48">     |
-|     `laravel`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=laravel" width="48">      |
-|      `latex`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=latex" width="48">       |
-|   `lemonsqueezy`   |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=lemonsqueezy" width="48">   |
-|       `less`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=less" width="48">       |
-|      `linear`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=linear" width="48">      |
-|     `linkedin`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=linkedin" width="48">     |
-|      `linux`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=linux" width="48">       |
-|       `lit`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=lit" width="48">        |
-|       `lua`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=lua" width="48">        |
-|      `macos`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=macos" width="48">       |
-|     `mariadb`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=mariadb" width="48">      |
-|     `markdown`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=markdown" width="48">     |
-|    `mastercard`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=mastercard" width="48">    |
-|     `mastodon`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=mastodon" width="48">     |
-|    `materialui`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=materialui" width="48">    |
-|      `matlab`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=matlab" width="48">      |
-|      `maven`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=maven" width="48">       |
-|       `mcp`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=mcp" width="48">        |
-|   `mercadopago`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=mercadopago" width="48">    |
-|       `mint`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=mint" width="48">       |
-|     `misskey`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=misskey" width="48">      |
-|      `mocha`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=mocha" width="48">       |
-|       `mojo`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=mojo" width="48">       |
-|     `mongodb`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=mongodb" width="48">      |
-|      `mysql`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=mysql" width="48">       |
-|       `n8n`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=n8n" width="48">        |
-|      `neo4j`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=neo4j" width="48">       |
-|       `neon`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=neon" width="48">       |
-|      `neovim`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=neovim" width="48">      |
-|      `nestjs`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=nestjs" width="48">      |
-|     `netlify`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=netlify" width="48">      |
-|      `nextjs`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=nextjs" width="48">      |
-|      `nginx`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=nginx" width="48">       |
-|       `nim`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=nim" width="48">        |
-|       `nix`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=nix" width="48">        |
-|      `nodejs`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=nodejs" width="48">      |
-|      `notion`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=notion" width="48">      |
-|       `npm`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=npm" width="48">        |
-|      `nubank`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=nubank" width="48">      |
-|      `numpy`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=numpy" width="48">       |
-|      `nuxtjs`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=nuxtjs" width="48">      |
-|        `nx`        |        <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=nx" width="48">        |
-|     `obsidian`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=obsidian" width="48">     |
-|      `ocaml`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=ocaml" width="48">       |
-|      `octave`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=octave" width="48">      |
-|      `ollama`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=ollama" width="48">      |
-|      `openai`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=openai" width="48">      |
-|     `openclaw`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=openclaw" width="48">     |
-|     `opencode`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=opencode" width="48">     |
-|      `opencv`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=opencv" width="48">      |
-|    `openshift`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=openshift" width="48">     |
-|    `openstack`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=openstack" width="48">     |
-|  `opentelemetry`   |  <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=opentelemetry" width="48">   |
-|      `oxlint`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=oxlint" width="48">      |
-|       `p5js`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=p5js" width="48">       |
-|      `paddle`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=paddle" width="48">      |
-|    `pagseguro`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=pagseguro" width="48">     |
-|      `pandas`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=pandas" width="48">      |
-|      `paypal`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=paypal" width="48">      |
-|       `perl`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=perl" width="48">       |
-|    `perplexity`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=perplexity" width="48">    |
-|    `photoshop`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=photoshop" width="48">     |
-|       `php`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=php" width="48">        |
-|     `phpstorm`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=phpstorm" width="48">     |
-|      `pinia`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=pinia" width="48">       |
-|       `pix`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=pix" width="48">        |
-|       `pkl`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=pkl" width="48">        |
-|      `plan9`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=plan9" width="48">       |
-|      `plane`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=plane" width="48">       |
-|   `planetscale`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=planetscale" width="48">    |
-|    `playwright`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=playwright" width="48">    |
-|       `pnpm`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=pnpm" width="48">       |
-|    `pocketbase`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=pocketbase" width="48">    |
-|      `polar`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=polar" width="48">       |
-|    `postgresql`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=postgresql" width="48">    |
-|     `posthog`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=posthog" width="48">      |
-|     `postman`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=postman" width="48">      |
-|    `powershell`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=powershell" width="48">    |
-|     `premiere`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=premiere" width="48">     |
-|     `prettier`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=prettier" width="48">     |
-|      `prisma`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=prisma" width="48">      |
-|    `processing`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=processing" width="48">    |
-|    `prometheus`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=prometheus" width="48">    |
-|       `pug`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=pug" width="48">        |
-|    `puppeteer`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=puppeteer" width="48">     |
-|     `pycharm`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=pycharm" width="48">      |
-|      `pytest`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=pytest" width="48">      |
-|      `python`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=python" width="48">      |
-|     `pytorch`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=pytorch" width="48">      |
-|        `qt`        |        <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=qt" width="48">        |
-|        `r`         |        <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=r" width="48">         |
-|     `rabbitmq`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=rabbitmq" width="48">     |
-|     `radixui`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=radixui" width="48">      |
-|      `rails`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=rails" width="48">       |
-|     `railway`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=railway" width="48">      |
-|   `raspberrypi`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=raspberrypi" width="48">    |
-|     `razorpay`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=razorpay" width="48">     |
-|      `react`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=react" width="48">       |
-|    `reactivex`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=reactivex" width="48">     |
-|   `reactnative`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=reactnative" width="48">    |
-|    `reactquery`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=reactquery" width="48">    |
-|      `reddit`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=reddit" width="48">      |
-|      `redhat`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=redhat" width="48">      |
-|      `redis`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=redis" width="48">       |
-|      `redux`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=redux" width="48">       |
-|      `regex`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=regex" width="48">       |
-|      `remix`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=remix" width="48">       |
-|      `replit`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=replit" width="48">      |
-|      `resend`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=resend" width="48">      |
-|      `rider`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=rider" width="48">       |
-|   `robloxstudio`   |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=robloxstudio" width="48">   |
-|      `rocket`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=rocket" width="48">      |
-|     `rollupjs`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=rollupjs" width="48">     |
-|       `ros`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=ros" width="48">        |
-|      `rspack`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=rspack" width="48">      |
-|       `ruby`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=ruby" width="48">       |
-|       `rust`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=rust" width="48">       |
-|       `sass`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=sass" width="48">       |
-|      `scala`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=scala" width="48">       |
-|   `scikitlearn`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=scikitlearn" width="48">    |
-|     `selenium`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=selenium" width="48">     |
-|      `sentry`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=sentry" width="48">      |
-|    `sequelize`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=sequelize" width="48">     |
-|     `shadcnui`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=shadcnui" width="48">     |
-|      `signoz`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=signoz" width="48">      |
-|      `sketch`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=sketch" width="48">      |
-|     `sketchup`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=sketchup" width="48">     |
-|      `slack`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=slack" width="48">       |
-|     `solidity`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=solidity" width="48">     |
-|     `solidjs`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=solidjs" width="48">      |
-|     `spotify`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=spotify" width="48">      |
-|      `spring`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=spring" width="48">      |
-|       `sql`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=sql" width="48">        |
-|      `sqlite`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=sqlite" width="48">      |
-|    `sqlserver`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=sqlserver" width="48">     |
-|      `square`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=square" width="48">      |
-|  `stackoverflow`   |  <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=stackoverflow" width="48">   |
-|    `starlight`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=starlight" width="48">     |
-|    `storybook`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=storybook" width="48">     |
-|      `strapi`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=strapi" width="48">      |
-|      `stripe`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=stripe" width="48">      |
-| `styledcomponents` | <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=styledcomponents" width="48"> |
-|     `sublime`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=sublime" width="48">      |
-|     `supabase`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=supabase" width="48">     |
-|      `svelte`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=svelte" width="48">      |
-|       `svg`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=svg" width="48">        |
-|       `swc`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=swc" width="48">        |
-|      `swift`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=swift" width="48">       |
-|     `symfony`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=symfony" width="48">      |
-|   `tailwindcss`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=tailwindcss" width="48">    |
-|     `tanstack`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=tanstack" width="48">     |
-|      `tauri`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=tauri" width="48">       |
-|     `telegram`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=telegram" width="48">     |
-|    `tensorflow`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=tensorflow" width="48">    |
-|    `terraform`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=terraform" width="48">     |
-|  `testinglibrary`  |  <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=testinglibrary" width="48">  |
-|     `threejs`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=threejs" width="48">      |
-|       `trae`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=trae" width="48">       |
-|     `traefik`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=traefik" width="48">      |
-|       `trpc`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=trpc" width="48">       |
-|    `turbopack`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=turbopack" width="48">     |
-|    `turborepo`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=turborepo" width="48">     |
-|      `turso`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=turso" width="48">       |
-|     `twitter`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=twitter" width="48">      |
-|    `typescript`    |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=typescript" width="48">    |
-|      `ubuntu`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=ubuntu" width="48">      |
-|      `unity`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=unity" width="48">       |
-|   `unrealengine`   |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=unrealengine" width="48">   |
-|     `upstash`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=upstash" width="48">      |
-|        `v`         |        <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=v" width="48">         |
-|       `vala`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=vala" width="48">       |
-|      `vercel`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=vercel" width="48">      |
-|     `verilog`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=verilog" width="48">      |
-|       `vim`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=vim" width="48">        |
-|       `visa`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=visa" width="48">       |
-|   `visualstudio`   |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=visualstudio" width="48">   |
-|       `vite`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=vite" width="48">       |
-|      `vitest`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=vitest" width="48">      |
-|      `vscode`      |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=vscode" width="48">      |
-|     `vscodium`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=vscodium" width="48">     |
-|      `vuejs`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=vuejs" width="48">       |
-|     `vuetify`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=vuetify" width="48">      |
-|       `warp`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=warp" width="48">       |
-|   `webassembly`    |   <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=webassembly" width="48">    |
-|     `webflow`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=webflow" width="48">      |
-|     `webpack`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=webpack" width="48">      |
-|     `webstorm`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=webstorm" width="48">     |
-|     `whatsapp`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=whatsapp" width="48">     |
-|     `windicss`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=windicss" width="48">     |
-|     `windows`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=windows" width="48">      |
-|     `windsurf`     |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=windsurf" width="48">     |
-|    `wordpress`     |    <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=wordpress" width="48">     |
-|     `workers`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=workers" width="48">      |
-|      `xcode`       |      <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=xcode" width="48">       |
-|        `xd`        |        <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=xd" width="48">        |
-|       `yaml`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=yaml" width="48">       |
-|       `yarn`       |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=yarn" width="48">       |
-|       `yew`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=yew" width="48">        |
-|     `youtube`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=youtube" width="48">      |
-|       `zed`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=zed" width="48">        |
-|       `zig`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=zig" width="48">        |
-|       `zod`        |       <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=zod" width="48">        |
-|     `zustand`      |     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=zustand" width="48">      |
+|      Icon ID       |                                            Icon                                            |
+| :----------------: | :----------------------------------------------------------------------------------------: |
+|    `abacatepay`    |       ![abacatepay](https://skill-icons.alanreisanjo.workers.dev/icons?i=abacatepay)       |
+|     `ableton`      |          ![ableton](https://skill-icons.alanreisanjo.workers.dev/icons?i=ableton)          |
+|   `activitypub`    |      ![activitypub](https://skill-icons.alanreisanjo.workers.dev/icons?i=activitypub)      |
+|      `actix`       |            ![actix](https://skill-icons.alanreisanjo.workers.dev/icons?i=actix)            |
+|      `adonis`      |           ![adonis](https://skill-icons.alanreisanjo.workers.dev/icons?i=adonis)           |
+|      `adyen`       |            ![adyen](https://skill-icons.alanreisanjo.workers.dev/icons?i=adyen)            |
+|   `aftereffects`   |     ![aftereffects](https://skill-icons.alanreisanjo.workers.dev/icons?i=aftereffects)     |
+|     `aiscript`     |         ![aiscript](https://skill-icons.alanreisanjo.workers.dev/icons?i=aiscript)         |
+|     `alpinejs`     |         ![alpinejs](https://skill-icons.alanreisanjo.workers.dev/icons?i=alpinejs)         |
+|     `anaconda`     |         ![anaconda](https://skill-icons.alanreisanjo.workers.dev/icons?i=anaconda)         |
+|     `android`      |          ![android](https://skill-icons.alanreisanjo.workers.dev/icons?i=android)          |
+|  `androidstudio`   |    ![androidstudio](https://skill-icons.alanreisanjo.workers.dev/icons?i=androidstudio)    |
+|     `angular`      |          ![angular](https://skill-icons.alanreisanjo.workers.dev/icons?i=angular)          |
+|     `ansible`      |          ![ansible](https://skill-icons.alanreisanjo.workers.dev/icons?i=ansible)          |
+|   `antigravity`    |      ![antigravity](https://skill-icons.alanreisanjo.workers.dev/icons?i=antigravity)      |
+|      `apollo`      |           ![apollo](https://skill-icons.alanreisanjo.workers.dev/icons?i=apollo)           |
+|      `apple`       |            ![apple](https://skill-icons.alanreisanjo.workers.dev/icons?i=apple)            |
+|     `applepay`     |         ![applepay](https://skill-icons.alanreisanjo.workers.dev/icons?i=applepay)         |
+|     `appwrite`     |         ![appwrite](https://skill-icons.alanreisanjo.workers.dev/icons?i=appwrite)         |
+|       `arch`       |             ![arch](https://skill-icons.alanreisanjo.workers.dev/icons?i=arch)             |
+|     `arduino`      |          ![arduino](https://skill-icons.alanreisanjo.workers.dev/icons?i=arduino)          |
+|      `argocd`      |           ![argocd](https://skill-icons.alanreisanjo.workers.dev/icons?i=argocd)           |
+|      `astro`       |            ![astro](https://skill-icons.alanreisanjo.workers.dev/icons?i=astro)            |
+|       `atom`       |             ![atom](https://skill-icons.alanreisanjo.workers.dev/icons?i=atom)             |
+|     `audition`     |         ![audition](https://skill-icons.alanreisanjo.workers.dev/icons?i=audition)         |
+|      `auth0`       |            ![auth0](https://skill-icons.alanreisanjo.workers.dev/icons?i=auth0)            |
+|      `authjs`      |           ![authjs](https://skill-icons.alanreisanjo.workers.dev/icons?i=authjs)           |
+|     `autocad`      |          ![autocad](https://skill-icons.alanreisanjo.workers.dev/icons?i=autocad)          |
+|       `aws`        |              ![aws](https://skill-icons.alanreisanjo.workers.dev/icons?i=aws)              |
+|       `azul`       |             ![azul](https://skill-icons.alanreisanjo.workers.dev/icons?i=azul)             |
+|      `azure`       |            ![azure](https://skill-icons.alanreisanjo.workers.dev/icons?i=azure)            |
+|      `babel`       |            ![babel](https://skill-icons.alanreisanjo.workers.dev/icons?i=babel)            |
+|       `bash`       |             ![bash](https://skill-icons.alanreisanjo.workers.dev/icons?i=bash)             |
+|    `betterauth`    |       ![betterauth](https://skill-icons.alanreisanjo.workers.dev/icons?i=betterauth)       |
+|       `bevy`       |             ![bevy](https://skill-icons.alanreisanjo.workers.dev/icons?i=bevy)             |
+|      `biome`       |            ![biome](https://skill-icons.alanreisanjo.workers.dev/icons?i=biome)            |
+|    `bitbucket`     |        ![bitbucket](https://skill-icons.alanreisanjo.workers.dev/icons?i=bitbucket)        |
+|     `blender`      |          ![blender](https://skill-icons.alanreisanjo.workers.dev/icons?i=blender)          |
+|     `bluesky`      |          ![bluesky](https://skill-icons.alanreisanjo.workers.dev/icons?i=bluesky)          |
+|    `bootstrap`     |        ![bootstrap](https://skill-icons.alanreisanjo.workers.dev/icons?i=bootstrap)        |
+|       `bsd`        |              ![bsd](https://skill-icons.alanreisanjo.workers.dev/icons?i=bsd)              |
+|       `bun`        |              ![bun](https://skill-icons.alanreisanjo.workers.dev/icons?i=bun)              |
+|        `c`         |                ![c](https://skill-icons.alanreisanjo.workers.dev/icons?i=c)                |
+|      `canva`       |            ![canva](https://skill-icons.alanreisanjo.workers.dev/icons?i=canva)            |
+|    `cassandra`     |        ![cassandra](https://skill-icons.alanreisanjo.workers.dev/icons?i=cassandra)        |
+|     `chatgpt`      |          ![chatgpt](https://skill-icons.alanreisanjo.workers.dev/icons?i=chatgpt)          |
+|      `claude`      |           ![claude](https://skill-icons.alanreisanjo.workers.dev/icons?i=claude)           |
+|      `clerk`       |            ![clerk](https://skill-icons.alanreisanjo.workers.dev/icons?i=clerk)            |
+|    `clickhouse`    |       ![clickhouse](https://skill-icons.alanreisanjo.workers.dev/icons?i=clickhouse)       |
+|      `cline`       |            ![cline](https://skill-icons.alanreisanjo.workers.dev/icons?i=cline)            |
+|      `clion`       |            ![clion](https://skill-icons.alanreisanjo.workers.dev/icons?i=clion)            |
+|     `clojure`      |          ![clojure](https://skill-icons.alanreisanjo.workers.dev/icons?i=clojure)          |
+|    `cloudflare`    |       ![cloudflare](https://skill-icons.alanreisanjo.workers.dev/icons?i=cloudflare)       |
+|      `cmake`       |            ![cmake](https://skill-icons.alanreisanjo.workers.dev/icons?i=cmake)            |
+|     `codepen`      |          ![codepen](https://skill-icons.alanreisanjo.workers.dev/icons?i=codepen)          |
+|      `codex`       |            ![codex](https://skill-icons.alanreisanjo.workers.dev/icons?i=codex)            |
+|   `coffeescript`   |     ![coffeescript](https://skill-icons.alanreisanjo.workers.dev/icons?i=coffeescript)     |
+|      `convex`      |           ![convex](https://skill-icons.alanreisanjo.workers.dev/icons?i=convex)           |
+|     `coolify`      |          ![coolify](https://skill-icons.alanreisanjo.workers.dev/icons?i=coolify)          |
+|       `cpp`        |              ![cpp](https://skill-icons.alanreisanjo.workers.dev/icons?i=cpp)              |
+|     `crystal`      |          ![crystal](https://skill-icons.alanreisanjo.workers.dev/icons?i=crystal)          |
+|        `cs`        |               ![cs](https://skill-icons.alanreisanjo.workers.dev/icons?i=cs)               |
+|       `css`        |              ![css](https://skill-icons.alanreisanjo.workers.dev/icons?i=css)              |
+|      `cursor`      |           ![cursor](https://skill-icons.alanreisanjo.workers.dev/icons?i=cursor)           |
+|     `cypress`      |          ![cypress](https://skill-icons.alanreisanjo.workers.dev/icons?i=cypress)          |
+|        `d3`        |               ![d3](https://skill-icons.alanreisanjo.workers.dev/icons?i=d3)               |
+|     `daisyui`      |          ![daisyui](https://skill-icons.alanreisanjo.workers.dev/icons?i=daisyui)          |
+|       `dart`       |             ![dart](https://skill-icons.alanreisanjo.workers.dev/icons?i=dart)             |
+|     `datadog`      |          ![datadog](https://skill-icons.alanreisanjo.workers.dev/icons?i=datadog)          |
+|     `datagrip`     |         ![datagrip](https://skill-icons.alanreisanjo.workers.dev/icons?i=datagrip)         |
+|      `debian`      |           ![debian](https://skill-icons.alanreisanjo.workers.dev/icons?i=debian)           |
+|     `deepseek`     |         ![deepseek](https://skill-icons.alanreisanjo.workers.dev/icons?i=deepseek)         |
+|      `defold`      |           ![defold](https://skill-icons.alanreisanjo.workers.dev/icons?i=defold)           |
+|       `deno`       |             ![deno](https://skill-icons.alanreisanjo.workers.dev/icons?i=deno)             |
+|      `devto`       |            ![devto](https://skill-icons.alanreisanjo.workers.dev/icons?i=devto)            |
+|   `digitalocean`   |     ![digitalocean](https://skill-icons.alanreisanjo.workers.dev/icons?i=digitalocean)     |
+|     `discord`      |          ![discord](https://skill-icons.alanreisanjo.workers.dev/icons?i=discord)          |
+|   `discordbots`    |      ![discordbots](https://skill-icons.alanreisanjo.workers.dev/icons?i=discordbots)      |
+|    `discordjs`     |        ![discordjs](https://skill-icons.alanreisanjo.workers.dev/icons?i=discordjs)        |
+|      `django`      |           ![django](https://skill-icons.alanreisanjo.workers.dev/icons?i=django)           |
+|      `docker`      |           ![docker](https://skill-icons.alanreisanjo.workers.dev/icons?i=docker)           |
+|    `docusaurus`    |       ![docusaurus](https://skill-icons.alanreisanjo.workers.dev/icons?i=docusaurus)       |
+|      `dotnet`      |           ![dotnet](https://skill-icons.alanreisanjo.workers.dev/icons?i=dotnet)           |
+|     `drizzle`      |          ![drizzle](https://skill-icons.alanreisanjo.workers.dev/icons?i=drizzle)          |
+|      `duckdb`      |           ![duckdb](https://skill-icons.alanreisanjo.workers.dev/icons?i=duckdb)           |
+|     `dynamodb`     |         ![dynamodb](https://skill-icons.alanreisanjo.workers.dev/icons?i=dynamodb)         |
+|     `eclipse`      |          ![eclipse](https://skill-icons.alanreisanjo.workers.dev/icons?i=eclipse)          |
+|  `elasticsearch`   |    ![elasticsearch](https://skill-icons.alanreisanjo.workers.dev/icons?i=elasticsearch)    |
+|     `electron`     |         ![electron](https://skill-icons.alanreisanjo.workers.dev/icons?i=electron)         |
+|      `elixir`      |           ![elixir](https://skill-icons.alanreisanjo.workers.dev/icons?i=elixir)           |
+|      `elysia`      |           ![elysia](https://skill-icons.alanreisanjo.workers.dev/icons?i=elysia)           |
+|      `emacs`       |            ![emacs](https://skill-icons.alanreisanjo.workers.dev/icons?i=emacs)            |
+|      `ember`       |            ![ember](https://skill-icons.alanreisanjo.workers.dev/icons?i=ember)            |
+|     `emotion`      |          ![emotion](https://skill-icons.alanreisanjo.workers.dev/icons?i=emotion)          |
+|     `esbuild`      |          ![esbuild](https://skill-icons.alanreisanjo.workers.dev/icons?i=esbuild)          |
+|      `eslint`      |           ![eslint](https://skill-icons.alanreisanjo.workers.dev/icons?i=eslint)           |
+|       `expo`       |             ![expo](https://skill-icons.alanreisanjo.workers.dev/icons?i=expo)             |
+|    `expressjs`     |        ![expressjs](https://skill-icons.alanreisanjo.workers.dev/icons?i=expressjs)        |
+|     `fastapi`      |          ![fastapi](https://skill-icons.alanreisanjo.workers.dev/icons?i=fastapi)          |
+|     `fastify`      |          ![fastify](https://skill-icons.alanreisanjo.workers.dev/icons?i=fastify)          |
+|    `fediverse`     |        ![fediverse](https://skill-icons.alanreisanjo.workers.dev/icons?i=fediverse)        |
+|      `fiber`       |            ![fiber](https://skill-icons.alanreisanjo.workers.dev/icons?i=fiber)            |
+|      `figma`       |            ![figma](https://skill-icons.alanreisanjo.workers.dev/icons?i=figma)            |
+|     `firebase`     |         ![firebase](https://skill-icons.alanreisanjo.workers.dev/icons?i=firebase)         |
+|      `flask`       |            ![flask](https://skill-icons.alanreisanjo.workers.dev/icons?i=flask)            |
+|     `flutter`      |          ![flutter](https://skill-icons.alanreisanjo.workers.dev/icons?i=flutter)          |
+|       `fly`        |              ![fly](https://skill-icons.alanreisanjo.workers.dev/icons?i=fly)              |
+|      `forth`       |            ![forth](https://skill-icons.alanreisanjo.workers.dev/icons?i=forth)            |
+|     `fortran`      |          ![fortran](https://skill-icons.alanreisanjo.workers.dev/icons?i=fortran)          |
+| `gamemakerstudio`  |  ![gamemakerstudio](https://skill-icons.alanreisanjo.workers.dev/icons?i=gamemakerstudio)  |
+|      `gatsby`      |           ![gatsby](https://skill-icons.alanreisanjo.workers.dev/icons?i=gatsby)           |
+|       `gcp`        |              ![gcp](https://skill-icons.alanreisanjo.workers.dev/icons?i=gcp)              |
+|      `gemini`      |           ![gemini](https://skill-icons.alanreisanjo.workers.dev/icons?i=gemini)           |
+|     `gherkin`      |          ![gherkin](https://skill-icons.alanreisanjo.workers.dev/icons?i=gherkin)          |
+|       `gin`        |              ![gin](https://skill-icons.alanreisanjo.workers.dev/icons?i=gin)              |
+|       `git`        |              ![git](https://skill-icons.alanreisanjo.workers.dev/icons?i=git)              |
+|      `github`      |           ![github](https://skill-icons.alanreisanjo.workers.dev/icons?i=github)           |
+|  `githubactions`   |    ![githubactions](https://skill-icons.alanreisanjo.workers.dev/icons?i=githubactions)    |
+|  `githubcopilot`   |    ![githubcopilot](https://skill-icons.alanreisanjo.workers.dev/icons?i=githubcopilot)    |
+|      `gitlab`      |           ![gitlab](https://skill-icons.alanreisanjo.workers.dev/icons?i=gitlab)           |
+|      `gleam`       |            ![gleam](https://skill-icons.alanreisanjo.workers.dev/icons?i=gleam)            |
+|      `gmail`       |            ![gmail](https://skill-icons.alanreisanjo.workers.dev/icons?i=gmail)            |
+|      `godot`       |            ![godot](https://skill-icons.alanreisanjo.workers.dev/icons?i=godot)            |
+|      `goland`      |           ![goland](https://skill-icons.alanreisanjo.workers.dev/icons?i=goland)           |
+|      `golang`      |           ![golang](https://skill-icons.alanreisanjo.workers.dev/icons?i=golang)           |
+|    `googlepay`     |        ![googlepay](https://skill-icons.alanreisanjo.workers.dev/icons?i=googlepay)        |
+|      `gradle`      |           ![gradle](https://skill-icons.alanreisanjo.workers.dev/icons?i=gradle)           |
+|     `grafana`      |          ![grafana](https://skill-icons.alanreisanjo.workers.dev/icons?i=grafana)          |
+|     `graphql`      |          ![graphql](https://skill-icons.alanreisanjo.workers.dev/icons?i=graphql)          |
+|       `grok`       |             ![grok](https://skill-icons.alanreisanjo.workers.dev/icons?i=grok)             |
+|       `gtk`        |              ![gtk](https://skill-icons.alanreisanjo.workers.dev/icons?i=gtk)              |
+|       `gulp`       |             ![gulp](https://skill-icons.alanreisanjo.workers.dev/icons?i=gulp)             |
+|     `haskell`      |          ![haskell](https://skill-icons.alanreisanjo.workers.dev/icons?i=haskell)          |
+|       `haxe`       |             ![haxe](https://skill-icons.alanreisanjo.workers.dev/icons?i=haxe)             |
+|    `haxeflixel`    |       ![haxeflixel](https://skill-icons.alanreisanjo.workers.dev/icons?i=haxeflixel)       |
+|      `helix`       |            ![helix](https://skill-icons.alanreisanjo.workers.dev/icons?i=helix)            |
+|       `helm`       |             ![helm](https://skill-icons.alanreisanjo.workers.dev/icons?i=helm)             |
+|      `heroku`      |           ![heroku](https://skill-icons.alanreisanjo.workers.dev/icons?i=heroku)           |
+|    `hibernate`     |        ![hibernate](https://skill-icons.alanreisanjo.workers.dev/icons?i=hibernate)        |
+|       `hono`       |             ![hono](https://skill-icons.alanreisanjo.workers.dev/icons?i=hono)             |
+|       `html`       |             ![html](https://skill-icons.alanreisanjo.workers.dev/icons?i=html)             |
+|       `htmx`       |             ![htmx](https://skill-icons.alanreisanjo.workers.dev/icons?i=htmx)             |
+|   `huggingface`    |      ![huggingface](https://skill-icons.alanreisanjo.workers.dev/icons?i=huggingface)      |
+|      `husky`       |            ![husky](https://skill-icons.alanreisanjo.workers.dev/icons?i=husky)            |
+|       `idea`       |             ![idea](https://skill-icons.alanreisanjo.workers.dev/icons?i=idea)             |
+|   `illustrator`    |      ![illustrator](https://skill-icons.alanreisanjo.workers.dev/icons?i=illustrator)      |
+|     `inkscape`     |         ![inkscape](https://skill-icons.alanreisanjo.workers.dev/icons?i=inkscape)         |
+|    `instagram`     |        ![instagram](https://skill-icons.alanreisanjo.workers.dev/icons?i=instagram)        |
+|       `ios`        |              ![ios](https://skill-icons.alanreisanjo.workers.dev/icons?i=ios)              |
+|       `ipfs`       |             ![ipfs](https://skill-icons.alanreisanjo.workers.dev/icons?i=ipfs)             |
+|       `java`       |             ![java](https://skill-icons.alanreisanjo.workers.dev/icons?i=java)             |
+|    `javascript`    |       ![javascript](https://skill-icons.alanreisanjo.workers.dev/icons?i=javascript)       |
+|     `jenkins`      |          ![jenkins](https://skill-icons.alanreisanjo.workers.dev/icons?i=jenkins)          |
+|       `jest`       |             ![jest](https://skill-icons.alanreisanjo.workers.dev/icons?i=jest)             |
+|       `jira`       |             ![jira](https://skill-icons.alanreisanjo.workers.dev/icons?i=jira)             |
+|      `jquery`      |           ![jquery](https://skill-icons.alanreisanjo.workers.dev/icons?i=jquery)           |
+|       `json`       |             ![json](https://skill-icons.alanreisanjo.workers.dev/icons?i=json)             |
+|      `julia`       |            ![julia](https://skill-icons.alanreisanjo.workers.dev/icons?i=julia)            |
+|     `jupyter`      |          ![jupyter](https://skill-icons.alanreisanjo.workers.dev/icons?i=jupyter)          |
+|      `kafka`       |            ![kafka](https://skill-icons.alanreisanjo.workers.dev/icons?i=kafka)            |
+|       `kali`       |             ![kali](https://skill-icons.alanreisanjo.workers.dev/icons?i=kali)             |
+|     `keycloak`     |         ![keycloak](https://skill-icons.alanreisanjo.workers.dev/icons?i=keycloak)         |
+|       `knip`       |             ![knip](https://skill-icons.alanreisanjo.workers.dev/icons?i=knip)             |
+|      `kotlin`      |           ![kotlin](https://skill-icons.alanreisanjo.workers.dev/icons?i=kotlin)           |
+|       `ktor`       |             ![ktor](https://skill-icons.alanreisanjo.workers.dev/icons?i=ktor)             |
+|    `kubernetes`    |       ![kubernetes](https://skill-icons.alanreisanjo.workers.dev/icons?i=kubernetes)       |
+|    `langchain`     |        ![langchain](https://skill-icons.alanreisanjo.workers.dev/icons?i=langchain)        |
+|     `langfuse`     |         ![langfuse](https://skill-icons.alanreisanjo.workers.dev/icons?i=langfuse)         |
+|     `laravel`      |          ![laravel](https://skill-icons.alanreisanjo.workers.dev/icons?i=laravel)          |
+|      `latex`       |            ![latex](https://skill-icons.alanreisanjo.workers.dev/icons?i=latex)            |
+|   `lemonsqueezy`   |     ![lemonsqueezy](https://skill-icons.alanreisanjo.workers.dev/icons?i=lemonsqueezy)     |
+|       `less`       |             ![less](https://skill-icons.alanreisanjo.workers.dev/icons?i=less)             |
+|      `linear`      |           ![linear](https://skill-icons.alanreisanjo.workers.dev/icons?i=linear)           |
+|     `linkedin`     |         ![linkedin](https://skill-icons.alanreisanjo.workers.dev/icons?i=linkedin)         |
+|      `linux`       |            ![linux](https://skill-icons.alanreisanjo.workers.dev/icons?i=linux)            |
+|       `lit`        |              ![lit](https://skill-icons.alanreisanjo.workers.dev/icons?i=lit)              |
+|       `lua`        |              ![lua](https://skill-icons.alanreisanjo.workers.dev/icons?i=lua)              |
+|      `macos`       |            ![macos](https://skill-icons.alanreisanjo.workers.dev/icons?i=macos)            |
+|     `mariadb`      |          ![mariadb](https://skill-icons.alanreisanjo.workers.dev/icons?i=mariadb)          |
+|     `markdown`     |         ![markdown](https://skill-icons.alanreisanjo.workers.dev/icons?i=markdown)         |
+|    `mastercard`    |       ![mastercard](https://skill-icons.alanreisanjo.workers.dev/icons?i=mastercard)       |
+|     `mastodon`     |         ![mastodon](https://skill-icons.alanreisanjo.workers.dev/icons?i=mastodon)         |
+|    `materialui`    |       ![materialui](https://skill-icons.alanreisanjo.workers.dev/icons?i=materialui)       |
+|      `matlab`      |           ![matlab](https://skill-icons.alanreisanjo.workers.dev/icons?i=matlab)           |
+|      `maven`       |            ![maven](https://skill-icons.alanreisanjo.workers.dev/icons?i=maven)            |
+|       `mcp`        |              ![mcp](https://skill-icons.alanreisanjo.workers.dev/icons?i=mcp)              |
+|   `mercadopago`    |      ![mercadopago](https://skill-icons.alanreisanjo.workers.dev/icons?i=mercadopago)      |
+|       `mint`       |             ![mint](https://skill-icons.alanreisanjo.workers.dev/icons?i=mint)             |
+|     `misskey`      |          ![misskey](https://skill-icons.alanreisanjo.workers.dev/icons?i=misskey)          |
+|      `mocha`       |            ![mocha](https://skill-icons.alanreisanjo.workers.dev/icons?i=mocha)            |
+|       `mojo`       |             ![mojo](https://skill-icons.alanreisanjo.workers.dev/icons?i=mojo)             |
+|     `mongodb`      |          ![mongodb](https://skill-icons.alanreisanjo.workers.dev/icons?i=mongodb)          |
+|      `mysql`       |            ![mysql](https://skill-icons.alanreisanjo.workers.dev/icons?i=mysql)            |
+|       `n8n`        |              ![n8n](https://skill-icons.alanreisanjo.workers.dev/icons?i=n8n)              |
+|      `neo4j`       |            ![neo4j](https://skill-icons.alanreisanjo.workers.dev/icons?i=neo4j)            |
+|       `neon`       |             ![neon](https://skill-icons.alanreisanjo.workers.dev/icons?i=neon)             |
+|      `neovim`      |           ![neovim](https://skill-icons.alanreisanjo.workers.dev/icons?i=neovim)           |
+|      `nestjs`      |           ![nestjs](https://skill-icons.alanreisanjo.workers.dev/icons?i=nestjs)           |
+|     `netlify`      |          ![netlify](https://skill-icons.alanreisanjo.workers.dev/icons?i=netlify)          |
+|      `nextjs`      |           ![nextjs](https://skill-icons.alanreisanjo.workers.dev/icons?i=nextjs)           |
+|      `nginx`       |            ![nginx](https://skill-icons.alanreisanjo.workers.dev/icons?i=nginx)            |
+|       `nim`        |              ![nim](https://skill-icons.alanreisanjo.workers.dev/icons?i=nim)              |
+|       `nix`        |              ![nix](https://skill-icons.alanreisanjo.workers.dev/icons?i=nix)              |
+|      `nodejs`      |           ![nodejs](https://skill-icons.alanreisanjo.workers.dev/icons?i=nodejs)           |
+|      `notion`      |           ![notion](https://skill-icons.alanreisanjo.workers.dev/icons?i=notion)           |
+|       `npm`        |              ![npm](https://skill-icons.alanreisanjo.workers.dev/icons?i=npm)              |
+|      `nubank`      |           ![nubank](https://skill-icons.alanreisanjo.workers.dev/icons?i=nubank)           |
+|      `numpy`       |            ![numpy](https://skill-icons.alanreisanjo.workers.dev/icons?i=numpy)            |
+|      `nuxtjs`      |           ![nuxtjs](https://skill-icons.alanreisanjo.workers.dev/icons?i=nuxtjs)           |
+|        `nx`        |               ![nx](https://skill-icons.alanreisanjo.workers.dev/icons?i=nx)               |
+|     `obsidian`     |         ![obsidian](https://skill-icons.alanreisanjo.workers.dev/icons?i=obsidian)         |
+|      `ocaml`       |            ![ocaml](https://skill-icons.alanreisanjo.workers.dev/icons?i=ocaml)            |
+|      `octave`      |           ![octave](https://skill-icons.alanreisanjo.workers.dev/icons?i=octave)           |
+|      `ollama`      |           ![ollama](https://skill-icons.alanreisanjo.workers.dev/icons?i=ollama)           |
+|      `openai`      |           ![openai](https://skill-icons.alanreisanjo.workers.dev/icons?i=openai)           |
+|     `openclaw`     |         ![openclaw](https://skill-icons.alanreisanjo.workers.dev/icons?i=openclaw)         |
+|     `opencode`     |         ![opencode](https://skill-icons.alanreisanjo.workers.dev/icons?i=opencode)         |
+|      `opencv`      |           ![opencv](https://skill-icons.alanreisanjo.workers.dev/icons?i=opencv)           |
+|    `openshift`     |        ![openshift](https://skill-icons.alanreisanjo.workers.dev/icons?i=openshift)        |
+|    `openstack`     |        ![openstack](https://skill-icons.alanreisanjo.workers.dev/icons?i=openstack)        |
+|  `opentelemetry`   |    ![opentelemetry](https://skill-icons.alanreisanjo.workers.dev/icons?i=opentelemetry)    |
+|      `oxlint`      |           ![oxlint](https://skill-icons.alanreisanjo.workers.dev/icons?i=oxlint)           |
+|       `p5js`       |             ![p5js](https://skill-icons.alanreisanjo.workers.dev/icons?i=p5js)             |
+|      `paddle`      |           ![paddle](https://skill-icons.alanreisanjo.workers.dev/icons?i=paddle)           |
+|    `pagseguro`     |        ![pagseguro](https://skill-icons.alanreisanjo.workers.dev/icons?i=pagseguro)        |
+|      `pandas`      |           ![pandas](https://skill-icons.alanreisanjo.workers.dev/icons?i=pandas)           |
+|      `paypal`      |           ![paypal](https://skill-icons.alanreisanjo.workers.dev/icons?i=paypal)           |
+|       `perl`       |             ![perl](https://skill-icons.alanreisanjo.workers.dev/icons?i=perl)             |
+|    `perplexity`    |       ![perplexity](https://skill-icons.alanreisanjo.workers.dev/icons?i=perplexity)       |
+|    `photoshop`     |        ![photoshop](https://skill-icons.alanreisanjo.workers.dev/icons?i=photoshop)        |
+|       `php`        |              ![php](https://skill-icons.alanreisanjo.workers.dev/icons?i=php)              |
+|     `phpstorm`     |         ![phpstorm](https://skill-icons.alanreisanjo.workers.dev/icons?i=phpstorm)         |
+|      `pinia`       |            ![pinia](https://skill-icons.alanreisanjo.workers.dev/icons?i=pinia)            |
+|       `pix`        |              ![pix](https://skill-icons.alanreisanjo.workers.dev/icons?i=pix)              |
+|       `pkl`        |              ![pkl](https://skill-icons.alanreisanjo.workers.dev/icons?i=pkl)              |
+|      `plan9`       |            ![plan9](https://skill-icons.alanreisanjo.workers.dev/icons?i=plan9)            |
+|      `plane`       |            ![plane](https://skill-icons.alanreisanjo.workers.dev/icons?i=plane)            |
+|   `planetscale`    |      ![planetscale](https://skill-icons.alanreisanjo.workers.dev/icons?i=planetscale)      |
+|    `playwright`    |       ![playwright](https://skill-icons.alanreisanjo.workers.dev/icons?i=playwright)       |
+|       `pnpm`       |             ![pnpm](https://skill-icons.alanreisanjo.workers.dev/icons?i=pnpm)             |
+|    `pocketbase`    |       ![pocketbase](https://skill-icons.alanreisanjo.workers.dev/icons?i=pocketbase)       |
+|      `polar`       |            ![polar](https://skill-icons.alanreisanjo.workers.dev/icons?i=polar)            |
+|    `postgresql`    |       ![postgresql](https://skill-icons.alanreisanjo.workers.dev/icons?i=postgresql)       |
+|     `posthog`      |          ![posthog](https://skill-icons.alanreisanjo.workers.dev/icons?i=posthog)          |
+|     `postman`      |          ![postman](https://skill-icons.alanreisanjo.workers.dev/icons?i=postman)          |
+|    `powershell`    |       ![powershell](https://skill-icons.alanreisanjo.workers.dev/icons?i=powershell)       |
+|     `premiere`     |         ![premiere](https://skill-icons.alanreisanjo.workers.dev/icons?i=premiere)         |
+|     `prettier`     |         ![prettier](https://skill-icons.alanreisanjo.workers.dev/icons?i=prettier)         |
+|      `prisma`      |           ![prisma](https://skill-icons.alanreisanjo.workers.dev/icons?i=prisma)           |
+|    `processing`    |       ![processing](https://skill-icons.alanreisanjo.workers.dev/icons?i=processing)       |
+|    `prometheus`    |       ![prometheus](https://skill-icons.alanreisanjo.workers.dev/icons?i=prometheus)       |
+|       `pug`        |              ![pug](https://skill-icons.alanreisanjo.workers.dev/icons?i=pug)              |
+|    `puppeteer`     |        ![puppeteer](https://skill-icons.alanreisanjo.workers.dev/icons?i=puppeteer)        |
+|     `pycharm`      |          ![pycharm](https://skill-icons.alanreisanjo.workers.dev/icons?i=pycharm)          |
+|      `pytest`      |           ![pytest](https://skill-icons.alanreisanjo.workers.dev/icons?i=pytest)           |
+|      `python`      |           ![python](https://skill-icons.alanreisanjo.workers.dev/icons?i=python)           |
+|     `pytorch`      |          ![pytorch](https://skill-icons.alanreisanjo.workers.dev/icons?i=pytorch)          |
+|        `qt`        |               ![qt](https://skill-icons.alanreisanjo.workers.dev/icons?i=qt)               |
+|        `r`         |                ![r](https://skill-icons.alanreisanjo.workers.dev/icons?i=r)                |
+|     `rabbitmq`     |         ![rabbitmq](https://skill-icons.alanreisanjo.workers.dev/icons?i=rabbitmq)         |
+|     `radixui`      |          ![radixui](https://skill-icons.alanreisanjo.workers.dev/icons?i=radixui)          |
+|      `rails`       |            ![rails](https://skill-icons.alanreisanjo.workers.dev/icons?i=rails)            |
+|     `railway`      |          ![railway](https://skill-icons.alanreisanjo.workers.dev/icons?i=railway)          |
+|   `raspberrypi`    |      ![raspberrypi](https://skill-icons.alanreisanjo.workers.dev/icons?i=raspberrypi)      |
+|     `razorpay`     |         ![razorpay](https://skill-icons.alanreisanjo.workers.dev/icons?i=razorpay)         |
+|      `react`       |            ![react](https://skill-icons.alanreisanjo.workers.dev/icons?i=react)            |
+|    `reactivex`     |        ![reactivex](https://skill-icons.alanreisanjo.workers.dev/icons?i=reactivex)        |
+|   `reactnative`    |      ![reactnative](https://skill-icons.alanreisanjo.workers.dev/icons?i=reactnative)      |
+|    `reactquery`    |       ![reactquery](https://skill-icons.alanreisanjo.workers.dev/icons?i=reactquery)       |
+|      `reddit`      |           ![reddit](https://skill-icons.alanreisanjo.workers.dev/icons?i=reddit)           |
+|      `redhat`      |           ![redhat](https://skill-icons.alanreisanjo.workers.dev/icons?i=redhat)           |
+|      `redis`       |            ![redis](https://skill-icons.alanreisanjo.workers.dev/icons?i=redis)            |
+|      `redux`       |            ![redux](https://skill-icons.alanreisanjo.workers.dev/icons?i=redux)            |
+|      `regex`       |            ![regex](https://skill-icons.alanreisanjo.workers.dev/icons?i=regex)            |
+|      `remix`       |            ![remix](https://skill-icons.alanreisanjo.workers.dev/icons?i=remix)            |
+|      `replit`      |           ![replit](https://skill-icons.alanreisanjo.workers.dev/icons?i=replit)           |
+|      `resend`      |           ![resend](https://skill-icons.alanreisanjo.workers.dev/icons?i=resend)           |
+|      `rider`       |            ![rider](https://skill-icons.alanreisanjo.workers.dev/icons?i=rider)            |
+|   `robloxstudio`   |     ![robloxstudio](https://skill-icons.alanreisanjo.workers.dev/icons?i=robloxstudio)     |
+|      `rocket`      |           ![rocket](https://skill-icons.alanreisanjo.workers.dev/icons?i=rocket)           |
+|     `rollupjs`     |         ![rollupjs](https://skill-icons.alanreisanjo.workers.dev/icons?i=rollupjs)         |
+|       `ros`        |              ![ros](https://skill-icons.alanreisanjo.workers.dev/icons?i=ros)              |
+|      `rspack`      |           ![rspack](https://skill-icons.alanreisanjo.workers.dev/icons?i=rspack)           |
+|       `ruby`       |             ![ruby](https://skill-icons.alanreisanjo.workers.dev/icons?i=ruby)             |
+|       `rust`       |             ![rust](https://skill-icons.alanreisanjo.workers.dev/icons?i=rust)             |
+|       `sass`       |             ![sass](https://skill-icons.alanreisanjo.workers.dev/icons?i=sass)             |
+|      `scala`       |            ![scala](https://skill-icons.alanreisanjo.workers.dev/icons?i=scala)            |
+|   `scikitlearn`    |      ![scikitlearn](https://skill-icons.alanreisanjo.workers.dev/icons?i=scikitlearn)      |
+|     `selenium`     |         ![selenium](https://skill-icons.alanreisanjo.workers.dev/icons?i=selenium)         |
+|      `sentry`      |           ![sentry](https://skill-icons.alanreisanjo.workers.dev/icons?i=sentry)           |
+|    `sequelize`     |        ![sequelize](https://skill-icons.alanreisanjo.workers.dev/icons?i=sequelize)        |
+|     `shadcnui`     |         ![shadcnui](https://skill-icons.alanreisanjo.workers.dev/icons?i=shadcnui)         |
+|      `signoz`      |           ![signoz](https://skill-icons.alanreisanjo.workers.dev/icons?i=signoz)           |
+|      `sketch`      |           ![sketch](https://skill-icons.alanreisanjo.workers.dev/icons?i=sketch)           |
+|     `sketchup`     |         ![sketchup](https://skill-icons.alanreisanjo.workers.dev/icons?i=sketchup)         |
+|      `slack`       |            ![slack](https://skill-icons.alanreisanjo.workers.dev/icons?i=slack)            |
+|     `solidity`     |         ![solidity](https://skill-icons.alanreisanjo.workers.dev/icons?i=solidity)         |
+|     `solidjs`      |          ![solidjs](https://skill-icons.alanreisanjo.workers.dev/icons?i=solidjs)          |
+|     `spotify`      |          ![spotify](https://skill-icons.alanreisanjo.workers.dev/icons?i=spotify)          |
+|      `spring`      |           ![spring](https://skill-icons.alanreisanjo.workers.dev/icons?i=spring)           |
+|       `sql`        |              ![sql](https://skill-icons.alanreisanjo.workers.dev/icons?i=sql)              |
+|      `sqlite`      |           ![sqlite](https://skill-icons.alanreisanjo.workers.dev/icons?i=sqlite)           |
+|    `sqlserver`     |        ![sqlserver](https://skill-icons.alanreisanjo.workers.dev/icons?i=sqlserver)        |
+|      `square`      |           ![square](https://skill-icons.alanreisanjo.workers.dev/icons?i=square)           |
+|  `stackoverflow`   |    ![stackoverflow](https://skill-icons.alanreisanjo.workers.dev/icons?i=stackoverflow)    |
+|    `starlight`     |        ![starlight](https://skill-icons.alanreisanjo.workers.dev/icons?i=starlight)        |
+|    `storybook`     |        ![storybook](https://skill-icons.alanreisanjo.workers.dev/icons?i=storybook)        |
+|      `strapi`      |           ![strapi](https://skill-icons.alanreisanjo.workers.dev/icons?i=strapi)           |
+|      `stripe`      |           ![stripe](https://skill-icons.alanreisanjo.workers.dev/icons?i=stripe)           |
+| `styledcomponents` | ![styledcomponents](https://skill-icons.alanreisanjo.workers.dev/icons?i=styledcomponents) |
+|     `sublime`      |          ![sublime](https://skill-icons.alanreisanjo.workers.dev/icons?i=sublime)          |
+|     `supabase`     |         ![supabase](https://skill-icons.alanreisanjo.workers.dev/icons?i=supabase)         |
+|      `svelte`      |           ![svelte](https://skill-icons.alanreisanjo.workers.dev/icons?i=svelte)           |
+|       `svg`        |              ![svg](https://skill-icons.alanreisanjo.workers.dev/icons?i=svg)              |
+|       `swc`        |              ![swc](https://skill-icons.alanreisanjo.workers.dev/icons?i=swc)              |
+|      `swift`       |            ![swift](https://skill-icons.alanreisanjo.workers.dev/icons?i=swift)            |
+|     `symfony`      |          ![symfony](https://skill-icons.alanreisanjo.workers.dev/icons?i=symfony)          |
+|   `tailwindcss`    |      ![tailwindcss](https://skill-icons.alanreisanjo.workers.dev/icons?i=tailwindcss)      |
+|     `tanstack`     |         ![tanstack](https://skill-icons.alanreisanjo.workers.dev/icons?i=tanstack)         |
+|      `tauri`       |            ![tauri](https://skill-icons.alanreisanjo.workers.dev/icons?i=tauri)            |
+|     `telegram`     |         ![telegram](https://skill-icons.alanreisanjo.workers.dev/icons?i=telegram)         |
+|    `tensorflow`    |       ![tensorflow](https://skill-icons.alanreisanjo.workers.dev/icons?i=tensorflow)       |
+|    `terraform`     |        ![terraform](https://skill-icons.alanreisanjo.workers.dev/icons?i=terraform)        |
+|  `testinglibrary`  |   ![testinglibrary](https://skill-icons.alanreisanjo.workers.dev/icons?i=testinglibrary)   |
+|     `threejs`      |          ![threejs](https://skill-icons.alanreisanjo.workers.dev/icons?i=threejs)          |
+|       `trae`       |             ![trae](https://skill-icons.alanreisanjo.workers.dev/icons?i=trae)             |
+|     `traefik`      |          ![traefik](https://skill-icons.alanreisanjo.workers.dev/icons?i=traefik)          |
+|       `trpc`       |             ![trpc](https://skill-icons.alanreisanjo.workers.dev/icons?i=trpc)             |
+|    `turbopack`     |        ![turbopack](https://skill-icons.alanreisanjo.workers.dev/icons?i=turbopack)        |
+|    `turborepo`     |        ![turborepo](https://skill-icons.alanreisanjo.workers.dev/icons?i=turborepo)        |
+|      `turso`       |            ![turso](https://skill-icons.alanreisanjo.workers.dev/icons?i=turso)            |
+|     `twitter`      |          ![twitter](https://skill-icons.alanreisanjo.workers.dev/icons?i=twitter)          |
+|    `typescript`    |       ![typescript](https://skill-icons.alanreisanjo.workers.dev/icons?i=typescript)       |
+|      `ubuntu`      |           ![ubuntu](https://skill-icons.alanreisanjo.workers.dev/icons?i=ubuntu)           |
+|      `unity`       |            ![unity](https://skill-icons.alanreisanjo.workers.dev/icons?i=unity)            |
+|   `unrealengine`   |     ![unrealengine](https://skill-icons.alanreisanjo.workers.dev/icons?i=unrealengine)     |
+|     `upstash`      |          ![upstash](https://skill-icons.alanreisanjo.workers.dev/icons?i=upstash)          |
+|        `v`         |                ![v](https://skill-icons.alanreisanjo.workers.dev/icons?i=v)                |
+|       `vala`       |             ![vala](https://skill-icons.alanreisanjo.workers.dev/icons?i=vala)             |
+|      `vercel`      |           ![vercel](https://skill-icons.alanreisanjo.workers.dev/icons?i=vercel)           |
+|     `verilog`      |          ![verilog](https://skill-icons.alanreisanjo.workers.dev/icons?i=verilog)          |
+|       `vim`        |              ![vim](https://skill-icons.alanreisanjo.workers.dev/icons?i=vim)              |
+|       `visa`       |             ![visa](https://skill-icons.alanreisanjo.workers.dev/icons?i=visa)             |
+|   `visualstudio`   |     ![visualstudio](https://skill-icons.alanreisanjo.workers.dev/icons?i=visualstudio)     |
+|       `vite`       |             ![vite](https://skill-icons.alanreisanjo.workers.dev/icons?i=vite)             |
+|      `vitest`      |           ![vitest](https://skill-icons.alanreisanjo.workers.dev/icons?i=vitest)           |
+|      `vscode`      |           ![vscode](https://skill-icons.alanreisanjo.workers.dev/icons?i=vscode)           |
+|     `vscodium`     |         ![vscodium](https://skill-icons.alanreisanjo.workers.dev/icons?i=vscodium)         |
+|      `vuejs`       |            ![vuejs](https://skill-icons.alanreisanjo.workers.dev/icons?i=vuejs)            |
+|     `vuetify`      |          ![vuetify](https://skill-icons.alanreisanjo.workers.dev/icons?i=vuetify)          |
+|       `warp`       |             ![warp](https://skill-icons.alanreisanjo.workers.dev/icons?i=warp)             |
+|   `webassembly`    |      ![webassembly](https://skill-icons.alanreisanjo.workers.dev/icons?i=webassembly)      |
+|     `webflow`      |          ![webflow](https://skill-icons.alanreisanjo.workers.dev/icons?i=webflow)          |
+|     `webpack`      |          ![webpack](https://skill-icons.alanreisanjo.workers.dev/icons?i=webpack)          |
+|     `webstorm`     |         ![webstorm](https://skill-icons.alanreisanjo.workers.dev/icons?i=webstorm)         |
+|     `whatsapp`     |         ![whatsapp](https://skill-icons.alanreisanjo.workers.dev/icons?i=whatsapp)         |
+|     `windicss`     |         ![windicss](https://skill-icons.alanreisanjo.workers.dev/icons?i=windicss)         |
+|     `windows`      |          ![windows](https://skill-icons.alanreisanjo.workers.dev/icons?i=windows)          |
+|     `windsurf`     |         ![windsurf](https://skill-icons.alanreisanjo.workers.dev/icons?i=windsurf)         |
+|    `wordpress`     |        ![wordpress](https://skill-icons.alanreisanjo.workers.dev/icons?i=wordpress)        |
+|     `workers`      |          ![workers](https://skill-icons.alanreisanjo.workers.dev/icons?i=workers)          |
+|      `xcode`       |            ![xcode](https://skill-icons.alanreisanjo.workers.dev/icons?i=xcode)            |
+|        `xd`        |               ![xd](https://skill-icons.alanreisanjo.workers.dev/icons?i=xd)               |
+|       `yaml`       |             ![yaml](https://skill-icons.alanreisanjo.workers.dev/icons?i=yaml)             |
+|       `yarn`       |             ![yarn](https://skill-icons.alanreisanjo.workers.dev/icons?i=yarn)             |
+|       `yew`        |              ![yew](https://skill-icons.alanreisanjo.workers.dev/icons?i=yew)              |
+|     `youtube`      |          ![youtube](https://skill-icons.alanreisanjo.workers.dev/icons?i=youtube)          |
+|       `zed`        |              ![zed](https://skill-icons.alanreisanjo.workers.dev/icons?i=zed)              |
+|       `zig`        |              ![zig](https://skill-icons.alanreisanjo.workers.dev/icons?i=zig)              |
+|       `zod`        |              ![zod](https://skill-icons.alanreisanjo.workers.dev/icons?i=zod)              |
+|     `zustand`      |          ![zustand](https://skill-icons.alanreisanjo.workers.dev/icons?i=zustand)          |
 
 # Development
 
