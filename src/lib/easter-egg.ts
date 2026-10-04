@@ -1,4 +1,7 @@
-const SIX_SEVEN_URL = '/six-seven.webp';
+import { API_URL } from '../../shared/icons';
+
+// Always on the Worker deploy, so the GitHub Pages build lands there too.
+const SIX_SEVEN_URL = `${API_URL}/six-seven.webp`;
 
 // Typing `six` and then `seven` in the browser console opens the six-seven picture.
 // Both are getters on window, so a bare identifier in the console runs them.
