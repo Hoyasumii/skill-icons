@@ -21,6 +21,7 @@ import { POP_ALL } from '@/lib/motion';
 import { PRESETS } from '@/lib/presets';
 import type { Format, FrameworkId } from '@/lib/snippets';
 import { isStackSelected, toggleStack } from '@/lib/stack-selection';
+import { cn } from '@/lib/utils';
 import type { IconCategory } from '../shared/icon-categories';
 
 function shuffled<T>(items: T[]): T[] {
@@ -86,6 +87,10 @@ function Builder() {
     },
   };
 
+  // With nothing picked there's nothing to show: the panel and the dock step aside.
+  const hasIcons = state.icons.length > 0;
+  if (!hasIcons && sheetOpen) setSheetOpen(false);
+
   const exportPanel = (
     <ExportPanel
       compact={!wide}
@@ -111,7 +116,14 @@ function Builder() {
     <div className="flex h-dvh flex-col overflow-hidden">
       <SiteHeader />
 
-      <div className="flex min-h-0 flex-1 flex-col lg:grid lg:grid-cols-[232px_minmax(0,1fr)_400px]">
+      <div
+        className={cn(
+          'flex min-h-0 flex-1 flex-col lg:grid',
+          hasIcons
+            ? 'lg:grid-cols-[232px_minmax(0,1fr)_400px]'
+            : 'lg:grid-cols-[232px_minmax(0,1fr)]',
+        )}
+      >
         <CategorySidebar value={category} onChange={setCategory} />
 
         <main className="flex min-h-0 flex-1 flex-col overflow-y-auto">
@@ -150,16 +162,20 @@ function Builder() {
             </footer>
           </div>
 
-          <Dock stack={stack} exportRef={exportRef} onExport={() => setSheetOpen(true)} />
+          {hasIcons && (
+            <Dock stack={stack} exportRef={exportRef} onExport={() => setSheetOpen(true)} />
+          )}
         </main>
 
         {wide ? (
-          <aside
-            aria-label={t.stack.export}
-            className="min-h-0 overflow-y-auto border-l bg-card p-6"
-          >
-            {exportPanel}
-          </aside>
+          hasIcons && (
+            <aside
+              aria-label={t.stack.export}
+              className="min-h-0 overflow-y-auto border-l bg-card p-6"
+            >
+              {exportPanel}
+            </aside>
+          )
         ) : (
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetContent

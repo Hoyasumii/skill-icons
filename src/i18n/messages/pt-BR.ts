@@ -56,7 +56,6 @@ export const ptBR: Messages = {
   stack: {
     title: 'Sua pilha',
     export: 'Exportar',
-    dockEmpty: 'Toque nos ícones para montar sua pilha.',
     empty: 'Vazia por enquanto. Escolha ícones ou use uma pilha pronta.',
     hint: 'toque num ícone da pilha para mover ou remover',
     clearAll: 'limpar tudo',

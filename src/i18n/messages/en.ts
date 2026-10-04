@@ -66,7 +66,6 @@ export const en = {
   stack: {
     title: 'Your stack',
     export: 'Export',
-    dockEmpty: 'Tap icons to build your stack.',
     empty: 'Empty for now. Pick icons or use a ready-made stack.',
     hint: 'tap an icon in your stack to move or remove it',
     clearAll: 'clear all',
