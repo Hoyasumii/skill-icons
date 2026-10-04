@@ -115,6 +115,9 @@ export const ptBR: Messages = {
     installed: 'Comando copiado',
     hint: 'componentes prontos no npm:',
   },
+  footer: {
+    credit: 'MIT · fork de',
+  },
   mcp: {
     meta: {
       title: 'Servidor MCP · Skill Icons',

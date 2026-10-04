@@ -1,6 +1,9 @@
 import { API_URL } from '../../shared/icons';
 
 export const REPO_URL = 'https://github.com/Hoyasumii/skill-icons';
+/** The original project this one is forked from. */
+export const UPSTREAM_REPO = 'tandpfun/skill-icons';
+export const UPSTREAM_URL = `https://github.com/${UPSTREAM_REPO}`;
 
 export const PACKAGE_NAME = '@hoyasumii/skill-icons';
 export const NPM_URL = `https://www.npmjs.com/package/${PACKAGE_NAME}`;

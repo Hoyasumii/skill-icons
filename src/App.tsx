@@ -7,6 +7,7 @@ import { McpPage } from '@/components/mcp-page';
 import { PresetList } from '@/components/preset-list';
 import { SavedStacks } from '@/components/saved-stacks';
 import { SearchInput } from '@/components/search-input';
+import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import type { StackProps } from '@/components/stack-tray';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
@@ -17,7 +18,7 @@ import { usePop } from '@/hooks/use-pop';
 import { useSavedStacks } from '@/hooks/use-saved-stacks';
 import { useI18n } from '@/i18n';
 import { filterIcons } from '@/lib/icons';
-import { MCP_PAGE_PATH, REPO_URL } from '@/lib/links';
+import { MCP_PAGE_PATH } from '@/lib/links';
 import { POP_ALL } from '@/lib/motion';
 import { PRESETS } from '@/lib/presets';
 import type { Format, FrameworkId } from '@/lib/snippets';
@@ -154,14 +155,7 @@ function Builder() {
               onToggle={toggle}
               onClearSearch={() => setQuery('')}
             />
-            <footer className="mt-auto lg:hidden">
-              <a
-                href={REPO_URL}
-                className="inline-flex h-11 items-center font-mono text-[13px] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
-              >
-                {t.header.github}
-              </a>
-            </footer>
+            <SiteFooter page="builder" variant="compact" />
           </div>
 
           {hasIcons && (

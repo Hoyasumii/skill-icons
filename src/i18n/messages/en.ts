@@ -129,6 +129,9 @@ export const en = {
     installed: 'Command copied',
     hint: 'ready-made components on npm:',
   },
+  footer: {
+    credit: 'MIT · fork of',
+  },
   mcp: {
     meta: {
       title: 'MCP server · Skill Icons',

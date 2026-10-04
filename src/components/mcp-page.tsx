@@ -1,6 +1,7 @@
 import { CheckIcon, CopyIcon } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
 import { CodeBlock } from '@/components/code-block';
+import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -111,6 +112,8 @@ export function McpPage() {
           <Why />
         </main>
       </div>
+
+      <SiteFooter page="mcp" variant="full" />
     </div>
   );
 }
