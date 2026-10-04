@@ -1,4 +1,5 @@
 import type { IconCategory } from '../../../shared/icon-categories';
+import type { PresetId } from '../../lib/presets';
 
 const categories: Record<IconCategory, string> = {
   language: 'Languages',
@@ -19,6 +20,13 @@ const categories: Record<IconCategory, string> = {
   os: 'OS & hardware',
   social: 'Social',
   productivity: 'Productivity',
+};
+
+const presetNames: Record<PresetId, string> = {
+  web: 'Modern web',
+  backend: 'Backend',
+  tooling: 'Tooling',
+  ai: 'AI',
 };
 
 export const en = {
@@ -53,6 +61,12 @@ export const en = {
     hint: 'tap to add',
     noResultsFor: (query: string) => `Nothing found for “${query}”.`,
     clearSearch: 'Clear search',
+  },
+  presets: {
+    label: 'Ready-made stacks · one tap adds them all',
+    names: presetNames,
+    missing: (count: number) => `+${count}`,
+    complete: 'in stack ✓',
   },
   categories,
   selected: {

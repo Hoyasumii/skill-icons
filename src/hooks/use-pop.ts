@@ -14,7 +14,9 @@ export function usePop() {
     timer.current = window.setTimeout(() => setTarget(null), POP_HOLD_MS);
   };
 
-  const isPopping = (name: string) => target === name || target === POP_ALL;
+  /** Pass `includeAll: false` where a whole-stack pop would be noise (the icon grid). */
+  const isPopping = (name: string, includeAll = true) =>
+    target === name || (includeAll && target === POP_ALL);
 
   return { pop, isPopping };
 }

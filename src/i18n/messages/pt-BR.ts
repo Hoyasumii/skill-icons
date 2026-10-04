@@ -33,6 +33,12 @@ export const ptBR: Messages = {
     noResultsFor: query => `Nada encontrado para “${query}”.`,
     clearSearch: 'Limpar busca',
   },
+  presets: {
+    label: 'Pilhas prontas · um toque adiciona tudo',
+    names: { web: 'Web moderno', backend: 'Back-end', tooling: 'Ferramentas', ai: 'IA' },
+    missing: count => `+${count}`,
+    complete: 'na pilha ✓',
+  },
   categories: {
     language: 'Linguagens',
     frontend: 'Frontend',

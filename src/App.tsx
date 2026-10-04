@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { CategoryRail, CategorySidebar } from '@/components/category-nav';
 import { IconGrid } from '@/components/icon-grid';
+import { PresetList } from '@/components/preset-list';
 import { Options } from '@/components/options';
 import { Output } from '@/components/output';
 import { SearchInput } from '@/components/search-input';
@@ -11,10 +12,12 @@ import { usePop } from '@/hooks/use-pop';
 import { useI18n } from '@/i18n';
 import { filterIcons } from '@/lib/icons';
 import { REPO_URL } from '@/lib/links';
+import { POP_ALL } from '@/lib/motion';
 import type { IconCategory } from '../shared/icon-categories';
 
 export function App() {
-  const { state, toggleIcon, moveIcon, clearIcons, setTheme, setPerLine } = useBuilderState();
+  const { state, toggleIcon, moveIcon, addIcons, clearIcons, setTheme, setPerLine } =
+    useBuilderState();
   const { t } = useI18n();
   const { pop, isPopping } = usePop();
   const [query, setQuery] = useState('');
@@ -25,6 +28,12 @@ export function App() {
   const toggle = (name: string) => {
     if (!state.icons.includes(name)) pop(name);
     toggleIcon(name);
+  };
+
+  const addPreset = (names: string[]) => {
+    if (!names.length) return;
+    addIcons(names);
+    pop(POP_ALL);
   };
 
   // Temporary: rendered in both columns until the export panel and sheet land.
@@ -62,6 +71,7 @@ export function App() {
           <div className="flex flex-[1_0_auto] flex-col gap-5 px-4 pt-4 pb-6 lg:px-7 lg:pt-6 lg:pb-10">
             <SearchInput value={query} onChange={setQuery} />
             <CategoryRail value={category} onChange={setCategory} />
+            <PresetList selected={state.icons} theme={state.theme} onAdd={addPreset} />
             <IconGrid
               icons={filtered}
               title={t.picker.gridTitle(
@@ -71,7 +81,7 @@ export function App() {
               query={query}
               selected={state.icons}
               theme={state.theme}
-              isPopping={isPopping}
+              isPopping={name => isPopping(name, false)}
               onToggle={toggle}
               onClearSearch={() => setQuery('')}
             />
