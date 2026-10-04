@@ -1,57 +1,133 @@
 import { describe, expect, it } from 'vitest';
-import { pageHead } from '../shared/page-meta';
-import { withPageMeta } from '../worker/page';
+import { pageFile, pageHead, pagePath, parseSitePath } from '../shared/page-meta';
+import {
+  CONTENT_SLOT,
+  HEAD_SLOT,
+  notFoundPage,
+  renderPage,
+  robots,
+  SITE_PAGES,
+  sitemap,
+} from '../shared/site-pages';
+
+const SITE = 'https://example.com/';
+
+describe('page routes', () => {
+  it.each([
+    ['home', 'en', '', 'index.html'],
+    ['mcp', 'en', 'mcp', 'mcp.html'],
+    ['home', 'pt-BR', 'pt-BR/', 'pt-BR/index.html'],
+    ['mcp', 'pt-BR', 'pt-BR/mcp', 'pt-BR/mcp.html'],
+  ] as const)('%s in %s lives at "%s" (%s)', (page, locale, path, file) => {
+    expect(pagePath(page, locale)).toBe(path);
+    expect(pageFile(path)).toBe(file);
+  });
+
+  it.each([
+    ['/', '/', { page: 'home', locale: undefined }],
+    ['/mcp', '/', { page: 'mcp', locale: undefined }],
+    ['/mcp/', '/', { page: 'mcp', locale: undefined }],
+    ['/pt-BR/', '/', { page: 'home', locale: 'pt-BR' }],
+    ['/pt-BR/mcp', '/', { page: 'mcp', locale: 'pt-BR' }],
+    ['/skill-icons/pt-BR/mcp', '/skill-icons/', { page: 'mcp', locale: 'pt-BR' }],
+    ['/skill-icons/', '/skill-icons/', { page: 'home', locale: undefined }],
+  ])('reads %s under base %s', (pathname, base, expected) => {
+    expect(parseSitePath(pathname, base)).toEqual(expected);
+  });
+});
 
 describe('pageHead', () => {
   it('builds the tags of a page in a locale', () => {
-    const head = pageHead('mcp', 'pt-BR', 'https://example.com/');
+    const head = pageHead('mcp', 'pt-BR', SITE);
     expect(head).toContain('<title>Servidor MCP · Skill Icons</title>');
-    expect(head).toContain('<meta property="og:url" content="https://example.com/mcp" />');
+    expect(head).toContain('<link rel="canonical" href="https://example.com/pt-BR/mcp" />');
+    expect(head).toContain('<meta property="og:url" content="https://example.com/pt-BR/mcp" />');
     expect(head).toContain('<meta property="og:locale" content="pt_BR" />');
     expect(head).toContain('<meta property="og:locale:alternate" content="en_US" />');
-    expect(head).toContain('<link rel="canonical" href="https://example.com/mcp" />');
     expect(head).toContain(
       '<meta name="twitter:image" content="https://example.com/og-site.png" />',
     );
   });
+
+  it('links every language version, and the default for the rest', () => {
+    const head = pageHead('home', 'en', SITE);
+    expect(head).toContain('<link rel="alternate" hreflang="en" href="https://example.com/" />');
+    expect(head).toContain(
+      '<link rel="alternate" hreflang="pt-BR" href="https://example.com/pt-BR/" />',
+    );
+    expect(head).toContain(
+      '<link rel="alternate" hreflang="x-default" href="https://example.com/" />',
+    );
+  });
+
+  it('describes the page as structured data', () => {
+    const head = pageHead('home', 'pt-BR', SITE);
+    const json = head.match(/<script type="application\/ld\+json">(.*?)<\/script>/)?.[1];
+    const data = JSON.parse(json ?? '');
+    const types = data['@graph'].map((node: { '@type': string }) => node['@type']);
+    expect(types).toEqual(['WebSite', 'WebApplication']);
+    expect(data['@graph'][1]).toMatchObject({
+      url: 'https://example.com/pt-BR/',
+      inLanguage: 'pt-BR',
+    });
+  });
 });
 
-describe('withPageMeta', () => {
-  // index.html as the build writes it.
-  const shell = () =>
-    new Response(
-      `<!doctype html><html lang="en"><head><meta charset="UTF-8" />${pageHead('home', 'en', 'https://example.com/')}</head><body></body></html>`,
-      { headers: { 'Content-Type': 'text/html', ETag: '"abc"' } },
-    );
-  const rewrite = async (path: string, page: 'home' | 'mcp', language?: string) => {
-    const request = new Request(`https://example.com${path}`, {
-      headers: language ? { 'Accept-Language': language } : {},
-    });
-    return withPageMeta(shell(), request, page);
-  };
+describe('site pages', () => {
+  const template = `<!doctype html><html lang="en"><head>${HEAD_SLOT}</head><body><div id="root">${CONTENT_SLOT}</div></body></html>`;
+  const urls = { siteUrl: SITE, base: '/skill-icons/' };
 
-  it('gives /mcp its own tags, once', async () => {
-    const res = await rewrite('/mcp', 'mcp');
-    expect(res.headers.get('Vary')).toContain('Accept-Language');
-    expect(res.headers.get('ETag')).toBeNull();
-    const html = await res.text();
-    expect(html).toContain('<title>MCP server · Skill Icons</title>');
-    expect(html).toContain('<meta property="og:url" content="https://example.com/mcp" />');
-    expect(html).toContain('<meta charset="UTF-8" />');
-    expect(html.match(/<title>/g)).toHaveLength(1);
-    expect(html.match(/property="og:title"/g)).toHaveLength(1);
-    expect(html.match(/name="description"/g)).toHaveLength(1);
+  it('writes one file per page and language', () => {
+    const files = SITE_PAGES.map(({ page, locale }) => pageFile(pagePath(page, locale)));
+    expect(files.sort()).toEqual(['index.html', 'mcp.html', 'pt-BR/index.html', 'pt-BR/mcp.html']);
   });
 
-  it('answers in the language the client prefers', async () => {
-    const html = await (await rewrite('/', 'home', 'en;q=0.5, pt-PT')).text();
+  it('fills in the language, head and content', () => {
+    const html = renderPage(template, 'home', 'pt-BR', urls);
     expect(html).toContain('<html lang="pt-BR">');
-    expect(html).toContain('<meta property="og:locale" content="pt_BR" />');
-    expect(html).toContain('<meta property="og:url" content="https://example.com/" />');
+    expect(html).toContain('<link rel="canonical" href="https://example.com/pt-BR/" />');
+    expect(html).not.toContain(HEAD_SLOT);
+    expect(html).not.toContain(CONTENT_SLOT);
+    expect(html.match(/<h1>/g)).toHaveLength(1);
   });
 
-  it('falls back to English', async () => {
-    const html = await (await rewrite('/', 'home', 'de-DE,*;q=0.1')).text();
-    expect(html).toContain('<meta property="og:locale" content="en_US" />');
+  it('lists the icons on the builder page, by brand name', () => {
+    const html = renderPage(template, 'home', 'en', urls);
+    expect(html).toContain('<li>TypeScript</li>');
+    expect(html).toContain('<li>PostgreSQL</li>');
+    expect(html).toContain('<h3>Databases · ');
+  });
+
+  it('links pages within the deploy and to the other language', () => {
+    const html = renderPage(template, 'mcp', 'en', urls);
+    expect(html).toContain('href="/skill-icons/"');
+    expect(html).toContain('href="/skill-icons/pt-BR/mcp" hreflang="pt-BR"');
+  });
+
+  it('shows the MCP install steps with code, escaped', () => {
+    const html = renderPage(template, 'mcp', 'en', urls);
+    expect(html).toContain('<code>.cursor/mcp.json</code>');
+    expect(html).toContain('claude mcp add --transport http skill-icons');
+    expect(html).toContain('&quot;mcpServers&quot;');
+  });
+
+  it('keeps the 404 page out of the index', () => {
+    const html = notFoundPage(urls);
+    expect(html).toContain('<meta name="robots" content="noindex" />');
+    expect(html).toContain('href="/skill-icons/pt-BR/"');
+    expect(html).not.toContain('<script');
+  });
+
+  it('lists every page in the sitemap, with its alternates', () => {
+    const xml = sitemap(SITE);
+    expect(xml.match(/<loc>/g)).toHaveLength(SITE_PAGES.length);
+    expect(xml).toContain('<loc>https://example.com/pt-BR/mcp</loc>');
+    expect(xml).toContain(
+      '<xhtml:link rel="alternate" hreflang="pt-BR" href="https://example.com/pt-BR/"/>',
+    );
+  });
+
+  it('points robots.txt at the sitemap', () => {
+    expect(robots(SITE)).toContain('Sitemap: https://example.com/sitemap.xml');
   });
 });

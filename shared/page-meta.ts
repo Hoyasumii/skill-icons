@@ -1,9 +1,12 @@
-// Title, description and OpenGraph tags of each site page, in every locale.
-// The build writes the home page's into index.html; the Worker rewrites them per page and language.
+// Routes, title, description and OpenGraph tags of each site page, in every locale.
+// Each page and language has its own URL; the build writes one HTML file per pair (shared/site-pages.ts).
 
-import { LOCALES, type Locale } from '../src/i18n/locales';
+import { DEFAULT_LOCALE, isLocale, LOCALES, type Locale } from '../src/i18n/locales';
+import { AUTHOR_NAME, AUTHOR_URL, REPO_URL, UPSTREAM_URL } from './links';
 
-export type Page = 'home' | 'mcp';
+export const PAGES = ['home', 'mcp'] as const;
+
+export type Page = (typeof PAGES)[number];
 
 export interface PageMeta {
   title: string;
@@ -15,8 +18,9 @@ export interface PageMeta {
 export const PAGE_META: Record<Locale, Record<Page, PageMeta>> = {
   en: {
     home: {
-      title: 'Skill Icons',
-      description: 'Showcase your skills on your GitHub or resumé with ease!',
+      title: 'Skill Icons · Tech stack icons for your GitHub README',
+      description:
+        'Pick icons for the languages, frameworks and tools you use, build your skills badge and paste it in your GitHub README or resumé.',
       imageAlt: 'Skill Icons: build your stack and paste it in your README',
     },
     mcp: {
@@ -28,8 +32,9 @@ export const PAGE_META: Record<Locale, Record<Page, PageMeta>> = {
   },
   'pt-BR': {
     home: {
-      title: 'Skill Icons',
-      description: 'Mostre suas habilidades no seu GitHub ou currículo com facilidade!',
+      title: 'Skill Icons · Ícones de tecnologias para o README do GitHub',
+      description:
+        'Escolha ícones das linguagens, frameworks e ferramentas que você usa, monte seu badge de skills e cole no README do GitHub ou no currículo.',
       imageAlt: 'Skill Icons: monte sua stack e cole no seu README',
     },
     mcp: {
@@ -41,12 +46,34 @@ export const PAGE_META: Record<Locale, Record<Page, PageMeta>> = {
   },
 };
 
-/** Each page's path under the site URL. */
-const PAGE_PATHS: Record<Page, string> = { home: '', mcp: 'mcp' };
+const PAGE_SEGMENTS: Record<Page, string> = { home: '', mcp: 'mcp' };
+
+/** `page`'s path in `locale`, relative to the site root: "", "mcp", "pt-BR/", "pt-BR/mcp". */
+export function pagePath(page: Page, locale: Locale): string {
+  const prefix = locale === DEFAULT_LOCALE ? '' : `${locale}/`;
+  return prefix + PAGE_SEGMENTS[page];
+}
+
+/** The file the build writes for a page path: "index.html", "mcp.html", "pt-BR/index.html"… */
+export function pageFile(path: string): string {
+  return path === '' || path.endsWith('/') ? `${path}index.html` : `${path}.html`;
+}
+
+/**
+ * The page and language a pathname points to. `locale` is undefined without a language prefix:
+ * the unprefixed URLs are the default language's, but a visitor's own choice may take over there.
+ */
+export function parseSitePath(pathname: string, base: string): { page: Page; locale?: Locale } {
+  const rest = pathname.startsWith(base) ? pathname.slice(base.length) : pathname.slice(1);
+  const segments = rest.split('/').filter(Boolean);
+  const locale = isLocale(segments[0]) && segments[0] !== DEFAULT_LOCALE ? segments[0] : undefined;
+  if (locale) segments.shift();
+  return { page: segments[0] === PAGE_SEGMENTS.mcp ? 'mcp' : 'home', locale };
+}
 
 const OG_LOCALES: Record<Locale, string> = { en: 'en_US', 'pt-BR': 'pt_BR' };
 
-function escapeAttr(value: string): string {
+export function escapeHtml(value: string): string {
   return value
     .replace(/&/g, '&amp;')
     .replace(/"/g, '&quot;')
@@ -54,21 +81,67 @@ function escapeAttr(value: string): string {
     .replace(/>/g, '&gt;');
 }
 
-/** The <head> tags for `page` in `locale`; `siteUrl` is the deploy's absolute URL, ending in "/". */
+/** schema.org data: the site, and what the page is (the builder app or the MCP docs). */
+function structuredData(page: Page, locale: Locale, siteUrl: string): string {
+  const { title, description } = PAGE_META[locale][page];
+  const url = siteUrl + pagePath(page, locale);
+  const author = { '@type': 'Person', name: AUTHOR_NAME, url: AUTHOR_URL };
+  const website = {
+    '@type': 'WebSite',
+    '@id': `${siteUrl}#website`,
+    url: siteUrl,
+    name: 'Skill Icons',
+    inLanguage: [...LOCALES],
+  };
+  const content =
+    page === 'home'
+      ? {
+          '@type': 'WebApplication',
+          name: 'Skill Icons',
+          url,
+          description,
+          inLanguage: locale,
+          applicationCategory: 'DeveloperApplication',
+          operatingSystem: 'Any',
+          isAccessibleForFree: true,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          author,
+          isBasedOn: UPSTREAM_URL,
+          codeRepository: REPO_URL,
+        }
+      : {
+          '@type': 'TechArticle',
+          headline: title,
+          url,
+          description,
+          inLanguage: locale,
+          author,
+          isPartOf: { '@id': website['@id'] },
+        };
+  // "<" is escaped so no text can close the script element.
+  const json = JSON.stringify({ '@context': 'https://schema.org', '@graph': [website, content] });
+  return `<script type="application/ld+json">${json.replace(/</g, '\\u003c')}</script>`;
+}
+
+/** The <head> tags for `page` in `locale`; `siteUrl` is the canonical site's absolute URL, ending in "/". */
 export function pageHead(page: Page, locale: Locale, siteUrl: string): string {
   const { title, description, imageAlt } = PAGE_META[locale][page];
-  const url = siteUrl + PAGE_PATHS[page];
+  const url = siteUrl + pagePath(page, locale);
   const image = `${siteUrl}og-site.png`;
 
   const property = (name: string, content: string) =>
-    `<meta property="${name}" content="${escapeAttr(content)}" />`;
+    `<meta property="${name}" content="${escapeHtml(content)}" />`;
   const name = (key: string, content: string) =>
-    `<meta name="${key}" content="${escapeAttr(content)}" />`;
+    `<meta name="${key}" content="${escapeHtml(content)}" />`;
+  const alternate = (hreflang: string, href: string) =>
+    `<link rel="alternate" hreflang="${hreflang}" href="${escapeHtml(href)}" />`;
 
   return [
-    `<title>${escapeAttr(title)}</title>`,
+    `<title>${escapeHtml(title)}</title>`,
     name('description', description),
-    `<link rel="canonical" href="${escapeAttr(url)}" />`,
+    `<link rel="canonical" href="${escapeHtml(url)}" />`,
+    ...LOCALES.map(other => alternate(other, siteUrl + pagePath(page, other))),
+    alternate('x-default', siteUrl + pagePath(page, DEFAULT_LOCALE)),
     property('og:type', 'website'),
     property('og:site_name', 'Skill Icons'),
     property('og:title', title),
@@ -88,5 +161,6 @@ export function pageHead(page: Page, locale: Locale, siteUrl: string): string {
     name('twitter:description', description),
     name('twitter:image', image),
     name('twitter:image:alt', imageAlt),
+    structuredData(page, locale, siteUrl),
   ].join('\n    ');
 }

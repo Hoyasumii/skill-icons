@@ -84,7 +84,7 @@ describe('/icons opened in a browser', () => {
       Accept: 'text/html,application/xhtml+xml,*/*;q=0.8',
     });
     expect(res.status).toBe(302);
-    expect(res.headers.get('Location')).toBe('https://hoyasumii.github.io/skill-icons/');
+    expect(res.headers.get('Location')).toBe('https://example.com/');
     expect(res.headers.get('Cache-Control')).toBe('no-store');
   });
 
@@ -178,4 +178,15 @@ describe('link previews', () => {
     const res = await get('/og?i=js&theme=blue');
     expect(res.status).toBe(400);
   });
+});
+
+describe('search engines', () => {
+  it.each(['/icons?i=js', '/og?i=js', '/api/icons', '/api/svgs'])(
+    'keeps %s out of the index without blocking it',
+    async path => {
+      const res = await get(path);
+      expect(res.status).toBe(200);
+      expect(res.headers.get('X-Robots-Tag')).toBe('noindex');
+    },
+  );
 });

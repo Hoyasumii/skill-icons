@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { detectLocale, isLocale, type Locale } from './locales';
 import { en, type Messages } from './messages/en';
 import { ptBR } from './messages/pt-BR';
+import { pagePath, parseSitePath } from '../../shared/page-meta';
 
 export { LOCALE_CODES, LOCALE_NAMES, LOCALES, type Locale } from './locales';
 
@@ -9,8 +10,15 @@ const MESSAGES: Record<Locale, Messages> = { en, 'pt-BR': ptBR };
 
 const STORAGE_KEY = 'locale';
 
-/** An explicit choice from the picker wins over the browser's language and region. */
+const BASE = import.meta.env.BASE_URL;
+
+/**
+ * A language in the URL (/pt-BR/…) wins: it is what a shared link or a search result points to.
+ * Without one, an explicit choice from the picker wins over the browser's language and region.
+ */
 function initialLocale(): Locale {
+  const fromUrl = parseSitePath(window.location.pathname, BASE).locale;
+  if (fromUrl) return fromUrl;
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (isLocale(stored)) return stored;
@@ -35,6 +43,13 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   // Each page sets its own title and description (useDocumentMeta).
   useEffect(() => {
     document.documentElement.lang = locale;
+  }, [locale]);
+
+  // Each language has its own URL, so the address follows the language shown.
+  useEffect(() => {
+    const { pathname, search, hash } = window.location;
+    const path = BASE + pagePath(parseSitePath(pathname, BASE).page, locale);
+    if (path !== pathname) window.history.replaceState(null, '', path + search + hash);
   }, [locale]);
 
   const setLocale = (next: Locale) => {

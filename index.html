@@ -5,9 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/skill-icons-favicon.svg" />
     <!-- page-meta -->
+    <!-- The plain-HTML copy of the page is for crawlers; with scripts on, the app takes its place. -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+    <style>
+      .js .static-page {
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!-- page-content --></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

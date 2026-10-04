@@ -4,15 +4,12 @@ import {
   DEFAULT_THEME,
   MAX_PER_LINE,
   MIN_PER_LINE,
-  PAGES_URL,
   shortNames,
   type Theme,
 } from '../shared/icons';
 import { cleanTitle } from '../shared/badge-title';
 import { handleMcp } from './mcp';
 import { isPreviewBot, ogPage, renderOgPng } from './og';
-import { withPageMeta } from './page';
-import type { Page } from '../shared/page-meta';
 
 const icons: Record<string, string> = iconsJson;
 const iconNameList = [...new Set(Object.keys(icons).map(i => i.split('-')[0]))];
@@ -26,6 +23,8 @@ const ONE_ICON = 48;
 const SCALE = ONE_ICON / (300 - 44);
 
 const CACHE_HEADERS = { 'Cache-Control': 'public, max-age=86400' };
+/** Images and data, not pages: crawlers may fetch them (link previews need to) but not list them in search. */
+const NOINDEX = { 'X-Robots-Tag': 'noindex' };
 
 function generateSvg(iconNames: string[], perLine: number): string {
   const iconSvgList = iconNames.map(i => icons[i]);
@@ -67,7 +66,7 @@ function badRequest(message: string): Response {
 
 function json(data: unknown): Response {
   return new Response(JSON.stringify(data), {
-    headers: { 'Content-Type': 'application/json;charset=UTF-8', ...CACHE_HEADERS },
+    headers: { 'Content-Type': 'application/json;charset=UTF-8', ...CACHE_HEADERS, ...NOINDEX },
   });
 }
 
@@ -114,7 +113,7 @@ function handleIcons(request: Request, url: URL): Response {
   if (isBrowserNavigation(request) && !isPreviewBot(request))
     return new Response(null, {
       status: 302,
-      headers: { Location: PAGES_URL, 'Cache-Control': 'no-store' },
+      headers: { Location: new URL('/', url).href, 'Cache-Control': 'no-store' },
     });
 
   const parsed = parseIconsRequest(url.searchParams);
@@ -126,7 +125,12 @@ function handleIcons(request: Request, url: URL): Response {
 
   return new Response(generateSvg(parsed.iconNames, parsed.perLine), {
     // A cached SVG must not answer a later navigation to the same URL.
-    headers: { 'Content-Type': 'image/svg+xml', Vary: 'Sec-Fetch-Dest, Accept', ...CACHE_HEADERS },
+    headers: {
+      'Content-Type': 'image/svg+xml',
+      Vary: 'Sec-Fetch-Dest, Accept',
+      ...CACHE_HEADERS,
+      ...NOINDEX,
+    },
   });
 }
 
@@ -149,15 +153,11 @@ async function handleOg(request: Request): Promise<Response> {
   const link = new URL('/icons', url);
   link.search = linkParams.toString().replaceAll('%2C', ',');
   const png = await renderOgPng(iconSvgs, link, title);
-  const res = new Response(png, { headers: { 'Content-Type': 'image/png', ...CACHE_HEADERS } });
+  const res = new Response(png, {
+    headers: { 'Content-Type': 'image/png', ...CACHE_HEADERS, ...NOINDEX },
+  });
   await cache.put(request.url, res.clone());
   return res;
-}
-
-/** The SPA shell, carrying `page`'s own title, description and OpenGraph tags. */
-async function sitePage(request: Request, env: Env, page: Page): Promise<Response> {
-  const shell = await env.ASSETS.fetch(new Request(new URL('/', request.url), request));
-  return withPageMeta(shell, request, page);
 }
 
 export default {
@@ -166,14 +166,14 @@ export default {
     const path = url.pathname.replace(/^\/|\/$/g, '');
 
     try {
-      if (path === '') return await sitePage(request, env, 'home');
       if (path === 'icons') return handleIcons(request, url);
       if (path === 'og') return await handleOg(request);
       if (path === 'mcp') {
         // A browser opening the server URL gets the page that explains how to install it.
         const wantsPage =
           request.method === 'GET' && request.headers.get('Accept')?.includes('text/html');
-        if (wantsPage) return await sitePage(request, env, 'mcp');
+        // The build writes it as mcp.html (shared/site-pages.ts).
+        if (wantsPage) return env.ASSETS.fetch(new Request(new URL('/mcp', request.url), request));
         return handleMcp(request);
       }
       if (path === 'api/icons') return json(iconNameList);

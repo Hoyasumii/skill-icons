@@ -19,12 +19,12 @@ import { usePop } from '@/hooks/use-pop';
 import { useSavedStacks } from '@/hooks/use-saved-stacks';
 import { useI18n } from '@/i18n';
 import { filterIcons } from '@/lib/icons';
-import { MCP_PAGE_PATH } from '@/lib/links';
 import { POP_ALL } from '@/lib/motion';
 import { PRESETS } from '@/lib/presets';
 import type { Format, FrameworkId } from '@/lib/snippets';
 import { isStackSelected, toggleStack } from '@/lib/stack-selection';
 import type { IconCategory } from '../shared/icon-categories';
+import { parseSitePath } from '../shared/page-meta';
 
 function shuffled<T>(items: T[]): T[] {
   const result = [...items];
@@ -36,7 +36,8 @@ function shuffled<T>(items: T[]): T[] {
 }
 
 export function App() {
-  return window.location.pathname.replace(/\/$/, '') === MCP_PAGE_PATH ? <McpPage /> : <Builder />;
+  const { page } = parseSitePath(window.location.pathname, import.meta.env.BASE_URL);
+  return page === 'mcp' ? <McpPage /> : <Builder />;
 }
 
 function Builder() {

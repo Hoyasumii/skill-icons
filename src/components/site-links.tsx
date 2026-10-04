@@ -1,6 +1,6 @@
 import { PackageIcon } from 'lucide-react';
 import { useI18n } from '@/i18n';
-import { MCP_PAGE_HREF, NPM_URL, PACKAGE_NAME, REPO_URL } from '@/lib/links';
+import { NPM_URL, PACKAGE_NAME, pageHref, REPO_URL } from '@/lib/links';
 import { cn } from '@/lib/utils';
 
 export type SitePage = 'builder' | 'mcp';
@@ -15,11 +15,11 @@ interface SiteLinksProps {
 
 /** github · npm library · mcp, shared by the header (wide) and the footer. */
 export function SiteLinks({ page, tone = 'muted', className }: SiteLinksProps) {
-  const { t } = useI18n();
+  const { locale, t } = useI18n();
   const links = [
     { href: REPO_URL, label: t.header.github },
     { href: NPM_URL, label: t.header.npm, title: PACKAGE_NAME, icon: true },
-    { href: MCP_PAGE_HREF, label: t.header.mcp, current: page === 'mcp' },
+    { href: pageHref('mcp', locale), label: t.header.mcp, current: page === 'mcp' },
   ];
 
   return (

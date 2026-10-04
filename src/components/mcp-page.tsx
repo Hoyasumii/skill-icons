@@ -9,7 +9,7 @@ import { useCopy } from '@/hooks/use-copy';
 import { useDocumentMeta } from '@/hooks/use-document-meta';
 import { useI18n } from '@/i18n';
 import type { Code } from '@/i18n/messages/en';
-import { MCP_URL } from '@/lib/links';
+import { MCP_URL, pageHref } from '@/lib/links';
 import { cn } from '@/lib/utils';
 import {
   BADGE_TOOL,
@@ -17,8 +17,8 @@ import {
   CATEGORY_IDS,
   ICON_COUNT,
   MAX_SUGGESTIONS,
+  MCP_CLIENTS,
   MCP_EXAMPLES,
-  MCP_SERVER_NAME,
   MCP_SERVER_VERSION,
   RESOLUTION_EXAMPLES,
   SEARCH_DEFAULT_LIMIT,
@@ -34,19 +34,7 @@ const answer = ({ data }: McpAnswer) => json(data);
 /** `{ "query": "postgres" }`, for an example's title. */
 const inline = (value: unknown) => JSON.stringify(value).replace(/([{:,])/g, '$1 ').replace(/}$/, ' }');
 
-const CLIENTS = {
-  claudeCode: {
-    lang: 'bash',
-    config: `claude mcp add --transport http ${MCP_SERVER_NAME} ${MCP_URL}`,
-  },
-  cursor: { lang: 'json', config: json({ mcpServers: { [MCP_SERVER_NAME]: { url: MCP_URL } } }) },
-  vscode: {
-    lang: 'json',
-    config: json({ servers: { [MCP_SERVER_NAME]: { type: 'http', url: MCP_URL } } }),
-  },
-  other: { lang: 'text', config: MCP_URL },
-} as const;
-type ClientId = keyof typeof CLIENTS;
+type ClientId = keyof typeof MCP_CLIENTS;
 
 const SECTION = {
   overview: 'overview',
@@ -185,7 +173,7 @@ function Overview() {
 function Install() {
   const { t } = useI18n();
   const [client, setClient] = useState<ClientId>('claudeCode');
-  const ids = Object.keys(CLIENTS) as ClientId[];
+  const ids = Object.keys(MCP_CLIENTS) as ClientId[];
 
   return (
     <section id={SECTION.install} className="flex scroll-mt-20 flex-col gap-4">
@@ -207,12 +195,12 @@ function Install() {
             <p className="text-[15px] leading-[22px]">{t.mcp.install.hints[id](code)}</p>
             <div className="relative">
               <CodeBlock
-                value={CLIENTS[id].config}
-                lang={CLIENTS[id].lang}
+                value={MCP_CLIENTS[id].config}
+                lang={MCP_CLIENTS[id].lang}
                 size="full"
                 className="[&_pre]:p-3.5! [&_pre]:pr-16! [&_pre]:leading-5!"
               />
-              <CopyIconButton key={id} value={CLIENTS[id].config} />
+              <CopyIconButton key={id} value={MCP_CLIENTS[id].config} />
             </div>
           </TabsContent>
         ))}
@@ -462,7 +450,7 @@ function BadgeTool() {
 }
 
 function Why() {
-  const { t } = useI18n();
+  const { locale, t } = useI18n();
 
   return (
     <section
@@ -474,7 +462,7 @@ function Why() {
       </h2>
       <p className="text-[17px] leading-[26px]">{t.mcp.why.text(code)}</p>
       <a
-        href={import.meta.env.BASE_URL}
+        href={pageHref('home', locale)}
         className="inline-flex min-h-12 items-center self-start rounded-lg border-2 border-highlight-foreground bg-highlight-foreground px-[18px] py-2 text-base font-bold text-highlight no-underline hover:opacity-90"
       >
         {t.mcp.why.cta}

@@ -178,7 +178,7 @@ describe('/mcp', () => {
     expect(res.status).toBe(405);
   });
 
-  it('hands a browser the site, which renders the install page', async () => {
+  it('hands a browser the install page the build wrote', async () => {
     const requested: string[] = [];
     const env = {
       ASSETS: {
@@ -195,6 +195,6 @@ describe('/mcp', () => {
       env,
     );
     expect(res.status).toBe(200);
-    expect(requested).toEqual(['/']);
+    expect(requested).toEqual(['/mcp']);
   });
 });

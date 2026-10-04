@@ -1,13 +1,14 @@
 import { useI18n } from '@/i18n';
+import { pageHref } from '@/lib/links';
 import { cn } from '@/lib/utils';
 
 /** "skill ◆ icons", drawn in text so it follows the site theme like the SVGs in /public. Always links to the builder. */
 export function Wordmark({ className }: { className?: string }) {
-  const { t } = useI18n();
+  const { locale, t } = useI18n();
 
   return (
     <a
-      href={import.meta.env.BASE_URL}
+      href={pageHref('home', locale)}
       aria-label={t.header.title}
       className={cn(
         'inline-flex items-center gap-[3px] text-[22px] leading-none font-bold tracking-[-0.03em] text-foreground no-underline',

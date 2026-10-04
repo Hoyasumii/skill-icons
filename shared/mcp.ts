@@ -1,6 +1,7 @@
 import iconList from '../generated/icon-list.json';
 import { categories, type IconCategory } from './icon-categories';
 import { aliasesOf, API_URL, buildIconsUrl, shortNames, type Theme } from './icons';
+import { MCP_URL } from './links';
 
 // What the MCP tools answer, without the SDK: the Worker serves it, the /mcp page shows it as examples.
 
@@ -10,6 +11,22 @@ export const SEARCH_TOOL = 'skill_icons_search';
 export const BADGE_TOOL = 'skill_icons_badge';
 export const SEARCH_DEFAULT_LIMIT = 50;
 export const MAX_SUGGESTIONS = 5;
+
+const json = (value: unknown) => JSON.stringify(value, null, 2);
+
+/** How each client connects to the server, as shown on the /mcp page. */
+export const MCP_CLIENTS = {
+  claudeCode: {
+    lang: 'bash',
+    config: `claude mcp add --transport http ${MCP_SERVER_NAME} ${MCP_URL}`,
+  },
+  cursor: { lang: 'json', config: json({ mcpServers: { [MCP_SERVER_NAME]: { url: MCP_URL } } }) },
+  vscode: {
+    lang: 'json',
+    config: json({ servers: { [MCP_SERVER_NAME]: { type: 'http', url: MCP_URL } } }),
+  },
+  other: { lang: 'text', config: MCP_URL },
+} as const;
 
 interface McpIcon {
   id: string;

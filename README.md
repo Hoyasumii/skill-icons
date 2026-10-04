@@ -57,7 +57,7 @@ The [builder](https://skill-icons.alanreisanjo.workers.dev) is the easiest way t
 - Save stacks in your browser to come back to them later.
 - Export as Markdown or HTML for your README, or as code for the npm package.
 
-The site is available in English and Portuguese (Brazil).
+The site is available in [English](https://skill-icons.alanreisanjo.workers.dev) and [Portuguese (Brazil)](https://skill-icons.alanreisanjo.workers.dev/pt-BR/); each language has its own address.
 
 # Specifying Icons
 

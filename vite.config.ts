@@ -3,26 +3,64 @@ import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { cloudflare } from '@cloudflare/vite-plugin';
-import { API_URL, PAGES_URL } from './shared/icons';
-import { pageHead } from './shared/page-meta';
+import { SITE_URL } from './shared/links';
+import { pageFile, pagePath, parseSitePath } from './shared/page-meta';
+import {
+  notFoundPage,
+  renderPage,
+  robots,
+  SITE_PAGES,
+  sitemap,
+  type SiteUrls,
+} from './shared/site-pages';
 
 // GitHub Pages serves the static menu only; the Worker (/icons, /api) stays on the Cloudflare deploy.
 const isPages = process.env.DEPLOY_TARGET === 'pages';
 const base = isPages ? '/skill-icons/' : '/';
-/** Absolute site URL; OpenGraph crawlers need absolute links for og:url and og:image. */
-const siteUrl = isPages ? PAGES_URL : `${API_URL}${base}`;
+// Both deploys point canonical, hreflang and OpenGraph links at the Worker's: it is the one indexed.
+const urls: SiteUrls = { siteUrl: SITE_URL, base };
 
-/** Writes the home page's title, description and OpenGraph tags into index.html, with absolute URLs. */
-function pageMetaPlugin(): Plugin {
+/**
+ * Writes one HTML file per page and language (index.html, mcp.html, pt-BR/index.html…), each with
+ * its own head and content, plus 404.html; the Worker deploy also gets sitemap.xml and robots.txt.
+ * The dev server fills index.html in for the page being opened.
+ */
+function sitePagesPlugin(): Plugin {
   return {
-    name: 'page-meta',
-    transformIndexHtml: html => html.replace('<!-- page-meta -->', pageHead('home', 'en', siteUrl)),
+    name: 'site-pages',
+    enforce: 'post',
+    transformIndexHtml(html, ctx) {
+      if (!ctx.server) return html;
+      const { page, locale = 'en' } = parseSitePath(
+        (ctx.originalUrl ?? ctx.path).split('?')[0],
+        base,
+      );
+      return renderPage(html, page, locale, urls);
+    },
+    generateBundle(_, bundle) {
+      const index = bundle['index.html'];
+      if (index?.type !== 'asset') return;
+      const template = String(index.source);
+
+      for (const { page, locale } of SITE_PAGES) {
+        const fileName = pageFile(pagePath(page, locale));
+        const source = renderPage(template, page, locale, urls);
+        if (fileName === 'index.html') index.source = source;
+        else this.emitFile({ type: 'asset', fileName, source });
+      }
+      this.emitFile({ type: 'asset', fileName: '404.html', source: notFoundPage(urls) });
+      // robots.txt only counts at a host's root, and a sitemap only lists its own host's pages.
+      if (!isPages) {
+        this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: sitemap(urls.siteUrl) });
+        this.emitFile({ type: 'asset', fileName: 'robots.txt', source: robots(urls.siteUrl) });
+      }
+    },
   };
 }
 
 export default defineConfig({
   base,
-  plugins: [react(), tailwindcss(), pageMetaPlugin(), ...(isPages ? [] : [cloudflare()])],
+  plugins: [react(), tailwindcss(), sitePagesPlugin(), ...(isPages ? [] : [cloudflare()])],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },

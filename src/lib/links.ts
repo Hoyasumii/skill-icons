@@ -1,19 +1,18 @@
-import { API_URL } from '../../shared/icons';
+import type { Locale } from '@/i18n/locales';
+import { pagePath, type Page } from '../../shared/page-meta';
 
-/** Who made this fork. */
-export const AUTHOR_NAME = 'Alan Reis';
-export const AUTHOR_URL = 'https://github.com/Hoyasumii';
+export {
+  AUTHOR_NAME,
+  AUTHOR_URL,
+  MCP_URL,
+  NPM_URL,
+  PACKAGE_NAME,
+  REPO_URL,
+  UPSTREAM_REPO,
+  UPSTREAM_URL,
+} from '../../shared/links';
 
-export const REPO_URL = 'https://github.com/Hoyasumii/skill-icons';
-/** The original project this one is forked from. */
-export const UPSTREAM_REPO = 'tandpfun/skill-icons';
-export const UPSTREAM_URL = `https://github.com/${UPSTREAM_REPO}`;
-
-export const PACKAGE_NAME = '@hoyasumii/skill-icons';
-export const NPM_URL = `https://www.npmjs.com/package/${PACKAGE_NAME}`;
-
-/** Remote MCP server, served by the Worker; a browser opening it gets the install page. */
-export const MCP_URL = `${API_URL}/mcp`;
-export const MCP_PAGE_PATH = '/mcp';
-/** The static GitHub Pages build has no Worker, so it links to the page on the Worker deploy. */
-export const MCP_PAGE_HREF = import.meta.env.BASE_URL === '/' ? MCP_PAGE_PATH : MCP_URL;
+/** Link to `page` in `locale` on this deploy (GitHub Pages serves the site under a subpath). */
+export function pageHref(page: Page, locale: Locale): string {
+  return import.meta.env.BASE_URL + pagePath(page, locale);
+}
