@@ -37,7 +37,7 @@ export function SelectedIcons({ icons, theme, onRemove, onMove, onClear }: Selec
             <span className="px-1">{name}</span>
             <Button
               variant="ghost"
-              size="icon-xs"
+              size="icon-sm"
               aria-label={t.selected.moveLeft(name)}
               disabled={index === 0}
               onClick={() => onMove(index, index - 1)}
@@ -46,7 +46,7 @@ export function SelectedIcons({ icons, theme, onRemove, onMove, onClear }: Selec
             </Button>
             <Button
               variant="ghost"
-              size="icon-xs"
+              size="icon-sm"
               aria-label={t.selected.moveRight(name)}
               disabled={index === icons.length - 1}
               onClick={() => onMove(index, index + 1)}
@@ -55,7 +55,7 @@ export function SelectedIcons({ icons, theme, onRemove, onMove, onClear }: Selec
             </Button>
             <Button
               variant="ghost"
-              size="icon-xs"
+              size="icon-sm"
               aria-label={t.selected.remove(name)}
               onClick={() => onRemove(name)}
             >

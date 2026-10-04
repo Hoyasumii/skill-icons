@@ -20,8 +20,6 @@ export function Options({ theme, perLine, onThemeChange, onPerLineChange }: Opti
         <Label id="theme-label">{t.options.iconTheme}</Label>
         <ToggleGroup
           type="single"
-          variant="outline"
-          spacing={0}
           value={theme}
           onValueChange={value => value && onThemeChange(value as Theme)}
           aria-labelledby="theme-label"
