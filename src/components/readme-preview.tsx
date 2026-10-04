@@ -1,4 +1,14 @@
-import { useId, useRef, useState, type ReactNode, type Ref } from 'react';
+import {
+  useEffect,
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+  type Ref,
+  type RefObject,
+} from 'react';
 import {
   CheckIcon,
   EyeIcon,
@@ -18,6 +28,26 @@ import { cn } from '@/lib/utils';
 import { cleanTitle, MAX_TITLE_LENGTH } from '../../shared/badge-title';
 import { API_URL, buildIconsUrl, type IconsUrlOptions } from '../../shared/icons';
 import { OG_DEFAULT_TITLE, OG_HEIGHT, OG_WIDTH } from '../../shared/og-layout';
+
+const FLIP_MS = 640;
+
+/** Each face's own height, kept current as images load, the title wraps or the stack changes. */
+function useHeights(front: RefObject<HTMLElement | null>, back: RefObject<HTMLElement | null>) {
+  const [heights, setHeights] = useState<{ front?: number; back?: number }>({});
+
+  useLayoutEffect(() => {
+    const faces = { front: front.current, back: back.current };
+    // offsetHeight ignores the flip's transforms.
+    const measure = () =>
+      setHeights({ front: faces.front?.offsetHeight, back: faces.back?.offsetHeight });
+    measure();
+    const observer = new ResizeObserver(measure);
+    for (const face of Object.values(faces)) if (face) observer.observe(face);
+    return () => observer.disconnect();
+  }, [front, back]);
+
+  return heights;
+}
 
 interface FaceHeaderProps {
   children: ReactNode;
@@ -109,6 +139,12 @@ export function ReadmePreview({
   const [flipped, setFlipped] = useState(false);
   const toCover = useRef<HTMLButtonElement>(null);
   const toFront = useRef<HTMLButtonElement>(null);
+  const frontFace = useRef<HTMLDivElement>(null);
+  const backFace = useRef<HTMLDivElement>(null);
+  const heights = useHeights(frontFace, backFace);
+  const [turning, setTurning] = useState(false);
+  const turnTimer = useRef<number>(undefined);
+  useEffect(() => () => window.clearTimeout(turnTimer.current), []);
   const empty = options.icons.length === 0;
   // Dev previews hit the local Worker; the built site (Pages is static) uses the public API.
   const src = buildIconsUrl(import.meta.env.DEV ? '' : API_URL, options);
@@ -116,13 +152,26 @@ export function ReadmePreview({
 
   const flip = (next: boolean) => {
     setFlipped(next);
+    setTurning(true);
+    window.clearTimeout(turnTimer.current);
+    turnTimer.current = window.setTimeout(() => setTurning(false), FLIP_MS);
     // The face turning in is visible from the start, so its button can take focus right away.
     requestAnimationFrame(() => (next ? toFront : toCover).current?.focus({ preventScroll: true }));
   };
 
+  // The card is as tall as the face showing. While it turns, the height changes around the
+  // midpoint, when the card is edge-on; other changes (content) settle quickly.
+  const height = flipped ? heights.back : heights.front;
+  const inner: CSSProperties = {
+    height: height ?? 'auto',
+    transitionProperty: 'transform, height',
+    transitionDuration: `${FLIP_MS}ms, ${turning ? 620 : 240}ms`,
+    transitionTimingFunction: `cubic-bezier(.32,1.25,.5,1), ${turning ? 'cubic-bezier(.65,0,.35,1)' : 'cubic-bezier(.22,1,.36,1)'}`,
+  };
+
   const face = (hidden: boolean) =>
     cn(
-      'overflow-hidden rounded-lg border bg-background text-foreground backface-hidden [grid-area:1/1]',
+      'overflow-hidden rounded-lg border bg-background text-foreground backface-hidden',
       // The face turning away leaves the tab order and the a11y tree once it is past edge-on;
       // until then backface-visibility is what hides it.
       'transition-[visibility] duration-0',
@@ -132,14 +181,11 @@ export function ReadmePreview({
   return (
     <div className="flex flex-col gap-2">
       <SectionLabel icon={EyeIcon}>{flipped ? t.preview.cover : label}</SectionLabel>
-      <div className="perspective-[1400px]">
-        <div
-          className={cn(
-            'grid transition-transform duration-[640ms] ease-[cubic-bezier(.32,1.25,.5,1)] transform-3d',
-            flipped && 'rotate-y-180',
-          )}
-        >
-          <div aria-hidden={flipped} className={face(flipped)}>
+      {/* Room for the turn above and to the sides; the bottom stays shut so the face turning
+          away never paints over the format tabs while they move. */}
+      <div className="perspective-[1400px] [clip-path:inset(-120px_-120px_-6px_-120px)]">
+        <div style={inner} className={cn('relative transform-3d', flipped && 'rotate-y-180')}>
+          <div ref={frontFace} aria-hidden={flipped} className={cn(face(flipped), 'relative')}>
             <FaceHeader
               icon={ImageIcon}
               action={t.preview.viewCover}
@@ -176,7 +222,11 @@ export function ReadmePreview({
             </div>
           </div>
 
-          <div aria-hidden={!flipped} className={cn(face(!flipped), 'rotate-y-180')}>
+          <div
+            ref={backFace}
+            aria-hidden={!flipped}
+            className={cn(face(!flipped), 'absolute inset-x-0 top-0 rotate-y-180')}
+          >
             <FaceHeader
               icon={RefreshCcwIcon}
               action={frontName}
