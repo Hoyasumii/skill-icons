@@ -130,6 +130,7 @@ export const en = {
     hint: 'ready-made components on npm:',
   },
   footer: {
+    madeBy: 'made by',
     credit: 'MIT · fork of',
   },
   mcp: {

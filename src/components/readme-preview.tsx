@@ -15,7 +15,7 @@ interface ReadmePreviewProps {
   onTitleChange: (title: string | undefined) => void;
 }
 
-/** The real badge on a page that follows the site theme; the icon theme only changes the badge. */
+/** The real badge on a page that follows the site theme; its icons follow the icon theme. */
 export function ReadmePreview({
   options,
   label,
@@ -34,7 +34,7 @@ export function ReadmePreview({
       <div className="overflow-hidden rounded-lg border bg-background text-foreground">
         <div className="border-b px-3 py-2 font-mono text-xs opacity-75">{fileName}</div>
         <div className="flex flex-col gap-3 px-3.5 pt-2 pb-5">
-          <div className="flex min-h-11 items-center gap-2 border-b-2 border-dashed border-border">
+          <div className="flex min-h-11 items-center gap-2 border-b-2 border-dashed border-border focus-within:border-foreground">
             <label htmlFor={inputId} className="sr-only">
               {t.preview.titleLabel}
             </label>

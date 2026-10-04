@@ -1,5 +1,9 @@
 import { API_URL } from '../../shared/icons';
 
+/** Who made this fork. */
+export const AUTHOR_NAME = 'Alan Reis';
+export const AUTHOR_URL = 'https://github.com/Hoyasumii';
+
 export const REPO_URL = 'https://github.com/Hoyasumii/skill-icons';
 /** The original project this one is forked from. */
 export const UPSTREAM_REPO = 'tandpfun/skill-icons';

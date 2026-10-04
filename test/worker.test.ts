@@ -138,6 +138,13 @@ describe('link previews', () => {
     expect(html).toContain('javascript, typescript');
   });
 
+  it('passes the title on to the card and the page title', async () => {
+    const res = await asBot('/icons?i=js&title=Stack%20%26%20mais', 'Discordbot/2.0');
+    const html = await res.text();
+    expect(html).toContain('content="https://example.com/og?i=js&amp;title=Stack%20%26%20mais"');
+    expect(html).toContain('<title>Stack &amp; mais · Skill Icons</title>');
+  });
+
   it.each(['github-camo (876de43e)', 'Mozilla/5.0 (Macintosh) Chrome/140.0'])(
     'keeps serving the SVG to %s',
     async userAgent => {

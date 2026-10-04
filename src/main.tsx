@@ -4,10 +4,12 @@ import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/sonner';
 import { I18nProvider } from '@/i18n';
 import { installSixSeven } from '@/lib/easter-egg';
+import { installScrollbarAutoHide } from '@/lib/scrollbars';
 import { App } from './App';
 import './index.css';
 
 installSixSeven();
+installScrollbarAutoHide();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,5 +1,4 @@
 import { CheckIcon, CopyIcon } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import { RadioGroup } from 'radix-ui';
 import { Button } from '@/components/ui/button';
 import { useCopy } from '@/hooks/use-copy';
@@ -7,19 +6,17 @@ import { useI18n } from '@/i18n';
 import { iconSrc } from '@/lib/icons';
 import { FRAMEWORKS, INSTALL_COMMAND, type FrameworkId } from '@/lib/snippets';
 import { cn } from '@/lib/utils';
+import type { Theme } from '../../shared/icons';
 
 interface FrameworkPickerProps {
   value: FrameworkId;
+  theme: Theme;
   onChange: (framework: FrameworkId) => void;
 }
 
 /** A wrapping grid of radios: nothing in the package tab scrolls sideways. Arrow keys move the pick. */
-export function FrameworkPicker({ value, onChange }: FrameworkPickerProps) {
+export function FrameworkPicker({ value, theme, onChange }: FrameworkPickerProps) {
   const { t } = useI18n();
-  // The icon takes the variant opposite to the site, so its tile stands out from the page.
-  const { resolvedTheme } = useTheme();
-  const iconTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
-
   return (
     <RadioGroup.Root
       value={value}
@@ -38,7 +35,7 @@ export function FrameworkPicker({ value, onChange }: FrameworkPickerProps) {
               : 'border-border bg-card hover:border-foreground/40',
           )}
         >
-          <img src={iconSrc(FRAMEWORKS[id].icon, iconTheme)} alt="" className="size-6 shrink-0" />
+          <img src={iconSrc(FRAMEWORKS[id].icon, theme)} alt="" className="size-6 shrink-0" />
           <span className="truncate">{FRAMEWORKS[id].label}</span>
         </RadioGroup.Item>
       ))}

@@ -25,4 +25,11 @@ describe('buildIconsUrl', () => {
       '/icons?i=js,react&theme=light&perline=3',
     );
   });
+
+  it('includes a trimmed, encoded title', () => {
+    expect(buildIconsUrl('', { icons: ['javascript'], title: '  Stack do trabalho & mais ' })).toBe(
+      '/icons?i=js&title=Stack%20do%20trabalho%20%26%20mais',
+    );
+    expect(buildIconsUrl('', { icons: ['javascript'], title: '   ' })).toBe('/icons?i=js');
+  });
 });

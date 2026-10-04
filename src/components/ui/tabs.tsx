@@ -2,6 +2,9 @@ import * as React from "react"
 import { cn } from "cn"
 import { Tabs as TabsPrimitive } from "radix-ui"
 
+import { SlidingIndicator } from "@/components/ui/sliding-indicator"
+import { toggleVariants } from "@/components/ui/toggle"
+
 function Tabs({
   className,
   ...props
@@ -17,18 +20,23 @@ function Tabs({
 
 function TabsList({
   className,
+  children,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.List>) {
   return (
     <TabsPrimitive.List
       data-slot="tabs-list"
-      className={cn("flex w-full rounded-lg bg-muted p-[3px]", className)}
+      className={cn("relative isolate flex w-full rounded-lg bg-muted p-[3px]", className)}
       {...props}
-    />
+    >
+      <SlidingIndicator className="rounded-[9px] bg-card shadow-[0_1px_0_var(--border)]" />
+      {children}
+    </TabsPrimitive.List>
   )
 }
 
-// The active tab takes the ink fill, unlike toggle segments which lift onto the surface.
+// Styled like a toggle segment: the active tab lifts onto the surface (drawn by the sliding
+// indicator).
 function TabsTrigger({
   className,
   ...props
@@ -37,7 +45,8 @@ function TabsTrigger({
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
       className={cn(
-        "relative inline-flex h-10 min-w-0 flex-1 items-center justify-center rounded-[9px] px-1 text-[15px] font-semibold whitespace-nowrap text-foreground transition-colors hover:bg-background/60 disabled:pointer-events-none disabled:opacity-35 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground after:absolute after:inset-x-0 after:-inset-y-[3px] after:content-['']",
+        toggleVariants(),
+        "min-w-0 flex-1 px-1 data-[state=active]:text-foreground",
         className
       )}
       {...props}

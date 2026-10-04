@@ -1,8 +1,11 @@
+import { useRef } from 'react';
+import { flushSync } from 'react-dom';
 import { MinusIcon, PlusIcon } from 'lucide-react';
 import { SectionLabel } from '@/components/section-label';
 import { Button } from '@/components/ui/button';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { useI18n } from '@/i18n';
+import { circleReveal, imagesOnScreen } from '@/lib/circle-reveal';
 import { cn } from '@/lib/utils';
 import { MAX_PER_LINE, MIN_PER_LINE, type Theme } from '../../shared/icons';
 
@@ -28,6 +31,18 @@ export function ExportOptions({
   const step = (offset: number) =>
     onPerLineChange(Math.min(MAX_PER_LINE, Math.max(MIN_PER_LINE, perLine + offset)));
   const stepButton = 'rounded-[9px] bg-card text-foreground hover:bg-card/70';
+  const themeGroup = useRef<HTMLDivElement>(null);
+
+  // Like the site theme switch: the icons in the new theme grow as a circle from the segment.
+  const changeTheme = (next: Theme) => {
+    const segment = themeGroup.current?.querySelector(`[data-value="${next}"]`);
+    const apply = async () => {
+      flushSync(() => onThemeChange(next));
+      await imagesOnScreen();
+    };
+    if (segment) circleReveal(segment, apply);
+    else void apply();
+  };
 
   return (
     <div className="flex flex-wrap gap-4">
@@ -35,13 +50,17 @@ export function ExportOptions({
         <SectionLabel id="theme-label">{t.options.iconTheme}</SectionLabel>
         <ToggleGroup
           type="single"
+          ref={themeGroup}
           value={theme}
-          onValueChange={value => value && onThemeChange(value as Theme)}
+          onValueChange={value => value && changeTheme(value as Theme)}
           aria-labelledby="theme-label"
         >
           {THEMES.map(({ value, swatch }) => (
-            <ToggleGroupItem key={value} value={value}>
-              <span aria-hidden="true" className={cn('size-3 rounded-[3px] border', swatch)} />
+            <ToggleGroupItem key={value} value={value} data-value={value}>
+              <span
+                aria-hidden="true"
+                className={cn('size-3 shrink-0 rounded-[3px] border', swatch)}
+              />
               {t.options[value]}
             </ToggleGroupItem>
           ))}

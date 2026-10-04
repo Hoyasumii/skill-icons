@@ -116,6 +116,7 @@ export const ptBR: Messages = {
     hint: 'componentes prontos no npm:',
   },
   footer: {
+    madeBy: 'feito por',
     credit: 'MIT · fork de',
   },
   mcp: {

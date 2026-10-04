@@ -5,8 +5,11 @@ import { cn } from '@/lib/utils';
 interface CodeBlockProps {
   value: string;
   lang: CodeLang;
-  /** The package tab gives its longer snippets more room; `full` never cuts them (docs examples). */
-  size?: 'default' | 'tall' | 'full';
+  /**
+   * The package tab gives its longer snippets more room; `full` never cuts them (docs examples);
+   * `fixed` always takes the default's full height, so switching snippets doesn't move the layout.
+   */
+  size?: 'default' | 'fixed' | 'tall' | 'full';
   className?: string;
 }
 

@@ -1,5 +1,7 @@
 // Shared between the Worker (API) and the site (builder).
 
+import { cleanTitle } from './badge-title';
+
 export type Theme = 'dark' | 'light';
 
 export const DEFAULT_THEME: Theme = 'dark';
@@ -70,12 +72,19 @@ export interface IconsUrlOptions {
   icons: string[];
   theme?: Theme;
   perLine?: number;
+  /** Badge title for the link preview card; the SVG itself ignores it. */
+  title?: string;
 }
 
 /** Builds an /icons URL, omitting parameters that match the defaults. */
-export function buildIconsUrl(base: string, { icons, theme, perLine }: IconsUrlOptions): string {
+export function buildIconsUrl(
+  base: string,
+  { icons, theme, perLine, title }: IconsUrlOptions,
+): string {
   const params = [`i=${icons.map(shortestName).join(',')}`];
   if (theme && theme !== DEFAULT_THEME) params.push(`theme=${theme}`);
   if (perLine && perLine !== DEFAULT_PER_LINE) params.push(`perline=${perLine}`);
+  const cleanedTitle = cleanTitle(title);
+  if (cleanedTitle) params.push(`title=${encodeURIComponent(cleanedTitle)}`);
   return `${base}/icons?${params.join('&')}`;
 }

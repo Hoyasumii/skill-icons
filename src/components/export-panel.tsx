@@ -1,4 +1,5 @@
-import { XIcon } from 'lucide-react';
+import { useState } from 'react';
+import { ChevronDownIcon, PackageIcon, XIcon } from 'lucide-react';
 import { CodeBlock } from '@/components/code-block';
 import { CopyButton } from '@/components/copy-button';
 import { ExportOptions } from '@/components/export-options';
@@ -6,6 +7,7 @@ import { FrameworkPicker, InstallRow } from '@/components/package-options';
 import { ReadmePreview } from '@/components/readme-preview';
 import { StackTray, type StackProps } from '@/components/stack-tray';
 import { Button } from '@/components/ui/button';
+import { Reveal } from '@/components/ui/reveal';
 import { SheetClose } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useI18n } from '@/i18n';
@@ -20,6 +22,38 @@ import {
 } from '@/lib/snippets';
 import { cleanTitle } from '../../shared/badge-title';
 import { API_URL, buildIconsUrl, type Theme } from '../../shared/icons';
+
+const PACKAGE_PANEL_ID = 'package-panel';
+
+interface PackageToggleProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+/** Looks like the language menu's trigger, but unfolds the npm package's options in place. */
+function PackageToggle({ open, onOpenChange }: PackageToggleProps) {
+  const { t } = useI18n();
+
+  return (
+    <Button
+      variant="hairline"
+      aria-expanded={open}
+      aria-controls={open ? PACKAGE_PANEL_ID : undefined}
+      onClick={() => onOpenChange(!open)}
+      className="h-12 w-full justify-between rounded-lg px-3.5 aria-expanded:bg-muted"
+    >
+      <span className="flex items-center gap-2 text-[15px] font-semibold">
+        <PackageIcon />
+        {t.package.label}
+        <span className="font-mono text-[12px] font-normal text-muted-foreground">npm</span>
+      </span>
+      <ChevronDownIcon
+        strokeWidth={2.4}
+        className="size-4 transition-transform duration-[260ms] ease-spring group-aria-expanded/button:rotate-180"
+      />
+    </Button>
+  );
+}
 
 interface ExportPanelProps {
   /** Rendered inside the bottom sheet instead of the wide column. */
@@ -59,52 +93,67 @@ export function ExportPanel({
   onTitleChange,
 }: ExportPanelProps) {
   const { t } = useI18n();
+  const [packageOpen, setPackageOpen] = useState(false);
   const options = { icons: stack.icons, theme: stack.theme, perLine };
   const empty = stack.icons.length === 0;
 
   const alt = cleanTitle(title) ?? t.preview.heading;
+  // Only an edited title goes in the link (like the page URL), for its preview card.
+  const linkTitle = alt === t.preview.heading ? undefined : alt;
 
-  const isPackage = format === 'package';
-  const target = isPackage ? FRAMEWORKS[framework] : LINK_FORMATS[format];
-  const snippet = isPackage
-    ? renderFramework(framework, options, alt)
-    : LINK_FORMATS[format].render(buildIconsUrl(API_URL, options), alt);
+  const snippet = LINK_FORMATS[format].render(
+    buildIconsUrl(API_URL, { ...options, title: linkTitle }),
+    alt,
+  );
+  const component = renderFramework(framework, options, alt);
 
   // Only the active tab's content is mounted, so every tab can share it.
   const content = (
     <>
-      {isPackage && (
-        <>
-          <FrameworkPicker value={framework} onChange={onFrameworkChange} />
-          <InstallRow />
-        </>
-      )}
       <CodeBlock
         value={empty ? '—' : snippet}
-        lang={empty ? 'text' : target.lang}
-        size={isPackage ? 'tall' : 'default'}
+        lang={empty ? 'text' : LINK_FORMATS[format].lang}
+        size="fixed"
       />
       <CopyButton
         key={snippet}
         value={snippet}
-        label={t.output.copy(target.label)}
+        label={t.output.copy(LINK_FORMATS[format].label)}
         disabled={empty}
       />
-      <p className="font-mono text-xs text-muted-foreground">
-        {isPackage ? (
-          <>
-            {t.package.hint}{' '}
-            <a
-              href={NPM_URL}
-              className="text-foreground underline underline-offset-3 hover:no-underline"
-            >
-              {PACKAGE_NAME} ↗
-            </a>
-          </>
+      <PackageToggle open={packageOpen} onOpenChange={setPackageOpen} />
+      <Reveal>
+        {packageOpen ? (
+          <div key="package" id={PACKAGE_PANEL_ID} className="flex flex-col gap-3">
+            <FrameworkPicker value={framework} theme={stack.theme} onChange={onFrameworkChange} />
+            <InstallRow />
+            <CodeBlock
+              value={empty ? '—' : component}
+              lang={empty ? 'text' : FRAMEWORKS[framework].lang}
+              size="tall"
+            />
+            <CopyButton
+              key={component}
+              value={component}
+              label={t.output.copy(FRAMEWORKS[framework].label)}
+              disabled={empty}
+            />
+            <p className="font-mono text-xs text-muted-foreground">
+              {t.package.hint}{' '}
+              <a
+                href={NPM_URL}
+                className="text-foreground underline underline-offset-3 hover:no-underline"
+              >
+                {PACKAGE_NAME} ↗
+              </a>
+            </p>
+          </div>
         ) : (
-          t.output.linkHint
+          <p key="hint" className="font-mono text-xs text-muted-foreground">
+            {t.output.linkHint}
+          </p>
         )}
-      </p>
+      </Reveal>
     </>
   );
 
@@ -135,8 +184,8 @@ export function ExportPanel({
       />
       <ReadmePreview
         options={options}
-        label={isPackage ? t.preview.component : t.preview.readme}
-        fileName={isPackage ? FRAMEWORKS[framework].fileName : 'README.md'}
+        label={packageOpen ? t.preview.component : t.preview.readme}
+        fileName={packageOpen ? FRAMEWORKS[framework].fileName : 'README.md'}
         title={title}
         onTitleChange={onTitleChange}
       />
@@ -144,7 +193,7 @@ export function ExportPanel({
         <TabsList aria-label={t.output.format}>
           {FORMATS.map(value => (
             <TabsTrigger key={value} value={value}>
-              {value === 'package' ? t.package.label : LINK_FORMATS[value].label}
+              {LINK_FORMATS[value].label}
             </TabsTrigger>
           ))}
         </TabsList>

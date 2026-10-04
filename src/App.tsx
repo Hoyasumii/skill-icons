@@ -11,6 +11,7 @@ import { SiteFooter } from '@/components/site-footer';
 import { SiteHeader } from '@/components/site-header';
 import type { StackProps } from '@/components/stack-tray';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
+import { Slide } from '@/components/ui/slide';
 import { useBuilderState } from '@/hooks/use-builder-state';
 import { useDocumentMeta } from '@/hooks/use-document-meta';
 import { useIsWide } from '@/hooks/use-is-wide';
@@ -23,7 +24,6 @@ import { POP_ALL } from '@/lib/motion';
 import { PRESETS } from '@/lib/presets';
 import type { Format, FrameworkId } from '@/lib/snippets';
 import { isStackSelected, toggleStack } from '@/lib/stack-selection';
-import { cn } from '@/lib/utils';
 import type { IconCategory } from '../shared/icon-categories';
 
 function shuffled<T>(items: T[]): T[] {
@@ -121,14 +121,7 @@ function Builder() {
     <div className="flex h-dvh flex-col overflow-hidden">
       <SiteHeader />
 
-      <div
-        className={cn(
-          'flex min-h-0 flex-1 flex-col lg:grid',
-          hasIcons
-            ? 'lg:grid-cols-[232px_minmax(0,1fr)_400px]'
-            : 'lg:grid-cols-[232px_minmax(0,1fr)]',
-        )}
-      >
+      <div className="flex min-h-0 flex-1 flex-col lg:grid lg:grid-cols-[232px_minmax(0,1fr)_400px]">
         <CategorySidebar value={category} onChange={setCategory} />
 
         <main className="flex min-h-0 flex-1 flex-col overflow-y-auto">
@@ -160,20 +153,26 @@ function Builder() {
             <SiteFooter page="builder" variant="compact" />
           </div>
 
-          {hasIcons && (
-            <Dock stack={stack} exportRef={exportRef} onExport={() => setSheetOpen(true)} />
-          )}
+          <Dock stack={stack} exportRef={exportRef} onExport={() => setSheetOpen(true)} />
         </main>
 
         {wide ? (
-          hasIcons && (
-            <aside
-              aria-label={t.stack.export}
-              className="min-h-0 overflow-y-auto border-l bg-card p-6"
-            >
-              {exportPanel}
-            </aside>
-          )
+          // The column keeps its width so the grid never reflows. Empty, it's a dashed rule
+          // like the badge title's; the panel slides in over it.
+          <div className="relative min-h-0 overflow-hidden">
+            <div
+              aria-hidden="true"
+              className="absolute inset-y-0 left-0 border-l-2 border-dashed"
+            />
+            <Slide open={hasIcons} from="right" className="relative h-full">
+              <aside
+                aria-label={t.stack.export}
+                className="h-full overflow-y-auto border-l bg-card p-6"
+              >
+                {exportPanel}
+              </aside>
+            </Slide>
+          </div>
         ) : (
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetContent

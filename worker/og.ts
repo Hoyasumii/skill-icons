@@ -144,11 +144,11 @@ function escapeHtml(value: string): string {
 }
 
 /** Minimal page carrying the OpenGraph tags for an /icons link. */
-export function ogPage(url: URL, iconNames: string[]): Response {
+export function ogPage(url: URL, iconNames: string[], badgeTitle?: string): Response {
   const image = new URL('/og', url);
   image.search = url.search;
   const names = [...new Set(iconNames.map(i => i.replace(/-(dark|light)$/, '')))];
-  const title = 'Skill Icons';
+  const title = badgeTitle ? `${badgeTitle} · Skill Icons` : 'Skill Icons';
   const description = names.join(', ');
 
   const meta = [

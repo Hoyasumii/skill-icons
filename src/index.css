@@ -97,6 +97,10 @@
     outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: none;
+  }
   button:not(:disabled),
   [role='button']:not(:disabled) {
     cursor: pointer;
@@ -111,7 +115,67 @@
     *::before,
     *::after {
       transition-duration: 0ms !important;
+      transition-delay: 0ms !important;
       animation: none !important;
+    }
+  }
+}
+
+/*
+ * Items over a SlidingIndicator: the text flips color when the fill reaches it, not before,
+ * and the item it leaves keeps its color until the fill has gone. Unlayered so it wins over
+ * the items' own transition utilities.
+ */
+:has(> [data-slot='sliding-indicator']) > :not([data-slot='sliding-indicator']) {
+  transition:
+    color 120ms 220ms,
+    background-color 150ms,
+    border-color 150ms;
+}
+:has(> [data-slot='sliding-indicator'])
+  > :is([data-state='on'], [data-state='active'], [aria-pressed='true']) {
+  transition-delay: 70ms, 0ms, 0ms;
+}
+
+/*
+ * Scrollbars are a dotted thumb on no track, faded in while the element scrolls and out
+ * after 3s idle. Scrollbars can't transition, so src/lib/scrollbars.ts steps the scrolling
+ * element's inline --scrollbar-opacity each frame; every other element resets it to 0 here,
+ * so a scroller's bar never shows because an ancestor scrolled. Firefox has no scrollbar
+ * pseudo-elements and gets a thin solid thumb. Chromium ignores ::-webkit-scrollbar once
+ * scrollbar-color is set, hence the @supports split.
+ */
+@layer base {
+  * {
+    --scrollbar-opacity: 0;
+    --scrollbar-thumb: color-mix(
+      in srgb,
+      var(--muted-foreground) calc(var(--scrollbar-opacity) * 100%),
+      transparent
+    );
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  /* Safari only rebuilds the bar, and so picks up the new opacity, when its size changes. */
+  [data-scrollbar-repaint]::-webkit-scrollbar {
+    width: 8.01px;
+    height: 8.01px;
+  }
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-image: radial-gradient(circle, var(--scrollbar-thumb) 1.5px, transparent 2px);
+    background-size: 6px 6px;
+    background-position: center;
+  }
+  @supports not selector(::-webkit-scrollbar) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--scrollbar-thumb) transparent;
     }
   }
 }
@@ -126,6 +190,9 @@
 
 .shiki-block pre {
   @apply max-h-[132px] overflow-x-hidden overflow-y-auto rounded-lg border bg-muted p-3 font-mono text-[13px] leading-[19px] break-all whitespace-pre-wrap;
+}
+.shiki-block-fixed pre {
+  @apply h-[132px];
 }
 .shiki-block-tall pre {
   @apply max-h-[240px];

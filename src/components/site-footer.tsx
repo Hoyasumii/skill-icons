@@ -1,8 +1,8 @@
 import { SiteLinks, type SitePage } from '@/components/site-links';
 import { Wordmark } from '@/components/wordmark';
 import { useI18n } from '@/i18n';
-import { UPSTREAM_REPO, UPSTREAM_URL } from '@/lib/links';
-import { MCP_SERVER_NAME, MCP_SERVER_VERSION } from '../../shared/mcp';
+import { AUTHOR_NAME, AUTHOR_URL, PACKAGE_NAME, UPSTREAM_REPO, UPSTREAM_URL } from '@/lib/links';
+import { version as PACKAGE_VERSION } from '../../packages/skill-icons/package.json';
 
 interface SiteFooterProps {
   page: SitePage;
@@ -14,7 +14,11 @@ export function SiteFooter({ page, variant }: SiteFooterProps) {
   const { t } = useI18n();
   const credit = (
     <span>
-      {t.footer.credit}{' '}
+      {t.footer.madeBy}{' '}
+      <a href={AUTHOR_URL} className="text-muted-foreground underline underline-offset-3 hover:text-foreground">
+        {AUTHOR_NAME}
+      </a>{' '}
+      · {t.footer.credit}{' '}
       <a
         href={UPSTREAM_URL}
         className="text-muted-foreground underline underline-offset-3 hover:text-foreground"
@@ -45,7 +49,7 @@ export function SiteFooter({ page, variant }: SiteFooterProps) {
           {credit}
           {page === 'mcp' && (
             <span>
-              MCP {MCP_SERVER_NAME} {MCP_SERVER_VERSION}
+              {PACKAGE_NAME} {PACKAGE_VERSION}
             </span>
           )}
         </div>

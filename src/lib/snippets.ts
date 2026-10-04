@@ -37,9 +37,9 @@ export const LINK_FORMATS = {
   url: { label: 'URL', lang: 'text', render: url => url },
 } satisfies Record<string, LinkFormat>;
 
-export type Format = keyof typeof LINK_FORMATS | 'package';
+export type Format = keyof typeof LINK_FORMATS;
 
-export const FORMATS: Format[] = ['markdown', 'html', 'url', 'package'];
+export const FORMATS: Format[] = ['markdown', 'html', 'url'];
 
 interface FrameworkInput extends IconsUrlOptions {
   names: string;

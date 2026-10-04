@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { ArrowLeftIcon, ArrowRightIcon, BookmarkIcon } from 'lucide-react';
 import { SaveStackDialog } from '@/components/save-stack-dialog';
 import { Button } from '@/components/ui/button';
+import { Reveal } from '@/components/ui/reveal';
 import { SheetTitle } from '@/components/ui/sheet';
 import { useI18n } from '@/i18n';
 import { displayNameOf, iconSrc } from '@/lib/icons';
@@ -195,20 +196,22 @@ export function StackTray({
               </StackItem>
             ))}
           </ol>
-          {stack.lifted ? (
-            <LiftControls stack={stack} />
-          ) : (
-            <p className="font-mono text-xs text-muted-foreground">
-              {t.stack.hint} ·{' '}
-              <button
-                type="button"
-                onClick={onClear}
-                className="relative text-foreground underline underline-offset-3 after:absolute after:-inset-3 after:content-['']"
-              >
-                {t.stack.clearAll}
-              </button>
-            </p>
-          )}
+          <Reveal>
+            {stack.lifted ? (
+              <LiftControls key="lift" stack={stack} />
+            ) : (
+              <p key="hint" className="font-mono text-xs text-muted-foreground">
+                {t.stack.hint} ·{' '}
+                <button
+                  type="button"
+                  onClick={onClear}
+                  className="relative text-foreground underline underline-offset-3 after:absolute after:-inset-3 after:content-['']"
+                >
+                  {t.stack.clearAll}
+                </button>
+              </p>
+            )}
+          </Reveal>
           {full && (
             <p className="font-mono text-xs text-muted-foreground">
               {t.saved.full(MAX_SAVED_STACKS)}

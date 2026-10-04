@@ -119,7 +119,8 @@ function handleIcons(request: Request, url: URL): Response {
   if (parsed instanceof Response) return parsed;
 
   // Link previews get a page with OpenGraph tags; README embeds keep getting the SVG.
-  if (isPreviewBot(request)) return ogPage(url, parsed.iconNames);
+  if (isPreviewBot(request))
+    return ogPage(url, parsed.iconNames, cleanTitle(url.searchParams.get('title')));
 
   return new Response(generateSvg(parsed.iconNames, parsed.perLine), {
     // A cached SVG must not answer a later navigation to the same URL.
@@ -139,7 +140,7 @@ async function handleOg(request: Request): Promise<Response> {
 
   // The card always shows the dark icons, whatever the link's theme; its footer shows the /icons link.
   const iconSvgs = parsed.iconNames.map(i => icons[i.replace(/-light$/, '-dark')]);
-  // `title` comes from a builder page link; /icons itself has no title.
+  // `title` comes from the builder (its page link or a copied /icons link); the footer leaves it out.
   const title = cleanTitle(url.searchParams.get('title'));
   const linkParams = new URLSearchParams(url.search);
   linkParams.delete('title');
