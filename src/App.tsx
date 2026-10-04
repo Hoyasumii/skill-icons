@@ -4,6 +4,7 @@ import { Dock } from '@/components/dock';
 import { ExportPanel } from '@/components/export-panel';
 import { IconGrid } from '@/components/icon-grid';
 import { PresetList } from '@/components/preset-list';
+import { SavedStacks } from '@/components/saved-stacks';
 import { SearchInput } from '@/components/search-input';
 import { SiteHeader } from '@/components/site-header';
 import type { StackProps } from '@/components/stack-tray';
@@ -11,6 +12,7 @@ import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { useBuilderState } from '@/hooks/use-builder-state';
 import { useIsWide } from '@/hooks/use-is-wide';
 import { usePop } from '@/hooks/use-pop';
+import { useSavedStacks } from '@/hooks/use-saved-stacks';
 import { useI18n } from '@/i18n';
 import { filterIcons } from '@/lib/icons';
 import { REPO_URL } from '@/lib/links';
@@ -33,6 +35,7 @@ export function App() {
   const { t } = useI18n();
   const wide = useIsWide();
   const { pop, isPopping } = usePop();
+  const saved = useSavedStacks();
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState<IconCategory | null>(null);
   const [liftedId, setLiftedId] = useState<string | null>(null);
@@ -53,6 +56,12 @@ export function App() {
   const addPreset = (names: string[]) => {
     if (!names.length) return;
     builder.addIcons(names);
+    pop(POP_ALL);
+  };
+
+  const loadStack = (names: string[]) => {
+    builder.setIcons(names);
+    setLiftedId(null);
     pop(POP_ALL);
   };
 
@@ -81,6 +90,8 @@ export function App() {
       perLine={state.perLine}
       format={format}
       framework={framework}
+      savedCount={saved.stacks.length}
+      onSave={name => saved.save(name, state.icons)}
       onShuffle={() => {
         builder.setIcons(shuffled(state.icons));
         pop(POP_ALL);
@@ -105,6 +116,14 @@ export function App() {
             <SearchInput value={query} onChange={setQuery} />
             <CategoryRail value={category} onChange={setCategory} />
             <PresetList selected={state.icons} theme={state.theme} onAdd={addPreset} />
+            <SavedStacks
+              stacks={saved.stacks}
+              selected={state.icons}
+              theme={state.theme}
+              onLoad={loadStack}
+              onRemove={saved.remove}
+              onClear={saved.clear}
+            />
             <IconGrid
               icons={filtered}
               title={t.picker.gridTitle(

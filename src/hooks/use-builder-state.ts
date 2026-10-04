@@ -83,7 +83,7 @@ export function useBuilderState() {
     toggleIcon,
     moveIcon,
     addIcons,
-    /** Replaces the whole stack, e.g. with a shuffled copy. */
+    /** Replaces the whole stack: a shuffled copy or a saved stack. */
     setIcons: (icons: string[]) => setState(s => ({ ...s, icons })),
     clearIcons: () => setState(s => ({ ...s, icons: [] })),
     setTheme: (theme: Theme) => setState(s => ({ ...s, theme })),

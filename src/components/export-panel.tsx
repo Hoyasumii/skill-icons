@@ -28,6 +28,8 @@ interface ExportPanelProps {
   perLine: number;
   format: Format;
   framework: FrameworkId;
+  savedCount: number;
+  onSave: (name: string) => void;
   onShuffle: () => void;
   onClear: () => void;
   onThemeChange: (theme: Theme) => void;
@@ -42,6 +44,8 @@ export function ExportPanel({
   perLine,
   format,
   framework,
+  savedCount,
+  onSave,
   onShuffle,
   onClear,
   onThemeChange,
@@ -102,6 +106,8 @@ export function ExportPanel({
       <StackTray
         stack={stack}
         compact={compact}
+        savedCount={savedCount}
+        onSave={onSave}
         onShuffle={onShuffle}
         onClear={onClear}
         actions={

@@ -1,10 +1,12 @@
-import type { ReactNode } from 'react';
-import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
+import { useState, type ReactNode } from 'react';
+import { ArrowLeftIcon, ArrowRightIcon, BookmarkIcon } from 'lucide-react';
+import { SaveStackDialog } from '@/components/save-stack-dialog';
 import { Button } from '@/components/ui/button';
 import { SheetTitle } from '@/components/ui/sheet';
 import { useI18n } from '@/i18n';
 import { displayNameOf, iconSrc } from '@/lib/icons';
 import { popClass } from '@/lib/motion';
+import { MAX_SAVED_STACKS } from '@/lib/saved-stacks';
 import { cn } from '@/lib/utils';
 import type { Theme } from '../../shared/icons';
 
@@ -118,13 +120,26 @@ interface StackTrayProps {
   /** In the sheet, the heading also names the dialog. */
   compact: boolean;
   actions?: ReactNode;
+  /** How many stacks are already saved; at the limit, saving is off. */
+  savedCount: number;
+  onSave: (name: string) => void;
   onShuffle: () => void;
   onClear: () => void;
 }
 
-export function StackTray({ stack, compact, actions, onShuffle, onClear }: StackTrayProps) {
+export function StackTray({
+  stack,
+  compact,
+  actions,
+  savedCount,
+  onSave,
+  onShuffle,
+  onClear,
+}: StackTrayProps) {
   const { t } = useI18n();
+  const [saveOpen, setSaveOpen] = useState(false);
   const count = stack.icons.length;
+  const full = savedCount >= MAX_SAVED_STACKS;
 
   const heading = (
     <h2 className="text-2xl leading-[1.2] font-bold tracking-[-0.02em]">
@@ -137,9 +152,18 @@ export function StackTray({ stack, compact, actions, onShuffle, onClear }: Stack
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         {compact ? <SheetTitle asChild>{heading}</SheetTitle> : heading}
         <div className="flex gap-1.5">
+          <Button
+            variant="hairline"
+            size="sm"
+            disabled={count === 0 || full}
+            onClick={() => setSaveOpen(true)}
+          >
+            <BookmarkIcon className="size-4" strokeWidth={2.2} />
+            {t.saved.save}
+          </Button>
           <Button variant="hairline" size="sm" disabled={count < 2} onClick={onShuffle}>
             {t.stack.shuffle}
           </Button>
@@ -153,7 +177,10 @@ export function StackTray({ stack, compact, actions, onShuffle, onClear }: Stack
         </p>
       ) : (
         <>
-          <ol aria-label={t.stack.title} className="flex flex-wrap gap-1.5 rounded-lg bg-background p-2">
+          <ol
+            aria-label={t.stack.title}
+            className="flex flex-wrap gap-1.5 rounded-lg bg-background p-2"
+          >
             {stack.icons.map((name, index) => (
               <StackItem
                 key={name}
@@ -182,8 +209,22 @@ export function StackTray({ stack, compact, actions, onShuffle, onClear }: Stack
               </button>
             </p>
           )}
+          {full && (
+            <p className="font-mono text-xs text-muted-foreground">
+              {t.saved.full(MAX_SAVED_STACKS)}
+            </p>
+          )}
         </>
       )}
+
+      <SaveStackDialog
+        open={saveOpen}
+        onOpenChange={setSaveOpen}
+        icons={stack.icons}
+        theme={stack.theme}
+        savedCount={savedCount}
+        onSave={onSave}
+      />
     </div>
   );
 }
