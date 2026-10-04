@@ -1,0 +1,3906 @@
+{
+  "generatedAt": "2026-10-04",
+  "note": "Candidate icons not yet in public/icons.json. status: pending|researched|added. Add with: bun skill-icon generate --name <Name> --generate <logo.svg> --category <category>",
+  "categories": {
+    "ai": [
+      {
+        "name": "Aider",
+        "id": "aider",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Bolt",
+        "id": "bolt",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Cohere",
+        "id": "cohere",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ComfyUI",
+        "id": "comfyui",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Continue",
+        "id": "continue",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Copilot",
+        "id": "copilot",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "CrewAI",
+        "id": "crewai",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Groq",
+        "id": "groq",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Keras",
+        "id": "keras",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kimi",
+        "id": "kimi",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kiro",
+        "id": "kiro",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "LangGraph",
+        "id": "langgraph",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "LlamaIndex",
+        "id": "llamaindex",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "LMStudio",
+        "id": "lmstudio",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lovable",
+        "id": "lovable",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Manus",
+        "id": "manus",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Midjourney",
+        "id": "midjourney",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mistral",
+        "id": "mistral",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "OpenRouter",
+        "id": "openrouter",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pydantic",
+        "id": "pydantic",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Qwen",
+        "id": "qwen",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Replicate",
+        "id": "replicate",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Roo",
+        "id": "roo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Together",
+        "id": "together",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "v0",
+        "id": "v0",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "VercelAI",
+        "id": "vercelai",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zai",
+        "id": "zai",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "auth": [
+      {
+        "name": "JWT",
+        "id": "jwt",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kinde",
+        "id": "kinde",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Logto",
+        "id": "logto",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lucia",
+        "id": "lucia",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "OAuth",
+        "id": "oauth",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Okta",
+        "id": "okta",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ory",
+        "id": "ory",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Passport",
+        "id": "passport",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Stytch",
+        "id": "stytch",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "SupabaseAuth",
+        "id": "supabaseauth",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "WorkOS",
+        "id": "workos",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "backend": [
+      {
+        "name": "Axum",
+        "id": "axum",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Celery",
+        "id": "celery",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Contentful",
+        "id": "contentful",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Directus",
+        "id": "directus",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Echo",
+        "id": "echo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Encore",
+        "id": "encore",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Falcon",
+        "id": "falcon",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Feathers",
+        "id": "feathers",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ghost",
+        "id": "ghost",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "GRPC",
+        "id": "grpc",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Gunicorn",
+        "id": "gunicorn",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Javalin",
+        "id": "javalin",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Keystone",
+        "id": "keystone",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Koa",
+        "id": "koa",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Litestar",
+        "id": "litestar",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Medusa",
+        "id": "medusa",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Micronaut",
+        "id": "micronaut",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Moleculer",
+        "id": "moleculer",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Nitro",
+        "id": "nitro",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Oak",
+        "id": "oak",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "OpenAPI",
+        "id": "openapi",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Payload",
+        "id": "payload",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Phoenix",
+        "id": "phoenix",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Quarkus",
+        "id": "quarkus",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Sanic",
+        "id": "sanic",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Sanity",
+        "id": "sanity",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Socket.io",
+        "id": "socketio",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Starlette",
+        "id": "starlette",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Swagger",
+        "id": "swagger",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Tornado",
+        "id": "tornado",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Uvicorn",
+        "id": "uvicorn",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Vapor",
+        "id": "vapor",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "cloud": [
+      {
+        "name": "Alibaba",
+        "id": "alibaba",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "CapRover",
+        "id": "caprover",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "CloudflarePages",
+        "id": "cloudflarepages",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Deta",
+        "id": "deta",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Dokku",
+        "id": "dokku",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Hetzner",
+        "id": "hetzner",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "IBMCloud",
+        "id": "ibmcloud",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kinsta",
+        "id": "kinsta",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Koyeb",
+        "id": "koyeb",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Linode",
+        "id": "linode",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Northflank",
+        "id": "northflank",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Oracle",
+        "id": "oracle",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "OVH",
+        "id": "ovh",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Render",
+        "id": "render",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Scaleway",
+        "id": "scaleway",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Vultr",
+        "id": "vultr",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "database": [
+      {
+        "name": "Algolia",
+        "id": "algolia",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ArangoDB",
+        "id": "arangodb",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Chroma",
+        "id": "chroma",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "CockroachDB",
+        "id": "cockroachdb",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Couchbase",
+        "id": "couchbase",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Dexie",
+        "id": "dexie",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Dgraph",
+        "id": "dgraph",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Diesel",
+        "id": "diesel",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ent",
+        "id": "ent",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "GORM",
+        "id": "gorm",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "InfluxDB",
+        "id": "influxdb",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kysely",
+        "id": "kysely",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Meilisearch",
+        "id": "meilisearch",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Memcached",
+        "id": "memcached",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Milvus",
+        "id": "milvus",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mongoose",
+        "id": "mongoose",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pinecone",
+        "id": "pinecone",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Qdrant",
+        "id": "qdrant",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "RavenDB",
+        "id": "ravendb",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Realm",
+        "id": "realm",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ScyllaDB",
+        "id": "scylladb",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "SQLAlchemy",
+        "id": "sqlalchemy",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Surreal",
+        "id": "surreal",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "TimescaleDB",
+        "id": "timescaledb",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "TypeORM",
+        "id": "typeorm",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Typesense",
+        "id": "typesense",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Valkey",
+        "id": "valkey",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Weaviate",
+        "id": "weaviate",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "design": [
+      {
+        "name": "Affinity",
+        "id": "affinity",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Cinema4D",
+        "id": "cinema4d",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "DaVinciResolve",
+        "id": "davinciresolve",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Draw.io",
+        "id": "drawio",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Excalidraw",
+        "id": "excalidraw",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Framer",
+        "id": "framer",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Gimp",
+        "id": "gimp",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Houdini",
+        "id": "houdini",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "InDesign",
+        "id": "indesign",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Krita",
+        "id": "krita",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lightroom",
+        "id": "lightroom",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lucidchart",
+        "id": "lucidchart",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lunacy",
+        "id": "lunacy",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Maya",
+        "id": "maya",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mermaid",
+        "id": "mermaid",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Miro",
+        "id": "miro",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Penpot",
+        "id": "penpot",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Procreate",
+        "id": "procreate",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Spline",
+        "id": "spline",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Whimsical",
+        "id": "whimsical",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ZBrush",
+        "id": "zbrush",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zeplin",
+        "id": "zeplin",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "devops": [
+      {
+        "name": "Bamboo",
+        "id": "bamboo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Buildkite",
+        "id": "buildkite",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Caddy",
+        "id": "caddy",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Chef",
+        "id": "chef",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "CircleCI",
+        "id": "circleci",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Cloudflared",
+        "id": "cloudflared",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Consul",
+        "id": "consul",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Crossplane",
+        "id": "crossplane",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Drone",
+        "id": "drone",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Flux",
+        "id": "flux",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Harbor",
+        "id": "harbor",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Istio",
+        "id": "istio",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "K3s",
+        "id": "k3s",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Minikube",
+        "id": "minikube",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ngrok",
+        "id": "ngrok",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Nomad",
+        "id": "nomad",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Packer",
+        "id": "packer",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Podman",
+        "id": "podman",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Portainer",
+        "id": "portainer",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pulumi",
+        "id": "pulumi",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Puppet",
+        "id": "puppet",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Rancher",
+        "id": "rancher",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Rundeck",
+        "id": "rundeck",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "SaltStack",
+        "id": "saltstack",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Tailscale",
+        "id": "tailscale",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "TeamCity",
+        "id": "teamcity",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Tekton",
+        "id": "tekton",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "TravisCI",
+        "id": "travisci",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Vagrant",
+        "id": "vagrant",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Vault",
+        "id": "vault",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "frontend": [
+      {
+        "name": "Anime.js",
+        "id": "animejs",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "AntDesign",
+        "id": "antdesign",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ArkUI",
+        "id": "arkui",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Babylon.js",
+        "id": "babylonjs",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Backbone",
+        "id": "backbone",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Bulma",
+        "id": "bulma",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Capacitor",
+        "id": "capacitor",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Cesium",
+        "id": "cesium",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ChakraUI",
+        "id": "chakraui",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ChartJS",
+        "id": "chartjs",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Echarts",
+        "id": "echarts",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Flowbite",
+        "id": "flowbite",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Formik",
+        "id": "formik",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Foundation",
+        "id": "foundation",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "FramerMotion",
+        "id": "framermotion",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "GSAP",
+        "id": "gsap",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "HeadlessUI",
+        "id": "headlessui",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Highcharts",
+        "id": "highcharts",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Inferno",
+        "id": "inferno",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ionic",
+        "id": "ionic",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Jotai",
+        "id": "jotai",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Knockout",
+        "id": "knockout",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Leaflet",
+        "id": "leaflet",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lottie",
+        "id": "lottie",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mantine",
+        "id": "mantine",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mapbox",
+        "id": "mapbox",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Marko",
+        "id": "marko",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Matter.js",
+        "id": "matterjs",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Million",
+        "id": "million",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mithril",
+        "id": "mithril",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "MobX",
+        "id": "mobx",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Motion",
+        "id": "motion",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Nivo",
+        "id": "nivo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Observable",
+        "id": "observable",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "OpenLayers",
+        "id": "openlayers",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ParkUI",
+        "id": "parkui",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "PixiJS",
+        "id": "pixijs",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Plotly",
+        "id": "plotly",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Polymer",
+        "id": "polymer",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "PostCSS",
+        "id": "postcss",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Preact",
+        "id": "preact",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Qwik",
+        "id": "qwik",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ReactHookForm",
+        "id": "reacthookform",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ReactRouter",
+        "id": "reactrouter",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Recharts",
+        "id": "recharts",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Recoil",
+        "id": "recoil",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Rive",
+        "id": "rive",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Skeleton",
+        "id": "skeleton",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Stencil",
+        "id": "stencil",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Stimulus",
+        "id": "stimulus",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "SWR",
+        "id": "swr",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "UnoCSS",
+        "id": "unocss",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Valtio",
+        "id": "valtio",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Victory",
+        "id": "victory",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Vuex",
+        "id": "vuex",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "XState",
+        "id": "xstate",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Yup",
+        "id": "yup",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "game": [
+      {
+        "name": "Cocos",
+        "id": "cocos",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Construct",
+        "id": "construct",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Flax",
+        "id": "flax",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "GDevelop",
+        "id": "gdevelop",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ItchIO",
+        "id": "itchio",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "LDtk",
+        "id": "ldtk",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "LibGDX",
+        "id": "libgdx",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Love2D",
+        "id": "love2d",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Minecraft",
+        "id": "minecraft",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Monogame",
+        "id": "monogame",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "O3DE",
+        "id": "o3de",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Phaser",
+        "id": "phaser",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pygame",
+        "id": "pygame",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Raylib",
+        "id": "raylib",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "RenPy",
+        "id": "renpy",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Roblox",
+        "id": "roblox",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "RPGMaker",
+        "id": "rpgmaker",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "SFML",
+        "id": "sfml",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Source",
+        "id": "source",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Steam",
+        "id": "steam",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Stride",
+        "id": "stride",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Tiled",
+        "id": "tiled",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "ide": [
+      {
+        "name": "Alacritty",
+        "id": "alacritty",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "AppCode",
+        "id": "appcode",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Aqua",
+        "id": "aqua",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "AstroNvim",
+        "id": "astronvim",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Bluefish",
+        "id": "bluefish",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Brackets",
+        "id": "brackets",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Coda",
+        "id": "coda",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "DataSpell",
+        "id": "dataspell",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "DoomEmacs",
+        "id": "doomemacs",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Fish",
+        "id": "fish",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Fleet",
+        "id": "fleet",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Geany",
+        "id": "geany",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Gedit",
+        "id": "gedit",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ghostty",
+        "id": "ghostty",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "iTerm",
+        "id": "iterm",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kakoune",
+        "id": "kakoune",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kate",
+        "id": "kate",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kitty",
+        "id": "kitty",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lapce",
+        "id": "lapce",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "LazyVim",
+        "id": "lazyvim",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "LunarVim",
+        "id": "lunarvim",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Micro",
+        "id": "micro",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Nano",
+        "id": "nano",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Notepad++",
+        "id": "notepad",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Nova",
+        "id": "nova",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "RubyMine",
+        "id": "rubymine",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "RustRover",
+        "id": "rustrover",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Spacemacs",
+        "id": "spacemacs",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Starship",
+        "id": "starship",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Textmate",
+        "id": "textmate",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Tmux",
+        "id": "tmux",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Void",
+        "id": "void",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "WezTerm",
+        "id": "wezterm",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zellij",
+        "id": "zellij",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zsh",
+        "id": "zsh",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "language": [
+      {
+        "name": "ABAP",
+        "id": "abap",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ada",
+        "id": "ada",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Agda",
+        "id": "agda",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Apex",
+        "id": "apex",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "AsciiDoc",
+        "id": "asciidoc",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Assembly",
+        "id": "assembly",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Bicep",
+        "id": "bicep",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Blade",
+        "id": "blade",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Cairo",
+        "id": "cairo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Carbon",
+        "id": "carbon",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "COBOL",
+        "id": "cobol",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Coq",
+        "id": "coq",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "CUE",
+        "id": "cue",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "D",
+        "id": "d",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Delphi",
+        "id": "delphi",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Dhall",
+        "id": "dhall",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Dockerfile",
+        "id": "dockerfile",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "EJS",
+        "id": "ejs",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Elm",
+        "id": "elm",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Erlang",
+        "id": "erlang",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Fennel",
+        "id": "fennel",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Groovy",
+        "id": "groovy",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Hack",
+        "id": "hack",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Haml",
+        "id": "haml",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Handlebars",
+        "id": "handlebars",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "HCL",
+        "id": "hcl",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Idris",
+        "id": "idris",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Jai",
+        "id": "jai",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Janet",
+        "id": "janet",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Jinja",
+        "id": "jinja",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Jsonnet",
+        "id": "jsonnet",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lean",
+        "id": "lean",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Liquid",
+        "id": "liquid",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lisp",
+        "id": "lisp",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "MDX",
+        "id": "mdx",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Move",
+        "id": "move",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mustache",
+        "id": "mustache",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ObjectiveC",
+        "id": "objectivec",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Odin",
+        "id": "odin",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Org",
+        "id": "org",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pascal",
+        "id": "pascal",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Prolog",
+        "id": "prolog",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Protobuf",
+        "id": "protobuf",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "PureScript",
+        "id": "purescript",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Racket",
+        "id": "racket",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Raku",
+        "id": "raku",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ReasonML",
+        "id": "reasonml",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ReScript",
+        "id": "rescript",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ReStructuredText",
+        "id": "restructuredtext",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Roc",
+        "id": "roc",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Scheme",
+        "id": "scheme",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "SCSS",
+        "id": "scss",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Slim",
+        "id": "slim",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Smalltalk",
+        "id": "smalltalk",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Starlark",
+        "id": "starlark",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Stylus",
+        "id": "stylus",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Tcl",
+        "id": "tcl",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Thrift",
+        "id": "thrift",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "TOML",
+        "id": "toml",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Twig",
+        "id": "twig",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Typst",
+        "id": "typst",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Unison",
+        "id": "unison",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "VisualBasic",
+        "id": "visualbasic",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Vlang",
+        "id": "vlang",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Vyper",
+        "id": "vyper",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "XML",
+        "id": "xml",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "XSLT",
+        "id": "xslt",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "observability": [
+      {
+        "name": "Amplitude",
+        "id": "amplitude",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "AppDynamics",
+        "id": "appdynamics",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Axiom",
+        "id": "axiom",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "BetterStack",
+        "id": "betterstack",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Bugsnag",
+        "id": "bugsnag",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Dynatrace",
+        "id": "dynatrace",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "FluentBit",
+        "id": "fluentbit",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Fluentd",
+        "id": "fluentd",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Glitchtip",
+        "id": "glitchtip",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "GoogleAnalytics",
+        "id": "googleanalytics",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Highlight",
+        "id": "highlight",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Honeycomb",
+        "id": "honeycomb",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Hotjar",
+        "id": "hotjar",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Jaeger",
+        "id": "jaeger",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kibana",
+        "id": "kibana",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "LogRocket",
+        "id": "logrocket",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Logstash",
+        "id": "logstash",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Loki",
+        "id": "loki",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Matomo",
+        "id": "matomo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mimir",
+        "id": "mimir",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mixpanel",
+        "id": "mixpanel",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Nagios",
+        "id": "nagios",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Netdata",
+        "id": "netdata",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "NewRelic",
+        "id": "newrelic",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Plausible",
+        "id": "plausible",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Rollbar",
+        "id": "rollbar",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Splunk",
+        "id": "splunk",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Telegraf",
+        "id": "telegraf",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Tempo",
+        "id": "tempo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Umami",
+        "id": "umami",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "UptimeKuma",
+        "id": "uptimekuma",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Vector",
+        "id": "vector",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zabbix",
+        "id": "zabbix",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zipkin",
+        "id": "zipkin",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "os": [
+      {
+        "name": "Alma",
+        "id": "alma",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Alpine",
+        "id": "alpine",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "AwesomeWM",
+        "id": "awesomewm",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "CentOS",
+        "id": "centos",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ChromeOS",
+        "id": "chromeos",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Elementary",
+        "id": "elementary",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Fedora",
+        "id": "fedora",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "FreeBSD",
+        "id": "freebsd",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Gentoo",
+        "id": "gentoo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "GNOME",
+        "id": "gnome",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Haiku",
+        "id": "haiku",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "HarmonyOS",
+        "id": "harmonyos",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Hyprland",
+        "id": "hyprland",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "i3",
+        "id": "i3",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "JetpackCompose",
+        "id": "jetpackcompose",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "KDE",
+        "id": "kde",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "KotlinMultiplatform",
+        "id": "kotlinmultiplatform",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Manjaro",
+        "id": "manjaro",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "NetBSD",
+        "id": "netbsd",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "NixOS",
+        "id": "nixos",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "OpenBSD",
+        "id": "openbsd",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "openSUSE",
+        "id": "opensuse",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "PopOS",
+        "id": "popos",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Qubes",
+        "id": "qubes",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ReactOS",
+        "id": "reactos",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Rocky",
+        "id": "rocky",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Slackware",
+        "id": "slackware",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Sway",
+        "id": "sway",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "SwiftUI",
+        "id": "swiftui",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Tails",
+        "id": "tails",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "TauriMobile",
+        "id": "taurimobile",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Wayland",
+        "id": "wayland",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Windows11",
+        "id": "windows11",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "WSL",
+        "id": "wsl",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "X11",
+        "id": "x11",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "XamarinMaui",
+        "id": "xamarinmaui",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "XFCE",
+        "id": "xfce",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zorin",
+        "id": "zorin",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "payments": [
+      {
+        "name": "Alipay",
+        "id": "alipay",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Binance",
+        "id": "binance",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Bitcoin",
+        "id": "bitcoin",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Bradesco",
+        "id": "bradesco",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Braintree",
+        "id": "braintree",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "C6",
+        "id": "c6",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "CashApp",
+        "id": "cashapp",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Chainlink",
+        "id": "chainlink",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Checkout",
+        "id": "checkout",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Coinbase",
+        "id": "coinbase",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ethereum",
+        "id": "ethereum",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Gumroad",
+        "id": "gumroad",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Inter",
+        "id": "inter",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Itau",
+        "id": "itau",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Klarna",
+        "id": "klarna",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ledger",
+        "id": "ledger",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "MetaMask",
+        "id": "metamask",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mollie",
+        "id": "mollie",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mono",
+        "id": "mono",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "PagarMe",
+        "id": "pagarme",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Paytm",
+        "id": "paytm",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "PhonePe",
+        "id": "phonepe",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Plaid",
+        "id": "plaid",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Polygon",
+        "id": "polygon",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Revolut",
+        "id": "revolut",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Santander",
+        "id": "santander",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Shopify",
+        "id": "shopify",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Solana",
+        "id": "solana",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Stone",
+        "id": "stone",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Sumup",
+        "id": "sumup",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Uniswap",
+        "id": "uniswap",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "UPI",
+        "id": "upi",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Venmo",
+        "id": "venmo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "WeChatPay",
+        "id": "wechatpay",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Wise",
+        "id": "wise",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Woovi",
+        "id": "woovi",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zelle",
+        "id": "zelle",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "productivity": [
+      {
+        "name": "Airtable",
+        "id": "airtable",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Alfred",
+        "id": "alfred",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Anytype",
+        "id": "anytype",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Arc",
+        "id": "arc",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Asana",
+        "id": "asana",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Basecamp",
+        "id": "basecamp",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Bear",
+        "id": "bear",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Cal",
+        "id": "cal",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Calendly",
+        "id": "calendly",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ClickUp",
+        "id": "clickup",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Confluence",
+        "id": "confluence",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Dropbox",
+        "id": "dropbox",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Evernote",
+        "id": "evernote",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Excel",
+        "id": "excel",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "GoogleDocs",
+        "id": "googledocs",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "GoogleDrive",
+        "id": "googledrive",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "GoogleMeet",
+        "id": "googlemeet",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "GoogleSheets",
+        "id": "googlesheets",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Height",
+        "id": "height",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "iCloud",
+        "id": "icloud",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Logseq",
+        "id": "logseq",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Loom",
+        "id": "loom",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Make",
+        "id": "make",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Monday",
+        "id": "monday",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "OneDrive",
+        "id": "onedrive",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "OneNote",
+        "id": "onenote",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pocket",
+        "id": "pocket",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "PowerPoint",
+        "id": "powerpoint",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Raycast",
+        "id": "raycast",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Readwise",
+        "id": "readwise",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Roam",
+        "id": "roam",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Shortcut",
+        "id": "shortcut",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Superhuman",
+        "id": "superhuman",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Teams",
+        "id": "teams",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Things",
+        "id": "things",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Todoist",
+        "id": "todoist",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Trello",
+        "id": "trello",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Word",
+        "id": "word",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zapier",
+        "id": "zapier",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zoom",
+        "id": "zoom",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "social": [
+      {
+        "name": "AppleMusic",
+        "id": "applemusic",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Bandcamp",
+        "id": "bandcamp",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Behance",
+        "id": "behance",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "BuyMeACoffee",
+        "id": "buymeacoffee",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Dribbble",
+        "id": "dribbble",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Element",
+        "id": "element",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Facebook",
+        "id": "facebook",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Farcaster",
+        "id": "farcaster",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Flickr",
+        "id": "flickr",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Guilded",
+        "id": "guilded",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Hackernews",
+        "id": "hackernews",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Hashnode",
+        "id": "hashnode",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kakao",
+        "id": "kakao",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kick",
+        "id": "kick",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "KoFi",
+        "id": "kofi",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lemmy",
+        "id": "lemmy",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lens",
+        "id": "lens",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Line",
+        "id": "line",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Matrix",
+        "id": "matrix",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mattermost",
+        "id": "mattermost",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Medium",
+        "id": "medium",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Netflix",
+        "id": "netflix",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Nostr",
+        "id": "nostr",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "OpenCollective",
+        "id": "opencollective",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Patreon",
+        "id": "patreon",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "PeerTube",
+        "id": "peertube",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pinterest",
+        "id": "pinterest",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pixelfed",
+        "id": "pixelfed",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "ProductHunt",
+        "id": "producthunt",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Revolt",
+        "id": "revolt",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Rocketchat",
+        "id": "rocketchat",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Signal",
+        "id": "signal",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Skype",
+        "id": "skype",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Snapchat",
+        "id": "snapchat",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "SoundCloud",
+        "id": "soundcloud",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Sponsors",
+        "id": "sponsors",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Substack",
+        "id": "substack",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Threads",
+        "id": "threads",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "TikTok",
+        "id": "tiktok",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Tumblr",
+        "id": "tumblr",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Twitch",
+        "id": "twitch",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Viber",
+        "id": "viber",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Vimeo",
+        "id": "vimeo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Wechat",
+        "id": "wechat",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zulip",
+        "id": "zulip",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "testing": [
+      {
+        "name": "Appium",
+        "id": "appium",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Applitools",
+        "id": "applitools",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ava",
+        "id": "ava",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Bruno",
+        "id": "bruno",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Chai",
+        "id": "chai",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Chromatic",
+        "id": "chromatic",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Codecov",
+        "id": "codecov",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Coveralls",
+        "id": "coveralls",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Dependabot",
+        "id": "dependabot",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Detox",
+        "id": "detox",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Enzyme",
+        "id": "enzyme",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Faker",
+        "id": "faker",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Gatling",
+        "id": "gatling",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Hoppscotch",
+        "id": "hoppscotch",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Insomnia",
+        "id": "insomnia",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Jasmine",
+        "id": "jasmine",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "JMeter",
+        "id": "jmeter",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "JUnit",
+        "id": "junit",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "K6",
+        "id": "k6",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Karma",
+        "id": "karma",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Locust",
+        "id": "locust",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Maestro",
+        "id": "maestro",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "MSW",
+        "id": "msw",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Nightwatch",
+        "id": "nightwatch",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pact",
+        "id": "pact",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Percy",
+        "id": "percy",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Renovate",
+        "id": "renovate",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Sinon",
+        "id": "sinon",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Snyk",
+        "id": "snyk",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "SonarQube",
+        "id": "sonarqube",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Supertest",
+        "id": "supertest",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Tape",
+        "id": "tape",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "TestCafe",
+        "id": "testcafe",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "WebdriverIO",
+        "id": "webdriverio",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ],
+    "tooling": [
+      {
+        "name": "Asdf",
+        "id": "asdf",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Bazel",
+        "id": "bazel",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Black",
+        "id": "black",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Cargo",
+        "id": "cargo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Chalk",
+        "id": "chalk",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Changesets",
+        "id": "changesets",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Chocolatey",
+        "id": "chocolatey",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Citty",
+        "id": "citty",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "CodeSandbox",
+        "id": "codesandbox",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Codespaces",
+        "id": "codespaces",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Colab",
+        "id": "colab",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Commander",
+        "id": "commander",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Commitlint",
+        "id": "commitlint",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Conan",
+        "id": "conan",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Conda",
+        "id": "conda",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Devbox",
+        "id": "devbox",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Direnv",
+        "id": "direnv",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Dprint",
+        "id": "dprint",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Execa",
+        "id": "execa",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Flake8",
+        "id": "flake8",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Fnm",
+        "id": "fnm",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Gitpod",
+        "id": "gitpod",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Glitch",
+        "id": "glitch",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Hatch",
+        "id": "hatch",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Homebrew",
+        "id": "homebrew",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Inquirer",
+        "id": "inquirer",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Isort",
+        "id": "isort",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "JSFiddle",
+        "id": "jsfiddle",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Jsr",
+        "id": "jsr",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Just",
+        "id": "just",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Kaggle",
+        "id": "kaggle",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lefthook",
+        "id": "lefthook",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lerna",
+        "id": "lerna",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Lintstaged",
+        "id": "lintstaged",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Meson",
+        "id": "meson",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mise",
+        "id": "mise",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Moonrepo",
+        "id": "moonrepo",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Mypy",
+        "id": "mypy",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ninja",
+        "id": "ninja",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Nodemon",
+        "id": "nodemon",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Nvm",
+        "id": "nvm",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Oclif",
+        "id": "oclif",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Parcel",
+        "id": "parcel",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "PDM",
+        "id": "pdm",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pip",
+        "id": "pip",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pipenv",
+        "id": "pipenv",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "PM2",
+        "id": "pm2",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Poetry",
+        "id": "poetry",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pylint",
+        "id": "pylint",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Pyright",
+        "id": "pyright",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Rolldown",
+        "id": "rolldown",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Ruff",
+        "id": "ruff",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Rush",
+        "id": "rush",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Rye",
+        "id": "rye",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Scoop",
+        "id": "scoop",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "StackBlitz",
+        "id": "stackblitz",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Stylelint",
+        "id": "stylelint",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Taskfile",
+        "id": "taskfile",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Tsup",
+        "id": "tsup",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "TypeDoc",
+        "id": "typedoc",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Unbuild",
+        "id": "unbuild",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "UV",
+        "id": "uv",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Vcpkg",
+        "id": "vcpkg",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Verdaccio",
+        "id": "verdaccio",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Volta",
+        "id": "volta",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Winget",
+        "id": "winget",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Wireit",
+        "id": "wireit",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Yargs",
+        "id": "yargs",
+        "priority": "normal",
+        "status": "pending"
+      },
+      {
+        "name": "Zx",
+        "id": "zx",
+        "priority": "normal",
+        "status": "pending"
+      }
+    ]
+  }
+}

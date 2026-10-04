@@ -1,0 +1,30 @@
+---
+import {
+  DEFAULT_SIZE,
+  DEFAULT_THEME,
+  iconKey,
+  loadIcon,
+  remoteIconsUrl,
+  svgDataUri,
+  themeVariants,
+} from '../core/index.js';
+import ThemedImg from './ThemedImg.astro';
+import type { IconProps } from './types.js';
+
+type Props = IconProps;
+
+const { name, latest, baseUrl, theme = DEFAULT_THEME, size = DEFAULT_SIZE, ...img } = Astro.props;
+const themes = themeVariants(theme);
+
+let sources: string[] = [];
+if (latest) {
+  sources = themes.map(t => remoteIconsUrl({ icons: [name], theme: t, perLine: 1, baseUrl }));
+} else {
+  const keys = themes.flatMap(t => iconKey(name, t) ?? []);
+  const svgs = await Promise.all(keys.map(loadIcon));
+  if (svgs.length > 0 && svgs.every(svg => svg !== undefined)) {
+    sources = (svgs as string[]).map(svgDataUri);
+  }
+}
+---
+{sources.length > 0 && <ThemedImg alt={name} {...img} sources={sources} width={size} height={size} />}

@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "rootDir": "." },
+  "include": ["src", "test"],
+  "exclude": ["src/svelte", "src/angular", "test/svelte*", "test/angular*", "src/astro", "test/astro*", "src/solid", "test/solid*"]
+}
