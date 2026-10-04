@@ -13,7 +13,8 @@ export const ptBR: Messages = {
     toLight: 'Mudar para tema claro',
     github: 'github',
     mcp: 'mcp',
-    builder: 'montar',
+    npm: 'lib no npm',
+    links: 'Links',
   },
   picker: {
     searchPlaceholder: 'Buscar ícone, ex.: react, ts, postgres',

@@ -9,12 +9,11 @@ import { Button } from '@/components/ui/button';
 import { SheetClose } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useI18n } from '@/i18n';
+import { NPM_URL, PACKAGE_NAME } from '@/lib/links';
 import {
   FORMATS,
   FRAMEWORKS,
   LINK_FORMATS,
-  PACKAGE_NAME,
-  PACKAGE_URL,
   renderFramework,
   type Format,
   type FrameworkId,
@@ -88,7 +87,7 @@ export function ExportPanel({
           <>
             {t.package.hint}{' '}
             <a
-              href={PACKAGE_URL}
+              href={NPM_URL}
               className="text-foreground underline underline-offset-3 hover:no-underline"
             >
               {PACKAGE_NAME} ↗

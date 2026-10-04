@@ -1,8 +1,7 @@
 import type { CodeLang } from '@/lib/highlight';
+import { PACKAGE_NAME } from '@/lib/links';
 import { API_URL, type IconsUrlOptions } from '../../shared/icons';
 
-export const PACKAGE_NAME = '@hoyasumii/skill-icons';
-export const PACKAGE_URL = `https://www.npmjs.com/package/${PACKAGE_NAME}`;
 export const INSTALL_COMMAND = `npm i ${PACKAGE_NAME}`;
 
 interface LinkFormat {

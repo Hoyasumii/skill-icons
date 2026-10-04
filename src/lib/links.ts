@@ -2,6 +2,9 @@ import { API_URL } from '../../shared/icons';
 
 export const REPO_URL = 'https://github.com/Hoyasumii/skill-icons';
 
+export const PACKAGE_NAME = '@hoyasumii/skill-icons';
+export const NPM_URL = `https://www.npmjs.com/package/${PACKAGE_NAME}`;
+
 /** Remote MCP server, served by the Worker; a browser opening it gets the install page. */
 export const MCP_URL = `${API_URL}/mcp`;
 export const MCP_PAGE_PATH = '/mcp';

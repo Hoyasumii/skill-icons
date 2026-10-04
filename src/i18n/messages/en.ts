@@ -42,7 +42,8 @@ export const en = {
     toLight: 'Switch to light theme',
     github: 'github',
     mcp: 'mcp',
-    builder: 'builder',
+    npm: 'npm library',
+    links: 'Links',
   },
   picker: {
     searchPlaceholder: 'Search icons, e.g. react, ts, postgres',
