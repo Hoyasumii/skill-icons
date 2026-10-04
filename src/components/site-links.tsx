@@ -1,4 +1,5 @@
 import { PackageIcon } from 'lucide-react';
+import { GithubMarkIcon, McpMarkIcon } from '@/components/brand-icons';
 import { useI18n } from '@/i18n';
 import { NPM_URL, PACKAGE_NAME, pageHref, REPO_URL } from '@/lib/links';
 import { cn } from '@/lib/utils';
@@ -17,9 +18,9 @@ interface SiteLinksProps {
 export function SiteLinks({ page, tone = 'muted', className }: SiteLinksProps) {
   const { locale, t } = useI18n();
   const links = [
-    { href: REPO_URL, label: t.header.github },
-    { href: NPM_URL, label: t.header.npm, title: PACKAGE_NAME, icon: true },
-    { href: pageHref('mcp', locale), label: t.header.mcp, current: page === 'mcp' },
+    { href: REPO_URL, label: t.header.github, Icon: GithubMarkIcon },
+    { href: NPM_URL, label: t.header.npm, title: PACKAGE_NAME, Icon: PackageIcon },
+    { href: pageHref('mcp', locale), label: t.header.mcp, current: page === 'mcp', Icon: McpMarkIcon },
   ];
 
   return (
@@ -37,7 +38,7 @@ export function SiteLinks({ page, tone = 'muted', className }: SiteLinksProps) {
               'font-semibold text-foreground underline decoration-highlight decoration-2 hover:decoration-foreground',
           )}
         >
-          {link.icon && <PackageIcon aria-hidden="true" className="size-3.5" />}
+          <link.Icon aria-hidden="true" className="size-3.5 shrink-0" />
           {link.label}
         </a>
       ))}

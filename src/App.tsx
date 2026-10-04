@@ -56,7 +56,11 @@ function Builder() {
   const [format, setFormat] = useState<Format>('markdown');
   const [framework, setFramework] = useState<FrameworkId>('react');
 
-  const filtered = useMemo(() => filterIcons(query, category), [query, category]);
+  const matches = useMemo(() => filterIcons(query, null), [query]);
+  const filtered = useMemo(
+    () => (category ? matches.filter(icon => icon.category === category) : matches),
+    [matches, category],
+  );
   // Removing the lifted icon some other way (grid, clear all) drops the lift with it.
   const lifted = liftedId && state.icons.includes(liftedId) ? liftedId : null;
 
@@ -123,12 +127,12 @@ function Builder() {
       <SiteHeader />
 
       <div className="flex min-h-0 flex-1 flex-col lg:grid lg:grid-cols-[232px_minmax(0,1fr)_400px]">
-        <CategorySidebar value={category} onChange={setCategory} />
+        <CategorySidebar value={category} matches={matches} onChange={setCategory} />
 
         <main className="flex min-h-0 flex-1 flex-col overflow-y-auto">
           <div className="flex flex-[1_0_auto] flex-col gap-5 px-4 pt-4 pb-6 lg:px-7 lg:pt-6 lg:pb-10">
             <SearchInput value={query} onChange={setQuery} />
-            <CategoryRail value={category} onChange={setCategory} />
+            <CategoryRail value={category} matches={matches} onChange={setCategory} />
             <PresetList selected={state.icons} theme={state.theme} onToggle={selectStack} />
             <SavedStacks
               stacks={saved.stacks}

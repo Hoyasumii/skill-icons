@@ -33,6 +33,13 @@ export function filterIcons(query: string, category: IconCategory | null): IconI
   );
 }
 
+/** How many of `icons` fall in each category. */
+export function countByCategory(icons: readonly IconInfo[]): Map<IconCategory, number> {
+  const counts = new Map<IconCategory, number>();
+  for (const icon of icons) counts.set(icon.category, (counts.get(icon.category) ?? 0) + 1);
+  return counts;
+}
+
 /** Resolves a name or alias (e.g. "js") to its canonical icon name. */
 export function resolveIconName(name: string): string | undefined {
   const lower = name.trim().toLowerCase();

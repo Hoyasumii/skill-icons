@@ -1,31 +1,34 @@
+import { useMemo } from 'react';
 import { SlidingIndicator } from '@/components/ui/sliding-indicator';
 import { useI18n } from '@/i18n';
-import { CATEGORIES, ICONS } from '@/lib/icons';
+import { CATEGORIES, countByCategory, ICONS } from '@/lib/icons';
+import type { IconInfo } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import type { IconCategory } from '../../shared/icon-categories';
 
-const COUNTS = new Map<IconCategory, number>();
-for (const icon of ICONS) COUNTS.set(icon.category, (COUNTS.get(icon.category) ?? 0) + 1);
-
-const OPTIONS = [null, ...CATEGORIES.filter(category => COUNTS.has(category))];
+// The list of categories stays put while searching; only the numbers follow the query.
+const OPTIONS = [null, ...CATEGORIES.filter(category => countByCategory(ICONS).has(category))];
 
 interface CategoryNavProps {
   value: IconCategory | null;
+  /** The icons matching the search, across every category. */
+  matches: readonly IconInfo[];
   onChange: (category: IconCategory | null) => void;
 }
 
-function useLabels() {
+function useLabels(matches: readonly IconInfo[]) {
   const { t } = useI18n();
+  const counts = useMemo(() => countByCategory(matches), [matches]);
   return (category: IconCategory | null) => ({
     label: category ? t.categories[category] : t.picker.all,
-    count: category ? COUNTS.get(category) : ICONS.length,
+    count: category ? (counts.get(category) ?? 0) : matches.length,
   });
 }
 
 /** Compact: a horizontal rail of chips that bleeds to the screen edges. */
-export function CategoryRail({ value, onChange }: CategoryNavProps) {
+export function CategoryRail({ value, matches, onChange }: CategoryNavProps) {
   const { t } = useI18n();
-  const describe = useLabels();
+  const describe = useLabels(matches);
 
   return (
     <div
@@ -63,9 +66,9 @@ export function CategoryRail({ value, onChange }: CategoryNavProps) {
 }
 
 /** Wide: the left column, scrolling on its own. */
-export function CategorySidebar({ value, onChange }: CategoryNavProps) {
+export function CategorySidebar({ value, matches, onChange }: CategoryNavProps) {
   const { t } = useI18n();
-  const describe = useLabels();
+  const describe = useLabels(matches);
 
   return (
     <nav
