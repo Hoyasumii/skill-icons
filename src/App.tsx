@@ -3,6 +3,7 @@ import { CategoryRail, CategorySidebar } from '@/components/category-nav';
 import { Dock } from '@/components/dock';
 import { ExportPanel } from '@/components/export-panel';
 import { IconGrid } from '@/components/icon-grid';
+import { McpPage } from '@/components/mcp-page';
 import { PresetList } from '@/components/preset-list';
 import { SavedStacks } from '@/components/saved-stacks';
 import { SearchInput } from '@/components/search-input';
@@ -15,9 +16,11 @@ import { usePop } from '@/hooks/use-pop';
 import { useSavedStacks } from '@/hooks/use-saved-stacks';
 import { useI18n } from '@/i18n';
 import { filterIcons } from '@/lib/icons';
-import { REPO_URL } from '@/lib/links';
+import { MCP_PAGE_PATH, REPO_URL } from '@/lib/links';
 import { POP_ALL } from '@/lib/motion';
+import { PRESETS } from '@/lib/presets';
 import type { Format, FrameworkId } from '@/lib/snippets';
+import { isStackSelected, toggleStack } from '@/lib/stack-selection';
 import type { IconCategory } from '../shared/icon-categories';
 
 function shuffled<T>(items: T[]): T[] {
@@ -30,6 +33,10 @@ function shuffled<T>(items: T[]): T[] {
 }
 
 export function App() {
+  return window.location.pathname.replace(/\/$/, '') === MCP_PAGE_PATH ? <McpPage /> : <Builder />;
+}
+
+function Builder() {
   const builder = useBuilderState();
   const { state } = builder;
   const { t } = useI18n();
@@ -53,16 +60,12 @@ export function App() {
     builder.toggleIcon(name);
   };
 
-  const addPreset = (names: string[]) => {
-    if (!names.length) return;
-    builder.addIcons(names);
-    pop(POP_ALL);
-  };
-
-  const loadStack = (names: string[]) => {
-    builder.setIcons(names);
-    setLiftedId(null);
-    pop(POP_ALL);
+  /** Presets and saved stacks combine: a tap selects one, another tap deselects it. */
+  const selectStack = (names: readonly string[]) => {
+    const adding = !isStackSelected(names, state.icons);
+    const allStacks = [...PRESETS.map(preset => preset.icons), ...saved.stacks.map(s => s.icons)];
+    builder.setIcons(toggleStack(state.icons, names, allStacks));
+    if (adding) pop(POP_ALL);
   };
 
   const stack: StackProps = {
@@ -115,12 +118,12 @@ export function App() {
           <div className="flex flex-[1_0_auto] flex-col gap-5 px-4 pt-4 pb-6 lg:px-7 lg:pt-6 lg:pb-10">
             <SearchInput value={query} onChange={setQuery} />
             <CategoryRail value={category} onChange={setCategory} />
-            <PresetList selected={state.icons} theme={state.theme} onAdd={addPreset} />
+            <PresetList selected={state.icons} theme={state.theme} onToggle={selectStack} />
             <SavedStacks
               stacks={saved.stacks}
               selected={state.icons}
               theme={state.theme}
-              onLoad={loadStack}
+              onToggle={selectStack}
               onRemove={saved.remove}
               onClear={saved.clear}
             />

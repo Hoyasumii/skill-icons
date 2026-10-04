@@ -12,28 +12,26 @@ import {
 import { useI18n } from '@/i18n';
 import { iconSrc } from '@/lib/icons';
 import { MAX_SAVED_STACKS, type SavedStack } from '@/lib/saved-stacks';
+import { isStackSelected } from '@/lib/stack-selection';
 import { cn } from '@/lib/utils';
 import type { Theme } from '../../shared/icons';
 
 interface SavedStacksProps {
   stacks: SavedStack[];
-  /** The current stack: a saved one with the same icons, in order, shows as "in stack". */
+  /** The current stack: a saved one whose icons are all in it shows as selected. */
   selected: string[];
   theme: Theme;
-  onLoad: (icons: string[]) => void;
+  onToggle: (icons: string[]) => void;
   onRemove: (index: number) => void;
   onClear: () => void;
 }
-
-const sameIcons = (a: string[], b: string[]) =>
-  a.length === b.length && a.every((name, i) => name === b[i]);
 
 /** Same layout as the ready-made stacks; only rendered once something is saved. */
 export function SavedStacks({
   stacks,
   selected,
   theme,
-  onLoad,
+  onToggle,
   onRemove,
   onClear,
 }: SavedStacksProps) {
@@ -57,7 +55,7 @@ export function SavedStacks({
       </div>
       <ul className="-mx-4 flex gap-2.5 overflow-x-auto px-4 pb-0.5 scrollbar-none lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0">
         {stacks.map((stack, index) => {
-          const current = sameIcons(stack.icons, selected);
+          const current = isStackSelected(stack.icons, selected);
           return (
             <li
               key={`${index}-${stack.name}`}
@@ -65,8 +63,9 @@ export function SavedStacks({
             >
               <button
                 type="button"
-                aria-label={t.saved.load(stack.name)}
-                onClick={() => onLoad(stack.icons)}
+                aria-label={t.saved.toggle(stack.name)}
+                aria-pressed={current}
+                onClick={() => onToggle(stack.icons)}
                 className={cn(
                   'flex size-full flex-col gap-2.5 rounded-lg border-2 p-3 pr-12 text-left transition-colors',
                   current

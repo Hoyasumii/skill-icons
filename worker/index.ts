@@ -7,6 +7,8 @@ import {
   shortNames,
   type Theme,
 } from '../shared/icons';
+import { handleMcp } from './mcp';
+import { isPreviewBot, ogPage, renderOgPng } from './og';
 
 const icons: Record<string, string> = iconsJson;
 const iconNameList = [...new Set(Object.keys(icons).map(i => i.split('-')[0]))];
@@ -65,7 +67,14 @@ function json(data: unknown): Response {
   });
 }
 
-function handleIcons(searchParams: URLSearchParams): Response {
+interface IconsRequest {
+  iconNames: string[];
+  theme: Theme;
+  perLine: number;
+}
+
+/** Validates the /icons query; returns a 400 response when it is invalid. */
+function parseIconsRequest(searchParams: URLSearchParams): IconsRequest | Response {
   const iconParam = searchParams.get('i') || searchParams.get('icons');
   if (!iconParam) return badRequest("You didn't specify any icons!");
 
@@ -85,18 +94,56 @@ function handleIcons(searchParams: URLSearchParams): Response {
   const iconNames = parseShortNames(iconShortNames, theme);
   if (iconNames.length === 0) return badRequest("You didn't format the icons param correctly!");
 
-  return new Response(generateSvg(iconNames, perLine), {
+  return { iconNames, theme, perLine };
+}
+
+function handleIcons(request: Request, url: URL): Response {
+  const parsed = parseIconsRequest(url.searchParams);
+  if (parsed instanceof Response) return parsed;
+
+  // Link previews get a page with OpenGraph tags; README embeds keep getting the SVG.
+  if (isPreviewBot(request)) return ogPage(url, parsed.iconNames);
+
+  return new Response(generateSvg(parsed.iconNames, parsed.perLine), {
     headers: { 'Content-Type': 'image/svg+xml', ...CACHE_HEADERS },
   });
 }
 
+async function handleOg(request: Request): Promise<Response> {
+  const url = new URL(request.url);
+  const parsed = parseIconsRequest(url.searchParams);
+  if (parsed instanceof Response) return parsed;
+
+  // Rasterizing is the expensive part, so each URL is rendered once per colo.
+  const cache = caches.default;
+  const cached = await cache.match(request.url);
+  if (cached) return cached;
+
+  // The card always shows the dark icons, whatever the link's theme; its footer shows the /icons link.
+  const iconSvgs = parsed.iconNames.map(i => icons[i.replace(/-light$/, '-dark')]);
+  const link = new URL('/icons', url);
+  link.search = url.search;
+  const png = await renderOgPng(iconSvgs, link);
+  const res = new Response(png, { headers: { 'Content-Type': 'image/png', ...CACHE_HEADERS } });
+  await cache.put(request.url, res.clone());
+  return res;
+}
+
 export default {
   async fetch(request, env) {
-    const { pathname, searchParams } = new URL(request.url);
-    const path = pathname.replace(/^\/|\/$/g, '');
+    const url = new URL(request.url);
+    const path = url.pathname.replace(/^\/|\/$/g, '');
 
     try {
-      if (path === 'icons') return handleIcons(searchParams);
+      if (path === 'icons') return handleIcons(request, url);
+      if (path === 'og') return await handleOg(request);
+      if (path === 'mcp') {
+        // A browser opening the server URL gets the page that explains how to install it.
+        const wantsPage =
+          request.method === 'GET' && request.headers.get('Accept')?.includes('text/html');
+        if (wantsPage) return env.ASSETS.fetch(new Request(new URL('/', request.url), request));
+        return handleMcp(request);
+      }
       if (path === 'api/icons') return json(iconNameList);
       if (path === 'api/svgs') return json(icons);
       if (path.startsWith('api/')) return new Response('Not found', { status: 404 });

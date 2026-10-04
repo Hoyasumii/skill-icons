@@ -2,9 +2,14 @@ import { LanguageMenu } from '@/components/language-menu';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Wordmark } from '@/components/wordmark';
 import { useI18n } from '@/i18n';
-import { REPO_URL } from '@/lib/links';
+import { MCP_PAGE_HREF, REPO_URL } from '@/lib/links';
 
-export function SiteHeader() {
+interface SiteHeaderProps {
+  /** The page being shown; the header links to the other one. */
+  page?: 'builder' | 'mcp';
+}
+
+export function SiteHeader({ page = 'builder' }: SiteHeaderProps) {
   const { t } = useI18n();
 
   return (
@@ -16,6 +21,12 @@ export function SiteHeader() {
         </span>
       </div>
       <div className="flex items-center gap-1">
+        <a
+          href={page === 'mcp' ? import.meta.env.BASE_URL : MCP_PAGE_HREF}
+          className="inline-flex h-11 items-center px-2.5 font-mono text-[13px] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+        >
+          {page === 'mcp' ? t.header.builder : t.header.mcp}
+        </a>
         <a
           href={REPO_URL}
           className="hidden h-11 items-center px-2.5 font-mono text-[13px] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline lg:inline-flex"

@@ -12,6 +12,8 @@ export const ptBR: Messages = {
     toDark: 'Mudar para tema escuro',
     toLight: 'Mudar para tema claro',
     github: 'github',
+    mcp: 'mcp',
+    builder: 'montar',
   },
   picker: {
     searchPlaceholder: 'Buscar ícone, ex.: react, ts, postgres',
@@ -26,7 +28,7 @@ export const ptBR: Messages = {
     clearSearch: 'Limpar busca',
   },
   presets: {
-    label: 'Pilhas prontas · um toque adiciona tudo',
+    label: 'Pilhas prontas · toque para combinar, de novo para tirar',
     names: { web: 'Web moderno', backend: 'Back-end', tooling: 'Ferramentas', ai: 'IA' },
     missing: count => `+${count}`,
     complete: 'na pilha ✓',
@@ -80,7 +82,7 @@ export const ptBR: Messages = {
       `Isso apaga ${count === 1 ? 'a pilha salva' : `as ${count} pilhas salvas`} neste navegador. Não dá para desfazer.`,
     clearConfirm: 'Remover todas',
     cancel: 'Cancelar',
-    load: name => `Carregar pilha: ${name}`,
+    toggle: name => `Selecionar pilha: ${name}`,
     remove: name => `Remover pilha: ${name}`,
   },
   options: {
@@ -112,5 +114,45 @@ export const ptBR: Messages = {
     install: 'Copiar comando de instalação',
     installed: 'Comando copiado',
     hint: 'componentes prontos no npm:',
+  },
+  mcp: {
+    eyebrow: 'Servidor MCP',
+    heading: 'Deixe o Claude montar seu badge de skills',
+    lede: 'Conecte o Skill Icons ao Claude e peça um badge com suas palavras. O Claude encontra os ids certos dos ícones e devolve o Markdown pronto para o seu README, sem ícone com nome errado sumindo calado.',
+    serverUrl: 'URL do servidor',
+    copyUrl: 'Copiar URL',
+    free: 'Gratuito e público · sem login, sem chave de API',
+    install: 'Instalar',
+    clients: { claude: 'App do Claude', code: 'Claude Code' },
+    claudeSteps: [
+      'Abra Configurações → Conectores no Claude, na web ou no app desktop.',
+      'Clique em “Adicionar conector personalizado”.',
+      'Dê o nome Skill Icons, cole a URL do servidor acima e clique em Adicionar.',
+      'Numa conversa, ative o Skill Icons no menu de ferramentas.',
+    ],
+    claudeNote:
+      'Nos planos Team e Enterprise, um proprietário precisa adicionar o conector nas configurações da organização antes.',
+    codeIntro: 'Rode no terminal:',
+    codeScope:
+      'Adicione --scope user para usar em todos os projetos, ou versione junto com o projeto no .mcp.json:',
+    copyCommand: 'Copiar comando',
+    copyConfig: 'Copiar .mcp.json',
+    tools: 'Ferramentas',
+    toolList: [
+      {
+        name: 'skill_icons_search',
+        text: 'Busca ícones por id, nome da marca ou apelido (“Next.js”, “k8s”), opcionalmente numa categoria, e sugere grafias próximas quando nada bate.',
+      },
+      {
+        name: 'skill_icons_badge',
+        text: 'Transforma uma lista de ícones na URL da imagem, mais Markdown e HTML, e lista os nomes que não encontrou com sugestões.',
+      },
+    ],
+    tryIt: 'Experimente pedir',
+    prompts: [
+      'Adicione um badge de skills no meu README com a stack que este projeto usa.',
+      'Monte um badge do Skill Icons com tema claro, com TypeScript, React, Node.js e Postgres, 4 por linha.',
+      'Quais ícones de banco de dados o Skill Icons tem?',
+    ],
   },
 };

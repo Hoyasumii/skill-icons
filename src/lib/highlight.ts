@@ -1,6 +1,7 @@
 import type { HighlighterCore } from 'shiki/core';
 
-export type CodeLang = 'bash' | 'html' | 'markdown' | 'tsx' | 'vue' | 'svelte' | 'astro' | 'text';
+export type CodeLang =
+  'bash' | 'html' | 'json' | 'markdown' | 'tsx' | 'vue' | 'svelte' | 'astro' | 'text';
 
 let highlighter: Promise<HighlighterCore> | undefined;
 
@@ -17,6 +18,7 @@ function load() {
       langs: [
         import('shiki/langs/bash.mjs'),
         import('shiki/langs/html.mjs'),
+        import('shiki/langs/json.mjs'),
         import('shiki/langs/markdown.mjs'),
         import('shiki/langs/tsx.mjs'),
         import('shiki/langs/vue.mjs'),

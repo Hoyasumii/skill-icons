@@ -41,6 +41,8 @@ export const en = {
     toDark: 'Switch to dark theme',
     toLight: 'Switch to light theme',
     github: 'github',
+    mcp: 'mcp',
+    builder: 'builder',
   },
   picker: {
     searchPlaceholder: 'Search icons, e.g. react, ts, postgres',
@@ -55,7 +57,7 @@ export const en = {
     clearSearch: 'Clear search',
   },
   presets: {
-    label: 'Ready-made stacks · one tap adds them all',
+    label: 'Ready-made stacks · tap to combine, tap again to remove',
     names: presetNames,
     missing: (count: number) => `+${count}`,
     complete: 'in stack ✓',
@@ -90,7 +92,7 @@ export const en = {
       `This deletes ${count === 1 ? 'the saved stack' : `all ${count} saved stacks`} from this browser. It can’t be undone.`,
     clearConfirm: 'Remove all',
     cancel: 'Cancel',
-    load: (name: string) => `Load stack: ${name}`,
+    toggle: (name: string) => `Select stack: ${name}`,
     remove: (name: string) => `Remove stack: ${name}`,
   },
   options: {
@@ -122,6 +124,46 @@ export const en = {
     install: 'Copy install command',
     installed: 'Command copied',
     hint: 'ready-made components on npm:',
+  },
+  mcp: {
+    eyebrow: 'MCP server',
+    heading: 'Let Claude build your skills badge',
+    lede: 'Connect Skill Icons to Claude and ask for a badge in plain words. Claude finds the right icon ids and hands back Markdown ready for your README, with no misspelled icons silently missing.',
+    serverUrl: 'Server URL',
+    copyUrl: 'Copy URL',
+    free: 'Free and public · no sign-in, no API key',
+    install: 'Install',
+    clients: { claude: 'Claude app', code: 'Claude Code' },
+    claudeSteps: [
+      'Open Settings → Connectors in Claude, on the web or in the desktop app.',
+      'Click “Add custom connector”.',
+      'Name it Skill Icons, paste the server URL above and click Add.',
+      'In a chat, turn Skill Icons on from the tools menu.',
+    ],
+    claudeNote:
+      'On Team and Enterprise plans, an owner adds the connector in the organization settings first.',
+    codeIntro: 'Run this in your terminal:',
+    codeScope:
+      'Add --scope user to use it in every project, or commit it with the project in .mcp.json:',
+    copyCommand: 'Copy command',
+    copyConfig: 'Copy .mcp.json',
+    tools: 'Tools',
+    toolList: [
+      {
+        name: 'skill_icons_search',
+        text: 'Finds icons by id, brand name or alias (“Next.js”, “k8s”), optionally within a category, and suggests close spellings when nothing matches.',
+      },
+      {
+        name: 'skill_icons_badge',
+        text: 'Turns a list of icons into the image URL plus Markdown and HTML, and lists any name it could not match with suggestions.',
+      },
+    ],
+    tryIt: 'Try asking',
+    prompts: [
+      'Add a skills badge to my README with the stack this project uses.',
+      'Make a light-theme Skill Icons badge with TypeScript, React, Node.js and Postgres, 4 per line.',
+      'Which database icons does Skill Icons have?',
+    ],
   },
 };
 
