@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { detectLocale, isLocale, type Locale } from './locales';
 import { en, type Messages } from './messages/en';
 import { ptBR } from './messages/pt-BR';
-import { pagePath, parseSitePath } from '../../shared/page-meta';
+import { LOCALE_COOKIE, localeFromCookie, pagePath, parseSitePath } from '../../shared/page-meta';
 
 export { LOCALE_CODES, LOCALE_NAMES, LOCALES, type Locale } from './locales';
 
@@ -15,11 +15,15 @@ const BASE = import.meta.env.BASE_URL;
 /**
  * A language in the URL (/pt-BR/…) wins: it is what a shared link or a search result points to.
  * Without one, an explicit choice from the picker wins over the browser's language and region.
+ * The Worker already redirects "/" the same way; this covers deploys without it (GitHub Pages).
  */
 function initialLocale(): Locale {
   const fromUrl = parseSitePath(window.location.pathname, BASE).locale;
   if (fromUrl) return fromUrl;
+  const fromCookie = localeFromCookie(document.cookie);
+  if (fromCookie) return fromCookie;
   try {
+    // Choices made before the cookie existed.
     const stored = localStorage.getItem(STORAGE_KEY);
     if (isLocale(stored)) return stored;
   } catch {
@@ -54,6 +58,8 @@ export function I18nProvider({ children }: { children: ReactNode }) {
 
   const setLocale = (next: Locale) => {
     setLocaleState(next);
+    // A cookie, not just storage, so the Worker can send "/" straight to this language next time.
+    document.cookie = `${LOCALE_COOKIE}=${next}; path=${BASE}; max-age=31536000; samesite=lax`;
     try {
       localStorage.setItem(STORAGE_KEY, next);
     } catch {

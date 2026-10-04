@@ -180,6 +180,28 @@ describe('link previews', () => {
   });
 });
 
+describe('pages without a language prefix', () => {
+  const open = (path: string, headers: Record<string, string>) =>
+    exports.default.fetch(`https://example.com${path}`, {
+      headers: { Accept: 'text/html', ...headers },
+      redirect: 'manual',
+    });
+
+  it.each([
+    ['/', '/pt-BR/'],
+    ['/?i=js,ts', '/pt-BR/?i=js,ts'],
+    ['/mcp', '/pt-BR/mcp'],
+  ])('send %s to %s for a Portuguese browser', async (path, target) => {
+    const res = await open(path, { 'Accept-Language': 'pt-BR,pt;q=0.9,en;q=0.8' });
+    expect(res.status).toBe(302);
+    expect(res.headers.get('Location')).toBe(`https://example.com${target}`);
+    expect(res.headers.get('Vary')).toContain('Accept-Language');
+  });
+
+  // Pages that stay put are served from the build's assets, which this test Worker doesn't have;
+  // shared/page-meta's tests cover when the language stays.
+});
+
 describe('search engines', () => {
   it.each(['/icons?i=js', '/og?i=js', '/api/icons', '/api/svgs'])(
     'keeps %s out of the index without blocking it',

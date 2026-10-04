@@ -1,10 +1,11 @@
+import { readFile } from 'node:fs/promises';
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { cloudflare } from '@cloudflare/vite-plugin';
 import { SITE_URL } from './shared/links';
-import { pageFile, pagePath, parseSitePath } from './shared/page-meta';
+import { localeRedirect, pageFile, pagePath, parseSitePath } from './shared/page-meta';
 import {
   notFoundPage,
   renderPage,
@@ -58,9 +59,59 @@ function sitePagesPlugin(): Plugin {
   };
 }
 
+/**
+ * The dev server's side of the routing the build and the Worker do: each page's URL gets index.html
+ * (filled in by sitePagesPlugin), and "/" and "/mcp" send visitors to their language. It runs ahead
+ * of the Cloudflare plugin, which would answer the pages it has no file for with a 404.
+ */
+function devPagesPlugin(): Plugin {
+  const pagePaths = new Set(SITE_PAGES.map(({ page, locale }) => base + pagePath(page, locale)));
+  return {
+    name: 'dev-pages',
+    apply: 'serve',
+    configureServer(server) {
+      server.middlewares.use(async (req, res, next) => {
+        const [pathname, search = ''] = (req.url ?? '/').split(/(?=\?)/);
+        const path = pathname.length > 1 ? pathname.replace(/\/$/, '') : pathname;
+        const isPage = pagePaths.has(path) || pagePaths.has(`${path}/`);
+        // MCP clients POST to /mcp; only a browser opening a page is answered here.
+        if (!isPage || req.method !== 'GET' || !req.headers.accept?.includes('text/html'))
+          return next();
+
+        const target = localeRedirect(pathname, base, {
+          cookie: req.headers.cookie,
+          acceptLanguage: req.headers['accept-language'],
+        });
+        if (target) {
+          res.writeHead(302, { Location: target + search, 'Cache-Control': 'no-store' });
+          return res.end();
+        }
+        try {
+          const template = await readFile(new URL('./index.html', import.meta.url), 'utf8');
+          const html = await server.transformIndexHtml(
+            req.url ?? pathname,
+            template,
+            req.originalUrl,
+          );
+          res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+          res.end(html);
+        } catch (err) {
+          next(err);
+        }
+      });
+    },
+  };
+}
+
 export default defineConfig({
   base,
-  plugins: [react(), tailwindcss(), sitePagesPlugin(), ...(isPages ? [] : [cloudflare()])],
+  plugins: [
+    react(),
+    tailwindcss(),
+    devPagesPlugin(),
+    sitePagesPlugin(),
+    ...(isPages ? [] : [cloudflare()]),
+  ],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },

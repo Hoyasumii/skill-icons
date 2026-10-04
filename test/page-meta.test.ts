@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { pageFile, pageHead, pagePath, parseSitePath } from '../shared/page-meta';
+import {
+  localeFromCookie,
+  localeRedirect,
+  pageFile,
+  pageHead,
+  pagePath,
+  parseSitePath,
+} from '../shared/page-meta';
 import {
   CONTENT_SLOT,
   HEAD_SLOT,
@@ -33,6 +40,42 @@ describe('page routes', () => {
     ['/skill-icons/', '/skill-icons/', { page: 'home', locale: undefined }],
   ])('reads %s under base %s', (pathname, base, expected) => {
     expect(parseSitePath(pathname, base)).toEqual(expected);
+  });
+});
+
+describe('localeRedirect', () => {
+  it.each([
+    ['/', '/', 'pt-BR,pt;q=0.9,en;q=0.8', '/pt-BR/'],
+    ['/mcp', '/', 'pt-PT', '/pt-BR/mcp'],
+    ['/mcp/', '/', 'pt', '/pt-BR/mcp'],
+    ['/', '/', 'en;q=0.5, pt-BR;q=0.9', '/pt-BR/'],
+    ['/skill-icons/', '/skill-icons/', 'pt-BR', '/skill-icons/pt-BR/'],
+    ['/', '/', 'en-US,en;q=0.9', undefined],
+    ['/', '/', 'fr-FR', undefined],
+    ['/', '/', '', undefined],
+    ['/', '/', 'pt-BR;q=0', undefined],
+    ['/pt-BR/', '/', 'en-US', undefined],
+    ['/pt-BR/mcp', '/', 'en-US', undefined],
+    ['/unknown', '/', 'pt-BR', undefined],
+  ])('sends %s (base %s, Accept-Language "%s") to %s', (pathname, base, acceptLanguage, target) => {
+    expect(localeRedirect(pathname, base, { acceptLanguage })).toBe(target);
+  });
+
+  it('prefers the language picked in the app over the browser', () => {
+    expect(localeRedirect('/', '/', { cookie: 'a=1; locale=en', acceptLanguage: 'pt-BR' })).toBe(
+      undefined,
+    );
+    expect(localeRedirect('/mcp', '/', { cookie: 'locale=pt-BR', acceptLanguage: 'en' })).toBe(
+      '/pt-BR/mcp',
+    );
+  });
+
+  it('ignores cookies that are not a language', () => {
+    expect(localeFromCookie('locale=fr')).toBe(undefined);
+    expect(localeFromCookie('otherlocale=pt-BR')).toBe(undefined);
+    expect(localeRedirect('/', '/', { cookie: 'locale=xx', acceptLanguage: 'pt-BR' })).toBe(
+      '/pt-BR/',
+    );
   });
 });
 

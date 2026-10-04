@@ -7,9 +7,9 @@
   "scripts": {
     "icons": "bun scripts/build-icons.ts",
     "skill-icon": "bun scripts/skill-icon.ts",
-    "dev": "bun run icons && vite",
-    "build": "bun run icons && tsc -b && vite build",
-    "preview": "bun run build && vite preview",
+    "dev": "bun run icons && VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite",
+    "build": "bun run icons && tsc -b && VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite build",
+    "preview": "bun run build && VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite preview",
     "deploy": "bun run build && wrangler deploy",
     "build:lib": "bun run --cwd packages/skill-icons build",
     "test:lib": "bun run --cwd packages/skill-icons test",

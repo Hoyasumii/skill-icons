@@ -8,6 +8,7 @@ import {
   type Theme,
 } from '../shared/icons';
 import { cleanTitle } from '../shared/badge-title';
+import { localeRedirect } from '../shared/page-meta';
 import { handleMcp } from './mcp';
 import { isPreviewBot, ogPage, renderOgPng } from './og';
 
@@ -160,6 +161,33 @@ async function handleOg(request: Request): Promise<Response> {
   return res;
 }
 
+/**
+ * A page without a language prefix ("/", "/mcp"): visitors whose language isn't the default one
+ * go to theirs; everyone else gets the page (the build writes "/mcp" as mcp.html).
+ */
+async function handlePage(request: Request, env: Env, url: URL, path: string): Promise<Response> {
+  // The answer depends on the visitor's language, so no shared cache may keep one for everybody.
+  const vary = { Vary: 'Accept-Language, Cookie' };
+  const target = localeRedirect(url.pathname, '/', {
+    cookie: request.headers.get('Cookie'),
+    acceptLanguage: request.headers.get('Accept-Language'),
+  });
+  if (target)
+    return new Response(null, {
+      status: 302,
+      headers: {
+        Location: new URL(target + url.search, url).href,
+        'Cache-Control': 'private, no-store',
+        ...vary,
+      },
+    });
+
+  const res = await env.ASSETS.fetch(new Request(new URL(`/${path}`, url), request));
+  const page = new Response(res.body, res);
+  page.headers.append('Vary', vary.Vary);
+  return page;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -172,10 +200,10 @@ export default {
         // A browser opening the server URL gets the page that explains how to install it.
         const wantsPage =
           request.method === 'GET' && request.headers.get('Accept')?.includes('text/html');
-        // The build writes it as mcp.html (shared/site-pages.ts).
-        if (wantsPage) return env.ASSETS.fetch(new Request(new URL('/mcp', request.url), request));
+        if (wantsPage) return await handlePage(request, env, url, path);
         return handleMcp(request);
       }
+      if (path === '') return await handlePage(request, env, url, path);
       if (path === 'api/icons') return json(iconNameList);
       if (path === 'api/svgs') return json(icons);
       if (path.startsWith('api/')) return new Response('Not found', { status: 404 });
