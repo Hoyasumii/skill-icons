@@ -1,5 +1,6 @@
-<p align="center"><img align="center" width="280" src="./.github/text-logo.svg#gh-dark-mode-only"/></p>
-<p align="center"><img align="center" width="280" src="./.github/text-logo-light.svg#gh-light-mode-only"/></p>
+<p align="center">
+  <a href="https://skill-icons.alanreisanjo.workers.dev"><img src="./public/og-site.png" alt="Skill Icons: build your stack, paste it in your README"/></a>
+</p>
 <h3 align="center">Showcase your skills on your GitHub or resumé with ease!</h3>
 
 <p align="center">
@@ -15,20 +16,26 @@
 > [!NOTE]
 > This project is a fork of [tandpfun/skill-icons](https://github.com/tandpfun/skill-icons), the original Skill Icons by [tandpfun](https://github.com/tandpfun). This fork adds a visual builder, more icons and the [`@hoyasumii/skill-icons`](https://www.npmjs.com/package/@hoyasumii/skill-icons) npm package. All credit for the original project and icons goes to its authors.
 
-Skill Icons comes in two flavors:
+Skill Icons gives you 370+ icons in a few ways:
 
-- **An image API**: paste a URL into your README and get an SVG with your skills. Use the [builder](https://skill-icons.alanreisanjo.workers.dev) to pick icons visually.
+- **An image API**: paste a URL into your README and get an SVG with your skills. Shared on Discord, Slack, X and other apps, the same link unfurls into a preview card.
+- **A [visual builder](https://skill-icons.alanreisanjo.workers.dev)**: search icons, start from ready-made stacks, save your own, and copy the Markdown, HTML or package code.
 - **An npm package**, [`@hoyasumii/skill-icons`](https://www.npmjs.com/package/@hoyasumii/skill-icons): the same icons as components for React, Vue, Svelte, Angular, Solid, Astro and Web Components.
+- **An MCP server**: let Claude and other AI assistants find icon ids and build the badge for you.
 
-<h3>NOTE: To keep icons consistent and to ensure browser support, we don't accept pull requests for icon submissions. If you would like an icon added, please open an issue.<h3>
+> [!IMPORTANT]
+> To keep icons consistent and to ensure browser support, we don't accept pull requests for icon submissions. If you would like an icon added, please open an issue.
 
 # Docs
 
 - [Example](#example)
+- [Builder](#builder)
 - [Specifying Icons](#specifying-icons)
 - [Themed Icons](#themed-icons)
 - [Icons Per Line](#icons-per-line)
 - [Centering Icons](#centering-icons)
+- [Badge Title](#badge-title)
+- [Link Previews](#link-previews)
 - [npm Package](#npm-package)
 - [MCP Server](#mcp-server)
 - [Icons List](#icons-list)
@@ -39,6 +46,18 @@ Skill Icons comes in two flavors:
 
 <p align="center"><img align="center" src="./.github/example-dark.png#gh-dark-mode-only"/></p>
 <p align="center"><img align="center" src="./.github/example-light.png#gh-light-mode-only"/></p>
+
+# Builder
+
+The [builder](https://skill-icons.alanreisanjo.workers.dev) is the easiest way to make a badge:
+
+- Search icons by name or alias, or browse them by category.
+- Start from a ready-made stack and combine as many as you like.
+- Reorder or remove icons in your stack, pick the theme and icons per line, and give the badge a title.
+- Save stacks in your browser to come back to them later.
+- Export as Markdown or HTML for your README, or as code for the npm package.
+
+The site is available in English and Portuguese (Brazil).
 
 # Specifying Icons
 
@@ -97,6 +116,22 @@ Want to center the icons in your readme? The SVGs are automatically resized, so 
     <img src="https://skill-icons.alanreisanjo.workers.dev/icons?i=git,kubernetes,docker,c,vim" />
   </a>
 </p>
+
+# Badge Title
+
+Add `&title=` to name your badge (up to 40 characters). The SVG looks the same; the title is used as the heading of the [link preview](#link-previews) card. The builder also uses it as the image's alt text.
+
+```md
+[![Backend](https://skill-icons.alanreisanjo.workers.dev/icons?i=go,postgres,redis,docker&title=Backend)](https://skill-icons.alanreisanjo.workers.dev)
+```
+
+# Link Previews
+
+An `/icons` link works in more places than a README:
+
+- **Images** (`<img>`, Markdown images, GitHub's image proxy) get the SVG.
+- **Chat and social apps** (Discord, Slack, X, WhatsApp, Telegram, LinkedIn, Bluesky and others) get a preview card with your icons, the badge title and the link. The card image is also available directly at `/og?i=…`.
+- **People opening the link** in a browser are sent to the builder.
 
 # npm Package
 
@@ -370,9 +405,9 @@ bun skill-icon category list                                                    
 | ----------------------- | ------------------------------------------------------------------------- |
 | `icons/`                | Source SVGs                                                               |
 | `scripts/`              | Generates `generated/`, `public/svg/` and the package icons from `icons/` |
-| `worker/`               | API: `/icons`, `/api/icons`, `/api/svgs`                                  |
+| `worker/`               | API: `/icons`, `/og`, `/mcp`, `/api/icons`, `/api/svgs`                   |
 | `src/`                  | Builder site (React, TypeScript, Tailwind, shadcn/ui)                     |
-| `shared/`               | Code shared by both (aliases, defaults, URL builder)                      |
+| `shared/`               | Code shared by both (aliases, categories, URL builder, MCP, page meta)    |
 | `packages/skill-icons/` | The `@hoyasumii/skill-icons` npm package                                  |
 
 # Releasing

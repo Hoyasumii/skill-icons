@@ -1,10 +1,8 @@
 import type { Messages } from './en';
+import { PAGE_META } from '../../../shared/page-meta';
 
 export const ptBR: Messages = {
-  meta: {
-    title: 'Skill Icons',
-    description: 'Mostre suas habilidades no seu GitHub ou currículo com facilidade!',
-  },
+  meta: PAGE_META['pt-BR'].home,
   header: {
     title: 'Skill Icons',
     tagline: 'monte sua pilha → cole no README',
@@ -120,11 +118,7 @@ export const ptBR: Messages = {
     credit: 'MIT · fork de',
   },
   mcp: {
-    meta: {
-      title: 'Servidor MCP · Skill Icons',
-      description:
-        'Conecte o servidor MCP do Skill Icons ao Claude Code, Cursor ou VS Code e peça seu badge de skills em linguagem natural.',
-    },
+    meta: PAGE_META['pt-BR'].mcp,
     toc: 'Nesta página',
     nav: { overview: 'Visão geral', install: 'Instalar', why: 'Por que usar o MCP' },
     eyebrow: version => `Servidor MCP · skill-icons ${version}`,

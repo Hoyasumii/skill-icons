@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { IconCategory } from '../../../shared/icon-categories';
 import type { PresetId } from '../../lib/presets';
+import { PAGE_META } from '../../../shared/page-meta';
 
 const categories: Record<IconCategory, string> = {
   language: 'Languages',
@@ -34,10 +35,7 @@ const presetNames: Record<PresetId, string> = {
 export type Code = (text: string) => ReactNode;
 
 export const en = {
-  meta: {
-    title: 'Skill Icons',
-    description: 'Showcase your skills on your GitHub or resumé with ease!',
-  },
+  meta: PAGE_META.en.home,
   header: {
     title: 'Skill Icons',
     tagline: 'build your stack → paste in your README',
@@ -134,11 +132,7 @@ export const en = {
     credit: 'MIT · fork of',
   },
   mcp: {
-    meta: {
-      title: 'MCP server · Skill Icons',
-      description:
-        'Connect the Skill Icons MCP server to Claude Code, Cursor or VS Code and ask for your skills badge in plain language.',
-    },
+    meta: PAGE_META.en.mcp,
     toc: 'On this page',
     nav: { overview: 'Overview', install: 'Install', why: 'Why use the MCP' },
     eyebrow: (version: string) => `MCP server · skill-icons ${version}`,

@@ -34,7 +34,7 @@ export function LanguageMenu() {
         <DropdownMenuRadioGroup value={locale} onValueChange={value => setLocale(value as Locale)}>
           {LOCALES.map(value => (
             <DropdownMenuRadioItem key={value} value={value} lang={value}>
-              <span className="inline-flex h-[26px] w-10 shrink-0 items-center justify-center rounded-[7px] border-2 border-current font-mono text-[11px] font-semibold">
+              <span className="inline-flex h-[26px] w-10 shrink-0 items-center justify-center font-mono text-[11px] font-semibold">
                 {LOCALE_CODES[value]}
               </span>
               <span className="flex min-w-0 flex-1 flex-col gap-px">

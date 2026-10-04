@@ -11,6 +11,8 @@ import {
 import { cleanTitle } from '../shared/badge-title';
 import { handleMcp } from './mcp';
 import { isPreviewBot, ogPage, renderOgPng } from './og';
+import { withPageMeta } from './page';
+import type { Page } from '../shared/page-meta';
 
 const icons: Record<string, string> = iconsJson;
 const iconNameList = [...new Set(Object.keys(icons).map(i => i.split('-')[0]))];
@@ -152,19 +154,26 @@ async function handleOg(request: Request): Promise<Response> {
   return res;
 }
 
+/** The SPA shell, carrying `page`'s own title, description and OpenGraph tags. */
+async function sitePage(request: Request, env: Env, page: Page): Promise<Response> {
+  const shell = await env.ASSETS.fetch(new Request(new URL('/', request.url), request));
+  return withPageMeta(shell, request, page);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const path = url.pathname.replace(/^\/|\/$/g, '');
 
     try {
+      if (path === '') return await sitePage(request, env, 'home');
       if (path === 'icons') return handleIcons(request, url);
       if (path === 'og') return await handleOg(request);
       if (path === 'mcp') {
         // A browser opening the server URL gets the page that explains how to install it.
         const wantsPage =
           request.method === 'GET' && request.headers.get('Accept')?.includes('text/html');
-        if (wantsPage) return env.ASSETS.fetch(new Request(new URL('/', request.url), request));
+        if (wantsPage) return await sitePage(request, env, 'mcp');
         return handleMcp(request);
       }
       if (path === 'api/icons') return json(iconNameList);
