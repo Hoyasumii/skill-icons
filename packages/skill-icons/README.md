@@ -3,7 +3,7 @@
 [Skill icons](https://skill-icons.alanreisanjo.workers.dev) as components. One package, one entry point per framework.
 
 ```sh
-npm install @hoyasumii/skill-icons
+npm install @hoyasumii/skill-icons   # or: pnpm add / yarn add / bun add
 ```
 
 ## React
@@ -141,13 +141,13 @@ Use `<skill-icons-provider theme="auto">` to set the theme for everything inside
 
 Each icon is bundled as its own chunk and only downloaded when rendered.
 
-| Prop                | Default                  | Description                                      |
-| ------------------- | ------------------------ | ------------------------------------------------ |
-| `name` / `names`    |                          | Icon names or aliases (`js`, `ts`, `k8s`, ...)   |
-| `theme`             | `'dark'`                 | `'dark'`, `'light'` or `'auto'`                  |
-| `size`              | `48`                     | Size of one icon, in pixels                      |
-| `perLine` (`Icons`) | `15`                     | Icons per line, from 1 to 50                     |
-| `latest`            | `false`                  | Load from the deployed API instead of the bundle |
+| Prop                | Default                                        | Description                                      |
+| ------------------- | ---------------------------------------------- | ------------------------------------------------ |
+| `name` / `names`    |                                                | Icon names or aliases (`js`, `ts`, `k8s`, ...)   |
+| `theme`             | `'dark'`                                       | `'dark'`, `'light'` or `'auto'`                  |
+| `size`              | `48`                                           | Size of one icon, in pixels                      |
+| `perLine` (`Icons`) | `15`                                           | Icons per line, from 1 to 50                     |
+| `latest`            | `false`                                        | Load from the deployed API instead of the bundle |
 | `baseUrl`           | `https://skill-icons.alanreisanjo.workers.dev` | API to load from, in `latest` mode only          |
 
 Any other prop or attribute is passed to the underlying `<img>` (in Angular, through `imgClass`, `imgStyle` and `alt`).

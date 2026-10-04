@@ -2,6 +2,28 @@
   "name": "@hoyasumii/skill-icons",
   "version": "0.1.0",
   "description": "Skill icons as components for React, Vue, Angular and more.",
+  "keywords": [
+    "skill-icons",
+    "icons",
+    "svg",
+    "react",
+    "vue",
+    "svelte",
+    "angular",
+    "solid",
+    "astro",
+    "web-components"
+  ],
+  "author": "Alan Reis",
+  "homepage": "https://skill-icons.alanreisanjo.workers.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hoyasumii/skill-icons.git",
+    "directory": "packages/skill-icons"
+  },
+  "bugs": {
+    "url": "https://github.com/Hoyasumii/skill-icons/issues"
+  },
   "license": "MIT",
   "type": "module",
   "sideEffects": [
@@ -10,6 +32,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "exports": {
     ".": {
       "types": "./dist/core/index.d.ts",
