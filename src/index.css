@@ -132,3 +132,15 @@
     @apply font-sans;
   }
 }
+
+.shiki-block pre {
+  @apply overflow-x-auto rounded-lg border bg-muted p-3 pr-12 font-mono text-sm whitespace-pre-wrap break-all;
+}
+.shiki-block .shiki,
+.shiki-block .shiki span {
+  color: var(--shiki-light);
+}
+.dark .shiki-block .shiki,
+.dark .shiki-block .shiki span {
+  color: var(--shiki-dark);
+}

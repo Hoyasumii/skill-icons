@@ -1,20 +1,23 @@
 import { CheckIcon, CopyIcon } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useI18n } from '@/i18n';
+import { type CodeLang, highlight } from '@/lib/highlight';
 import type { Messages } from '@/i18n/messages/en';
 import { API_URL, buildIconsUrl, type IconsUrlOptions } from '../../shared/icons';
 
 const FORMATS = {
-  url: { label: () => 'URL', render: (url: string) => url },
+  url: { label: () => 'URL', lang: 'text', render: (url: string) => url },
   markdown: {
     label: () => 'Markdown',
+    lang: 'markdown',
     render: (url: string, t: Messages) => `[![${t.output.badgeAlt}](${url})](${API_URL})`,
   },
   html: {
     label: (t: Messages) => t.output.htmlCentered,
+    lang: 'html',
     render: (url: string) =>
       `<p align="center">\n  <a href="${API_URL}">\n    <img src="${url}" />\n  </a>\n</p>`,
   },
@@ -28,36 +31,43 @@ const PACKAGE_URL = `https://www.npmjs.com/package/${PACKAGE_NAME}`;
 const LIBRARIES = {
   react: {
     label: 'React',
+    lang: 'tsx',
     render: ({ names, props }: LibraryInput) =>
       `import { Icons } from '${PACKAGE_NAME}/react';\n\n<Icons names={${names}}${props.jsx} />`,
   },
   vue: {
     label: 'Vue',
+    lang: 'vue',
     render: ({ names, props }: LibraryInput) =>
       `<script setup lang="ts">\nimport { Icons } from '${PACKAGE_NAME}/vue';\n</script>\n\n<template>\n  <Icons :names="${names}"${props.vue} />\n</template>`,
   },
   svelte: {
     label: 'Svelte',
+    lang: 'svelte',
     render: ({ names, props }: LibraryInput) =>
       `<script lang="ts">\n  import { Icons } from '${PACKAGE_NAME}/svelte';\n</script>\n\n<Icons names={${names}}${props.jsx} />`,
   },
   solid: {
     label: 'Solid',
+    lang: 'tsx',
     render: ({ names, props }: LibraryInput) =>
       `import { Icons } from '${PACKAGE_NAME}/solid';\n\n<Icons names={${names}}${props.jsx} />`,
   },
   angular: {
     label: 'Angular',
+    lang: 'tsx',
     render: ({ names, props }: LibraryInput) =>
       `import { Component } from '@angular/core';\nimport { Icons } from '${PACKAGE_NAME}/angular';\n\n@Component({\n  imports: [Icons],\n  template: \`<skill-icons [names]="${names}"${props.angular} />\`,\n})\nexport class Skills {}`,
   },
   astro: {
     label: 'Astro',
+    lang: 'astro',
     render: ({ names, props }: LibraryInput) =>
       `---\nimport { Icons } from '${PACKAGE_NAME}/astro';\n---\n\n<Icons names={${names}}${props.jsx} />`,
   },
   element: {
     label: 'Web Component',
+    lang: 'html',
     render: ({ icons, theme, perLine }: LibraryInput) =>
       `<script type="module">\n  import '${PACKAGE_NAME}/element/define';\n</script>\n\n<skill-icons names="${icons.join(',')}" theme="${theme}" per-line="${perLine}"></skill-icons>`,
   },
@@ -85,8 +95,9 @@ function libraryInput({ icons, theme, perLine }: IconsUrlOptions): LibraryInput 
   };
 }
 
-function CopyBlock({ value }: { value: string }) {
+function CopyBlock({ value, lang = 'text' }: { value: string; lang?: CodeLang }) {
   const [copied, setCopied] = useState(false);
+  const [html, setHtml] = useState<{ value: string; lang: CodeLang; html: string }>();
   const { t } = useI18n();
 
   const copy = async () => {
@@ -100,11 +111,28 @@ function CopyBlock({ value }: { value: string }) {
     }
   };
 
+  useEffect(() => {
+    if (lang === 'text') return;
+    let stale = false;
+    highlight(value, lang)
+      .then(result => !stale && setHtml({ value, lang, html: result }))
+      .catch(() => {});
+    return () => {
+      stale = true;
+    };
+  }, [value, lang]);
+
+  const highlighted = html?.value === value && html.lang === lang ? html.html : undefined;
+  const preClass =
+    'overflow-x-auto rounded-lg border bg-muted p-3 pr-12 font-mono text-sm whitespace-pre-wrap break-all';
+
   return (
     <div className="relative">
-      <pre className="overflow-x-auto rounded-lg border bg-muted p-3 pr-12 font-mono text-sm whitespace-pre-wrap break-all">
-        {value}
-      </pre>
+      {highlighted ? (
+        <div className="shiki-block" dangerouslySetInnerHTML={{ __html: highlighted }} />
+      ) : (
+        <pre className={preClass}>{value}</pre>
+      )}
       <Button
         variant="outline"
         size="icon-sm"
@@ -140,7 +168,7 @@ export function Output(options: IconsUrlOptions) {
         </TabsList>
         {(Object.keys(FORMATS) as Format[]).map(format => (
           <TabsContent key={format} value={format}>
-            <CopyBlock value={FORMATS[format].render(publicUrl, t)} />
+            <CopyBlock value={FORMATS[format].render(publicUrl, t)} lang={FORMATS[format].lang} />
           </TabsContent>
         ))}
       </Tabs>
@@ -156,7 +184,7 @@ export function Output(options: IconsUrlOptions) {
             {PACKAGE_NAME}
           </a>
         </p>
-        <CopyBlock value={`npm install ${PACKAGE_NAME}`} />
+        <CopyBlock value={`npm install ${PACKAGE_NAME}`} lang="bash" />
         <Tabs defaultValue={'react' satisfies Library}>
           <TabsList className="flex-wrap h-auto">
             {(Object.keys(LIBRARIES) as Library[]).map(library => (
@@ -167,7 +195,10 @@ export function Output(options: IconsUrlOptions) {
           </TabsList>
           {(Object.keys(LIBRARIES) as Library[]).map(library => (
             <TabsContent key={library} value={library}>
-              <CopyBlock value={LIBRARIES[library].render(libraryInput(options))} />
+              <CopyBlock
+                value={LIBRARIES[library].render(libraryInput(options))}
+                lang={LIBRARIES[library].lang}
+              />
             </TabsContent>
           ))}
         </Tabs>
