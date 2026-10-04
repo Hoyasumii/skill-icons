@@ -1,11 +1,12 @@
 import { readFile } from 'node:fs/promises';
 import { fileURLToPath, URL } from 'node:url';
-import { defineConfig, type Plugin } from 'vite';
+import { createServer, defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { cloudflare } from '@cloudflare/vite-plugin';
+import type { Locale } from './src/i18n/locales';
 import { SITE_URL } from './shared/links';
-import { localeRedirect, pageFile, pagePath, parseSitePath } from './shared/page-meta';
+import { localeRedirect, pageFile, pagePath, parseSitePath, type Page } from './shared/page-meta';
 import {
   notFoundPage,
   renderPage,
@@ -21,9 +22,48 @@ const base = isPages ? '/skill-icons/' : '/';
 // Both deploys point canonical, hreflang and OpenGraph links at the Worker's: it is the one indexed.
 const urls: SiteUrls = { siteUrl: SITE_URL, base };
 
+/** Where index.html takes the prerendered app: inside #root, which main.tsx hydrates. */
+const APP_SLOT = '<div id="root"><!-- page-app --></div>';
+
+type Prerender = (page: Page, locale: Locale) => string;
+
+/**
+ * Downloads the entry script right away but runs it only after the prerendered page has painted.
+ * Otherwise, when the script arrives with the HTML, Chrome runs it (and hydrates) before the first
+ * paint, and the page shows no sooner than without prerendering. Hidden tabs never paint, so they
+ * run it at once.
+ */
+function deferEntryToPaint(html: string): string {
+  return html.replace(
+    /<script type="module" crossorigin src="([^"]+)"><\/script>/,
+    (_, src: string) =>
+      `<link rel="modulepreload" crossorigin href="${src}">` +
+      `<script type="module">const run = () => import(${JSON.stringify(src)}); ` +
+      `document.hidden ? run() : requestAnimationFrame(() => setTimeout(run));</script>`,
+  );
+}
+
+/**
+ * Loads src/prerender.tsx through a throwaway SSR server, so the build can render the app the
+ * way the browser would. Only the build does this; the dev server renders in the browser.
+ */
+async function loadPrerender(): Promise<{ prerender: Prerender; close: () => Promise<void> }> {
+  const server = await createServer({
+    configFile: false,
+    base,
+    logLevel: 'error',
+    plugins: [react()],
+    resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
+    server: { middlewareMode: true, hmr: false, ws: false },
+    appType: 'custom',
+  });
+  const mod = await server.ssrLoadModule('/src/prerender.tsx');
+  return { prerender: mod.prerender as Prerender, close: () => server.close() };
+}
+
 /**
  * Writes one HTML file per page and language (index.html, mcp.html, pt-BR/index.html…), each with
- * its own head and content, plus 404.html; the Worker deploy also gets sitemap.xml and robots.txt.
+ * its own head, content and prerendered app, plus 404.html; the Worker deploy also gets sitemap.xml and robots.txt.
  * The dev server fills index.html in for the page being opened.
  */
 function sitePagesPlugin(): Plugin {
@@ -38,16 +78,22 @@ function sitePagesPlugin(): Plugin {
       );
       return renderPage(html, page, locale, urls);
     },
-    generateBundle(_, bundle) {
+    async generateBundle(_, bundle) {
       const index = bundle['index.html'];
       if (index?.type !== 'asset') return;
-      const template = String(index.source);
+      const template = deferEntryToPaint(String(index.source));
 
-      for (const { page, locale } of SITE_PAGES) {
-        const fileName = pageFile(pagePath(page, locale));
-        const source = renderPage(template, page, locale, urls);
-        if (fileName === 'index.html') index.source = source;
-        else this.emitFile({ type: 'asset', fileName, source });
+      const { prerender, close } = await loadPrerender();
+      try {
+        for (const { page, locale } of SITE_PAGES) {
+          const fileName = pageFile(pagePath(page, locale));
+          const app = `<div id="root" data-prerender="${page} ${locale}">${prerender(page, locale)}</div>`;
+          const source = renderPage(template, page, locale, urls).replace(APP_SLOT, () => app);
+          if (fileName === 'index.html') index.source = source;
+          else this.emitFile({ type: 'asset', fileName, source });
+        }
+      } finally {
+        await close();
       }
       this.emitFile({ type: 'asset', fileName: '404.html', source: notFoundPage(urls) });
       // robots.txt only counts at a host's root, and a sitemap only lists its own host's pages.

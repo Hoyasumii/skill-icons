@@ -3,6 +3,7 @@ import { flushSync } from 'react-dom';
 import { MoonIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
+import { useHydrated } from '@/hooks/use-hydrated';
 import { useI18n } from '@/i18n';
 import { circleReveal, imagesOnScreen } from '@/lib/circle-reveal';
 import { cn } from '@/lib/utils';
@@ -12,7 +13,9 @@ export function ThemeToggle() {
   const { t } = useI18n();
   // Remounting the icon on each switch replays its spin; the first render stays still.
   const [switches, setSwitches] = useState(0);
-  const dark = resolvedTheme === 'dark';
+  // The prerendered HTML can't know the theme; until hydration the icon follows the page's class.
+  const hydrated = useHydrated();
+  const dark = hydrated && resolvedTheme === 'dark';
 
   const toggle = (e: MouseEvent<HTMLButtonElement>) => {
     const next = dark ? 'light' : 'dark';
@@ -40,13 +43,20 @@ export function ThemeToggle() {
       aria-label={dark ? t.header.toLight : t.header.toDark}
       onClick={toggle}
     >
-      <Icon
-        key={switches}
-        className={cn(
-          'size-5',
-          switches > 0 && 'animate-in duration-[520ms] ease-spring -spin-in-180',
-        )}
-      />
+      {hydrated ? (
+        <Icon
+          key={switches}
+          className={cn(
+            'size-5',
+            switches > 0 && 'animate-in duration-[520ms] ease-spring -spin-in-180',
+          )}
+        />
+      ) : (
+        <>
+          <MoonIcon className="size-5 dark:hidden" />
+          <SunIcon className="hidden size-5 dark:block" />
+        </>
+      )}
     </Button>
   );
 }

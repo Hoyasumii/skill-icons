@@ -1,6 +1,6 @@
 // The HTML files the build writes: one per page and language, the 404 page, the sitemap and robots.txt.
 // Each page carries its own head and a plain-HTML copy of its content, for crawlers that don't run
-// JavaScript; the app replaces that copy when it mounts.
+// JavaScript, hidden once scripts run. The build also prerenders the app itself (vite.config.ts).
 
 import iconList from '../generated/icon-list.json';
 import { en, type Code, type Messages } from '../src/i18n/messages/en';

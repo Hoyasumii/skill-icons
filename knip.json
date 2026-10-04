@@ -3,7 +3,8 @@
   "workspaces": {
     ".": {
       "entry": [
-        "scripts/*.ts"
+        "scripts/*.ts",
+        "src/prerender.tsx"
       ],
       "ignore": [
         "src/components/ui/**"

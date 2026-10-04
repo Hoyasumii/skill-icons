@@ -17,10 +17,23 @@
       .js .static-page {
         display: none;
       }
+      /* The page's colors before the stylesheet arrives, so the first paint isn't white. */
+      html {
+        background: #edede8;
+      }
+      @media (prefers-color-scheme: dark) {
+        html:not(.light) {
+          background: #141414;
+        }
+      }
+      html.dark {
+        background: #141414;
+      }
     </style>
   </head>
   <body>
-    <div id="root"><!-- page-content --></div>
+    <!-- page-content -->
+    <div id="root"><!-- page-app --></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -17,7 +17,7 @@ const BASE = import.meta.env.BASE_URL;
  * Without one, an explicit choice from the picker wins over the browser's language and region.
  * The Worker already redirects "/" the same way; this covers deploys without it (GitHub Pages).
  */
-function initialLocale(): Locale {
+export function initialLocale(): Locale {
   const fromUrl = parseSitePath(window.location.pathname, BASE).locale;
   if (fromUrl) return fromUrl;
   const fromCookie = localeFromCookie(document.cookie);
@@ -40,8 +40,9 @@ interface I18nContextValue {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
-export function I18nProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState(initialLocale);
+/** `locale` is the language to start in; the browser's choice (initialLocale) when left out. */
+export function I18nProvider({ locale: initial, children }: { locale?: Locale; children: ReactNode }) {
+  const [locale, setLocaleState] = useState(() => initial ?? initialLocale());
   const t = MESSAGES[locale];
 
   // Each page sets its own title and description (useDocumentMeta).

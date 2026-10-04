@@ -24,7 +24,7 @@ import { PRESETS } from '@/lib/presets';
 import type { Format, FrameworkId } from '@/lib/snippets';
 import { isStackSelected, toggleStack } from '@/lib/stack-selection';
 import type { IconCategory } from '../shared/icon-categories';
-import { parseSitePath } from '../shared/page-meta';
+import type { Page } from '../shared/page-meta';
 
 function shuffled<T>(items: T[]): T[] {
   const result = [...items];
@@ -35,8 +35,7 @@ function shuffled<T>(items: T[]): T[] {
   return result;
 }
 
-export function App() {
-  const { page } = parseSitePath(window.location.pathname, import.meta.env.BASE_URL);
+export function App({ page }: { page: Page }) {
   return page === 'mcp' ? <McpPage /> : <Builder />;
 }
 

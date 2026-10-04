@@ -20,7 +20,8 @@ export interface BuilderState {
 
 /** Reads the builder state from the page's query string (same params as /icons, plus the page-only `title`). */
 function readStateFromUrl(): BuilderState {
-  const params = new URLSearchParams(window.location.search);
+  // The prerender has no URL: it is the empty builder.
+  const params = new URLSearchParams(typeof window === 'undefined' ? '' : window.location.search);
 
   const iconParam = params.get('i') ?? params.get('icons') ?? '';
   const icons = [

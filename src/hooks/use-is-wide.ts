@@ -9,7 +9,14 @@ function subscribe(onChange: () => void) {
   return () => query.removeEventListener('change', onChange);
 }
 
-/** True at 1024px and up, where the export panel is a column instead of a bottom sheet. */
+/**
+ * True at 1024px and up, where the export panel is a column instead of a bottom sheet. The
+ * prerendered HTML is the compact layout, so hydration starts compact and widens right after.
+ */
 export function useIsWide() {
-  return useSyncExternalStore(subscribe, () => window.matchMedia(WIDE).matches);
+  return useSyncExternalStore(
+    subscribe,
+    () => window.matchMedia(WIDE).matches,
+    () => false,
+  );
 }

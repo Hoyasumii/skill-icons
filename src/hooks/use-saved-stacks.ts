@@ -8,7 +8,7 @@ import {
   type SavedStack,
 } from '@/lib/saved-stacks';
 
-function readStacks(): SavedStack[] {
+export function readStacks(): SavedStack[] {
   try {
     return parseStacks(localStorage.getItem(SAVED_STACKS_KEY), resolveIconName);
   } catch {

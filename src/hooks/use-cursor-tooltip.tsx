@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState, type PointerEvent, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
+import { useHydrated } from '@/hooks/use-hydrated';
 
 // Gaps between the cursor hotspot and the tooltip. Below needs more room to clear the arrow.
 const GAP_ABOVE = 4;
@@ -16,6 +17,7 @@ export function useCursorTooltip() {
   const [open, setOpen] = useState(false);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const pointer = useRef({ x: 0, y: 0 });
+  const hydrated = useHydrated();
 
   // Positioned imperatively so moving the mouse doesn't re-render the bound elements.
   const position = () => {
@@ -52,8 +54,8 @@ export function useCursorTooltip() {
 
   // Always mounted (closed and invisible until first use) so entering animates from the
   // closed state too. The outer element is positioned; the inner one animates, so their
-  // transforms don't clash.
-  const tooltip = createPortal(
+  // transforms don't clash. Portals aren't prerendered, so it mounts right after hydration.
+  const tooltip = hydrated && createPortal(
     <div
       ref={tooltipRef}
       role="tooltip"
