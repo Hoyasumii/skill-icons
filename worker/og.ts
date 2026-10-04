@@ -4,11 +4,19 @@ import resvgWasm from '@resvg/resvg-wasm/index_bg.wasm?module';
 import groteskBold from './fonts/familjen-grotesk-bold.bin';
 import monoRegular from './fonts/ibm-plex-mono-regular.bin';
 import monoSemiBold from './fonts/ibm-plex-mono-semibold.bin';
+import {
+  OG_DEFAULT_TITLE,
+  OG_FOOTER_BASELINE as footerBaseline,
+  OG_FOOTER_TOP as FOOTER_TOP,
+  OG_HEADER_HEIGHT,
+  OG_HEIGHT,
+  OG_PAD_X as PAD_X,
+  OG_PAD_Y as PAD_Y,
+  OG_TITLE_SIZE as TITLE_SIZE,
+  OG_WIDTH,
+  ogLayout,
+} from '../shared/og-layout';
 
-const OG_WIDTH = 1200;
-const OG_HEIGHT = 630;
-const PAD_X = 72;
-const PAD_Y = 56;
 const INK = '#111111';
 const MUTED = '#5C5C56';
 const ACCENT = '#FFD21F';
@@ -16,18 +24,6 @@ const SANS = 'Familjen Grotesk';
 const MONO = 'IBM Plex Mono';
 /** IBM Plex Mono advance width, in em. */
 const MONO_ADVANCE = 0.6;
-
-const COLUMNS = 8;
-const MAX_TILES = COLUMNS * 2;
-const GAP = 18;
-const DEFAULT_TITLE = 'My skills';
-const TITLE_SIZE = 64;
-/** Familjen Grotesk bold, average advance per character in em (a little generous). */
-const TITLE_ADVANCE = 0.56;
-const TITLE_GAP = 28;
-const HEADER_BOTTOM = PAD_Y + 44;
-const FOOTER_TOP = 524;
-const MAX_URL_CHARS = 64;
 
 /** Link-preview crawlers. Only these get the HTML page; everything else (GitHub camo included) keeps the SVG. */
 const PREVIEW_BOTS =
@@ -72,27 +68,21 @@ let wasmReady: Promise<void> | undefined;
 export async function renderOgPng(
   iconSvgs: string[],
   link: URL,
-  title = DEFAULT_TITLE,
+  title = OG_DEFAULT_TITLE,
 ): Promise<Uint8Array> {
   wasmReady ??= initWasm(resvgWasm);
   await wasmReady;
 
-  const overflow = iconSvgs.length > MAX_TILES;
-  const shown = overflow ? iconSvgs.slice(0, MAX_TILES - 1) : iconSvgs;
-  const extra = iconSvgs.length - shown.length;
-  const tiles = shown.length + (extra > 0 ? 1 : 0);
-  const size = tiles <= COLUMNS ? 104 : 92;
-  const rows = Math.ceil(tiles / COLUMNS);
-  const gridHeight = rows * size + (rows - 1) * GAP;
-
-  // The title and grid are centered between the header row and the footer rule.
-  const middleHeight = TITLE_SIZE + TITLE_GAP + gridHeight;
-  const titleTop = HEADER_BOTTOM + (FOOTER_TOP - HEADER_BOTTOM - middleHeight) / 2;
-  const gridTop = titleTop + TITLE_SIZE + TITLE_GAP;
-  const cell = (index: number) => [
-    PAD_X + (index % COLUMNS) * (size + GAP),
-    gridTop + Math.floor(index / COLUMNS) * (size + GAP),
-  ];
+  const {
+    shown: shownCount,
+    extra,
+    size,
+    titleTop,
+    titleSize,
+    cell,
+    href,
+  } = ogLayout(iconSvgs.length, title, link.href);
+  const shown = iconSvgs.slice(0, shownCount);
 
   const icons = shown
     .map((svg, index) => {
@@ -100,19 +90,11 @@ export async function renderOgPng(
       return `<g transform="translate(${x} ${y}) scale(${size / 256})">${svg}</g>`;
     })
     .join('');
-  const more = extra > 0 ? moreTile(extra, ...(cell(shown.length) as [number, number]), size) : '';
+  const more = extra > 0 ? moreTile(extra, ...cell(shown.length), size) : '';
 
-  // A long title shrinks to fit the width; the row keeps its height so the layout stays put.
-  const titleSize = Math.min(
-    TITLE_SIZE,
-    Math.floor((OG_WIDTH - PAD_X * 2) / (title.length * TITLE_ADVANCE)),
-  );
   const titleBaseline = titleTop + TITLE_SIZE / 2 + titleSize * 0.4;
 
-  const href = decodeURI(link.href.replace(/^https?:\/\//, ''));
-  const shownHref = href.length <= MAX_URL_CHARS ? href : `${href.slice(0, MAX_URL_CHARS - 1)}…`;
-  const footerBaseline = FOOTER_TOP + 2 + 22 + 20.5;
-  const headerCenter = PAD_Y + 22;
+  const headerCenter = PAD_Y + OG_HEADER_HEIGHT / 2;
 
   const canvas = `<svg width="${OG_WIDTH}" height="${OG_HEIGHT}" viewBox="0 0 ${OG_WIDTH} ${OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   ${wordmark(headerCenter)}
@@ -120,7 +102,7 @@ export async function renderOgPng(
   <text x="${PAD_X}" y="${titleBaseline}" font-family="${SANS}" font-weight="700" font-size="${titleSize}" letter-spacing="${-0.035 * titleSize}" fill="${INK}">${escapeHtml(title)}</text>
   ${icons}${more}
   <rect x="${PAD_X}" y="${FOOTER_TOP}" width="${OG_WIDTH - PAD_X * 2}" height="2" fill="${INK}" fill-opacity="0.14"/>
-  <text x="${PAD_X}" y="${footerBaseline}" font-family="${MONO}" font-size="20" fill="${MUTED}">${escapeHtml(shownHref)}</text>
+  <text x="${PAD_X}" y="${footerBaseline}" font-family="${MONO}" font-size="20" fill="${MUTED}">${escapeHtml(href)}</text>
   <text x="${OG_WIDTH - PAD_X}" y="${footerBaseline}" text-anchor="end" font-family="${MONO}" font-size="20" fill="${INK}">build yours →</text>
 </svg>`;
 

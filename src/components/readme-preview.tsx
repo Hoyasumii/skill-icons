@@ -1,64 +1,206 @@
-import { EyeIcon, FileTextIcon, PencilIcon } from 'lucide-react';
-import { useId } from 'react';
+import { useId, useRef, useState, type ReactNode, type Ref } from 'react';
+import {
+  CheckIcon,
+  EyeIcon,
+  FileTextIcon,
+  ImageIcon,
+  LinkIcon,
+  PencilIcon,
+  RefreshCcwIcon,
+  type LucideIcon,
+} from 'lucide-react';
+import { OgCover } from '@/components/og-cover';
 import { SectionLabel } from '@/components/section-label';
+import { Button } from '@/components/ui/button';
+import { useCopy } from '@/hooks/use-copy';
 import { useI18n } from '@/i18n';
+import { cn } from '@/lib/utils';
 import { cleanTitle, MAX_TITLE_LENGTH } from '../../shared/badge-title';
 import { API_URL, buildIconsUrl, type IconsUrlOptions } from '../../shared/icons';
+import { OG_DEFAULT_TITLE, OG_HEIGHT, OG_WIDTH } from '../../shared/og-layout';
+
+interface FaceHeaderProps {
+  children: ReactNode;
+  icon: LucideIcon;
+  action: string;
+  onAction: () => void;
+  actionRef: Ref<HTMLButtonElement>;
+  disabled?: boolean;
+}
+
+function FaceHeader({
+  children,
+  icon: Icon,
+  action,
+  onAction,
+  actionRef,
+  disabled,
+}: FaceHeaderProps) {
+  return (
+    <div className="flex min-h-11 items-center justify-between gap-2 border-b py-1.5 pr-1.5 pl-3">
+      <span className="flex min-w-0 items-center gap-1.5 font-mono text-xs opacity-75">
+        {children}
+      </span>
+      <Button
+        ref={actionRef}
+        variant="hairline"
+        size="sm"
+        disabled={disabled}
+        onClick={onAction}
+        className="h-8 gap-1.5 px-2.5 font-mono text-xs font-medium"
+      >
+        <Icon className="size-3.5" strokeWidth={2.2} />
+        {action}
+      </Button>
+    </div>
+  );
+}
+
+/** A secondary copy: hairline, ink once copied, never the yellow. */
+function CopyCoverLink({ value }: { value: string }) {
+  const { t } = useI18n();
+  const { copied, copy } = useCopy();
+  const Icon = copied ? CheckIcon : LinkIcon;
+
+  return (
+    <Button
+      variant="hairline"
+      onClick={() => copy(value)}
+      className={cn(
+        'h-11 w-full',
+        copied && 'border-foreground bg-foreground text-background hover:bg-foreground',
+      )}
+    >
+      <Icon className="size-4" strokeWidth={copied ? 2.6 : 2.2} />
+      <span aria-live="polite">{copied ? t.preview.coverLinkCopied : t.preview.copyCoverLink}</span>
+    </Button>
+  );
+}
 
 interface ReadmePreviewProps {
   options: IconsUrlOptions;
   label: string;
   fileName: string;
+  /** Names the front face on the back's button ("view README", "view component"). */
+  frontName: string;
   /** The badge title as typed; undefined until edited, so it follows the language. */
   title: string | undefined;
   /** Undefined goes back to the default title, which follows the language. */
   onTitleChange: (title: string | undefined) => void;
+  /** The title the copied link carries; undefined while it is the default. */
+  linkTitle: string | undefined;
 }
 
-/** The real badge on a page that follows the site theme; its icons follow the icon theme. */
+/**
+ * The real badge on a page that follows the site theme; its icons follow the icon theme. It
+ * flips over to the card a shared link unfurls into.
+ */
 export function ReadmePreview({
   options,
   label,
   fileName,
+  frontName,
   title,
   onTitleChange,
+  linkTitle,
 }: ReadmePreviewProps) {
   const { t } = useI18n();
   const inputId = useId();
+  const [flipped, setFlipped] = useState(false);
+  const toCover = useRef<HTMLButtonElement>(null);
+  const toFront = useRef<HTMLButtonElement>(null);
+  const empty = options.icons.length === 0;
   // Dev previews hit the local Worker; the built site (Pages is static) uses the public API.
   const src = buildIconsUrl(import.meta.env.DEV ? '' : API_URL, options);
+  const coverLink = buildIconsUrl(API_URL, { ...options, title: linkTitle });
+
+  const flip = (next: boolean) => {
+    setFlipped(next);
+    // The face turning in is visible from the start, so its button can take focus right away.
+    requestAnimationFrame(() => (next ? toFront : toCover).current?.focus({ preventScroll: true }));
+  };
+
+  const face = (hidden: boolean) =>
+    cn(
+      'overflow-hidden rounded-lg border bg-background text-foreground backface-hidden [grid-area:1/1]',
+      // The face turning away leaves the tab order and the a11y tree once it is past edge-on;
+      // until then backface-visibility is what hides it.
+      'transition-[visibility] duration-0',
+      hidden && 'invisible delay-300',
+    );
 
   return (
     <div className="flex flex-col gap-2">
-      <SectionLabel icon={EyeIcon}>{label}</SectionLabel>
-      <div className="overflow-hidden rounded-lg border bg-background text-foreground">
-        <div className="flex items-center gap-1.5 border-b px-3 py-2 font-mono text-xs opacity-75">
-          <FileTextIcon aria-hidden="true" className="size-3.5 shrink-0" />
-          {fileName}
-        </div>
-        <div className="flex flex-col gap-3 px-3.5 pt-2 pb-5">
-          <div className="flex min-h-11 items-center gap-2 border-b-2 border-dashed border-border focus-within:border-foreground">
-            <label htmlFor={inputId} className="sr-only">
-              {t.preview.titleLabel}
-            </label>
-            <input
-              id={inputId}
-              value={title ?? t.preview.heading}
-              onChange={e => onTitleChange(e.target.value)}
-              // Left empty, it goes back to the default instead of staying blank.
-              onBlur={() => !cleanTitle(title) && onTitleChange(undefined)}
-              maxLength={MAX_TITLE_LENGTH}
-              placeholder={t.preview.heading}
-              autoComplete="off"
-              className="h-11 min-w-0 flex-1 bg-transparent text-lg font-bold tracking-[-0.01em] placeholder:text-muted-foreground"
-            />
-            <PencilIcon aria-hidden="true" className="size-4 shrink-0 opacity-60" />
-          </div>
-          {options.icons.length > 0 ? (
-            <img src={src} alt={t.preview.alt} className="mx-auto h-auto max-w-full" />
-          ) : (
-            <span className="text-sm opacity-70">{t.preview.empty}</span>
+      <SectionLabel icon={EyeIcon}>{flipped ? t.preview.cover : label}</SectionLabel>
+      <div className="perspective-[1400px]">
+        <div
+          className={cn(
+            'grid transition-transform duration-[640ms] ease-[cubic-bezier(.32,1.25,.5,1)] transform-3d',
+            flipped && 'rotate-y-180',
           )}
+        >
+          <div aria-hidden={flipped} className={face(flipped)}>
+            <FaceHeader
+              icon={ImageIcon}
+              action={t.preview.viewCover}
+              onAction={() => flip(true)}
+              actionRef={toCover}
+              disabled={empty}
+            >
+              <FileTextIcon aria-hidden="true" className="size-3.5 shrink-0" />
+              <span className="truncate">{fileName}</span>
+            </FaceHeader>
+            <div className="flex flex-col gap-3 px-3.5 pt-2 pb-5">
+              <div className="flex min-h-11 items-center gap-2 border-b-2 border-dashed border-border focus-within:border-foreground">
+                <label htmlFor={inputId} className="sr-only">
+                  {t.preview.titleLabel}
+                </label>
+                <input
+                  id={inputId}
+                  value={title ?? t.preview.heading}
+                  onChange={e => onTitleChange(e.target.value)}
+                  // Left empty, it goes back to the default instead of staying blank.
+                  onBlur={() => !cleanTitle(title) && onTitleChange(undefined)}
+                  maxLength={MAX_TITLE_LENGTH}
+                  placeholder={t.preview.heading}
+                  autoComplete="off"
+                  className="h-11 min-w-0 flex-1 bg-transparent text-lg font-bold tracking-[-0.01em] placeholder:text-muted-foreground"
+                />
+                <PencilIcon aria-hidden="true" className="size-4 shrink-0 opacity-60" />
+              </div>
+              {empty ? (
+                <span className="text-sm opacity-70">{t.preview.empty}</span>
+              ) : (
+                <img src={src} alt={t.preview.alt} className="mx-auto h-auto max-w-full" />
+              )}
+            </div>
+          </div>
+
+          <div aria-hidden={!flipped} className={cn(face(!flipped), 'rotate-y-180')}>
+            <FaceHeader
+              icon={RefreshCcwIcon}
+              action={frontName}
+              onAction={() => flip(false)}
+              actionRef={toFront}
+            >
+              og:image · {OG_WIDTH}×{OG_HEIGHT}
+            </FaceHeader>
+            <div className="flex flex-col gap-2.5 p-3">
+              <div
+                role="img"
+                aria-label={t.preview.coverAlt}
+                className="overflow-hidden rounded-md border"
+              >
+                <OgCover
+                  icons={options.icons}
+                  title={linkTitle ?? OG_DEFAULT_TITLE}
+                  link={buildIconsUrl(API_URL, options)}
+                />
+              </div>
+              <CopyCoverLink key={coverLink} value={coverLink} />
+              <p className="font-mono text-[11px] text-muted-foreground">{t.preview.coverHint}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

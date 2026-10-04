@@ -143,8 +143,10 @@ export function ExportPanel({
         options={options}
         label={packageOpen ? t.preview.component : t.preview.readme}
         fileName={packageOpen ? FRAMEWORKS[framework].fileName : 'README.md'}
+        frontName={packageOpen ? t.preview.viewComponent : t.preview.viewReadme}
         title={title}
         onTitleChange={onTitleChange}
+        linkTitle={linkTitle}
       />
       <Tabs value={format} onValueChange={value => onFormatChange(value as Format)}>
         <SectionLabel id="format-label" icon={BracesIcon}>
