@@ -1,4 +1,5 @@
 import { useEffect, type PointerEvent } from 'react';
+import { MousePointerClickIcon, SearchXIcon, type LucideIcon } from 'lucide-react';
 import { SectionLabel } from '@/components/section-label';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -37,6 +38,7 @@ function TooltipLabel({ icon }: { icon: IconInfo }) {
 interface IconGridProps {
   icons: IconInfo[];
   title: string;
+  titleIcon: LucideIcon;
   query: string;
   selected: string[];
   theme: Theme;
@@ -48,6 +50,7 @@ interface IconGridProps {
 export function IconGrid({
   icons,
   title,
+  titleIcon,
   query,
   selected,
   theme,
@@ -67,13 +70,19 @@ export function IconGrid({
 
   return (
     <section aria-labelledby="grid-title" className="flex flex-col gap-2.5">
-      <div className="flex items-baseline justify-between gap-2">
-        <SectionLabel id="grid-title">{title}</SectionLabel>
-        <span className="font-mono text-[11px] text-muted-foreground">{t.picker.hint}</span>
+      <div className="flex items-center justify-between gap-2">
+        <SectionLabel id="grid-title" icon={titleIcon}>
+          {title}
+        </SectionLabel>
+        <span className="flex items-center gap-1 font-mono text-[11px] text-muted-foreground">
+          <MousePointerClickIcon aria-hidden="true" className="size-3 shrink-0" />
+          {t.picker.hint}
+        </span>
       </div>
 
       {icons.length === 0 ? (
         <div className="flex flex-col items-center gap-3 rounded-lg border-2 border-dashed px-4 py-8 text-center">
+          <SearchXIcon aria-hidden="true" className="size-7 text-muted-foreground" />
           <p className="text-base">{t.picker.noResultsFor(query)}</p>
           <Button variant="outline" onClick={onClearSearch}>
             {t.picker.clearSearch}

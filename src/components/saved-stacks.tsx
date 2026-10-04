@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { XIcon } from 'lucide-react';
+import { BookmarkIcon, Trash2Icon, XIcon } from 'lucide-react';
 import { SectionLabel } from '@/components/section-label';
 import { Button } from '@/components/ui/button';
 import {
@@ -42,7 +42,7 @@ export function SavedStacks({
   return (
     <section aria-labelledby="saved-title" className="flex flex-col gap-2.5">
       <div className="flex items-center justify-between gap-2">
-        <SectionLabel id="saved-title">
+        <SectionLabel id="saved-title" icon={BookmarkIcon}>
           {t.saved.label} · {t.saved.count(stacks.length, MAX_SAVED_STACKS)}
         </SectionLabel>
         <button
@@ -100,7 +100,10 @@ export function SavedStacks({
 
       <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
         <DialogContent>
-          <DialogTitle>{t.saved.clearTitle}</DialogTitle>
+          <DialogTitle className="flex items-center gap-2.5">
+            <Trash2Icon aria-hidden="true" className="size-[22px] shrink-0 text-destructive" />
+            {t.saved.clearTitle}
+          </DialogTitle>
           <DialogDescription>{t.saved.clearText(stacks.length)}</DialogDescription>
           <div className="flex flex-wrap justify-end gap-2.5">
             <DialogClose asChild>

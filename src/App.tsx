@@ -18,6 +18,7 @@ import { useIsWide } from '@/hooks/use-is-wide';
 import { usePop } from '@/hooks/use-pop';
 import { useSavedStacks } from '@/hooks/use-saved-stacks';
 import { useI18n } from '@/i18n';
+import { categoryIcon } from '@/lib/category-icons';
 import { filterIcons } from '@/lib/icons';
 import { POP_ALL } from '@/lib/motion';
 import { PRESETS } from '@/lib/presets';
@@ -147,6 +148,7 @@ function Builder() {
                 category ? t.categories[category] : t.picker.allIcons,
                 filtered.length,
               )}
+              titleIcon={categoryIcon(category)}
               query={query}
               selected={state.icons}
               theme={state.theme}

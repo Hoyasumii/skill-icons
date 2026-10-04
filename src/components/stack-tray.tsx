@@ -1,5 +1,14 @@
 import { useState, type ReactNode } from 'react';
-import { ArrowLeftIcon, ArrowRightIcon, BookmarkIcon } from 'lucide-react';
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  BookmarkIcon,
+  MousePointerClickIcon,
+  MoveHorizontalIcon,
+  ShuffleIcon,
+  SquareStackIcon,
+  Trash2Icon,
+} from 'lucide-react';
 import { SaveStackDialog } from '@/components/save-stack-dialog';
 import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/ui/reveal';
@@ -110,6 +119,7 @@ export function LiftControls({ stack, inverted }: { stack: StackProps; inverted?
         <ArrowRightIcon />
       </Button>
       <Button variant="hairline" size="control" className={control} onClick={stack.onRemove}>
+        <Trash2Icon className="size-4" />
         {t.stack.remove}
       </Button>
     </div>
@@ -143,8 +153,9 @@ export function StackTray({
   const full = savedCount >= MAX_SAVED_STACKS;
 
   const heading = (
-    <h2 className="text-2xl leading-[1.2] font-bold tracking-[-0.02em]">
-      {t.stack.title}{' '}
+    <h2 className="flex items-center gap-2 text-2xl leading-[1.2] font-bold tracking-[-0.02em]">
+      <SquareStackIcon aria-hidden="true" className="size-[22px] shrink-0" strokeWidth={2.2} />
+      {t.stack.title}
       <span className="font-mono text-sm font-medium text-muted-foreground">
         {String(count).padStart(2, '0')}
       </span>
@@ -166,6 +177,7 @@ export function StackTray({
             {t.saved.save}
           </Button>
           <Button variant="hairline" size="sm" disabled={count < 2} onClick={onShuffle}>
+            <ShuffleIcon className="size-4" strokeWidth={2.2} />
             {t.stack.shuffle}
           </Button>
           {actions}
@@ -173,7 +185,8 @@ export function StackTray({
       </div>
 
       {count === 0 ? (
-        <p className="rounded-lg border-2 border-dashed px-4 py-5 text-[15px] text-muted-foreground">
+        <p className="flex items-center gap-3 rounded-lg border-2 border-dashed px-4 py-5 text-[15px] text-muted-foreground">
+          <MousePointerClickIcon aria-hidden="true" className="size-[22px] shrink-0" />
           {t.stack.empty}
         </p>
       ) : (
@@ -201,6 +214,10 @@ export function StackTray({
               <LiftControls key="lift" stack={stack} />
             ) : (
               <p key="hint" className="font-mono text-xs text-muted-foreground">
+                <MoveHorizontalIcon
+                  aria-hidden="true"
+                  className="mr-1 inline size-3.5 align-[-3px]"
+                />
                 {t.stack.hint} ·{' '}
                 <button
                   type="button"

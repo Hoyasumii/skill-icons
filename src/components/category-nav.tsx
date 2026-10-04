@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
+import { ListFilterIcon } from 'lucide-react';
 import { SlidingIndicator } from '@/components/ui/sliding-indicator';
 import { useI18n } from '@/i18n';
+import { categoryIcon } from '@/lib/category-icons';
 import { CATEGORIES, countByCategory, ICONS } from '@/lib/icons';
 import type { IconInfo } from '@/lib/icons';
 import { cn } from '@/lib/utils';
@@ -21,6 +23,7 @@ function useLabels(matches: readonly IconInfo[]) {
   const counts = useMemo(() => countByCategory(matches), [matches]);
   return (category: IconCategory | null) => ({
     label: category ? t.categories[category] : t.picker.all,
+    Icon: categoryIcon(category),
     count: category ? (counts.get(category) ?? 0) : matches.length,
   });
 }
@@ -40,7 +43,7 @@ export function CategoryRail({ value, matches, onChange }: CategoryNavProps) {
       <SlidingIndicator className="z-1 rounded-full bg-foreground" />
       {OPTIONS.map(category => {
         const active = value === category;
-        const { label, count } = describe(category);
+        const { label, Icon, count } = describe(category);
         return (
           <button
             key={category ?? 'all'}
@@ -55,6 +58,7 @@ export function CategoryRail({ value, matches, onChange }: CategoryNavProps) {
             )}
           >
             <span className="relative z-2 inline-flex items-center gap-1.5">
+              <Icon aria-hidden="true" className="size-[15px] shrink-0" strokeWidth={2.2} />
               {label}
               <span className="font-mono text-xs opacity-70">{count}</span>
             </span>
@@ -78,13 +82,14 @@ export function CategorySidebar({ value, matches, onChange }: CategoryNavProps) 
       <SlidingIndicator className="rounded-sm bg-highlight" />
       <span
         id="categories-label"
-        className="px-2.5 pb-2 font-mono text-[11px] font-medium tracking-[0.08em] text-muted-foreground uppercase"
+        className="flex items-center gap-1.5 px-2.5 pb-2 font-mono text-[11px] font-medium tracking-[0.08em] text-muted-foreground uppercase"
       >
+        <ListFilterIcon aria-hidden="true" className="size-[13px] shrink-0" strokeWidth={2.2} />
         {t.picker.categoriesLabel}
       </span>
       {OPTIONS.map(category => {
         const active = value === category;
-        const { label, count } = describe(category);
+        const { label, Icon, count } = describe(category);
         return (
           <button
             key={category ?? 'all'}
@@ -96,7 +101,10 @@ export function CategorySidebar({ value, matches, onChange }: CategoryNavProps) 
               active ? 'font-semibold text-highlight-foreground' : 'hover:bg-muted',
             )}
           >
-            <span className="truncate">{label}</span>
+            <span className="flex min-w-0 items-center gap-2.5">
+              <Icon aria-hidden="true" className="size-4 shrink-0" strokeWidth={2.1} />
+              <span className="truncate">{label}</span>
+            </span>
             <span className="font-mono text-xs opacity-60">{count}</span>
           </button>
         );

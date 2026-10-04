@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { flushSync } from 'react-dom';
-import { MinusIcon, PlusIcon } from 'lucide-react';
+import { Columns3Icon, MinusIcon, PaletteIcon, PlusIcon } from 'lucide-react';
 import { SectionLabel } from '@/components/section-label';
 import { Button } from '@/components/ui/button';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
@@ -47,7 +47,9 @@ export function ExportOptions({
   return (
     <div className="flex flex-wrap gap-4">
       <div className="flex flex-[1_1_140px] flex-col gap-2">
-        <SectionLabel id="theme-label">{t.options.iconTheme}</SectionLabel>
+        <SectionLabel id="theme-label" icon={PaletteIcon}>
+          {t.options.iconTheme}
+        </SectionLabel>
         <ToggleGroup
           type="single"
           ref={themeGroup}
@@ -68,7 +70,9 @@ export function ExportOptions({
       </div>
 
       <div className="flex flex-[1_1_140px] flex-col gap-2">
-        <SectionLabel id="perline-label">{t.options.perLine}</SectionLabel>
+        <SectionLabel id="perline-label" icon={Columns3Icon}>
+          {t.options.perLine}
+        </SectionLabel>
         <div
           role="group"
           aria-labelledby="perline-label"

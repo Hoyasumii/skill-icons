@@ -1,4 +1,5 @@
 import type { Ref } from 'react';
+import { UploadIcon } from 'lucide-react';
 import { LiftControls, StackItem, type StackProps } from '@/components/stack-tray';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -51,6 +52,7 @@ export function Dock({ stack, onExport, exportRef }: DockProps) {
           onClick={onExport}
           className="border-background shadow-none active:translate-0"
         >
+          <UploadIcon strokeWidth={2.4} className="size-4" />
           {t.stack.export}
           <Badge variant="ink" className="h-6">
             {count}

@@ -1,9 +1,19 @@
 import { useState } from 'react';
-import { ChevronDownIcon, PackageIcon, XIcon } from 'lucide-react';
+import {
+  BracesIcon,
+  ChevronDownIcon,
+  CodeXmlIcon,
+  HashIcon,
+  LinkIcon,
+  PackageIcon,
+  XIcon,
+  type LucideIcon,
+} from 'lucide-react';
 import { CodeBlock } from '@/components/code-block';
 import { CopyButton } from '@/components/copy-button';
 import { ExportOptions } from '@/components/export-options';
 import { FrameworkPicker, InstallRow } from '@/components/package-options';
+import { SectionLabel } from '@/components/section-label';
 import { ReadmePreview } from '@/components/readme-preview';
 import { StackTray, type StackProps } from '@/components/stack-tray';
 import { Button } from '@/components/ui/button';
@@ -24,6 +34,12 @@ import { cleanTitle } from '../../shared/badge-title';
 import { API_URL, buildIconsUrl, type Theme } from '../../shared/icons';
 
 const PACKAGE_PANEL_ID = 'package-panel';
+
+const FORMAT_ICONS: Record<Format, LucideIcon> = {
+  markdown: HashIcon,
+  html: CodeXmlIcon,
+  url: LinkIcon,
+};
 
 interface PackageToggleProps {
   open: boolean;
@@ -150,6 +166,7 @@ export function ExportPanel({
           </div>
         ) : (
           <p key="hint" className="font-mono text-xs text-muted-foreground">
+            <LinkIcon aria-hidden="true" className="mr-1 inline size-3.5 align-[-3px]" />
             {t.output.linkHint}
           </p>
         )}
@@ -190,12 +207,19 @@ export function ExportPanel({
         onTitleChange={onTitleChange}
       />
       <Tabs value={format} onValueChange={value => onFormatChange(value as Format)}>
-        <TabsList aria-label={t.output.format}>
-          {FORMATS.map(value => (
-            <TabsTrigger key={value} value={value}>
-              {LINK_FORMATS[value].label}
-            </TabsTrigger>
-          ))}
+        <SectionLabel id="format-label" icon={BracesIcon}>
+          {t.output.format}
+        </SectionLabel>
+        <TabsList aria-labelledby="format-label">
+          {FORMATS.map(value => {
+            const Icon = FORMAT_ICONS[value];
+            return (
+              <TabsTrigger key={value} value={value} className="gap-1.5">
+                <Icon aria-hidden="true" className="size-[15px]" strokeWidth={2.2} />
+                {LINK_FORMATS[value].label}
+              </TabsTrigger>
+            );
+          })}
         </TabsList>
         {FORMATS.map(value => (
           <TabsContent key={value} value={value}>

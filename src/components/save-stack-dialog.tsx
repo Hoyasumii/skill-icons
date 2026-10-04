@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { BookmarkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogClose, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -47,7 +48,10 @@ export function SaveStackDialog({
             onOpenChange(false);
           }}
         >
-          <DialogTitle>{t.saved.saveTitle}</DialogTitle>
+          <DialogTitle className="flex items-center gap-2.5">
+            <BookmarkIcon aria-hidden="true" className="size-[22px] shrink-0" />
+            {t.saved.saveTitle}
+          </DialogTitle>
           <div className="flex flex-wrap gap-1 rounded-lg bg-background p-2.5">
             {icons.map(icon => (
               <img

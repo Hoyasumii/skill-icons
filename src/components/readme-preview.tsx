@@ -1,4 +1,4 @@
-import { PencilIcon } from 'lucide-react';
+import { EyeIcon, FileTextIcon, PencilIcon } from 'lucide-react';
 import { useId } from 'react';
 import { SectionLabel } from '@/components/section-label';
 import { useI18n } from '@/i18n';
@@ -30,9 +30,12 @@ export function ReadmePreview({
 
   return (
     <div className="flex flex-col gap-2">
-      <SectionLabel>{label}</SectionLabel>
+      <SectionLabel icon={EyeIcon}>{label}</SectionLabel>
       <div className="overflow-hidden rounded-lg border bg-background text-foreground">
-        <div className="border-b px-3 py-2 font-mono text-xs opacity-75">{fileName}</div>
+        <div className="flex items-center gap-1.5 border-b px-3 py-2 font-mono text-xs opacity-75">
+          <FileTextIcon aria-hidden="true" className="size-3.5 shrink-0" />
+          {fileName}
+        </div>
         <div className="flex flex-col gap-3 px-3.5 pt-2 pb-5">
           <div className="flex min-h-11 items-center gap-2 border-b-2 border-dashed border-border focus-within:border-foreground">
             <label htmlFor={inputId} className="sr-only">
