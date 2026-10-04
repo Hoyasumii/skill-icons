@@ -1,3 +1,4 @@
+import type { Ref } from 'react';
 import { LiftControls, StackItem, type StackProps } from '@/components/stack-tray';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -6,10 +7,12 @@ import { useI18n } from '@/i18n';
 interface DockProps {
   stack: StackProps;
   onExport: () => void;
+  /** The sheet hands focus back here when it closes. */
+  exportRef: Ref<HTMLButtonElement>;
 }
 
 /** Compact only: the stack and the export button, inverted, stuck to the bottom of the scroller. */
-export function Dock({ stack, onExport }: DockProps) {
+export function Dock({ stack, onExport, exportRef }: DockProps) {
   const { t } = useI18n();
   const count = stack.icons.length;
 
@@ -36,6 +39,7 @@ export function Dock({ stack, onExport }: DockProps) {
           </ol>
         )}
         <Button
+          ref={exportRef}
           variant="highlight"
           size="lg"
           disabled={count === 0}

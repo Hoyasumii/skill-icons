@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { CategoryRail, CategorySidebar } from '@/components/category-nav';
 import { Dock } from '@/components/dock';
 import { ExportPanel } from '@/components/export-panel';
@@ -37,6 +37,7 @@ export function App() {
   const [category, setCategory] = useState<IconCategory | null>(null);
   const [liftedId, setLiftedId] = useState<string | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const exportRef = useRef<HTMLButtonElement>(null);
   const [format, setFormat] = useState<Format>('markdown');
   const [framework, setFramework] = useState<FrameworkId>('react');
 
@@ -127,7 +128,7 @@ export function App() {
             </footer>
           </div>
 
-          <Dock stack={stack} onExport={() => setSheetOpen(true)} />
+          <Dock stack={stack} exportRef={exportRef} onExport={() => setSheetOpen(true)} />
         </main>
 
         {wide ? (
@@ -139,7 +140,14 @@ export function App() {
           </aside>
         ) : (
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-            <SheetContent>{exportPanel}</SheetContent>
+            <SheetContent
+              onCloseAutoFocus={e => {
+                e.preventDefault();
+                exportRef.current?.focus();
+              }}
+            >
+              {exportPanel}
+            </SheetContent>
           </Sheet>
         )}
       </div>
