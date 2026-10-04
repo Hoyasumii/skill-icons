@@ -28,9 +28,11 @@ export const en = {
   },
   header: {
     title: 'Skill Icons',
-    tagline: 'Pick your skills and get a ready-to-paste badge for your GitHub README or resumé.',
+    tagline: 'build your stack → paste in your README',
     language: 'Language',
-    toggleTheme: 'Toggle site theme',
+    toDark: 'Switch to dark theme',
+    toLight: 'Switch to light theme',
+    github: 'github',
   },
   steps: {
     choose: '1. Choose icons',

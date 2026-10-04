@@ -7,10 +7,11 @@ export const ptBR: Messages = {
   },
   header: {
     title: 'Skill Icons',
-    tagline:
-      'Escolha suas habilidades e gere um badge pronto para colar no README do GitHub ou no seu currículo.',
+    tagline: 'monte sua pilha → cole no README',
     language: 'Idioma',
-    toggleTheme: 'Alternar tema do site',
+    toDark: 'Mudar para tema escuro',
+    toLight: 'Mudar para tema claro',
+    github: 'github',
   },
   steps: {
     choose: '1. Escolha os ícones',

@@ -12,6 +12,12 @@ export const LOCALE_NAMES: Record<Locale, string> = {
   'pt-BR': 'Português (Brasil)',
 };
 
+/** Short codes for the language button and the menu's chips. */
+export const LOCALE_CODES: Record<Locale, string> = {
+  en: 'EN',
+  'pt-BR': 'PT',
+};
+
 const languageOf = (tag: string) => tag.split('-')[0].toLowerCase();
 
 function canonicalize(tag: string): string | undefined {
