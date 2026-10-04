@@ -7,7 +7,8 @@ export const DEFAULT_PER_LINE = 15;
 export const MIN_PER_LINE = 1;
 export const MAX_PER_LINE = 50;
 
-export const SITE_URL = 'https://skillicons.dev';
+/** Worker deploy serving the menu, /icons and /api/*. */
+export const API_URL = 'https://skill-icons.alanreisanjo.workers.dev';
 
 export const shortNames: Record<string, string> = {
   js: 'javascript',

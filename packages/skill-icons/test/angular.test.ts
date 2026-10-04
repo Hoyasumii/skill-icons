@@ -24,7 +24,7 @@ beforeAll(() => {
 });
 afterEach(() => TestBed.resetTestingModule());
 
-const remote = (query: string) => `https://skillicons.dev/icons?${query}`;
+const remote = (query: string) => `https://skill-icons.alanreisanjo.workers.dev/icons?${query}`;
 
 /** Renders a template using the components, with `ctx` signals available as `ctx.x()`. */
 async function mount<T extends Record<string, unknown>>(

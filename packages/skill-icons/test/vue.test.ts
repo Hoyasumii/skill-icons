@@ -9,7 +9,7 @@ const render = (component: Component, props: Record<string, unknown> = {}) =>
     html.replace(/<!--\[-->|<!--]-->/g, ''),
   );
 
-const remote = (query: string) => `https://skillicons.dev/icons?${query.replaceAll('&', '&amp;')}`;
+const remote = (query: string) => `https://skill-icons.alanreisanjo.workers.dev/icons?${query.replaceAll('&', '&amp;')}`;
 
 describe('Icon', () => {
   it('renders a placeholder until the bundled SVG loads', async () => {
@@ -30,7 +30,7 @@ describe('Icon', () => {
 
   it('casts a bare `latest` attribute to true', async () => {
     // A template's `<Icon latest>` passes an empty string.
-    expect(await render(Icon, { latest: '', name: 'x' })).toContain('src="https://skillicons.dev');
+    expect(await render(Icon, { latest: '', name: 'x' })).toContain('src="https://skill-icons.alanreisanjo.workers.dev');
   });
 
   it('renders nothing for unknown names', async () => {

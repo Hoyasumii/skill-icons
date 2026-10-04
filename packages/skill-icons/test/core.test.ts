@@ -65,7 +65,7 @@ describe('iconsSize', () => {
 describe('remoteIconsUrl', () => {
   it('points at the deployed API', () => {
     expect(remoteIconsUrl({ icons: ['js', 'React'] })).toBe(
-      'https://skillicons.dev/icons?i=js,react&theme=dark&perline=15',
+      'https://skill-icons.alanreisanjo.workers.dev/icons?i=js,react&theme=dark&perline=15',
     );
     expect(
       remoteIconsUrl({ icons: ['x'], theme: 'light', perLine: 99, baseUrl: 'http://a.dev/' }),

@@ -5,18 +5,18 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useI18n } from '@/i18n';
 import type { Messages } from '@/i18n/messages/en';
-import { buildIconsUrl, SITE_URL, type IconsUrlOptions } from '../../shared/icons';
+import { API_URL, buildIconsUrl, type IconsUrlOptions } from '../../shared/icons';
 
 const FORMATS = {
   url: { label: () => 'URL', render: (url: string) => url },
   markdown: {
     label: () => 'Markdown',
-    render: (url: string, t: Messages) => `[![${t.output.badgeAlt}](${url})](${SITE_URL})`,
+    render: (url: string, t: Messages) => `[![${t.output.badgeAlt}](${url})](${API_URL})`,
   },
   html: {
     label: (t: Messages) => t.output.htmlCentered,
     render: (url: string) =>
-      `<p align="center">\n  <a href="${SITE_URL}">\n    <img src="${url}" />\n  </a>\n</p>`,
+      `<p align="center">\n  <a href="${API_URL}">\n    <img src="${url}" />\n  </a>\n</p>`,
   },
 } as const;
 
@@ -56,9 +56,9 @@ function CopyBlock({ value }: { value: string }) {
 }
 
 export function Output(options: IconsUrlOptions) {
-  // The preview hits this deployment's own Worker; the copied snippets use the public URL.
-  const previewUrl = buildIconsUrl('', options);
-  const publicUrl = buildIconsUrl(SITE_URL, options);
+  // Dev previews hit the local Worker; the built site (Pages is static) and snippets use the public API.
+  const previewUrl = buildIconsUrl(import.meta.env.DEV ? '' : API_URL, options);
+  const publicUrl = buildIconsUrl(API_URL, options);
   const { t } = useI18n();
 
   return (

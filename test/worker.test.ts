@@ -11,7 +11,7 @@ describe('/icons', () => {
     expect(res.headers.get('Cache-Control')).toContain('max-age');
     const svg = await res.text();
     expect(svg).toContain('<svg');
-    expect(svg.match(/<g transform/g)).toHaveLength(3);
+    expect(svg.match(/<g transform="translate\(\d+, \d+\)"/g)).toHaveLength(3);
   });
 
   it('accepts the long param names and a trailing slash', async () => {
@@ -22,7 +22,7 @@ describe('/icons', () => {
   it('returns every icon for i=all', async () => {
     const all = await (await get('/api/icons')).json<string[]>();
     const svg = await (await get('/icons?i=all')).text();
-    expect(svg.match(/<g transform/g)).toHaveLength(all.length);
+    expect(svg.match(/<g transform="translate\(\d+, \d+\)"/g)).toHaveLength(all.length);
   });
 
   it('requires the i param', async () => {
@@ -43,7 +43,7 @@ describe('/icons', () => {
   it('ignores unknown icons instead of rendering "undefined"', async () => {
     const svg = await (await get('/icons?i=js,notanicon,ts')).text();
     expect(svg).not.toContain('undefined');
-    expect(svg.match(/<g transform/g)).toHaveLength(2);
+    expect(svg.match(/<g transform="translate\(\d+, \d+\)"/g)).toHaveLength(2);
   });
 
   it('returns 400 when no icon is valid', async () => {

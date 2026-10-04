@@ -3,11 +3,11 @@ import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'nod
 import { fileURLToPath } from 'node:url';
 import { categoryById, displayNames } from '../shared/icon-categories';
 import {
+  API_URL,
   DEFAULT_PER_LINE,
   DEFAULT_THEME,
   MAX_PER_LINE,
   MIN_PER_LINE,
-  SITE_URL,
   shortNames,
 } from '../shared/icons';
 
@@ -83,7 +83,8 @@ ${list([...themed].sort())}
 
 export const shortNames = ${JSON.stringify(shortNames, null, 2)} as const;
 
-export const SITE_URL = ${JSON.stringify(SITE_URL)};
+export const SITE_URL = ${JSON.stringify(API_URL)};
+export const API_URL = ${JSON.stringify(API_URL)};
 export const DEFAULT_THEME = ${JSON.stringify(DEFAULT_THEME)};
 export const DEFAULT_PER_LINE = ${DEFAULT_PER_LINE};
 export const MIN_PER_LINE = ${MIN_PER_LINE};

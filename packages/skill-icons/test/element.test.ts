@@ -18,7 +18,7 @@ const mount = (html: string) => {
   return document.body.firstElementChild as HTMLElement;
 };
 const tick = () => new Promise(resolve => setTimeout(resolve, 0));
-const remote = (query: string) => `https://skillicons.dev/icons?${query}`;
+const remote = (query: string) => `https://skill-icons.alanreisanjo.workers.dev/icons?${query}`;
 
 describe('<skill-icon>', () => {
   it('is registered and reflects attributes to properties', () => {

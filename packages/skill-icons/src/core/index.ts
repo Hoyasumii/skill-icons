@@ -1,5 +1,6 @@
 // Framework-agnostic core shared by every component entry point.
 import {
+  API_URL,
   DEFAULT_PER_LINE,
   DEFAULT_THEME,
   iconNames,
@@ -11,7 +12,7 @@ import {
 } from '../generated/catalog.js';
 import { loaders } from '../generated/loaders.js';
 
-export { DEFAULT_PER_LINE, DEFAULT_THEME, iconNames, MAX_PER_LINE, MIN_PER_LINE, SITE_URL };
+export { API_URL, DEFAULT_PER_LINE, DEFAULT_THEME, iconNames, MAX_PER_LINE, MIN_PER_LINE, SITE_URL };
 
 export type Theme = 'dark' | 'light';
 
@@ -155,7 +156,7 @@ export function remoteIconsUrl({
   icons,
   theme = DEFAULT_THEME,
   perLine = DEFAULT_PER_LINE,
-  baseUrl = SITE_URL,
+  baseUrl = API_URL,
 }: RemoteIconsOptions): string {
   const list = icons.map(name => encodeURIComponent(name.trim().toLowerCase())).join(',');
   return `${baseUrl.replace(/\/+$/, '')}/icons?i=${list}&theme=${theme}&perline=${clampPerLine(perLine)}`;

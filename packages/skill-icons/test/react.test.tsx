@@ -7,7 +7,7 @@ import { Icon, Icons, SkillIconsProvider } from '../src/react/index.js';
 const render = (node: React.ReactNode) =>
   renderToStaticMarkup(node).replace(/<link rel="preload"[^>]*>/g, '');
 
-const remote = (query: string) => `https://skillicons.dev/icons?${query.replaceAll('&', '&amp;')}`;
+const remote = (query: string) => `https://skill-icons.alanreisanjo.workers.dev/icons?${query.replaceAll('&', '&amp;')}`;
 
 describe('Icon', () => {
   it('renders a placeholder until the bundled SVG loads', async () => {

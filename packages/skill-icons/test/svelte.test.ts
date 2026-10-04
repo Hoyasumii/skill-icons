@@ -14,7 +14,7 @@ const html = (component: Component<any>, props: Record<string, unknown> = {}) =>
     .replace(/\s*\/>/g, '>')
     .replace(/> </g, '><');
 
-const remote = (query: string) => `https://skillicons.dev/icons?${query.replaceAll('&', '&amp;')}`;
+const remote = (query: string) => `https://skill-icons.alanreisanjo.workers.dev/icons?${query.replaceAll('&', '&amp;')}`;
 
 describe('Icon', () => {
   it('renders a placeholder until the bundled SVG loads', async () => {
