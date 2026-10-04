@@ -71,7 +71,7 @@ function homeContent(locale: Locale): string {
       .join('')}</ul></section>`;
   });
   return [
-    `<h1>${escapeHtml(t.header.title)}</h1>`,
+    `<h1>${escapeHtml(PAGE_META[locale].home.title)}</h1>`,
     `<p>${escapeHtml(PAGE_META[locale].home.description)}</p>`,
     `<p>${escapeHtml(t.header.tagline)}</p>`,
     `<h2>${escapeHtml(t.picker.gridTitle(t.picker.allIcons, ICON_COUNT))}</h2>`,

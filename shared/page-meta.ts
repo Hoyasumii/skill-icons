@@ -15,10 +15,16 @@ export interface PageMeta {
   imageAlt: string;
 }
 
+/** What the builder is, in a few words: the home page's title and h1 after the site name. */
+export const HOME_HEADLINE: Record<Locale, string> = {
+  en: 'Tech stack icons for your GitHub README',
+  'pt-BR': 'Ícones de tecnologias para o README do GitHub',
+};
+
 export const PAGE_META: Record<Locale, Record<Page, PageMeta>> = {
   en: {
     home: {
-      title: 'Skill Icons · Tech stack icons for your GitHub README',
+      title: `Skill Icons · ${HOME_HEADLINE.en}`,
       description:
         'Pick icons for the languages, frameworks and tools you use, build your skills badge and paste it in your GitHub README or resumé.',
       imageAlt: 'Skill Icons: build your stack and paste it in your README',
@@ -32,7 +38,7 @@ export const PAGE_META: Record<Locale, Record<Page, PageMeta>> = {
   },
   'pt-BR': {
     home: {
-      title: 'Skill Icons · Ícones de tecnologias para o README do GitHub',
+      title: `Skill Icons · ${HOME_HEADLINE['pt-BR']}`,
       description:
         'Escolha ícones das linguagens, frameworks e ferramentas que você usa, monte seu badge de skills e cole no README do GitHub ou no currículo.',
       imageAlt: 'Skill Icons: monte sua stack e cole no seu README',

@@ -1,10 +1,11 @@
 import type { Messages } from './en';
-import { PAGE_META } from '../../../shared/page-meta';
+import { HOME_HEADLINE, PAGE_META } from '../../../shared/page-meta';
 
 export const ptBR: Messages = {
   meta: PAGE_META['pt-BR'].home,
   header: {
     title: 'Skill Icons',
+    headline: HOME_HEADLINE['pt-BR'],
     tagline: 'monte sua pilha → cole no README',
     language: 'Idioma',
     toDark: 'Mudar para tema escuro',

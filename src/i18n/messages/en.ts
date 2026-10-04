@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import type { IconCategory } from '../../../shared/icon-categories';
 import type { PresetId } from '../../lib/presets';
-import { PAGE_META } from '../../../shared/page-meta';
+import { HOME_HEADLINE, PAGE_META } from '../../../shared/page-meta';
 
 const categories: Record<IconCategory, string> = {
   language: 'Languages',
@@ -38,6 +38,7 @@ export const en = {
   meta: PAGE_META.en.home,
   header: {
     title: 'Skill Icons',
+    headline: HOME_HEADLINE.en,
     tagline: 'build your stack → paste in your README',
     language: 'Language',
     toDark: 'Switch to dark theme',

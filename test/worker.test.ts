@@ -198,6 +198,12 @@ describe('pages without a language prefix', () => {
     expect(res.headers.get('Vary')).toContain('Accept-Language');
   });
 
+  it('sends /mcp/ to /mcp for good, keeping the query', async () => {
+    const res = await open('/mcp/?x=1', {});
+    expect(res.status).toBe(301);
+    expect(res.headers.get('Location')).toBe('https://example.com/mcp?x=1');
+  });
+
   // Pages that stay put are served from the build's assets, which this test Worker doesn't have;
   // shared/page-meta's tests cover when the language stays.
 });

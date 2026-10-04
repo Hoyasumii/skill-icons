@@ -14,7 +14,8 @@ interface SiteHeaderProps {
 export function SiteHeader({ page = 'builder', className }: SiteHeaderProps) {
   const { t } = useI18n();
   // The builder has no heading of its own; on the other pages the h1 is the page title.
-  const Brand = page === 'builder' ? 'h1' : 'div';
+  const isBuilder = page === 'builder';
+  const Brand = isBuilder ? 'h1' : 'div';
 
   return (
     <header
@@ -26,6 +27,8 @@ export function SiteHeader({ page = 'builder', className }: SiteHeaderProps) {
       <div className="flex min-w-0 items-baseline gap-4">
         <Brand className="flex">
           <Wordmark />
+          {/* The logo alone says only the name; search engines and screen readers get what it is too. */}
+          {isBuilder && <span className="sr-only"> · {t.header.headline}</span>}
         </Brand>
         <span className="hidden font-mono text-xs whitespace-nowrap text-muted-foreground lg:inline">
           {t.header.tagline}

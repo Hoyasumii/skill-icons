@@ -200,6 +200,9 @@ export default {
         // A browser opening the server URL gets the page that explains how to install it.
         const wantsPage =
           request.method === 'GET' && request.headers.get('Accept')?.includes('text/html');
+        // One URL per page: "/mcp/" would otherwise be a duplicate of "/mcp".
+        if (wantsPage && url.pathname.endsWith('/'))
+          return Response.redirect(new URL(`/${path}${url.search}`, url).href, 301);
         if (wantsPage) return await handlePage(request, env, url, path);
         return handleMcp(request);
       }
