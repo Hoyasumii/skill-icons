@@ -1,6 +1,14 @@
 import { useRef } from 'react';
 import { flushSync } from 'react-dom';
-import { Columns3Icon, MinusIcon, PaletteIcon, PlusIcon } from 'lucide-react';
+import {
+  Columns3Icon,
+  MinusIcon,
+  MoonIcon,
+  PaletteIcon,
+  PlusIcon,
+  SunIcon,
+  type LucideIcon,
+} from 'lucide-react';
 import { SectionLabel } from '@/components/section-label';
 import { Button } from '@/components/ui/button';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
@@ -9,9 +17,10 @@ import { circleReveal, imagesOnScreen } from '@/lib/circle-reveal';
 import { cn } from '@/lib/utils';
 import { MAX_PER_LINE, MIN_PER_LINE, type Theme } from '../../shared/icons';
 
-const THEMES: { value: Theme; swatch: string }[] = [
-  { value: 'dark', swatch: 'bg-swatch-dark' },
-  { value: 'light', swatch: 'bg-swatch-light' },
+// The active segment's tile takes the color the icons' own tiles get in that theme.
+const THEMES: { value: Theme; Icon: LucideIcon; tile: string }[] = [
+  { value: 'dark', Icon: MoonIcon, tile: 'bg-swatch-dark text-[#f1f1ec]' },
+  { value: 'light', Icon: SunIcon, tile: 'bg-swatch-light text-highlight-foreground' },
 ];
 
 interface ExportOptionsProps {
@@ -45,8 +54,10 @@ export function ExportOptions({
   };
 
   return (
-    <div className="flex flex-wrap gap-4">
-      <div className="flex flex-[1_1_140px] flex-col gap-2">
+    // Labels on the first row, controls side by side on the second; each wrapper is `contents`
+    // so its label and control land in the same column.
+    <div className="grid grid-flow-col grid-cols-[minmax(0,1fr)_auto] grid-rows-[auto_auto] items-end gap-x-4 gap-y-2">
+      <div className="contents">
         <SectionLabel id="theme-label" icon={PaletteIcon}>
           {t.options.iconTheme}
         </SectionLabel>
@@ -57,26 +68,41 @@ export function ExportOptions({
           onValueChange={value => value && changeTheme(value as Theme)}
           aria-labelledby="theme-label"
         >
-          {THEMES.map(({ value, swatch }) => (
-            <ToggleGroupItem key={value} value={value} data-value={value}>
+          {THEMES.map(({ value, Icon, tile }) => (
+            <ToggleGroupItem
+              key={value}
+              value={value}
+              data-value={value}
+              className="gap-[7px] pr-2 pl-1.5"
+            >
               <span
                 aria-hidden="true"
-                className={cn('size-3 shrink-0 rounded-[3px] border', swatch)}
-              />
+                className={cn(
+                  'inline-flex size-6 shrink-0 items-center justify-center rounded-[7px] transition-colors',
+                  theme === value && tile,
+                )}
+              >
+                <Icon className="size-[15px]" strokeWidth={2.2} />
+              </span>
               {t.options[value]}
             </ToggleGroupItem>
           ))}
         </ToggleGroup>
       </div>
 
-      <div className="flex flex-[1_1_140px] flex-col gap-2">
-        <SectionLabel id="perline-label" icon={Columns3Icon}>
+      <div className="contents">
+        {/* Zero width of its own: it wraps inside the column the stepper sets. */}
+        <SectionLabel
+          id="perline-label"
+          icon={Columns3Icon}
+          className="w-0 min-w-full leading-[15px] [&>svg]:h-[15px]"
+        >
           {t.options.perLine}
         </SectionLabel>
         <div
           role="group"
           aria-labelledby="perline-label"
-          className="flex items-center justify-between rounded-lg bg-muted p-[3px]"
+          className="flex min-w-[132px] items-center justify-between gap-2 rounded-lg bg-muted p-[3px]"
         >
           <Button
             variant="ghost"
