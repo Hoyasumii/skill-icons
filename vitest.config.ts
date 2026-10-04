@@ -3,5 +3,6 @@ import { cloudflareTest } from '@cloudflare/vitest-pool-workers';
 
 export default defineConfig({
   plugins: [cloudflareTest({ wrangler: { configPath: './wrangler.jsonc' } })],
-  test: { include: ['test/**/*.test.ts'] },
+  // The first request pays the Worker's cold start (resvg wasm, MCP SDK), which is slow on CI.
+  test: { include: ['test/**/*.test.ts'], testTimeout: 20_000 },
 });
