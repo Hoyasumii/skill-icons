@@ -95,6 +95,10 @@ export function PackagePopover({
                 variant="hairline"
                 size="icon-sm"
                 aria-label={t.package.open}
+                // Only keyboard focus shows the tooltip, not the sheet focusing its first button.
+                onFocus={event => {
+                  if (!event.currentTarget.matches(':focus-visible')) event.preventDefault();
+                }}
                 className="aria-expanded:border-foreground aria-expanded:bg-muted"
               >
                 <PackageIcon className="size-[17px]" strokeWidth={2.2} />

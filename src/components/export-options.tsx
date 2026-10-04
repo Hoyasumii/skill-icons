@@ -84,7 +84,8 @@ export function ExportOptions({
               >
                 <Icon className="size-[15px]" strokeWidth={2.2} />
               </span>
-              {t.options[value]}
+              {/* Under 360px only the tiles fit; the label stays in the accessible name. */}
+              <span className="max-[359px]:sr-only">{t.options[value]}</span>
             </ToggleGroupItem>
           ))}
         </ToggleGroup>
