@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import type { IconCategory } from '../../../shared/icon-categories';
 import type { PresetId } from '../../lib/presets';
 
@@ -28,6 +29,9 @@ const presetNames: Record<PresetId, string> = {
   tooling: 'Tooling',
   ai: 'AI',
 };
+
+/** Wraps a bit of code (a parameter, a path) inside a translated sentence. */
+export type Code = (text: string) => ReactNode;
 
 export const en = {
   meta: {
@@ -126,44 +130,141 @@ export const en = {
     hint: 'ready-made components on npm:',
   },
   mcp: {
-    eyebrow: 'MCP server',
-    heading: 'Let Claude build your skills badge',
-    lede: 'Connect Skill Icons to Claude and ask for a badge in plain words. Claude finds the right icon ids and hands back Markdown ready for your README, with no misspelled icons silently missing.',
-    serverUrl: 'Server URL',
-    copyUrl: 'Copy URL',
-    free: 'Free and public · no sign-in, no API key',
-    install: 'Install',
-    clients: { claude: 'Claude app', code: 'Claude Code' },
-    claudeSteps: [
-      'Open Settings → Connectors in Claude, on the web or in the desktop app.',
-      'Click “Add custom connector”.',
-      'Name it Skill Icons, paste the server URL above and click Add.',
-      'In a chat, turn Skill Icons on from the tools menu.',
-    ],
-    claudeNote:
-      'On Team and Enterprise plans, an owner adds the connector in the organization settings first.',
-    codeIntro: 'Run this in your terminal:',
-    codeScope:
-      'Add --scope user to use it in every project, or commit it with the project in .mcp.json:',
-    copyCommand: 'Copy command',
-    copyConfig: 'Copy .mcp.json',
-    tools: 'Tools',
-    toolList: [
-      {
-        name: 'skill_icons_search',
-        text: 'Finds icons by id, brand name or alias (“Next.js”, “k8s”), optionally within a category, and suggests close spellings when nothing matches.',
+    meta: {
+      title: 'MCP server · Skill Icons',
+      description:
+        'Connect the Skill Icons MCP server to Claude Code, Cursor or VS Code and ask for your skills badge in plain language.',
+    },
+    toc: 'On this page',
+    nav: { overview: 'Overview', install: 'Install', why: 'Why use the MCP' },
+    eyebrow: (version: string) => `MCP server · skill-icons ${version}`,
+    heading: { before: 'Your skills badge, asked for in ', highlight: 'plain language', after: '.' },
+    lead: (count: number) =>
+      `The server has two tools, both read-only. They change nothing and call no outside service, because the data for all ${count} icons is built into the Worker.`,
+    chips: ['Streamable HTTP', 'stateless', 'no sign-in'],
+    toolsChip: (count: number) => `${count} tools · read-only`,
+    endpoint: 'Server address',
+    copy: 'Copy',
+    copied: 'Copied!',
+    install: {
+      title: 'Install',
+      intro: 'Pick your client. No key or account needed.',
+      label: 'MCP client',
+      clients: {
+        claudeCode: 'Claude Code',
+        cursor: 'Cursor',
+        vscode: 'VS Code',
+        other: 'Other client',
       },
-      {
-        name: 'skill_icons_badge',
-        text: 'Turns a list of icons into the image URL plus Markdown and HTML, and lists any name it could not match with suggestions.',
+      hints: {
+        claudeCode: (code: Code) => [
+          'Run it in the terminal, inside the project (or with ',
+          code('--scope user'),
+          ' for every project):',
+        ],
+        cursor: (code: Code) => [
+          'Add it to ',
+          code('.cursor/mcp.json'),
+          ' (project) or ',
+          code('~/.cursor/mcp.json'),
+          ' (global):',
+        ],
+        vscode: (code: Code) => ['Add it to ', code('.vscode/mcp.json'), ':'],
+        other: () => [
+          'Any client that supports remote MCP servers over HTTP (Streamable HTTP). Paste the address as a custom server or connector; there is no authentication.',
+        ],
       },
-    ],
-    tryIt: 'Try asking',
-    prompts: [
-      'Add a skills badge to my README with the stack this project uses.',
-      'Make a light-theme Skill Icons badge with TypeScript, React, Node.js and Postgres, 4 per line.',
-      'Which database icons does Skill Icons have?',
-    ],
+      copy: 'Copy configuration',
+      copied: 'Copied',
+    },
+    readOnly: 'read-only',
+    params: 'Parameters',
+    required: 'required',
+    optional: 'optional',
+    withDefault: (type: string, value: string) => `${type} · default ${value}`,
+    integer: (min: number, max: number) => `integer, ${min} to ${max}`,
+    atLeast: (type: string, min: number) => `${type}, at least ${min}`,
+    example: (input: string) => `Example · ${input}`,
+    search: {
+      summary: (code: Code, count: number) => [
+        `Searches the ${count} available icons and returns the id to use in the badge. With neither `,
+        code('query'),
+        ' nor ',
+        code('category'),
+        ', it lists them all.',
+      ],
+      params: {
+        query: 'Text to look for in the id, the brand name and the aliases.',
+        category:
+          'Narrows the search to one category. An invalid value is rejected with an error when the parameters are validated.',
+        limit: 'Most results to return.',
+      },
+      categories: 'Accepted values for category',
+      fields: 'Each result has',
+      fieldList: {
+        id: 'the value to pass to skill_icons_badge.',
+        name: 'the official brand name.',
+        category: 'the icon’s category.',
+        themed: 'whether the icon has a light and a dark version.',
+        aliases: 'short aliases it also accepts, like js and k8s.',
+      },
+      fieldsNote: (code: Code) => [
+        code('total'),
+        ' says how many icons matched. It can be more than the items in ',
+        code('icons'),
+        ' because of ',
+        code('limit'),
+        '.',
+      ],
+      noMatch: 'When nothing is found',
+      noMatchText: (count: number) =>
+        `That doesn’t count as an error. The tool suggests up to ${count} close spellings:`,
+    },
+    badge: {
+      summary:
+        'Builds the badge from a list of names written the way people write them, and returns the URL, the Markdown and the HTML, ready to paste.',
+      params: {
+        icons: 'Icons in the order they should appear.',
+        theme: 'Background for icons that have a light and a dark version.',
+        perLine: 'Icons per line.',
+      },
+      resolution: 'How each name is resolved, in this order',
+      resolutionSteps: [
+        'exact id',
+        'alias',
+        'brand name, case-insensitive',
+        'normalized form',
+        'normalized form with js at the end',
+      ],
+      resolutionNote:
+        'Repeated icons are removed and the first one wins. The URL uses each icon’s shortest name and leaves out parameters set to their default.',
+      input: 'Example · input',
+      output: 'Example · response',
+      outputNote: (code: Code, repeated: string, kept: string) => [
+        'The repeated ',
+        code(repeated),
+        ' left the list because ',
+        code(kept),
+        ' was already in it.',
+      ],
+      unknown: 'Unknown names',
+      unknownText: (code: Code, count: number) => [
+        'The icons that exist stay in the badge. The ones that don’t show up in ',
+        code('unknown'),
+        `, each with up to ${count} suggestions:`,
+      ],
+      none: 'If no name exists',
+      noneText: (code: Code) => ['The response is flagged as an error (', code('isError: true'), '):'],
+    },
+    why: {
+      title: 'Why use the MCP instead of building the URL by hand',
+      text: (code: Code) => [
+        'The image API drops invalid ids without a word, and the badge just comes out with icons missing. ',
+        code('skill_icons_badge'),
+        ' resolves each name the way it was written, says what doesn’t exist and suggests the right spelling.',
+      ],
+      cta: 'Prefer clicking? Open the builder →',
+    },
   },
 };
 

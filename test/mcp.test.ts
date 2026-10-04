@@ -1,5 +1,11 @@
 import { exports } from 'cloudflare:workers';
 import { describe, expect, it } from 'vitest';
+import {
+  buildBadge,
+  MCP_EXAMPLES,
+  RESOLUTION_EXAMPLES,
+  searchIcons,
+} from '../shared/mcp';
 import worker from '../worker';
 
 const MCP_HEADERS = {
@@ -136,6 +142,26 @@ describe('/mcp', () => {
       );
       expect(res.status).toBe(200);
       expect((await res.text()).match(/<g transform="translate\(\d+, \d+\)"/g)).toHaveLength(2);
+    });
+  });
+
+  describe('examples on the /mcp page', () => {
+    it.each([
+      ['skill_icons_search', MCP_EXAMPLES.search, searchIcons(MCP_EXAMPLES.search)],
+      ['skill_icons_search', MCP_EXAMPLES.searchNoMatch, searchIcons(MCP_EXAMPLES.searchNoMatch)],
+      ['skill_icons_badge', MCP_EXAMPLES.badge, buildBadge(MCP_EXAMPLES.badge)],
+      ['skill_icons_badge', MCP_EXAMPLES.badgeUnknown, buildBadge(MCP_EXAMPLES.badgeUnknown)],
+      ['skill_icons_badge', MCP_EXAMPLES.badgeNone, buildBadge(MCP_EXAMPLES.badgeNone)],
+    ])('%s %j answers what the page shows', async (name, args, shown) => {
+      const { isError, data } = await callTool(name, args);
+      expect(data).toEqual(shown.data);
+      expect(isError).toBe(shown.isError === true);
+    });
+
+    it('resolves every name in the resolution order', () => {
+      for (const [input, id] of RESOLUTION_EXAMPLES.flat()) {
+        expect(buildBadge({ icons: [input] }).data).toMatchObject({ icons: [id] });
+      }
     });
   });
 

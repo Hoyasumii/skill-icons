@@ -74,7 +74,7 @@ export function ExportPanel({
       <CodeBlock
         value={empty ? '—' : snippet}
         lang={empty ? 'text' : target.lang}
-        tall={isPackage}
+        size={isPackage ? 'tall' : 'default'}
       />
       <CopyButton
         key={snippet}

@@ -11,6 +11,7 @@ import { SiteHeader } from '@/components/site-header';
 import type { StackProps } from '@/components/stack-tray';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { useBuilderState } from '@/hooks/use-builder-state';
+import { useDocumentMeta } from '@/hooks/use-document-meta';
 import { useIsWide } from '@/hooks/use-is-wide';
 import { usePop } from '@/hooks/use-pop';
 import { useSavedStacks } from '@/hooks/use-saved-stacks';
@@ -41,6 +42,7 @@ function Builder() {
   const builder = useBuilderState();
   const { state } = builder;
   const { t } = useI18n();
+  useDocumentMeta(t.meta);
   const wide = useIsWide();
   const { pop, isPopping } = usePop();
   const saved = useSavedStacks();

@@ -88,7 +88,7 @@
     @apply border-border;
   }
   html {
-    @apply font-sans;
+    @apply font-sans motion-safe:scroll-smooth;
   }
   body {
     @apply bg-background text-foreground antialiased;
@@ -129,6 +129,9 @@
 }
 .shiki-block-tall pre {
   @apply max-h-[240px];
+}
+.shiki-block-full pre {
+  @apply max-h-none;
 }
 .shiki-block .shiki,
 .shiki-block .shiki span {

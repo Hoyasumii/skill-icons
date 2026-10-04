@@ -32,11 +32,10 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState(initialLocale);
   const t = MESSAGES[locale];
 
+  // Each page sets its own title and description (useDocumentMeta).
   useEffect(() => {
     document.documentElement.lang = locale;
-    document.title = t.meta.title;
-    document.querySelector('meta[name="description"]')?.setAttribute('content', t.meta.description);
-  }, [locale, t]);
+  }, [locale]);
 
   const setLocale = (next: Locale) => {
     setLocaleState(next);

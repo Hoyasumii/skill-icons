@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { type CodeLang, highlight } from '@/lib/highlight';
+import { cn } from '@/lib/utils';
 
 interface CodeBlockProps {
   value: string;
   lang: CodeLang;
-  /** The package tab gives its longer snippets more room. */
-  tall?: boolean;
+  /** The package tab gives its longer snippets more room; `full` never cuts them (docs examples). */
+  size?: 'default' | 'tall' | 'full';
+  className?: string;
 }
 
 /** Read-only snippet, highlighted by shiki once it loads; plain text until then. Wraps, never scrolls sideways. */
-export function CodeBlock({ value, lang, tall }: CodeBlockProps) {
+export function CodeBlock({ value, lang, size = 'default', className }: CodeBlockProps) {
   const [html, setHtml] = useState<{ value: string; lang: CodeLang; html: string }>();
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export function CodeBlock({ value, lang, tall }: CodeBlockProps) {
   const highlighted = html?.value === value && html.lang === lang ? html.html : undefined;
 
   return (
-    <div className={tall ? 'shiki-block shiki-block-tall' : 'shiki-block'}>
+    <div className={cn('shiki-block', size !== 'default' && `shiki-block-${size}`, className)}>
       {highlighted ? <div dangerouslySetInnerHTML={{ __html: highlighted }} /> : <pre>{value}</pre>}
     </div>
   );
