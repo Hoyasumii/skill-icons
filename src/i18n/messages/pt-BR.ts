@@ -97,12 +97,12 @@ export const ptBR: Messages = {
     readme: 'Prévia no README',
     component: 'Prévia do componente',
     heading: 'Minhas skills',
+    titleLabel: 'Título do badge (editável)',
     empty: 'A prévia aparece quando a pilha tiver ícones.',
     alt: 'Prévia da sua pilha',
   },
   output: {
     format: 'Formato',
-    badgeAlt: 'Minhas habilidades',
     copy: format => `Copiar ${format}`,
     copied: 'Copiado!',
     copyFailed: 'Não foi possível copiar. Selecione o texto e copie manualmente.',

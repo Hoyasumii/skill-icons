@@ -111,12 +111,12 @@ export const en = {
     readme: 'README preview',
     component: 'Component preview',
     heading: 'My skills',
+    titleLabel: 'Badge title (editable)',
     empty: 'The preview shows up once your stack has icons.',
     alt: 'Preview of your stack',
   },
   output: {
     format: 'Format',
-    badgeAlt: 'My Skills',
     copy: (format: string) => `Copy ${format}`,
     copied: 'Copied!',
     copyFailed: 'Could not copy. Select the text and copy it manually.',

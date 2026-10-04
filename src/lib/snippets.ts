@@ -4,6 +4,17 @@ import { API_URL, type IconsUrlOptions } from '../../shared/icons';
 
 export const INSTALL_COMMAND = `npm i ${PACKAGE_NAME}`;
 
+/** Safe inside a quoted attribute in HTML and in every framework template (no `{` interpolation, no template-literal escapes). */
+function escapeAttr(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/[<>{}`\\]/g, char => `&#${char.charCodeAt(0)};`);
+}
+
+/** Keeps brackets in the title from closing the Markdown image early. */
+const escapeMarkdownAlt = (text: string) => text.replace(/[\\[\]]/g, '\\$&');
+
 interface LinkFormat {
   label: string;
   lang: CodeLang;
@@ -15,13 +26,13 @@ export const LINK_FORMATS = {
   markdown: {
     label: 'Markdown',
     lang: 'markdown',
-    render: (url, alt) => `[![${alt}](${url})](${API_URL})`,
+    render: (url, alt) => `[![${escapeMarkdownAlt(alt)}](${url})](${API_URL})`,
   },
   html: {
     label: 'HTML',
     lang: 'html',
-    render: url =>
-      `<p align="center">\n  <a href="${API_URL}">\n    <img src="${url}" />\n  </a>\n</p>`,
+    render: (url, alt) =>
+      `<p align="center">\n  <a href="${API_URL}">\n    <img src="${url}" alt="${escapeAttr(alt)}" />\n  </a>\n</p>`,
   },
   url: { label: 'URL', lang: 'text', render: url => url },
 } satisfies Record<string, LinkFormat>;
@@ -32,20 +43,24 @@ export const FORMATS: Format[] = ['markdown', 'html', 'url', 'package'];
 
 interface FrameworkInput extends IconsUrlOptions {
   names: string;
+  /** ` alt="…"`, already escaped. */
+  alt: string;
   props: { jsx: string; vue: string; angular: string };
 }
 
-function frameworkInput({ icons, theme, perLine }: IconsUrlOptions): FrameworkInput {
+function frameworkInput({ icons, theme, perLine }: IconsUrlOptions, alt: string): FrameworkInput {
   const names = `[${icons.map(icon => `'${icon}'`).join(', ')}]`;
+  const altAttr = ` alt="${escapeAttr(alt)}"`;
   return {
     icons,
     theme,
     perLine,
     names,
+    alt: altAttr,
     props: {
-      jsx: ` theme="${theme}" perLine={${perLine}}`,
-      vue: ` theme="${theme}" :per-line="${perLine}"`,
-      angular: ` theme="${theme}" [perLine]="${perLine}"`,
+      jsx: ` theme="${theme}" perLine={${perLine}}${altAttr}`,
+      vue: ` theme="${theme}" :per-line="${perLine}"${altAttr}`,
+      angular: ` theme="${theme}" [perLine]="${perLine}"${altAttr}`,
     },
   };
 }
@@ -114,13 +129,18 @@ export const FRAMEWORKS = {
     icon: 'html',
     lang: 'html',
     fileName: 'index.html',
-    render: ({ icons, theme, perLine }) =>
-      `<script type="module">\n  import '${PACKAGE_NAME}/element/define';\n</script>\n\n<skill-icons names="${icons.join(',')}" theme="${theme}" per-line="${perLine}"></skill-icons>`,
+    render: ({ icons, theme, perLine, alt }) =>
+      `<script type="module">\n  import '${PACKAGE_NAME}/element/define';\n</script>\n\n<skill-icons names="${icons.join(',')}" theme="${theme}" per-line="${perLine}"${alt}></skill-icons>`,
   },
 } satisfies Record<string, Framework>;
 
 export type FrameworkId = keyof typeof FRAMEWORKS;
 
-export function renderFramework(framework: FrameworkId, options: IconsUrlOptions): string {
-  return FRAMEWORKS[framework].render(frameworkInput(options));
+/** `alt` is the badge title, used as the image's alt text. */
+export function renderFramework(
+  framework: FrameworkId,
+  options: IconsUrlOptions,
+  alt: string,
+): string {
+  return FRAMEWORKS[framework].render(frameworkInput(options, alt));
 }

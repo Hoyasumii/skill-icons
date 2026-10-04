@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { SheetClose } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useI18n } from '@/i18n';
+import { cleanTitle } from '@/lib/badge-title';
 import { NPM_URL, PACKAGE_NAME } from '@/lib/links';
 import {
   FORMATS,
@@ -35,6 +36,9 @@ interface ExportPanelProps {
   onPerLineChange: (perLine: number) => void;
   onFormatChange: (format: Format) => void;
   onFrameworkChange: (framework: FrameworkId) => void;
+  /** Badge title as typed (undefined until edited); it becomes the alt text of every snippet. */
+  title: string | undefined;
+  onTitleChange: (title: string | undefined) => void;
 }
 
 export function ExportPanel({
@@ -51,16 +55,20 @@ export function ExportPanel({
   onPerLineChange,
   onFormatChange,
   onFrameworkChange,
+  title,
+  onTitleChange,
 }: ExportPanelProps) {
   const { t } = useI18n();
   const options = { icons: stack.icons, theme: stack.theme, perLine };
   const empty = stack.icons.length === 0;
 
+  const alt = cleanTitle(title) ?? t.preview.heading;
+
   const isPackage = format === 'package';
   const target = isPackage ? FRAMEWORKS[framework] : LINK_FORMATS[format];
   const snippet = isPackage
-    ? renderFramework(framework, options)
-    : LINK_FORMATS[format].render(buildIconsUrl(API_URL, options), t.output.badgeAlt);
+    ? renderFramework(framework, options, alt)
+    : LINK_FORMATS[format].render(buildIconsUrl(API_URL, options), alt);
 
   // Only the active tab's content is mounted, so every tab can share it.
   const content = (
@@ -129,6 +137,8 @@ export function ExportPanel({
         options={options}
         label={isPackage ? t.preview.component : t.preview.readme}
         fileName={isPackage ? FRAMEWORKS[framework].fileName : 'README.md'}
+        title={title}
+        onTitleChange={onTitleChange}
       />
       <Tabs value={format} onValueChange={value => onFormatChange(value as Format)}>
         <TabsList aria-label={t.output.format}>
