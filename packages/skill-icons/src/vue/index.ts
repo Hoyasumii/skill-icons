@@ -49,7 +49,7 @@ interface LocalMode {
 /** Latest mode: any name, loaded from the deployed API at runtime. */
 interface LatestMode {
   latest: true;
-  /** Deployment to load icons from. Defaults to https://skillicons.dev. */
+  /** Deployment to load icons from. Defaults to https://skill-icons.alanreisanjo.workers.dev. */
   baseUrl?: string;
 }
 

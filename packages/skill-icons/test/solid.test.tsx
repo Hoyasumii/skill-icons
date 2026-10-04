@@ -7,7 +7,7 @@ import { Icon, Icons, SkillIconsProvider } from '../src/solid/index.js';
 const strip = (html: string) => html.replace(/ data-hk="[^"]*"|<!--[^>]*-->/g, '');
 const render = (fn: () => any) => strip(renderToString(fn));
 
-const remote = (query: string) => `https://skillicons.dev/icons?${query}`;
+const remote = (query: string) => `https://skill-icons.alanreisanjo.workers.dev/icons?${query}`;
 
 describe('Icon', () => {
   it('renders a placeholder until the bundled SVG loads', async () => {

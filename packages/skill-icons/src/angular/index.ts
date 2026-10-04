@@ -196,7 +196,7 @@ export class Icon {
   readonly size = input(DEFAULT_SIZE, { transform: sizeAttribute });
   /** Load from the deployed API instead of the bundle. */
   readonly latest = input(false, { transform: booleanAttribute });
-  /** Deployment to load icons from, in `latest` mode only. Defaults to https://skillicons.dev. */
+  /** Deployment to load icons from, in `latest` mode only. Defaults to https://skill-icons.alanreisanjo.workers.dev. */
   readonly baseUrl = input<string | undefined>();
   /** Alt text. Defaults to the icon name. */
   readonly alt = input<string | undefined>();

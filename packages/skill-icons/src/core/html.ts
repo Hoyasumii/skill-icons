@@ -35,7 +35,7 @@ interface LocalHtmlMode {
 
 interface LatestHtmlMode {
   latest: true;
-  /** Deployment to reference icons from. Defaults to https://skillicons.dev. */
+  /** Deployment to reference icons from. Defaults to https://skill-icons.alanreisanjo.workers.dev. */
   baseUrl?: string;
 }
 

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useI18n } from '@/i18n';
 import type { Messages } from '@/i18n/messages/en';
-import { buildIconsUrl, SITE_URL, type IconsUrlOptions } from '../../shared/icons';
+import { API_URL, buildIconsUrl, SITE_URL, type IconsUrlOptions } from '../../shared/icons';
 
 const FORMATS = {
   url: { label: () => 'URL', render: (url: string) => url },
@@ -56,9 +56,9 @@ function CopyBlock({ value }: { value: string }) {
 }
 
 export function Output(options: IconsUrlOptions) {
-  // The preview hits this deployment's own Worker; the copied snippets use the public URL.
-  const previewUrl = buildIconsUrl('', options);
-  const publicUrl = buildIconsUrl(SITE_URL, options);
+  // Dev previews hit the local Worker; the built site (Pages is static) and snippets use the public API.
+  const previewUrl = buildIconsUrl(import.meta.env.DEV ? '' : API_URL, options);
+  const publicUrl = buildIconsUrl(API_URL, options);
   const { t } = useI18n();
 
   return (

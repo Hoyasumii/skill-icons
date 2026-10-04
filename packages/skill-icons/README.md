@@ -1,6 +1,6 @@
 # @hoyasumii/skill-icons
 
-[Skill icons](https://skillicons.dev) as components. One package, one entry point per framework.
+[Skill icons](https://hoyasumii.github.io/skill-icons) as components. One package, one entry point per framework.
 
 ```sh
 npm install @hoyasumii/skill-icons
@@ -148,7 +148,7 @@ Each icon is bundled as its own chunk and only downloaded when rendered.
 | `size`              | `48`                     | Size of one icon, in pixels                      |
 | `perLine` (`Icons`) | `15`                     | Icons per line, from 1 to 50                     |
 | `latest`            | `false`                  | Load from the deployed API instead of the bundle |
-| `baseUrl`           | `https://skillicons.dev` | API to load from, in `latest` mode only          |
+| `baseUrl`           | `https://skill-icons.alanreisanjo.workers.dev` | API to load from, in `latest` mode only          |
 
 Any other prop or attribute is passed to the underlying `<img>` (in Angular, through `imgClass`, `imgStyle` and `alt`).
 
