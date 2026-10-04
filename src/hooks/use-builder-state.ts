@@ -71,10 +71,20 @@ export function useBuilderState() {
       return { ...s, icons };
     });
 
+  /** Appends the names not yet in the stack, keeping their order (used by presets). */
+  const addIcons = (names: string[]) =>
+    setState(s => {
+      const missing = names.filter(name => !s.icons.includes(name));
+      return missing.length ? { ...s, icons: [...s.icons, ...missing] } : s;
+    });
+
   return {
     state,
     toggleIcon,
     moveIcon,
+    addIcons,
+    /** Replaces the whole stack, e.g. with a shuffled copy. */
+    setIcons: (icons: string[]) => setState(s => ({ ...s, icons })),
     clearIcons: () => setState(s => ({ ...s, icons: [] })),
     setTheme: (theme: Theme) => setState(s => ({ ...s, theme })),
     setPerLine: (perLine: number) => setState(s => ({ ...s, perLine })),
