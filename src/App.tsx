@@ -1,13 +1,15 @@
 import { useMemo, useState } from 'react';
 import { CategoryRail, CategorySidebar } from '@/components/category-nav';
+import { Dock } from '@/components/dock';
+import { ExportPanel } from '@/components/export-panel';
 import { IconGrid } from '@/components/icon-grid';
 import { PresetList } from '@/components/preset-list';
-import { Options } from '@/components/options';
-import { Output } from '@/components/output';
 import { SearchInput } from '@/components/search-input';
-import { SelectedIcons } from '@/components/selected-icons';
 import { SiteHeader } from '@/components/site-header';
+import type { StackProps } from '@/components/stack-tray';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { useBuilderState } from '@/hooks/use-builder-state';
+import { useIsWide } from '@/hooks/use-is-wide';
 import { usePop } from '@/hooks/use-pop';
 import { useI18n } from '@/i18n';
 import { filterIcons } from '@/lib/icons';
@@ -15,49 +17,72 @@ import { REPO_URL } from '@/lib/links';
 import { POP_ALL } from '@/lib/motion';
 import type { IconCategory } from '../shared/icon-categories';
 
+function shuffled<T>(items: T[]): T[] {
+  const result = [...items];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
 export function App() {
-  const { state, toggleIcon, moveIcon, addIcons, clearIcons, setTheme, setPerLine } =
-    useBuilderState();
+  const builder = useBuilderState();
+  const { state } = builder;
   const { t } = useI18n();
+  const wide = useIsWide();
   const { pop, isPopping } = usePop();
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState<IconCategory | null>(null);
+  const [liftedId, setLiftedId] = useState<string | null>(null);
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   const filtered = useMemo(() => filterIcons(query, category), [query, category]);
+  // Removing the lifted icon some other way (grid, clear all) drops the lift with it.
+  const lifted = liftedId && state.icons.includes(liftedId) ? liftedId : null;
 
   const toggle = (name: string) => {
     if (!state.icons.includes(name)) pop(name);
-    toggleIcon(name);
+    builder.toggleIcon(name);
   };
 
   const addPreset = (names: string[]) => {
     if (!names.length) return;
-    addIcons(names);
+    builder.addIcons(names);
     pop(POP_ALL);
   };
 
-  // Temporary: rendered in both columns until the export panel and sheet land.
+  const stack: StackProps = {
+    icons: state.icons,
+    theme: state.theme,
+    lifted,
+    isPopping,
+    onLift: name => setLiftedId(lifted === name ? null : name),
+    onMove: offset => {
+      if (!lifted) return;
+      const from = state.icons.indexOf(lifted);
+      builder.moveIcon(from, from + offset);
+      pop(lifted);
+    },
+    onRemove: () => {
+      if (lifted) builder.toggleIcon(lifted);
+      setLiftedId(null);
+    },
+  };
+
   const exportPanel = (
-    <>
-      <SelectedIcons
-        icons={state.icons}
-        theme={state.theme}
-        onRemove={toggleIcon}
-        onMove={moveIcon}
-        onClear={clearIcons}
-      />
-      <Options
-        theme={state.theme}
-        perLine={state.perLine}
-        onThemeChange={setTheme}
-        onPerLineChange={setPerLine}
-      />
-      {state.icons.length > 0 ? (
-        <Output icons={state.icons} theme={state.theme} perLine={state.perLine} />
-      ) : (
-        <p className="text-sm text-muted-foreground">{t.steps.emptyPreview}</p>
-      )}
-    </>
+    <ExportPanel
+      compact={!wide}
+      stack={stack}
+      perLine={state.perLine}
+      onShuffle={() => {
+        builder.setIcons(shuffled(state.icons));
+        pop(POP_ALL);
+      }}
+      onClear={builder.clearIcons}
+      onThemeChange={builder.setTheme}
+      onPerLineChange={builder.setPerLine}
+    />
   );
 
   return (
@@ -95,14 +120,21 @@ export function App() {
             </footer>
           </div>
 
-          <aside className="flex flex-col gap-6 border-t bg-card p-4 lg:hidden">
-            {exportPanel}
-          </aside>
+          <Dock stack={stack} onExport={() => setSheetOpen(true)} />
         </main>
 
-        <aside className="hidden flex-col gap-6 border-l bg-card p-6 lg:flex lg:min-h-0 lg:overflow-y-auto">
-          {exportPanel}
-        </aside>
+        {wide ? (
+          <aside
+            aria-label={t.stack.export}
+            className="min-h-0 overflow-y-auto border-l bg-card p-6"
+          >
+            {exportPanel}
+          </aside>
+        ) : (
+          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+            <SheetContent>{exportPanel}</SheetContent>
+          </Sheet>
+        )}
       </div>
     </div>
   );

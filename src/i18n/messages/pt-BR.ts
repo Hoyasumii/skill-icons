@@ -59,14 +59,19 @@ export const ptBR: Messages = {
     social: 'Redes sociais',
     productivity: 'Produtividade',
   },
-  selected: {
-    empty: 'Nenhum ícone selecionado ainda. Escolha alguns na lista.',
-    count: count =>
-      `${count} ${count === 1 ? 'selecionado' : 'selecionados'} · use as setas para reordenar`,
-    clearAll: 'Limpar tudo',
+  stack: {
+    title: 'Sua pilha',
+    export: 'Exportar',
+    dockEmpty: 'Toque nos ícones para montar sua pilha.',
+    empty: 'Vazia por enquanto. Escolha ícones ou use uma pilha pronta.',
+    hint: 'toque num ícone da pilha para mover ou remover',
+    clearAll: 'limpar tudo',
+    shuffle: 'Embaralhar',
+    close: 'Fechar',
+    position: (name, position) => `${name}, posição ${position}`,
     moveLeft: name => `Mover ${name} para a esquerda`,
     moveRight: name => `Mover ${name} para a direita`,
-    remove: name => `Remover ${name}`,
+    remove: 'Remover',
   },
   options: {
     iconTheme: 'Tema dos ícones',

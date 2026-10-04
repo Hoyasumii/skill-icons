@@ -40,6 +40,10 @@ export function resolveIconName(name: string): string | undefined {
   return shortNames[lower];
 }
 
+export function displayNameOf(name: string): string {
+  return iconsByName.get(name)?.displayName ?? name;
+}
+
 /** Static thumbnail served from /public/svg, without going through the Worker. */
 export function iconSrc(name: string, theme: Theme): string {
   const themed = iconsByName.get(name)?.themed;
