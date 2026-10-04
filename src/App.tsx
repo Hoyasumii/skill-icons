@@ -15,6 +15,7 @@ import { useI18n } from '@/i18n';
 import { filterIcons } from '@/lib/icons';
 import { REPO_URL } from '@/lib/links';
 import { POP_ALL } from '@/lib/motion';
+import type { Format, FrameworkId } from '@/lib/snippets';
 import type { IconCategory } from '../shared/icon-categories';
 
 function shuffled<T>(items: T[]): T[] {
@@ -36,6 +37,8 @@ export function App() {
   const [category, setCategory] = useState<IconCategory | null>(null);
   const [liftedId, setLiftedId] = useState<string | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [format, setFormat] = useState<Format>('markdown');
+  const [framework, setFramework] = useState<FrameworkId>('react');
 
   const filtered = useMemo(() => filterIcons(query, category), [query, category]);
   // Removing the lifted icon some other way (grid, clear all) drops the lift with it.
@@ -75,6 +78,8 @@ export function App() {
       compact={!wide}
       stack={stack}
       perLine={state.perLine}
+      format={format}
+      framework={framework}
       onShuffle={() => {
         builder.setIcons(shuffled(state.icons));
         pop(POP_ALL);
@@ -82,6 +87,8 @@ export function App() {
       onClear={builder.clearIcons}
       onThemeChange={builder.setTheme}
       onPerLineChange={builder.setPerLine}
+      onFormatChange={setFormat}
+      onFrameworkChange={setFramework}
     />
   );
 

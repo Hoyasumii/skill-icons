@@ -42,14 +42,6 @@ export const en = {
     toLight: 'Switch to light theme',
     github: 'github',
   },
-  steps: {
-    choose: '1. Choose icons',
-    chooseDescription: 'Click to add or remove. Order is preserved.',
-    customize: '2. Customize',
-    copy: '3. Copy',
-    copyDescription: "Paste it into your README. This page's link also keeps your selection.",
-    emptyPreview: 'Select at least one icon to see the preview.',
-  },
   picker: {
     searchPlaceholder: 'Search icons, e.g. react, ts, postgres',
     searchLabel: 'Search icons',
@@ -88,17 +80,30 @@ export const en = {
     dark: 'Dark',
     light: 'Light',
     perLine: 'Icons per line',
+    fewer: 'Fewer icons per line',
+    more: 'More icons per line',
+  },
+  preview: {
+    readme: 'README preview',
+    component: 'Component preview',
+    heading: 'My skills',
+    empty: 'The preview shows up once your stack has icons.',
+    alt: 'Preview of your stack',
   },
   output: {
-    previewAlt: 'Preview of the selected icons',
+    format: 'Format',
     badgeAlt: 'My Skills',
-    htmlCentered: 'HTML (centered)',
-    copy: 'Copy',
-    copied: 'Copied to clipboard',
+    copy: (format: string) => `Copy ${format}`,
+    copied: 'Copied!',
     copyFailed: 'Could not copy. Select the text and copy it manually.',
-    libraryTitle: 'Use it as a library',
-    libraryDescription:
-      'Prefer components over image links? Install the package, available for React, Vue, Svelte, Solid, Angular, Astro and Web Components:',
+    linkHint: "this page's link also keeps your stack",
+  },
+  package: {
+    label: 'Package',
+    framework: 'Framework',
+    install: 'Copy install command',
+    installed: 'Command copied',
+    hint: 'ready-made components on npm:',
   },
 };
 
