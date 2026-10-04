@@ -123,10 +123,15 @@ export const en = {
   },
   package: {
     label: 'Package',
-    framework: 'Framework',
+    open: 'Use as an npm package',
     install: 'Copy install command',
     installed: 'Command copied',
-    hint: 'ready-made components on npm:',
+    steps: {
+      install: 'Install the library',
+      framework: 'Pick your framework',
+      copy: 'Copy the code',
+    },
+    viewOnNpm: 'view on npm ↗',
   },
   footer: {
     madeBy: 'made by',

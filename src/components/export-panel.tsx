@@ -1,27 +1,16 @@
 import { useState } from 'react';
-import {
-  BracesIcon,
-  ChevronDownIcon,
-  CodeXmlIcon,
-  HashIcon,
-  LinkIcon,
-  PackageIcon,
-  XIcon,
-  type LucideIcon,
-} from 'lucide-react';
+import { BracesIcon, CodeXmlIcon, HashIcon, LinkIcon, XIcon, type LucideIcon } from 'lucide-react';
 import { CodeBlock } from '@/components/code-block';
 import { CopyButton } from '@/components/copy-button';
 import { ExportOptions } from '@/components/export-options';
-import { FrameworkPicker, InstallRow } from '@/components/package-options';
+import { PackagePopover } from '@/components/package-popover';
 import { SectionLabel } from '@/components/section-label';
 import { ReadmePreview } from '@/components/readme-preview';
 import { StackTray, type StackProps } from '@/components/stack-tray';
 import { Button } from '@/components/ui/button';
-import { Reveal } from '@/components/ui/reveal';
 import { SheetClose } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useI18n } from '@/i18n';
-import { NPM_URL, PACKAGE_NAME } from '@/lib/links';
 import {
   FORMATS,
   FRAMEWORKS,
@@ -33,43 +22,11 @@ import {
 import { cleanTitle } from '../../shared/badge-title';
 import { API_URL, buildIconsUrl, type Theme } from '../../shared/icons';
 
-const PACKAGE_PANEL_ID = 'package-panel';
-
 const FORMAT_ICONS: Record<Format, LucideIcon> = {
   markdown: HashIcon,
   html: CodeXmlIcon,
   url: LinkIcon,
 };
-
-interface PackageToggleProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}
-
-/** Looks like the language menu's trigger, but unfolds the npm package's options in place. */
-function PackageToggle({ open, onOpenChange }: PackageToggleProps) {
-  const { t } = useI18n();
-
-  return (
-    <Button
-      variant="hairline"
-      aria-expanded={open}
-      aria-controls={open ? PACKAGE_PANEL_ID : undefined}
-      onClick={() => onOpenChange(!open)}
-      className="h-12 w-full justify-between rounded-lg px-3.5 aria-expanded:bg-muted"
-    >
-      <span className="flex items-center gap-2 text-[15px] font-semibold">
-        <PackageIcon />
-        {t.package.label}
-        <span className="font-mono text-[12px] font-normal text-muted-foreground">npm</span>
-      </span>
-      <ChevronDownIcon
-        strokeWidth={2.4}
-        className="size-4 transition-transform duration-[260ms] ease-spring group-aria-expanded/button:rotate-180"
-      />
-    </Button>
-  );
-}
 
 interface ExportPanelProps {
   /** Rendered inside the bottom sheet instead of the wide column. */
@@ -112,6 +69,8 @@ export function ExportPanel({
   const [packageOpen, setPackageOpen] = useState(false);
   const options = { icons: stack.icons, theme: stack.theme, perLine };
   const empty = stack.icons.length === 0;
+  // An emptied stack takes the panel away; the popover goes with it.
+  if (empty && packageOpen) setPackageOpen(false);
 
   const alt = cleanTitle(title) ?? t.preview.heading;
   // Only an edited title goes in the link (like the page URL), for its preview card.
@@ -137,40 +96,10 @@ export function ExportPanel({
         label={t.output.copy(LINK_FORMATS[format].label)}
         disabled={empty}
       />
-      <PackageToggle open={packageOpen} onOpenChange={setPackageOpen} />
-      <Reveal>
-        {packageOpen ? (
-          <div key="package" id={PACKAGE_PANEL_ID} className="flex flex-col gap-3">
-            <FrameworkPicker value={framework} theme={stack.theme} onChange={onFrameworkChange} />
-            <InstallRow />
-            <CodeBlock
-              value={empty ? '—' : component}
-              lang={empty ? 'text' : FRAMEWORKS[framework].lang}
-              size="tall"
-            />
-            <CopyButton
-              key={component}
-              value={component}
-              label={t.output.copy(FRAMEWORKS[framework].label)}
-              disabled={empty}
-            />
-            <p className="font-mono text-xs text-muted-foreground">
-              {t.package.hint}{' '}
-              <a
-                href={NPM_URL}
-                className="text-foreground underline underline-offset-3 hover:no-underline"
-              >
-                {PACKAGE_NAME} ↗
-              </a>
-            </p>
-          </div>
-        ) : (
-          <p key="hint" className="font-mono text-xs text-muted-foreground">
-            <LinkIcon aria-hidden="true" className="mr-1 inline size-3.5 align-[-3px]" />
-            {t.output.linkHint}
-          </p>
-        )}
-      </Reveal>
+      <p className="font-mono text-xs text-muted-foreground">
+        <LinkIcon aria-hidden="true" className="mr-1 inline size-3.5 align-[-3px]" />
+        {t.output.linkHint}
+      </p>
     </>
   );
 
@@ -184,13 +113,24 @@ export function ExportPanel({
         onShuffle={onShuffle}
         onClear={onClear}
         actions={
-          compact && (
-            <SheetClose asChild>
-              <Button variant="hairline" size="icon-sm" aria-label={t.stack.close}>
-                <XIcon />
-              </Button>
-            </SheetClose>
-          )
+          <>
+            <PackagePopover
+              open={packageOpen}
+              onOpenChange={setPackageOpen}
+              framework={framework}
+              onFrameworkChange={onFrameworkChange}
+              theme={stack.theme}
+              component={component}
+              empty={empty}
+            />
+            {compact && (
+              <SheetClose asChild>
+                <Button variant="hairline" size="icon-sm" aria-label={t.stack.close}>
+                  <XIcon />
+                </Button>
+              </SheetClose>
+            )}
+          </>
         }
       />
       <ExportOptions

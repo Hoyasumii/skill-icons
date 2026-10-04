@@ -130,6 +130,7 @@ interface StackTrayProps {
   stack: StackProps;
   /** In the sheet, the heading also names the dialog. */
   compact: boolean;
+  /** Icon buttons at the end of the heading row (the package popover, the sheet's close). */
   actions?: ReactNode;
   /** How many stacks are already saved; at the limit, saving is off. */
   savedCount: number;
@@ -164,24 +165,24 @@ export function StackTray({
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex flex-wrap items-center justify-between gap-2">
+      <div className="flex items-center gap-2">
         {compact ? <SheetTitle asChild>{heading}</SheetTitle> : heading}
-        <div className="flex gap-1.5">
-          <Button
-            variant="hairline"
-            size="sm"
-            disabled={count === 0 || full}
-            onClick={() => setSaveOpen(true)}
-          >
-            <BookmarkIcon className="size-4" strokeWidth={2.2} />
-            {t.saved.save}
-          </Button>
-          <Button variant="hairline" size="sm" disabled={count < 2} onClick={onShuffle}>
-            <ShuffleIcon className="size-4" strokeWidth={2.2} />
-            {t.stack.shuffle}
-          </Button>
-          {actions}
-        </div>
+        <div className="ml-auto flex gap-1.5">{actions}</div>
+      </div>
+      <div className="flex gap-1.5">
+        <Button
+          variant="hairline"
+          size="sm"
+          disabled={count === 0 || full}
+          onClick={() => setSaveOpen(true)}
+        >
+          <BookmarkIcon className="size-4" strokeWidth={2.2} />
+          {t.saved.save}
+        </Button>
+        <Button variant="hairline" size="sm" disabled={count < 2} onClick={onShuffle}>
+          <ShuffleIcon className="size-4" strokeWidth={2.2} />
+          {t.stack.shuffle}
+        </Button>
       </div>
 
       {count === 0 ? (

@@ -109,10 +109,15 @@ export const ptBR: Messages = {
   },
   package: {
     label: 'Pacote',
-    framework: 'Framework',
+    open: 'Usar como pacote npm',
     install: 'Copiar comando de instalação',
     installed: 'Comando copiado',
-    hint: 'componentes prontos no npm:',
+    steps: {
+      install: 'Instale a lib',
+      framework: 'Escolha o framework',
+      copy: 'Copie o código',
+    },
+    viewOnNpm: 'ver no npm ↗',
   },
   footer: {
     madeBy: 'feito por',
