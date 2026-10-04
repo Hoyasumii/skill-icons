@@ -35,11 +35,7 @@
   --color-highlight-foreground: var(--highlight-foreground);
   --color-scrim: var(--scrim);
 
-  /* Fixed in both site themes: they follow the icon theme instead. */
-  --color-readme-dark: #0e1116;
-  --color-readme-dark-foreground: #f1f1ec;
-  --color-readme-light: #ffffff;
-  --color-readme-light-foreground: #111111;
+  /* Fixed in both site themes: the icon tile colors. */
   --color-swatch-dark: #262626;
   --color-swatch-light: #e3e3dd;
 
