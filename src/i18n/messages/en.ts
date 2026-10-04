@@ -43,13 +43,16 @@ export const en = {
     emptyPreview: 'Select at least one icon to see the preview.',
   },
   picker: {
-    searchPlaceholder: (count: number, category?: string) =>
-      `Search ${count} ${category ? `${category} ` : ''}icons…`,
+    searchPlaceholder: 'Search icons, e.g. react, ts, postgres',
     searchLabel: 'Search icons',
+    categoriesLabel: 'Categories',
     filterLabel: 'Filter by category',
     all: 'All',
-    noResults: 'No icons found.',
-    noResultsFor: (query: string) => `No icons found for “${query}”.`,
+    allIcons: 'All icons',
+    gridTitle: (category: string, count: number) => `${category} · ${count}`,
+    hint: 'tap to add',
+    noResultsFor: (query: string) => `Nothing found for “${query}”.`,
+    clearSearch: 'Clear search',
   },
   categories,
   selected: {

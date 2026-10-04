@@ -20,6 +20,19 @@ export const CATEGORIES = Object.keys(categories) as IconCategory[];
 
 const iconsByName = new Map(ICONS.map(icon => [icon.name, icon]));
 
+/** Icons in `category` (all when null) whose name, display name or an alias contains `query`. */
+export function filterIcons(query: string, category: IconCategory | null): IconInfo[] {
+  const q = query.trim().toLowerCase();
+  return ICONS.filter(
+    icon =>
+      (!category || icon.category === category) &&
+      (!q ||
+        icon.name.includes(q) ||
+        icon.displayName.toLowerCase().includes(q) ||
+        icon.aliases.some(alias => alias.includes(q))),
+  );
+}
+
 /** Resolves a name or alias (e.g. "js") to its canonical icon name. */
 export function resolveIconName(name: string): string | undefined {
   const lower = name.trim().toLowerCase();

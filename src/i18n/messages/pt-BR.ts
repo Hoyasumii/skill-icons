@@ -22,13 +22,16 @@ export const ptBR: Messages = {
     emptyPreview: 'Selecione pelo menos um ícone para ver a prévia.',
   },
   picker: {
-    searchPlaceholder: (count, category) =>
-      `Buscar ${count} ícones${category ? ` de ${category}` : ''}…`,
+    searchPlaceholder: 'Buscar ícone, ex.: react, ts, postgres',
     searchLabel: 'Buscar ícones',
+    categoriesLabel: 'Categorias',
     filterLabel: 'Filtrar por categoria',
     all: 'Todos',
-    noResults: 'Nenhum ícone encontrado.',
-    noResultsFor: query => `Nenhum ícone encontrado para “${query}”.`,
+    allIcons: 'Todos os ícones',
+    gridTitle: (category, count) => `${category} · ${count}`,
+    hint: 'toque para adicionar',
+    noResultsFor: query => `Nada encontrado para “${query}”.`,
+    clearSearch: 'Limpar busca',
   },
   categories: {
     language: 'Linguagens',
