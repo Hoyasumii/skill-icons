@@ -7,9 +7,7 @@ export const DEFAULT_PER_LINE = 15;
 export const MIN_PER_LINE = 1;
 export const MAX_PER_LINE = 50;
 
-/** Public menu, served by GitHub Pages. */
-export const SITE_URL = 'https://hoyasumii.github.io/skill-icons';
-/** Worker serving /icons and /api/*; image URLs must point here, Pages is static. */
+/** Worker deploy serving the menu, /icons and /api/*. */
 export const API_URL = 'https://skill-icons.alanreisanjo.workers.dev';
 
 export const shortNames: Record<string, string> = {

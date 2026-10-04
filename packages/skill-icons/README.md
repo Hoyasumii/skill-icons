@@ -1,6 +1,6 @@
 # @hoyasumii/skill-icons
 
-[Skill icons](https://hoyasumii.github.io/skill-icons) as components. One package, one entry point per framework.
+[Skill icons](https://skill-icons.alanreisanjo.workers.dev) as components. One package, one entry point per framework.
 
 ```sh
 npm install @hoyasumii/skill-icons
