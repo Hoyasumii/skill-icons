@@ -12,6 +12,9 @@
 
 <h3 align="center">Powered by Cloudflare Workers ⚡</h3>
 
+> [!NOTE]
+> This project is a fork of [tandpfun/skill-icons](https://github.com/tandpfun/skill-icons), the original Skill Icons by [tandpfun](https://github.com/tandpfun). This fork adds a visual builder, more icons and the [`@hoyasumii/skill-icons`](https://www.npmjs.com/package/@hoyasumii/skill-icons) npm package. All credit for the original project and icons goes to its authors.
+
 Skill Icons comes in two flavors:
 
 - **An image API**: paste a URL into your README and get an SVG with your skills. Use the [builder](https://skill-icons.alanreisanjo.workers.dev) to pick icons visually.
