@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "rootDir": ".", "allowJs": true, "checkJs": false },
+  "include": ["src/svelte", "test/svelte*"],
+  "exclude": []
+}

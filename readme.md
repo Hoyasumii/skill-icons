@@ -15,6 +15,7 @@
 - [Icons Per Line](#icons-per-line)
 - [Centering Icons](#centering-icons)
 - [Icons List](#icons-list)
+- [Development](#development)
 
 # Example
 
@@ -321,6 +322,39 @@ Here's a list of all the icons currently supported. Feel free to open an issue t
 |       `yarn`       |     <img src="./icons/Yarn-Dark.svg" width="48">      |
 |       `yew`        |      <img src="./icons/Yew-Dark.svg" width="48">      |
 |       `zig`        |      <img src="./icons/Zig-Dark.svg" width="48">      |
+
+# Development
+
+The site (builder) and the API run on the same Cloudflare Worker. Requires [Bun](https://bun.sh).
+
+```sh
+bun install
+bun run dev        # site + API at http://localhost:5173
+bun run test       # Worker tests, running inside workerd
+bun run typecheck
+bun run preview    # production build, served locally
+bun run deploy
+```
+
+### Generating an icon
+
+`skill-icon` wraps any logo SVG in the standard 256×256 rounded container and writes it to `./icons/`:
+
+```sh
+bun skill-icon generate --name Spotify --generate ./spotify.svg --category social                       # icons/Spotify-Dark.svg + icons/Spotify-Light.svg
+bun skill-icon generate --name Spotify --generate ./spotify.svg --category social --background "#1ED760" # icons/Spotify.svg
+bun skill-icon category list                                                                            # available categories
+```
+
+`--name`, `--generate` and `--category` are required. The icon is also registered in `shared/icon-categories.ts`. Add `--force` to overwrite existing files. Run `bun run icons` (or `dev`/`build`) afterwards to update `public/svg/`.
+
+| Path                | Description                                                    |
+| ------------------- | -------------------------------------------------------------- |
+| `icons/`            | Source SVGs                                                    |
+| `scripts/`          | Generates `generated/` and `public/svg/` from `icons/`         |
+| `worker/`           | API: `/icons`, `/api/icons`, `/api/svgs`                       |
+| `src/`              | Builder site (React, TypeScript, Tailwind, shadcn/ui)          |
+| `shared/`           | Code shared by both (aliases, defaults, URL builder)           |
 
 ---
 

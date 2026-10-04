@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/astro/index.ts", "src/astro/types.ts", "astro-shim.d.ts"],
+  "exclude": []
+}

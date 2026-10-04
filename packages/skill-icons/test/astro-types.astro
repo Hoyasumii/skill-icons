@@ -1,0 +1,14 @@
+---
+import { Icon, Icons } from '../src/astro/index.js';
+---
+<Icon name="react" />
+<Icon name="js" theme="auto" size={32} class="x" />
+<Icons names={['js', 'ts']} perLine={2} />
+<Icon name="not-an-icon" latest />
+<Icon name="react" latest baseUrl="https://example.com" />
+{/* @ts-expect-error unknown local name */}
+<Icon name="not-an-icon" />
+{/* @ts-expect-error unknown local name */}
+<Icons names={['js', 'not-an-icon']} />
+{/* @ts-expect-error baseUrl needs latest */}
+<Icon name="react" baseUrl="https://example.com" />
