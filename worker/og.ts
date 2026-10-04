@@ -20,8 +20,10 @@ const MONO_ADVANCE = 0.6;
 const COLUMNS = 8;
 const MAX_TILES = COLUMNS * 2;
 const GAP = 18;
-const TITLE = 'My skills';
+const DEFAULT_TITLE = 'My skills';
 const TITLE_SIZE = 64;
+/** Familjen Grotesk bold, average advance per character in em (a little generous). */
+const TITLE_ADVANCE = 0.56;
 const TITLE_GAP = 28;
 const HEADER_BOTTOM = PAD_Y + 44;
 const FOOTER_TOP = 524;
@@ -64,9 +66,14 @@ let wasmReady: Promise<void> | undefined;
 /**
  * The "shared stack" card from the design system: wordmark and skill count, title, icons in up
  * to 8 columns × 2 rows (a "+N" tile takes the last slot when there are more) and the link.
- * `iconSvgs` are full 256×256 icon SVGs; `link` is shown without its protocol.
+ * `iconSvgs` are full 256×256 icon SVGs; `link` is shown without its protocol; `title` is the
+ * link's own badge title, if it has one.
  */
-export async function renderOgPng(iconSvgs: string[], link: URL): Promise<Uint8Array> {
+export async function renderOgPng(
+  iconSvgs: string[],
+  link: URL,
+  title = DEFAULT_TITLE,
+): Promise<Uint8Array> {
   wasmReady ??= initWasm(resvgWasm);
   await wasmReady;
 
@@ -95,6 +102,13 @@ export async function renderOgPng(iconSvgs: string[], link: URL): Promise<Uint8A
     .join('');
   const more = extra > 0 ? moreTile(extra, ...(cell(shown.length) as [number, number]), size) : '';
 
+  // A long title shrinks to fit the width; the row keeps its height so the layout stays put.
+  const titleSize = Math.min(
+    TITLE_SIZE,
+    Math.floor((OG_WIDTH - PAD_X * 2) / (title.length * TITLE_ADVANCE)),
+  );
+  const titleBaseline = titleTop + TITLE_SIZE / 2 + titleSize * 0.4;
+
   const href = decodeURI(link.href.replace(/^https?:\/\//, ''));
   const shownHref = href.length <= MAX_URL_CHARS ? href : `${href.slice(0, MAX_URL_CHARS - 1)}…`;
   const footerBaseline = FOOTER_TOP + 2 + 22 + 20.5;
@@ -103,7 +117,7 @@ export async function renderOgPng(iconSvgs: string[], link: URL): Promise<Uint8A
   const canvas = `<svg width="${OG_WIDTH}" height="${OG_HEIGHT}" viewBox="0 0 ${OG_WIDTH} ${OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   ${wordmark(headerCenter)}
   ${countPill(iconSvgs.length, headerCenter)}
-  <text x="${PAD_X}" y="${titleTop + 57.6}" font-family="${SANS}" font-weight="700" font-size="${TITLE_SIZE}" letter-spacing="${-0.035 * TITLE_SIZE}" fill="${INK}">${TITLE}</text>
+  <text x="${PAD_X}" y="${titleBaseline}" font-family="${SANS}" font-weight="700" font-size="${titleSize}" letter-spacing="${-0.035 * titleSize}" fill="${INK}">${escapeHtml(title)}</text>
   ${icons}${more}
   <rect x="${PAD_X}" y="${FOOTER_TOP}" width="${OG_WIDTH - PAD_X * 2}" height="2" fill="${INK}" fill-opacity="0.14"/>
   <text x="${PAD_X}" y="${footerBaseline}" font-family="${MONO}" font-size="20" fill="${MUTED}">${escapeHtml(shownHref)}</text>

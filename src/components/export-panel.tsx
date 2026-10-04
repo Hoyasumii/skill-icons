@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import { SheetClose } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useI18n } from '@/i18n';
-import { cleanTitle } from '@/lib/badge-title';
 import { NPM_URL, PACKAGE_NAME } from '@/lib/links';
 import {
   FORMATS,
@@ -19,6 +18,7 @@ import {
   type Format,
   type FrameworkId,
 } from '@/lib/snippets';
+import { cleanTitle } from '../../shared/badge-title';
 import { API_URL, buildIconsUrl, type Theme } from '../../shared/icons';
 
 interface ExportPanelProps {

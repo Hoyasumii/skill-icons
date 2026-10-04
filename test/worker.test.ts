@@ -134,6 +134,13 @@ describe('link previews', () => {
     expect([png.getUint32(16), png.getUint32(20)]).toEqual([1200, 630]);
   });
 
+  it('renders a link title, even a long one with markup in it', async () => {
+    const title = encodeURIComponent('<Stack> do "trabalho" & mais um título bem comprido');
+    const res = await get(`/og?i=js,ts&title=${title}`);
+    expect(res.status).toBe(200);
+    expect(res.headers.get('Content-Type')).toBe('image/png');
+  });
+
   it('validates /og params', async () => {
     const res = await get('/og?i=js&theme=blue');
     expect(res.status).toBe(400);

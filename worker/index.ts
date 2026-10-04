@@ -7,6 +7,7 @@ import {
   shortNames,
   type Theme,
 } from '../shared/icons';
+import { cleanTitle } from '../shared/badge-title';
 import { handleMcp } from './mcp';
 import { isPreviewBot, ogPage, renderOgPng } from './og';
 
@@ -121,9 +122,13 @@ async function handleOg(request: Request): Promise<Response> {
 
   // The card always shows the dark icons, whatever the link's theme; its footer shows the /icons link.
   const iconSvgs = parsed.iconNames.map(i => icons[i.replace(/-light$/, '-dark')]);
+  // `title` comes from a builder page link; /icons itself has no title.
+  const title = cleanTitle(url.searchParams.get('title'));
+  const linkParams = new URLSearchParams(url.search);
+  linkParams.delete('title');
   const link = new URL('/icons', url);
-  link.search = url.search;
-  const png = await renderOgPng(iconSvgs, link);
+  link.search = linkParams.toString().replaceAll('%2C', ',');
+  const png = await renderOgPng(iconSvgs, link, title);
   const res = new Response(png, { headers: { 'Content-Type': 'image/png', ...CACHE_HEADERS } });
   await cache.put(request.url, res.clone());
   return res;

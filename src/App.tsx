@@ -54,7 +54,6 @@ function Builder() {
   const exportRef = useRef<HTMLButtonElement>(null);
   const [format, setFormat] = useState<Format>('markdown');
   const [framework, setFramework] = useState<FrameworkId>('react');
-  const [title, setTitle] = useState<string>();
 
   const filtered = useMemo(() => filterIcons(query, category), [query, category]);
   // Removing the lifted icon some other way (grid, clear all) drops the lift with it.
@@ -113,8 +112,8 @@ function Builder() {
       onPerLineChange={builder.setPerLine}
       onFormatChange={setFormat}
       onFrameworkChange={setFramework}
-      title={title}
-      onTitleChange={setTitle}
+      title={state.title}
+      onTitleChange={builder.setTitle}
     />
   );
 

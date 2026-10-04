@@ -2,7 +2,7 @@ import { PencilIcon } from 'lucide-react';
 import { useId } from 'react';
 import { SectionLabel } from '@/components/section-label';
 import { useI18n } from '@/i18n';
-import { cleanTitle, MAX_TITLE_LENGTH } from '@/lib/badge-title';
+import { cleanTitle, MAX_TITLE_LENGTH } from '../../shared/badge-title';
 import { API_URL, buildIconsUrl, type IconsUrlOptions } from '../../shared/icons';
 
 interface ReadmePreviewProps {

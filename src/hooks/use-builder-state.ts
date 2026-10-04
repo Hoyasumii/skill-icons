@@ -6,15 +6,19 @@ import {
   MIN_PER_LINE,
   type Theme,
 } from '../../shared/icons';
+import { useI18n } from '@/i18n';
 import { resolveIconName } from '@/lib/icons';
+import { cleanTitle } from '../../shared/badge-title';
 
 export interface BuilderState {
   icons: string[];
   theme: Theme;
   perLine: number;
+  /** Badge title as typed; undefined until edited, so the default follows the language. */
+  title?: string;
 }
 
-/** Reads the builder state from the page's query string (same params as /icons). */
+/** Reads the builder state from the page's query string (same params as /icons, plus the page-only `title`). */
 function readStateFromUrl(): BuilderState {
   const params = new URLSearchParams(window.location.search);
 
@@ -37,14 +41,19 @@ function readStateFromUrl(): BuilderState {
       ? perLineParam
       : DEFAULT_PER_LINE;
 
-  return { icons, theme, perLine };
+  // Not `t`: that one is already short for theme.
+  const title = cleanTitle(params.get('title'));
+
+  return { icons, theme, perLine, title };
 }
 
-function writeStateToUrl({ icons, theme, perLine }: BuilderState) {
+function writeStateToUrl({ icons, theme, perLine, title }: BuilderState, defaultTitle: string) {
   const params = new URLSearchParams();
   if (icons.length) params.set('i', icons.join(','));
   if (theme !== DEFAULT_THEME) params.set('theme', theme);
   if (perLine !== DEFAULT_PER_LINE) params.set('perline', String(perLine));
+  const cleanedTitle = cleanTitle(title);
+  if (cleanedTitle && cleanedTitle !== defaultTitle) params.set('title', cleanedTitle);
 
   const query = params.toString().replaceAll('%2C', ',');
   window.history.replaceState(null, '', query ? `?${query}` : window.location.pathname);
@@ -53,8 +62,9 @@ function writeStateToUrl({ icons, theme, perLine }: BuilderState) {
 /** Builder state kept in sync with the URL, so a configuration can be shared by link. */
 export function useBuilderState() {
   const [state, setState] = useState(readStateFromUrl);
+  const defaultTitle = useI18n().t.preview.heading;
 
-  useEffect(() => writeStateToUrl(state), [state]);
+  useEffect(() => writeStateToUrl(state, defaultTitle), [state, defaultTitle]);
 
   const toggleIcon = (name: string) =>
     setState(s => ({
@@ -80,5 +90,7 @@ export function useBuilderState() {
     clearIcons: () => setState(s => ({ ...s, icons: [] })),
     setTheme: (theme: Theme) => setState(s => ({ ...s, theme })),
     setPerLine: (perLine: number) => setState(s => ({ ...s, perLine })),
+    /** Undefined goes back to the default title. */
+    setTitle: (title: string | undefined) => setState(s => ({ ...s, title })),
   };
 }
