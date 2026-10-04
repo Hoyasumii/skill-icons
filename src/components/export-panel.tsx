@@ -2,7 +2,7 @@ import { XIcon } from 'lucide-react';
 import { CodeBlock } from '@/components/code-block';
 import { CopyButton } from '@/components/copy-button';
 import { ExportOptions } from '@/components/export-options';
-import { FrameworkRail, InstallRow } from '@/components/package-options';
+import { FrameworkPicker, InstallRow } from '@/components/package-options';
 import { ReadmePreview } from '@/components/readme-preview';
 import { StackTray, type StackProps } from '@/components/stack-tray';
 import { Button } from '@/components/ui/button';
@@ -64,11 +64,15 @@ export function ExportPanel({
     <>
       {isPackage && (
         <>
-          <FrameworkRail value={framework} onChange={onFrameworkChange} />
+          <FrameworkPicker value={framework} onChange={onFrameworkChange} />
           <InstallRow />
         </>
       )}
-      <CodeBlock value={empty ? '—' : snippet} lang={empty ? 'text' : target.lang} />
+      <CodeBlock
+        value={empty ? '—' : snippet}
+        lang={empty ? 'text' : target.lang}
+        tall={isPackage}
+      />
       <CopyButton
         key={snippet}
         value={snippet}
