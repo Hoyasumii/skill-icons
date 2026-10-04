@@ -3,7 +3,7 @@ import { detectLocale, isLocale, type Locale } from './locales';
 import { en, type Messages } from './messages/en';
 import { ptBR } from './messages/pt-BR';
 
-export { LOCALE_NAMES, LOCALES, type Locale } from './locales';
+export { LOCALE_CODES, LOCALE_NAMES, LOCALES, type Locale } from './locales';
 
 const MESSAGES: Record<Locale, Messages> = { en, 'pt-BR': ptBR };
 

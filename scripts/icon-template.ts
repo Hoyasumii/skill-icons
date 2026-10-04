@@ -2,8 +2,8 @@
 export const SIZE = 256;
 export const RADIUS = 60;
 export const PADDING = 28;
-export const DARK_BG = '#242938';
-export const LIGHT_BG = '#F4F2ED';
+export const DARK_BG = '#262626';
+export const LIGHT_BG = '#E3E3DD';
 export const DARK_FG = '#FFFFFF';
 export const LIGHT_FG = '#000000';
 

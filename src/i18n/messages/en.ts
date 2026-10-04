@@ -1,4 +1,5 @@
 import type { IconCategory } from '../../../shared/icon-categories';
+import type { PresetId } from '../../lib/presets';
 
 const categories: Record<IconCategory, string> = {
   language: 'Languages',
@@ -21,6 +22,13 @@ const categories: Record<IconCategory, string> = {
   productivity: 'Productivity',
 };
 
+const presetNames: Record<PresetId, string> = {
+  web: 'Modern web',
+  backend: 'Backend',
+  tooling: 'Tooling',
+  ai: 'AI',
+};
+
 export const en = {
   meta: {
     title: 'Skill Icons',
@@ -28,49 +36,134 @@ export const en = {
   },
   header: {
     title: 'Skill Icons',
-    tagline: 'Pick your skills and get a ready-to-paste badge for your GitHub README or resumé.',
+    tagline: 'build your stack → paste in your README',
     language: 'Language',
-    toggleTheme: 'Toggle site theme',
-  },
-  steps: {
-    choose: '1. Choose icons',
-    chooseDescription: 'Click to add or remove. Order is preserved.',
-    customize: '2. Customize',
-    copy: '3. Copy',
-    copyDescription: "Paste it into your README. This page's link also keeps your selection.",
-    emptyPreview: 'Select at least one icon to see the preview.',
+    toDark: 'Switch to dark theme',
+    toLight: 'Switch to light theme',
+    github: 'github',
+    mcp: 'mcp',
+    builder: 'builder',
   },
   picker: {
-    searchPlaceholder: (count: number, category?: string) =>
-      `Search ${count} ${category ? `${category} ` : ''}icons…`,
+    searchPlaceholder: 'Search icons, e.g. react, ts, postgres',
     searchLabel: 'Search icons',
+    categoriesLabel: 'Categories',
     filterLabel: 'Filter by category',
     all: 'All',
-    noResults: 'No icons found.',
-    noResultsFor: (query: string) => `No icons found for “${query}”.`,
+    allIcons: 'All icons',
+    gridTitle: (category: string, count: number) => `${category} · ${count}`,
+    hint: 'tap to add',
+    noResultsFor: (query: string) => `Nothing found for “${query}”.`,
+    clearSearch: 'Clear search',
+  },
+  presets: {
+    label: 'Ready-made stacks · tap to combine, tap again to remove',
+    names: presetNames,
+    missing: (count: number) => `+${count}`,
+    complete: 'in stack ✓',
   },
   categories,
-  selected: {
-    empty: 'No icons selected yet. Pick some from the list.',
-    count: (count: number) => `${count} selected · use the arrows to reorder`,
-    clearAll: 'Clear all',
+  stack: {
+    title: 'Your stack',
+    export: 'Export',
+    dockEmpty: 'Tap icons to build your stack.',
+    empty: 'Empty for now. Pick icons or use a ready-made stack.',
+    hint: 'tap an icon in your stack to move or remove it',
+    clearAll: 'clear all',
+    shuffle: 'Shuffle',
+    close: 'Close',
+    position: (name: string, position: number) => `${name}, position ${position}`,
     moveLeft: (name: string) => `Move ${name} left`,
     moveRight: (name: string) => `Move ${name} right`,
-    remove: (name: string) => `Remove ${name}`,
+    remove: 'Remove',
+  },
+  saved: {
+    label: 'My stacks',
+    count: (count: number, max: number) => `${count}/${max}`,
+    removeAll: 'remove all',
+    save: 'Save',
+    saveTitle: 'Save stack',
+    name: 'Stack name',
+    namePlaceholder: 'e.g. Work stack',
+    slots: (free: number, max: number) => `${free} of ${max} slots free · saved in this browser`,
+    full: (max: number) => `you already have ${max} saved stacks · remove one to save another`,
+    clearTitle: 'Remove all stacks?',
+    clearText: (count: number) =>
+      `This deletes ${count === 1 ? 'the saved stack' : `all ${count} saved stacks`} from this browser. It can’t be undone.`,
+    clearConfirm: 'Remove all',
+    cancel: 'Cancel',
+    toggle: (name: string) => `Select stack: ${name}`,
+    remove: (name: string) => `Remove stack: ${name}`,
   },
   options: {
     iconTheme: 'Icon theme',
     dark: 'Dark',
     light: 'Light',
     perLine: 'Icons per line',
+    fewer: 'Fewer icons per line',
+    more: 'More icons per line',
+  },
+  preview: {
+    readme: 'README preview',
+    component: 'Component preview',
+    heading: 'My skills',
+    empty: 'The preview shows up once your stack has icons.',
+    alt: 'Preview of your stack',
   },
   output: {
-    previewAlt: 'Preview of the selected icons',
+    format: 'Format',
     badgeAlt: 'My Skills',
-    htmlCentered: 'HTML (centered)',
-    copy: 'Copy',
-    copied: 'Copied to clipboard',
+    copy: (format: string) => `Copy ${format}`,
+    copied: 'Copied!',
     copyFailed: 'Could not copy. Select the text and copy it manually.',
+    linkHint: "this page's link also keeps your stack",
+  },
+  package: {
+    label: 'Package',
+    framework: 'Framework',
+    install: 'Copy install command',
+    installed: 'Command copied',
+    hint: 'ready-made components on npm:',
+  },
+  mcp: {
+    eyebrow: 'MCP server',
+    heading: 'Let Claude build your skills badge',
+    lede: 'Connect Skill Icons to Claude and ask for a badge in plain words. Claude finds the right icon ids and hands back Markdown ready for your README, with no misspelled icons silently missing.',
+    serverUrl: 'Server URL',
+    copyUrl: 'Copy URL',
+    free: 'Free and public · no sign-in, no API key',
+    install: 'Install',
+    clients: { claude: 'Claude app', code: 'Claude Code' },
+    claudeSteps: [
+      'Open Settings → Connectors in Claude, on the web or in the desktop app.',
+      'Click “Add custom connector”.',
+      'Name it Skill Icons, paste the server URL above and click Add.',
+      'In a chat, turn Skill Icons on from the tools menu.',
+    ],
+    claudeNote:
+      'On Team and Enterprise plans, an owner adds the connector in the organization settings first.',
+    codeIntro: 'Run this in your terminal:',
+    codeScope:
+      'Add --scope user to use it in every project, or commit it with the project in .mcp.json:',
+    copyCommand: 'Copy command',
+    copyConfig: 'Copy .mcp.json',
+    tools: 'Tools',
+    toolList: [
+      {
+        name: 'skill_icons_search',
+        text: 'Finds icons by id, brand name or alias (“Next.js”, “k8s”), optionally within a category, and suggests close spellings when nothing matches.',
+      },
+      {
+        name: 'skill_icons_badge',
+        text: 'Turns a list of icons into the image URL plus Markdown and HTML, and lists any name it could not match with suggestions.',
+      },
+    ],
+    tryIt: 'Try asking',
+    prompts: [
+      'Add a skills badge to my README with the stack this project uses.',
+      'Make a light-theme Skill Icons badge with TypeScript, React, Node.js and Postgres, 4 per line.',
+      'Which database icons does Skill Icons have?',
+    ],
   },
 };
 

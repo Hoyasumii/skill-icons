@@ -3,8 +3,11 @@ import { createRoot } from 'react-dom/client';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/sonner';
 import { I18nProvider } from '@/i18n';
+import { installSixSeven } from '@/lib/easter-egg';
 import { App } from './App';
 import './index.css';
+
+installSixSeven();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

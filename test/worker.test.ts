@@ -91,3 +91,51 @@ describe('/api', () => {
     expect(res.status).toBe(404);
   });
 });
+
+describe('link previews', () => {
+  const asBot = (path: string, userAgent: string) =>
+    exports.default.fetch(`https://example.com${path}`, { headers: { 'User-Agent': userAgent } });
+
+  it.each([
+    'Mozilla/5.0 (compatible; Discordbot/2.0; +https://discordapp.com)',
+    'Twitterbot/1.0',
+    'facebookexternalhit/1.1',
+    'WhatsApp/2.23.20.0',
+  ])('serves OpenGraph tags to %s', async userAgent => {
+    const res = await asBot('/icons?i=js,ts&theme=light', userAgent);
+    expect(res.headers.get('Content-Type')).toContain('text/html');
+    expect(res.headers.get('Cache-Control')).toBe('no-store');
+    const html = await res.text();
+    expect(html).toContain(
+      '<meta property="og:image" content="https://example.com/og?i=js,ts&amp;theme=light" />',
+    );
+    expect(html).toContain('javascript, typescript');
+  });
+
+  it.each(['github-camo (876de43e)', 'Mozilla/5.0 (Macintosh) Chrome/140.0'])(
+    'keeps serving the SVG to %s',
+    async userAgent => {
+      const res = await asBot('/icons?i=js,ts', userAgent);
+      expect(res.headers.get('Content-Type')).toBe('image/svg+xml');
+    },
+  );
+
+  it('still rejects invalid params for bots', async () => {
+    const res = await asBot('/icons?i=notanicon', 'Discordbot/2.0');
+    expect(res.status).toBe(400);
+  });
+
+  it('renders a 1200x630 PNG', async () => {
+    const res = await get('/og?i=js,ts,react');
+    expect(res.status).toBe(200);
+    expect(res.headers.get('Content-Type')).toBe('image/png');
+    const png = new DataView(await res.arrayBuffer());
+    expect(png.getUint32(0)).toBe(0x89504e47);
+    expect([png.getUint32(16), png.getUint32(20)]).toEqual([1200, 630]);
+  });
+
+  it('validates /og params', async () => {
+    const res = await get('/og?i=js&theme=blue');
+    expect(res.status).toBe(400);
+  });
+});

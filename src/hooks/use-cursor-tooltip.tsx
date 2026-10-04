@@ -61,7 +61,7 @@ export function useCursorTooltip() {
       data-state={open ? 'open' : 'closed'}
       className="group pointer-events-none fixed top-0 left-0 z-50"
     >
-      <div className="origin-bottom rounded-md border border-foreground/10 bg-popover/25 px-2 py-1 text-xs text-popover-foreground shadow-lg backdrop-blur-sm transition-[opacity,scale,translate] duration-150 ease-out group-data-[side=bottom]:origin-top group-data-[state=closed]:translate-y-1 group-data-[state=closed]:scale-90 group-data-[state=closed]:opacity-0 group-data-[side=bottom]:group-data-[state=closed]:-translate-y-1 motion-reduce:transition-none">
+      <div className="origin-bottom rounded-sm border bg-popover px-2 py-1 text-[13px] text-popover-foreground transition-[opacity,scale,translate] duration-150 ease-out group-data-[side=bottom]:origin-top group-data-[state=closed]:translate-y-1 group-data-[state=closed]:scale-90 group-data-[state=closed]:opacity-0 group-data-[side=bottom]:group-data-[state=closed]:-translate-y-1 motion-reduce:transition-none">
         {content}
       </div>
     </div>,

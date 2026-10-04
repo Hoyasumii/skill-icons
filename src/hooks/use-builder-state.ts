@@ -75,6 +75,8 @@ export function useBuilderState() {
     state,
     toggleIcon,
     moveIcon,
+    /** Replaces the whole stack: a shuffled copy or a stack (de)selected. */
+    setIcons: (icons: string[]) => setState(s => ({ ...s, icons })),
     clearIcons: () => setState(s => ({ ...s, icons: [] })),
     setTheme: (theme: Theme) => setState(s => ({ ...s, theme })),
     setPerLine: (perLine: number) => setState(s => ({ ...s, perLine })),
