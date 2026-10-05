@@ -141,14 +141,20 @@ function handleIcons(request: Request, url: URL): Response {
   });
 }
 
+/** Part of /og's cache key only; the public URLs never carry it. */
+const OG_CACHE_VERSION = '2';
+
 async function handleOg(request: Request): Promise<Response> {
   const url = new URL(request.url);
   const parsed = parseIconsRequest(url.searchParams);
   if (parsed instanceof Response) return parsed;
 
-  // Rasterizing is the expensive part, so each URL is rendered once per colo.
+  // Rasterizing is the expensive part, so each URL is rendered once per colo. Bump OG_CACHE_VERSION
+  // when the card changes, so PNGs drawn by an older card don't outlive it.
+  const cacheKey = new URL(request.url);
+  cacheKey.searchParams.set('v', OG_CACHE_VERSION);
   const cache = caches.default;
-  const cached = await cache.match(request.url);
+  const cached = await cache.match(cacheKey.href);
   if (cached) return cached;
 
   // The card shows the icons in the link's theme on its `bg`; its footer shows the /icons link.
@@ -159,11 +165,11 @@ async function handleOg(request: Request): Promise<Response> {
   linkParams.delete('title');
   const link = new URL('/icons', url);
   link.search = linkParams.toString().replaceAll('%2C', ',');
-  const png = await renderOgPng(iconSvgs, link, title, parsed.bg);
+  const png = await renderOgPng(iconSvgs, link, title, parsed.bg, parsed.theme);
   const res = new Response(png, {
     headers: { 'Content-Type': 'image/png', ...CACHE_HEADERS, ...NOINDEX },
   });
-  await cache.put(request.url, res.clone());
+  await cache.put(cacheKey.href, res.clone());
   return res;
 }
 
