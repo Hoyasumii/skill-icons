@@ -11,7 +11,7 @@ import {
 import { cleanTitle } from '../shared/badge-title';
 import { localeRedirect } from '../shared/page-meta';
 import { handleMcp } from './mcp';
-import { isPreviewBot, ogPage, renderOgPng } from './og';
+import { isPreviewBot, ogPage, renderOgPng, withSiteOgBg } from './og';
 
 const icons: Record<string, string> = iconsJson;
 const iconNameList = [...new Set(Object.keys(icons).map(i => i.split('-')[0]))];
@@ -194,7 +194,10 @@ async function handlePage(request: Request, env: Env, url: URL, path: string): P
       },
     });
 
-  const res = await env.ASSETS.fetch(new Request(new URL(`/${path}`, url), request));
+  const res = withSiteOgBg(
+    await env.ASSETS.fetch(new Request(new URL(`/${path}`, url), request)),
+    url,
+  );
   const page = new Response(res.body, res);
   page.headers.append('Vary', vary.Vary);
   return page;
@@ -222,7 +225,8 @@ export default {
       if (path === 'api/icons') return json(iconNameList);
       if (path === 'api/svgs') return json(icons);
       if (path.startsWith('api/')) return new Response('Not found', { status: 404 });
-      return env.ASSETS.fetch(request);
+      // The other language's pages ("/pt-BR/", "/pt-BR/mcp") are plain assets, bar the link preview.
+      return withSiteOgBg(await env.ASSETS.fetch(request), url);
     } catch (err) {
       return new Response(err instanceof Error ? err.stack : String(err), { status: 500 });
     }

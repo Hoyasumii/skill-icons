@@ -25,6 +25,7 @@ import {
   ogOutline,
 } from '../shared/og-layout';
 import { DEFAULT_THEME, type Theme } from '../shared/icons';
+import { OG_SITE_IMAGE, OG_SITE_IMAGE_DARK } from '../shared/page-meta';
 
 const SANS = 'Familjen Grotesk';
 const MONO = 'IBM Plex Mono';
@@ -166,6 +167,23 @@ function escapeHtml(value: string): string {
     .replace(/"/g, '&quot;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
+}
+
+/** A site page asked for with `?bg=dark` gets the dark link preview card; anything else passes through. */
+export function withSiteOgBg(res: Response, url: URL): Response {
+  if (url.searchParams.get('bg') !== 'dark') return res;
+  if (!res.headers.get('Content-Type')?.includes('text/html')) return res;
+  const swap = {
+    element(meta: Element) {
+      const image = meta.getAttribute('content');
+      if (image?.endsWith(`/${OG_SITE_IMAGE}`))
+        meta.setAttribute('content', image.slice(0, -OG_SITE_IMAGE.length) + OG_SITE_IMAGE_DARK);
+    },
+  };
+  return new HTMLRewriter()
+    .on('meta[property="og:image"]', swap)
+    .on('meta[name="twitter:image"]', swap)
+    .transform(res);
 }
 
 /** Minimal page carrying the OpenGraph tags for an /icons link. */

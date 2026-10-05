@@ -1,5 +1,10 @@
 <p align="center">
-  <a href="https://skill-icons.alanreisanjo.workers.dev"><img src="./public/og-site.png" alt="Skill Icons: build your stack, paste it in your README"/></a>
+  <a href="https://skill-icons.alanreisanjo.workers.dev">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="./public/og-site-dark.png">
+      <img src="./public/og-site.png" alt="Skill Icons: build your stack, paste it in your README"/>
+    </picture>
+  </a>
 </p>
 <h3 align="center">Showcase your skills on your GitHub or resumé with ease!</h3>
 
@@ -132,6 +137,8 @@ An `/icons` link works in more places than a README:
 - **Images** (`<img>`, Markdown images, GitHub's image proxy) get the SVG.
 - **Chat and social apps** (Discord, Slack, X, WhatsApp, Telegram, LinkedIn, Bluesky and others) get a preview card with your icons, the badge title and the link. The card image is also available directly at `/og?i=…`.
 - **People opening the link** in a browser are sent to the builder.
+
+Cards are light by default. Add `&bg=dark` to an `/icons` link for a dark card, or `?bg=dark` to a link to the site itself (`https://skill-icons.alanreisanjo.workers.dev/?bg=dark`) to share it with the dark cover.
 
 # npm Package
 

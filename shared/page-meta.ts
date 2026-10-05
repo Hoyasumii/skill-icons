@@ -120,6 +120,10 @@ export function localeRedirect(
   return preferred === DEFAULT_LOCALE ? undefined : base + pagePath(page, preferred);
 }
 
+/** The site's link preview images, at the site root: the light card, and the dark one a page link with `?bg=dark` gets. */
+export const OG_SITE_IMAGE = 'og-site.png';
+export const OG_SITE_IMAGE_DARK = 'og-site-dark.png';
+
 const OG_LOCALES: Record<Locale, string> = { en: 'en_US', 'pt-BR': 'pt_BR' };
 
 export function escapeHtml(value: string): string {
@@ -176,7 +180,7 @@ function structuredData(page: Page, locale: Locale, siteUrl: string): string {
 export function pageHead(page: Page, locale: Locale, siteUrl: string): string {
   const { title, description, imageAlt } = PAGE_META[locale][page];
   const url = siteUrl + pagePath(page, locale);
-  const image = `${siteUrl}og-site.png`;
+  const image = siteUrl + OG_SITE_IMAGE;
 
   const property = (name: string, content: string) =>
     `<meta property="${name}" content="${escapeHtml(content)}" />`;

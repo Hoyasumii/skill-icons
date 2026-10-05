@@ -1,6 +1,6 @@
 import { exports } from 'cloudflare:workers';
 import { describe, expect, it } from 'vitest';
-import { buildOgSvg } from '../worker/og';
+import { buildOgSvg, withSiteOgBg } from '../worker/og';
 
 const get = (path: string) => exports.default.fetch(`https://example.com${path}`);
 
@@ -220,6 +220,36 @@ describe('pages without a language prefix', () => {
 
   // Pages that stay put are served from the build's assets, which this test Worker doesn't have;
   // shared/page-meta's tests cover when the language stays.
+});
+
+describe('the site link preview', () => {
+  const head = `<meta property="og:image" content="https://example.com/og-site.png" />
+    <meta property="og:image:alt" content="Skill Icons" />
+    <meta name="twitter:image" content="https://example.com/og-site.png" />`;
+  const page = (type = 'text/html; charset=utf-8') =>
+    new Response(`<html><head>${head}</head></html>`, { headers: { 'Content-Type': type } });
+
+  it('swaps in the dark card for ?bg=dark', async () => {
+    const res = withSiteOgBg(page(), new URL('https://example.com/pt-BR/?bg=dark'));
+    const html = await res.text();
+    expect(html).toContain(
+      '<meta property="og:image" content="https://example.com/og-site-dark.png" />',
+    );
+    expect(html).toContain(
+      '<meta name="twitter:image" content="https://example.com/og-site-dark.png" />',
+    );
+    expect(html).not.toContain('og-site.png');
+  });
+
+  it.each(['/', '/?bg=light', '/mcp?bg=nope'])('keeps the light card for %s', async path => {
+    const res = withSiteOgBg(page(), new URL(`https://example.com${path}`));
+    expect(await res.text()).toContain(head);
+  });
+
+  it('leaves responses other than pages alone', async () => {
+    const res = withSiteOgBg(page('text/plain'), new URL('https://example.com/?bg=dark'));
+    expect(await res.text()).toContain(head);
+  });
 });
 
 describe('search engines', () => {
