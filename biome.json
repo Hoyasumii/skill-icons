@@ -1,6 +1,38 @@
 {
   "$schema": "https://biomejs.dev/schemas/latest/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "includes": [
+      "**",
+      "!**/icons",
+      "!**/generated",
+      "!public/svg",
+      "!**/dist",
+      "!src/components/ui",
+      "!worker-configuration.d.ts",
+      "!bun.lock",
+      "!shared/icon-categories.ts",
+      "!.github/ISSUE_TEMPLATE"
+    ]
+  },
   "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "arrowParentheses": "asNeeded",
+      "semicolons": "always"
+    }
+  },
+  "linter": {
     "enabled": false
   },
   "assist": {

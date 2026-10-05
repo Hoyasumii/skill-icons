@@ -1,17 +1,17 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
-@import '@fontsource-variable/familjen-grotesk';
-@import '@fontsource/ibm-plex-mono/400.css';
-@import '@fontsource/ibm-plex-mono/500.css';
-@import '@fontsource/ibm-plex-mono/600.css';
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/familjen-grotesk";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/600.css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: 'Familjen Grotesk Variable', system-ui, sans-serif;
+  --font-sans: "Familjen Grotesk Variable", system-ui, sans-serif;
   --font-heading: var(--font-sans);
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -102,7 +102,7 @@
     outline: none;
   }
   button:not(:disabled),
-  [role='button']:not(:disabled) {
+  [role="button"]:not(:disabled) {
     cursor: pointer;
   }
   ::view-transition-old(root),
@@ -126,14 +126,14 @@
  * and the item it leaves keeps its color until the fill has gone. Unlayered so it wins over
  * the items' own transition utilities.
  */
-:has(> [data-slot='sliding-indicator']) > :not([data-slot='sliding-indicator']) {
+:has(> [data-slot="sliding-indicator"]) > :not([data-slot="sliding-indicator"]) {
   transition:
     color 120ms 220ms,
     background-color 150ms,
     border-color 150ms;
 }
-:has(> [data-slot='sliding-indicator'])
-  > :is([data-state='on'], [data-state='active'], [aria-pressed='true']) {
+:has(> [data-slot="sliding-indicator"])
+  > :is([data-state="on"], [data-state="active"], [aria-pressed="true"]) {
   transition-delay: 70ms, 0ms, 0ms;
 }
 

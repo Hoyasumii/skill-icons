@@ -41,7 +41,13 @@ interface I18nContextValue {
 const I18nContext = createContext<I18nContextValue | null>(null);
 
 /** `locale` is the language to start in; the browser's choice (initialLocale) when left out. */
-export function I18nProvider({ locale: initial, children }: { locale?: Locale; children: ReactNode }) {
+export function I18nProvider({
+  locale: initial,
+  children,
+}: {
+  locale?: Locale;
+  children: ReactNode;
+}) {
   const [locale, setLocaleState] = useState(() => initial ?? initialLocale());
   const t = MESSAGES[locale];
 

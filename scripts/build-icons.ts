@@ -51,20 +51,33 @@ const themed = new Set(
 );
 const names = [...new Set(Object.keys(icons).map(i => i.split('-')[0]))].sort();
 const displayNameById = new Map<string, string>();
-for (const file of readdirSync(ICONS_DIR).filter(f => f.endsWith('.svg')).sort()) {
+for (const file of readdirSync(ICONS_DIR)
+  .filter(f => f.endsWith('.svg'))
+  .sort()) {
   const base = file.replace(/\.svg$/, '').replace(/-(Dark|Light)$/, '');
   const id = base.toLowerCase();
   if (!displayNameById.has(id)) displayNameById.set(id, displayNames[id] ?? base);
 }
 const unknownDisplayNames = Object.keys(displayNames).filter(id => !displayNameById.has(id));
-if (unknownDisplayNames.length) throw new Error(`Unknown icons in displayNames: ${unknownDisplayNames.join(', ')}`);
+if (unknownDisplayNames.length)
+  throw new Error(`Unknown icons in displayNames: ${unknownDisplayNames.join(', ')}`);
 const missing = names.filter(id => !categoryById[id]);
-if (missing.length) throw new Error(`Add a category in shared/icon-categories.ts for: ${missing.join(', ')}`);
-const meta = names.map(name => ({ name, displayName: displayNameById.get(name)!, themed: themed.has(name), category: categoryById[name] }));
+if (missing.length)
+  throw new Error(`Add a category in shared/icon-categories.ts for: ${missing.join(', ')}`);
+const meta = names.map(name => ({
+  name,
+  displayName: displayNameById.get(name)!,
+  themed: themed.has(name),
+  category: categoryById[name],
+}));
 writeFileSync(`${GENERATED_DIR}/icon-list.json`, JSON.stringify(meta));
 
 // Public catalog served at /icons.json: one entry per icon, with its display name and category.
-const catalog = names.map(id => ({ id, name: displayNameById.get(id)!, category: categoryById[id] }));
+const catalog = names.map(id => ({
+  id,
+  name: displayNameById.get(id)!,
+  category: categoryById[id],
+}));
 writeFileSync('./public/icons.json', `${JSON.stringify(catalog, null, 2)}\n`);
 
 // Package catalog: names, aliases and defaults mirrored from shared/icons.ts.

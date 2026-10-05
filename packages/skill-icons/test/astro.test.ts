@@ -13,7 +13,8 @@ const html = async (component: typeof Icon | typeof Icons, props: Record<string,
     .replace(/ data-astro-source-(file|loc)="[^"]*"/g, '')
     .trim();
 
-const remote = (query: string) => `https://skill-icons.alanreisanjo.workers.dev/icons?${query.replaceAll('&', '&amp;')}`;
+const remote = (query: string) =>
+  `https://skill-icons.alanreisanjo.workers.dev/icons?${query.replaceAll('&', '&amp;')}`;
 const DATA = 'data:image/svg+xml;charset=utf-8,%3Csvg';
 
 describe('Icon', () => {

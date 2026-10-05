@@ -1,7 +1,15 @@
 import type { HighlighterCore } from 'shiki/core';
 
 export type CodeLang =
-  'bash' | 'html' | 'json' | 'markdown' | 'tsx' | 'vue' | 'svelte' | 'astro' | 'text';
+  | 'bash'
+  | 'html'
+  | 'json'
+  | 'markdown'
+  | 'tsx'
+  | 'vue'
+  | 'svelte'
+  | 'astro'
+  | 'text';
 
 let highlighter: Promise<HighlighterCore> | undefined;
 

@@ -2,19 +2,10 @@
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "workspaces": {
     ".": {
-      "entry": [
-        "scripts/*.ts",
-        "src/prerender.tsx"
-      ],
-      "ignore": [
-        "src/components/ui/**"
-      ],
-      "ignoreDependencies": [
-        "cloudflare"
-      ]
+      "entry": ["scripts/*.ts", "src/prerender.tsx"],
+      "ignore": ["src/components/ui/**"],
+      "ignoreDependencies": ["cloudflare"]
     }
   },
-  "ignoreWorkspaces": [
-    "packages/**"
-  ]
+  "ignoreWorkspaces": ["packages/**"]
 }

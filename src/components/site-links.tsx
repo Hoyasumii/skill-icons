@@ -20,7 +20,12 @@ export function SiteLinks({ page, tone = 'muted', className }: SiteLinksProps) {
   const links = [
     { href: REPO_URL, label: t.header.github, Icon: GithubMarkIcon },
     { href: NPM_URL, label: t.header.npm, title: PACKAGE_NAME, Icon: PackageIcon },
-    { href: pageHref('mcp', locale), label: t.header.mcp, current: page === 'mcp', Icon: McpMarkIcon },
+    {
+      href: pageHref('mcp', locale),
+      label: t.header.mcp,
+      current: page === 'mcp',
+      Icon: McpMarkIcon,
+    },
   ];
 
   return (

@@ -1,6 +1,6 @@
 <!-- Type tests for templates, checked by `svelte-check --tsconfig tsconfig.svelte.json`. -->
 <script lang="ts">
-  import { Icon, Icons, SkillIconsProvider } from '../../src/svelte/index.js';
+import { Icon, Icons, SkillIconsProvider } from '../../src/svelte/index.js';
 </script>
 
 <SkillIconsProvider theme="auto">

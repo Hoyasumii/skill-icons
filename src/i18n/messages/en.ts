@@ -150,7 +150,11 @@ export const en = {
     toc: 'On this page',
     nav: { overview: 'Overview', install: 'Install', why: 'Why use the MCP' },
     eyebrow: (version: string) => `MCP server · skill-icons ${version}`,
-    heading: { before: 'Your skills badge, asked for in ', highlight: 'plain language', after: '.' },
+    heading: {
+      before: 'Your skills badge, asked for in ',
+      highlight: 'plain language',
+      after: '.',
+    },
     lead: (count: number) =>
       `The server has two tools, both read-only. They change nothing and call no outside service, because the data for all ${count} icons is built into the Worker.`,
     chips: ['Streamable HTTP', 'stateless', 'no sign-in'],
@@ -266,7 +270,11 @@ export const en = {
         `, each with up to ${count} suggestions:`,
       ],
       none: 'If no name exists',
-      noneText: (code: Code) => ['The response is flagged as an error (', code('isError: true'), '):'],
+      noneText: (code: Code) => [
+        'The response is flagged as an error (',
+        code('isError: true'),
+        '):',
+      ],
     },
     why: {
       title: 'Why use the MCP instead of building the URL by hand',

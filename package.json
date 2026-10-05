@@ -18,7 +18,7 @@
     "test": "bun run icons && vitest run",
     "typecheck": "bun run icons && tsc -b",
     "cf-typegen": "wrangler types",
-    "format": "prettier --write .",
+    "format": "biome format --write .",
     "prepare": "husky",
     "knip": "knip"
   },
@@ -42,6 +42,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.15",
     "@cloudflare/vite-plugin": "^1.62.5",
     "@cloudflare/vitest-pool-workers": "^0.22.0",
     "@commitlint/cli": "^21.2.3",
@@ -55,7 +56,6 @@
     "@vitest/snapshot": "^4.1",
     "husky": "^9.1.7",
     "knip": "^6.39.0",
-    "prettier": "^3.9.9",
     "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite": "^8.3.2",

@@ -1,11 +1,6 @@
 import { exports } from 'cloudflare:workers';
 import { describe, expect, it } from 'vitest';
-import {
-  buildBadge,
-  MCP_EXAMPLES,
-  RESOLUTION_EXAMPLES,
-  searchIcons,
-} from '../shared/mcp';
+import { buildBadge, MCP_EXAMPLES, RESOLUTION_EXAMPLES, searchIcons } from '../shared/mcp';
 import worker from '../worker';
 
 const MCP_HEADERS = {

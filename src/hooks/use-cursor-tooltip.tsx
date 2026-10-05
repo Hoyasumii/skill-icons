@@ -55,20 +55,22 @@ export function useCursorTooltip() {
   // Always mounted (closed and invisible until first use) so entering animates from the
   // closed state too. The outer element is positioned; the inner one animates, so their
   // transforms don't clash. Portals aren't prerendered, so it mounts right after hydration.
-  const tooltip = hydrated && createPortal(
-    <div
-      ref={tooltipRef}
-      role="tooltip"
-      aria-hidden={!open}
-      data-state={open ? 'open' : 'closed'}
-      className="group pointer-events-none fixed top-0 left-0 z-50"
-    >
-      <div className="origin-bottom rounded-sm border bg-popover px-2 py-1 text-[13px] text-popover-foreground transition-[opacity,scale,translate] duration-150 ease-out group-data-[side=bottom]:origin-top group-data-[state=closed]:translate-y-1 group-data-[state=closed]:scale-90 group-data-[state=closed]:opacity-0 group-data-[side=bottom]:group-data-[state=closed]:-translate-y-1 motion-reduce:transition-none">
-        {content}
-      </div>
-    </div>,
-    document.body,
-  );
+  const tooltip =
+    hydrated &&
+    createPortal(
+      <div
+        ref={tooltipRef}
+        role="tooltip"
+        aria-hidden={!open}
+        data-state={open ? 'open' : 'closed'}
+        className="group pointer-events-none fixed top-0 left-0 z-50"
+      >
+        <div className="origin-bottom rounded-sm border bg-popover px-2 py-1 text-[13px] text-popover-foreground transition-[opacity,scale,translate] duration-150 ease-out group-data-[side=bottom]:origin-top group-data-[state=closed]:translate-y-1 group-data-[state=closed]:scale-90 group-data-[state=closed]:opacity-0 group-data-[side=bottom]:group-data-[state=closed]:-translate-y-1 motion-reduce:transition-none">
+          {content}
+        </div>
+      </div>,
+      document.body,
+    );
 
   return { bind, hide, tooltip };
 }

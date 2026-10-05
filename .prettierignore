@@ -1,9 +1,0 @@
-icons/
-generated/
-public/svg/
-dist/
-src/components/ui/
-worker-configuration.d.ts
-bun.lock
-.github/ISSUE_TEMPLATE/
-packages/skill-icons/src/generated/

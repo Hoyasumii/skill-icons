@@ -12,7 +12,15 @@ import {
 } from '../generated/catalog.js';
 import { loaders } from '../generated/loaders.js';
 
-export { API_URL, DEFAULT_PER_LINE, DEFAULT_THEME, iconNames, MAX_PER_LINE, MIN_PER_LINE, SITE_URL };
+export {
+  API_URL,
+  DEFAULT_PER_LINE,
+  DEFAULT_THEME,
+  iconNames,
+  MAX_PER_LINE,
+  MIN_PER_LINE,
+  SITE_URL,
+};
 
 export type Theme = 'dark' | 'light';
 

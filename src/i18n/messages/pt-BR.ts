@@ -136,7 +136,11 @@ export const ptBR: Messages = {
     toc: 'Nesta página',
     nav: { overview: 'Visão geral', install: 'Instalar', why: 'Por que usar o MCP' },
     eyebrow: version => `Servidor MCP · skill-icons ${version}`,
-    heading: { before: 'Seu badge de skills, pedido em ', highlight: 'linguagem natural', after: '.' },
+    heading: {
+      before: 'Seu badge de skills, pedido em ',
+      highlight: 'linguagem natural',
+      after: '.',
+    },
     lead: count =>
       `O servidor tem duas tools, as duas só de leitura. Elas não mudam nada e não chamam serviço externo, porque os dados dos ${count} ícones estão embutidos no Worker.`,
     chips: ['Streamable HTTP', 'sem estado', 'sem login'],
@@ -215,7 +219,8 @@ export const ptBR: Messages = {
         '.',
       ],
       noMatch: 'Quando nada é encontrado',
-      noMatchText: count => `Isso não conta como erro. A tool sugere até ${count} grafias próximas:`,
+      noMatchText: count =>
+        `Isso não conta como erro. A tool sugere até ${count} grafias próximas:`,
     },
     badge: {
       summary:

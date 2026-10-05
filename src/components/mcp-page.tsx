@@ -32,7 +32,10 @@ const json = (value: unknown) => JSON.stringify(value, null, 2);
 /** Exactly the text the server answers with (worker/mcp.ts sends the same JSON). */
 const answer = ({ data }: McpAnswer) => json(data);
 /** `{ "query": "postgres" }`, for an example's title. */
-const inline = (value: unknown) => JSON.stringify(value).replace(/([{:,])/g, '$1 ').replace(/}$/, ' }');
+const inline = (value: unknown) =>
+  JSON.stringify(value)
+    .replace(/([{:,])/g, '$1 ')
+    .replace(/}$/, ' }');
 
 type ClientId = keyof typeof MCP_CLIENTS;
 
@@ -71,7 +74,10 @@ export function McpPage() {
       <SiteHeader page="mcp" className="sticky top-0" />
 
       <div className="mx-auto flex w-full max-w-[1152px] flex-1 flex-wrap items-start gap-12 px-4 pt-10 pb-20">
-        <nav aria-labelledby="mcp-toc" className="flex max-w-[232px] flex-[1_1_200px] flex-col gap-1">
+        <nav
+          aria-labelledby="mcp-toc"
+          className="flex max-w-[232px] flex-[1_1_200px] flex-col gap-1"
+        >
           <span
             id="mcp-toc"
             className="px-2.5 pb-2 font-mono text-[11px] tracking-[0.08em] text-muted-foreground uppercase"
@@ -312,7 +318,14 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 }
 
 function Example({ value }: { value: string }) {
-  return <CodeBlock value={value} lang="json" size="full" className="[&_pre]:p-3.5! [&_pre]:leading-5!" />;
+  return (
+    <CodeBlock
+      value={value}
+      lang="json"
+      size="full"
+      className="[&_pre]:p-3.5! [&_pre]:leading-5!"
+    />
+  );
 }
 
 function Note({ children }: { children: ReactNode }) {
@@ -391,14 +404,12 @@ function SearchTool() {
 function BadgeTool() {
   const { t } = useI18n();
   const b = t.mcp.badge;
-  const steps = RESOLUTION_EXAMPLES.map(
-    (examples, index): [ReactNode, ReactNode] => [
-      examples
-        .map(([input, id]) => (input.toLowerCase() === id ? input : `${input} → ${id}`))
-        .join(' · '),
-      b.resolutionSteps[index],
-    ],
-  );
+  const steps = RESOLUTION_EXAMPLES.map((examples, index): [ReactNode, ReactNode] => [
+    examples
+      .map(([input, id]) => (input.toLowerCase() === id ? input : `${input} → ${id}`))
+      .join(' · '),
+    b.resolutionSteps[index],
+  ]);
 
   return (
     <ToolCard

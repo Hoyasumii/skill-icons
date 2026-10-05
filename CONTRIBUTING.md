@@ -4,7 +4,7 @@ Thanks for helping. The short version:
 
 - You need [Bun](https://bun.sh). Run `bun install` first: it also installs the git hooks (husky).
 - `bun run dev` starts the site and the API at <http://localhost:5173>. Before opening a pull request, run
-  `bun run typecheck` and `bun run test`. `bun run knip` finds unused code and `bun run format` formats the files.
+  `bun run typecheck` and `bun run test`. `bun run knip` finds unused code and `bun run format` formats the files with Biome.
 - Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat: ...`, `fix: ...`),
   enforced by commitlint.
 - Every push to `main` runs the deploy workflow (`.github/workflows/deploy.yml`): typecheck, tests and build.

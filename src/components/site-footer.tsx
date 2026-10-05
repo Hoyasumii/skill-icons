@@ -15,7 +15,10 @@ export function SiteFooter({ page, variant }: SiteFooterProps) {
   const credit = (
     <span>
       {t.footer.madeBy}{' '}
-      <a href={AUTHOR_URL} className="text-muted-foreground underline underline-offset-3 hover:text-foreground">
+      <a
+        href={AUTHOR_URL}
+        className="text-muted-foreground underline underline-offset-3 hover:text-foreground"
+      >
         {AUTHOR_NAME}
       </a>{' '}
       · {t.footer.credit}{' '}
