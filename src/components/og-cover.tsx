@@ -2,24 +2,36 @@ import type { CSSProperties } from 'react';
 import { iconSrc } from '@/lib/icons';
 import type { Theme } from '../../shared/icons';
 import {
+  OG_ACCENT,
+  OG_DOT_RADIUS,
+  OG_DOT_SPACING,
   OG_FOOTER_BASELINE,
   OG_FOOTER_TOP,
   OG_HEADER_HEIGHT,
   OG_HEIGHT,
+  OG_INK,
   OG_PAD_X,
   OG_PAD_Y,
+  OG_PALETTE,
+  OG_TILE_RADIUS,
   OG_TITLE_SIZE,
   OG_WIDTH,
   ogLayout,
+  ogNeedsOutline,
 } from '../../shared/og-layout';
 
 /** px of the 1200px-wide image → container units, so the card scales with its box. */
 const u = (px: number) => `${(px / OG_WIDTH) * 100}cqw`;
+/** `color` at `opacity`, like an SVG fill-opacity. */
+const alpha = (color: string, opacity: number) =>
+  `color-mix(in srgb, ${color} ${opacity * 100}%, transparent)`;
 
 interface OgCoverProps {
   icons: string[];
-  /** The icon theme; the background follows the site theme. */
+  /** The icon theme. */
   theme: Theme;
+  /** The card's background: the site theme, as the PNG's `bg`. */
+  bg: Theme;
   title: string;
   /** The /icons link the footer shows. */
   link: string;
@@ -27,15 +39,17 @@ interface OgCoverProps {
 
 /**
  * The card the Worker renders at /og, drawn in HTML from the same geometry (shared/og-layout.ts).
- * Its colors are the site theme's card, ink and muted (the PNG's `bg`), so it changes with the
- * page; its icons are in the icon theme.
+ * Its colors are OG_PALETTE[bg], as in the PNG, and `bg` follows the site theme, so it changes with
+ * the page; its icons are in the icon theme, outlined when they share the card's tone.
  */
-export function OgCover({ icons, theme, title, link }: OgCoverProps) {
+export function OgCover({ icons, theme, bg, title, link }: OgCoverProps) {
   const { shown, extra, size, titleTop, titleSize, cell, href } = ogLayout(
     icons.length,
     title,
     link,
   );
+  const { background, ink, muted, line, dash, cta, ctaWeight, dots } = OG_PALETTE[bg];
+  const outlined = ogNeedsOutline(bg, theme);
   const headerCenter = OG_PAD_Y + OG_HEADER_HEIGHT / 2;
   const at = (x: number, y: number): CSSProperties => ({
     position: 'absolute',
@@ -51,8 +65,18 @@ export function OgCover({ icons, theme, title, link }: OgCoverProps) {
   return (
     <div className="@container">
       <div
-        className="relative overflow-hidden bg-card leading-none text-foreground"
-        style={{ aspectRatio: `${OG_WIDTH} / ${OG_HEIGHT}` }}
+        className="relative overflow-hidden leading-none"
+        style={{
+          aspectRatio: `${OG_WIDTH} / ${OG_HEIGHT}`,
+          backgroundColor: background,
+          color: ink,
+          // Dots centered on multiples of OG_DOT_SPACING, as in the PNG's pattern.
+          ...(dots > 0 && {
+            backgroundImage: `radial-gradient(circle, ${alpha(ink, dots)} ${u(OG_DOT_RADIUS)}, transparent ${u(OG_DOT_RADIUS + 0.1)})`,
+            backgroundSize: `${u(OG_DOT_SPACING)} ${u(OG_DOT_SPACING)}`,
+            backgroundPosition: `${u(-OG_DOT_SPACING / 2)} ${u(-OG_DOT_SPACING / 2)}`,
+          }),
+        }}
       >
         {/* Wordmark: "skill", a 12px square 7px either side, "icons". */}
         <span
@@ -65,20 +89,23 @@ export function OgCover({ icons, theme, title, link }: OgCoverProps) {
         >
           skill
           <span
-            className="inline-block rotate-12 bg-highlight"
+            className="inline-block rotate-12"
             style={{
               width: u(12),
               height: u(12),
               margin: `0 ${u(7)}`,
-              border: `${u(3)} solid currentColor`,
+              background: OG_ACCENT,
+              border: `${u(3)} solid ${OG_INK}`,
             }}
           />
           icons
         </span>
 
         <span
-          className="absolute flex items-center bg-highlight font-mono font-semibold text-highlight-foreground"
+          className="absolute flex items-center font-mono font-semibold"
           style={{
+            background: OG_ACCENT,
+            color: OG_INK,
             right: u(OG_PAD_X),
             top: u(headerCenter - 22),
             height: u(44),
@@ -104,15 +131,27 @@ export function OgCover({ icons, theme, title, link }: OgCoverProps) {
         </span>
 
         {icons.slice(0, shown).map((name, index) => (
-          <img key={name} src={iconSrc(name, theme)} alt="" style={tile(index)} />
+          <img
+            key={name}
+            src={iconSrc(name, theme)}
+            alt=""
+            style={{
+              ...tile(index),
+              // The worker's 2px outline <rect>, just outside the tile.
+              ...(outlined && {
+                borderRadius: u(size * OG_TILE_RADIUS),
+                boxShadow: `0 0 0 ${u(2)} ${alpha(ink, line)}`,
+              }),
+            }}
+          />
         ))}
         {extra > 0 && (
           <span
             className="flex items-center justify-center font-mono font-semibold"
             style={{
               ...tile(shown),
-              border: `${u(3)} dashed color-mix(in srgb, currentColor 20%, transparent)`,
-              borderRadius: u(size * 0.234),
+              border: `${u(3)} dashed ${alpha(ink, dash)}`,
+              borderRadius: u(size * OG_TILE_RADIUS),
               fontSize: u(28),
             }}
           >
@@ -120,10 +159,9 @@ export function OgCover({ icons, theme, title, link }: OgCoverProps) {
           </span>
         )}
 
-        {/* --border is the ink at the rule's opacity in each theme. */}
         <span
-          className="bg-border"
           style={{
+            background: alpha(ink, line),
             ...at(OG_PAD_X, OG_FOOTER_TOP),
             right: u(OG_PAD_X),
             height: u(2),
@@ -139,8 +177,10 @@ export function OgCover({ icons, theme, title, link }: OgCoverProps) {
             fontSize: u(20),
           }}
         >
-          <span className="min-w-0 truncate text-muted-foreground">{href}</span>
-          <span>build yours →</span>
+          <span className="min-w-0 truncate" style={{ color: muted }}>
+            {href}
+          </span>
+          <span style={{ color: cta, fontWeight: ctaWeight }}>build yours →</span>
         </span>
       </div>
     </div>

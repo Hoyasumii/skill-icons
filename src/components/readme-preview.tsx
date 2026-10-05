@@ -257,6 +257,7 @@ export function ReadmePreview({
                 <OgCover
                   icons={options.icons}
                   theme={options.theme ?? DEFAULT_THEME}
+                  bg={bg}
                   title={linkTitle ?? OG_DEFAULT_TITLE}
                   link={buildIconsUrl(API_URL, { ...options, bg })}
                 />
