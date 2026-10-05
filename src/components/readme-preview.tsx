@@ -148,7 +148,11 @@ export function ReadmePreview({
   const empty = options.icons.length === 0;
   // Dev previews hit the local Worker; the built site (Pages is static) uses the public API.
   const src = buildIconsUrl(import.meta.env.DEV ? '' : API_URL, options);
-  const coverLink = buildIconsUrl(API_URL, { ...options, title: linkTitle });
+  // The cover button copies the image itself (/og), the same query as the /icons link.
+  const coverImage = buildIconsUrl(API_URL, { ...options, title: linkTitle }).replace(
+    '/icons?',
+    '/og?',
+  );
 
   const flip = (next: boolean) => {
     setFlipped(next);
@@ -247,7 +251,7 @@ export function ReadmePreview({
                   link={buildIconsUrl(API_URL, options)}
                 />
               </div>
-              <CopyCoverLink key={coverLink} value={coverLink} />
+              <CopyCoverLink key={coverImage} value={coverImage} />
               <p className="font-mono text-[11px] text-muted-foreground">{t.preview.coverHint}</p>
             </div>
           </div>
