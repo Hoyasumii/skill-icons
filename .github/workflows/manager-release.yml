@@ -1,0 +1,37 @@
+name: Icon Manager
+
+# Builds the macOS Icon Manager app and attaches its DMG to a GitHub release.
+# Tags are manager-v* so they never trigger the npm release (v*).
+on:
+  push:
+    tags:
+      - 'manager-v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  dmg:
+    runs-on: macos-latest
+    name: Build DMG
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - name: Build
+        # manager-v1.2.0 → 1.2.0; manual runs build 0.0.0.
+        run: |
+          case "$GITHUB_REF_NAME" in manager-v*) VERSION="${GITHUB_REF_NAME#manager-v}" ;; *) VERSION=0.0.0 ;; esac
+          RELEASE=1 VERSION="$VERSION" bun run manager:dmg
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Skill-Icons-Manager
+          path: tools/icon-manager/build/Skill-Icons-Manager.dmg
+      - name: Create GitHub release
+        if: startsWith(github.ref, 'refs/tags/manager-v')
+        run: |
+          gh release create "$GITHUB_REF_NAME" tools/icon-manager/build/Skill-Icons-Manager.dmg \
+            --title "Icon Manager ${GITHUB_REF_NAME#manager-}" --generate-notes --latest=false
+        env:
+          GH_TOKEN: ${{ github.token }}

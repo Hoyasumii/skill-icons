@@ -401,6 +401,29 @@ bun skill-icon category list                                                    
 
 `--name`, `--generate` and `--category` are required. The icon is also registered in `shared/icon-categories.ts`. Add `--force` to overwrite existing files. Run `bun run icons` (or `dev`/`build`) afterwards to update `public/svg/` and the package's generated icons.
 
+### Icon Manager (macOS app)
+
+> [!NOTE]
+> **Skill Icons Manager** is a small macOS app for maintaining this repo's icons. It is a tool for contributors working on a clone, not part of the site or the package. It needs macOS 13 or newer and works on Apple silicon and Intel Macs.
+
+What it does:
+
+- **Icons**: browse every SVG in `icons/` and switch between the Dark and Light variants. Select icons and group them into stacks, then copy a stack as an array of paths, relative (`icons/…`) or absolute: `{ "light": "…", "dark": "…" }` for themed icons, a plain string for icons without a theme. The grid updates as soon as a file in `icons/` changes. Stacks are saved per user, outside the repo.
+- **Candidates**: the shared to-do list of icons to add, read from and written to [`icon-candidates.json`](./icon-candidates.json), so it travels with git. Add a candidate by name, category and priority, change its status (pending → researched → added), and copy its `bun skill-icon generate` command.
+- English or Portuguese, picked from the system language. Two appearances: the site's palette or native macOS with Liquid Glass (**View** menu).
+
+**Install from a release:** download `Skill-Icons-Manager.dmg` from the [Icon Manager releases](https://github.com/Hoyasumii/skill-icons/releases?q=manager-v), open it and drag the app to **Applications**. On first launch it asks for your skill-icons clone. The app isn't notarized, so macOS blocks the first launch: open **System Settings → Privacy & Security** and click **Open Anyway**, or run `xattr -dr com.apple.quarantine "/Applications/Skill Icons Manager.app"`.
+
+**Build it yourself** (needs the Xcode Command Line Tools: `xcode-select --install`):
+
+```sh
+bun run manager        # builds the app and opens the DMG: drag it to Applications
+bun run manager:build  # only the app, in tools/icon-manager/build/
+bun run manager:dmg    # app + tools/icon-manager/build/Skill-Icons-Manager.dmg
+```
+
+A local build already knows where your clone is. Building the DMG lays out its window through Finder, so macOS may ask to let your terminal control Finder.
+
 | Path                    | Description                                                               |
 | ----------------------- | ------------------------------------------------------------------------- |
 | `icons/`                | Source SVGs                                                               |
@@ -409,6 +432,7 @@ bun skill-icon category list                                                    
 | `src/`                  | Builder site (React, TypeScript, Tailwind, shadcn/ui)                     |
 | `shared/`               | Code shared by both (aliases, categories, URL builder, MCP, page meta)    |
 | `packages/skill-icons/` | The `@hoyasumii/skill-icons` npm package                                  |
+| `tools/icon-manager/`   | Skill Icons Manager, the macOS app for maintaining icons                  |
 
 # Releasing
 
@@ -425,6 +449,15 @@ Publishing uses [npm trusted publishing](https://docs.npmjs.com/trusted-publishe
 
 1. Publish the first version manually: `cd packages/skill-icons && npm publish` (the `prepack` script builds it).
 2. On npmjs.com, open the package settings → **Trusted Publisher** → GitHub Actions, with repository `Hoyasumii/skill-icons` and workflow `release.yml`.
+
+### Icon Manager
+
+[`.github/workflows/manager-release.yml`](./.github/workflows/manager-release.yml) builds the app on macOS and attaches the DMG to a GitHub release when a `manager-v*` tag is pushed. These tags don't match `v*`, so they never publish to npm. You can also run the workflow by hand from the Actions tab and download the DMG from the run's artifacts.
+
+```sh
+git tag manager-v1.0.0
+git push origin manager-v1.0.0
+```
 
 ---
 

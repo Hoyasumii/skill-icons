@@ -1,0 +1,1741 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Skill Icons Manager</title>
+    <style>
+      @font-face {
+        font-family: 'Familjen Grotesk';
+        src: url('fonts/familjen-grotesk-latin-wght-normal.woff2') format('woff2');
+        font-weight: 400 700;
+      }
+      @font-face {
+        font-family: 'IBM Plex Mono';
+        src: url('fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: 'IBM Plex Mono';
+        src: url('fonts/ibm-plex-mono-latin-600-normal.woff2') format('woff2');
+        font-weight: 600;
+      }
+
+      :root {
+        --background: #edede8;
+        --foreground: #111111;
+        --card: #ffffff;
+        --muted: #e3e3dd;
+        --muted-foreground: #5c5c56;
+        --border: rgb(17 17 17 / 0.14);
+        --highlight: #ffd21f;
+        --highlight-foreground: #111111;
+        --destructive: #c40c0c;
+        --sans: 'Familjen Grotesk', -apple-system, system-ui, sans-serif;
+        --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+        color-scheme: light dark;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background: #141414;
+          --foreground: #f1f1ec;
+          --card: #1e1e1e;
+          --muted: #262626;
+          --muted-foreground: #a6a69f;
+          --border: rgb(241 241 236 / 0.16);
+          --destructive: #ff6b6b;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background: var(--background);
+        color: var(--foreground);
+        font: 14px/1.4 var(--sans);
+        display: grid;
+        grid-template-rows: auto auto 1fr;
+        overflow: hidden;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      button,
+      input {
+        font: inherit;
+        color: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      .mono {
+        font-family: var(--mono);
+      }
+
+      /* Header */
+      /* Replaces the system title bar: the app draws only the traffic lights over it. */
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px 12px;
+        min-height: 52px;
+        padding: 8px 12px 8px 84px;
+        border-bottom: 1px solid var(--border);
+        background: var(--background);
+      }
+      .fullscreen header {
+        padding-left: 16px;
+      }
+      .brand {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-right: 4px;
+        white-space: nowrap;
+      }
+      .wordmark {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 20px;
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+      .wordmark i {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        margin: 0 2px;
+        border: 2px solid var(--foreground);
+        background: var(--highlight);
+        transform: rotate(12deg);
+      }
+      .tagline {
+        font: 12px var(--mono);
+        color: var(--muted-foreground);
+      }
+      .search {
+        flex: 1 1 200px;
+        min-width: 160px;
+        height: 34px;
+        padding: 0 12px;
+        border: 2px solid var(--foreground);
+        border-radius: 8px;
+        background: var(--card);
+        outline: none;
+        user-select: text;
+        -webkit-user-select: text;
+      }
+      .search:focus-visible {
+        box-shadow: 0 0 0 3px var(--highlight);
+      }
+      .seg {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+        padding: 3px;
+        border-radius: 8px;
+        background: var(--muted);
+      }
+      .seg-label {
+        font: 600 11px var(--mono);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--muted-foreground);
+        padding: 0 6px 0 4px;
+      }
+      .seg button {
+        height: 28px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        font-weight: 500;
+      }
+      .seg button[aria-pressed='true'] {
+        background: var(--foreground);
+        color: var(--background);
+      }
+      .count {
+        font: 12px var(--mono);
+        color: var(--muted-foreground);
+      }
+
+      /* Selection bar */
+      /* Status line; turns into the selection bar while icons are selected. */
+      .selbar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 6px 16px;
+        border-bottom: 1px solid var(--border);
+        font-weight: 600;
+      }
+      .selbar:not(.on) > :not(.count),
+      .selbar.on > .count {
+        display: none;
+      }
+      .selbar.on {
+        background: var(--highlight);
+        color: var(--highlight-foreground);
+        border-bottom-color: var(--highlight);
+      }
+      .selbar .spacer {
+        flex: 1;
+      }
+      .btn {
+        height: 30px;
+        padding: 0 12px;
+        border: 2px solid currentColor;
+        border-radius: 7px;
+        background: transparent;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .btn:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .btn.solid {
+        background: var(--highlight-foreground);
+        color: var(--highlight);
+        border-color: var(--highlight-foreground);
+      }
+
+      /* Layout */
+      main {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        min-height: 0;
+      }
+      body[data-view='tasks'] main {
+        grid-template-columns: 1fr;
+      }
+      body[data-view='tasks'] .icons-only,
+      body[data-view='icons'] .tasks-only {
+        display: none !important;
+      }
+
+      /* Candidates (shared to-do list in icon-candidates.json) */
+      .field {
+        height: 32px;
+        padding: 0 10px;
+        border: 1px solid var(--border);
+        border-radius: 7px;
+        background: var(--card);
+        color: var(--foreground);
+        font: inherit;
+        outline: none;
+        user-select: text;
+        -webkit-user-select: text;
+      }
+      .field:focus-visible {
+        border-color: var(--foreground);
+        box-shadow: 0 0 0 3px var(--highlight);
+      }
+      header .field {
+        height: 34px;
+        border: 2px solid var(--foreground);
+        border-radius: 8px;
+      }
+      .tasks {
+        overflow-y: auto;
+        padding: 0 16px 24px;
+      }
+      .task-form {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        margin: 0 -16px 8px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+        background: var(--background);
+      }
+      .task-form #task-name {
+        flex: 1 1 220px;
+      }
+      .task-form .btn.primary {
+        height: 32px;
+        border-color: var(--foreground);
+        background: var(--foreground);
+        color: var(--background);
+      }
+      .group-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 18px 0 6px;
+        font: 600 11px var(--mono);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--muted-foreground);
+      }
+      .task-row {
+        display: grid;
+        grid-template-columns: 10px minmax(160px, 1fr) 150px 120px 140px auto auto;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 10px;
+        border: 1px solid var(--border);
+        border-radius: 9px;
+        background: var(--card);
+        margin-bottom: 6px;
+      }
+      .task-row {
+        contain-intrinsic-size: auto 42px;
+      }
+      .task-row.done {
+        opacity: 0.55;
+      }
+      .task-row .field {
+        height: 28px;
+        padding: 0 6px;
+        font-size: 13px;
+      }
+      .task-name {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        min-width: 0;
+        font-weight: 600;
+      }
+      .task-name .id {
+        font: 12px var(--mono);
+        color: var(--muted-foreground);
+      }
+      .task-name .flag {
+        font: 600 9px var(--mono);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 2px 5px;
+        border-radius: 4px;
+        background: var(--highlight);
+        color: var(--highlight-foreground);
+        white-space: nowrap;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 2px solid var(--foreground);
+      }
+      .dot.high {
+        background: var(--destructive);
+        border-color: var(--destructive);
+      }
+      .dot.normal {
+        background: var(--highlight);
+        border-color: var(--highlight);
+      }
+      .dot.low {
+        background: transparent;
+        border-color: var(--muted-foreground);
+      }
+      .task-row .btn {
+        height: 28px;
+        padding: 0 9px;
+        border-width: 1px;
+        border-color: var(--border);
+        font-size: 12px;
+      }
+      .task-row .btn.danger {
+        color: var(--destructive);
+      }
+      .task-row .btn.danger.confirm {
+        background: var(--destructive);
+        color: #fff;
+        border-color: var(--destructive);
+      }
+      @media (max-width: 980px) {
+        .task-row {
+          grid-template-columns: 10px 1fr 1fr 1fr;
+        }
+        .task-name {
+          grid-column: 2 / -1;
+        }
+      }
+      .stage {
+        overflow-y: auto;
+        padding: 16px;
+        /* Follows the app theme; only the icons follow the icon theme, as on the site. */
+        background: var(--background);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+        gap: 10px;
+      }
+      .tile {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 6px 10px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--card);
+        color: var(--foreground);
+        transition: transform 0.12s;
+      }
+      .tile,
+      .task-row {
+        content-visibility: auto;
+      }
+      .tile {
+        contain-intrinsic-size: auto 118px;
+      }
+      .tile:hover {
+        border-color: currentColor;
+      }
+      .tile:active {
+        transform: scale(0.97);
+      }
+      .tile img {
+        width: 56px;
+        height: 56px;
+        pointer-events: none;
+      }
+      .tile .name {
+        max-width: 100%;
+        font-size: 12px;
+        font-weight: 500;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .tile.sel {
+        border: 2px solid var(--foreground);
+        background: var(--highlight);
+        color: var(--highlight-foreground);
+        padding: 13px 5px 9px;
+      }
+      .tile .order {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 5px;
+        border-radius: 10px;
+        background: #111111;
+        color: var(--highlight);
+        font: 600 11px/20px var(--mono);
+      }
+      .tile .flag {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        font: 600 9px var(--mono);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 2px 4px;
+        border-radius: 4px;
+        background: rgb(127 127 127 / 0.18);
+      }
+      .tile .flag.warn {
+        background: var(--destructive);
+        color: #fff;
+      }
+      .empty {
+        padding: 48px 16px;
+        text-align: center;
+        color: var(--muted-foreground);
+      }
+
+      /* Stacks */
+      aside {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        border-left: 1px solid var(--border);
+        background: var(--background);
+      }
+      .aside-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px 10px;
+      }
+      .aside-head h2 {
+        margin: 0;
+        font-size: 15px;
+      }
+      .stacks {
+        flex: 1;
+        overflow-y: auto;
+        padding: 0 12px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .stack {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--card);
+        padding: 10px;
+      }
+      .stack.active {
+        border: 2px solid var(--foreground);
+        padding: 9px;
+        box-shadow: inset 4px 0 0 var(--highlight);
+      }
+      .stack-top {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .stack-name {
+        flex: 1;
+        min-width: 0;
+        height: 28px;
+        padding: 0 6px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background: transparent;
+        font-weight: 600;
+        outline: none;
+        user-select: text;
+        -webkit-user-select: text;
+      }
+      .stack-name:hover,
+      .stack-name:focus {
+        border-color: var(--border);
+        background: var(--background);
+      }
+      .stack-count {
+        font: 12px var(--mono);
+        color: var(--muted-foreground);
+      }
+      .thumbs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin: 8px 0;
+        padding: 6px;
+        min-height: 44px;
+        border-radius: 8px;
+        background: var(--muted);
+      }
+      .thumbs .hint {
+        align-self: center;
+        font: 12px var(--mono);
+        color: var(--muted-foreground);
+        padding: 0 4px;
+      }
+      .thumb {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border: 0;
+        background: none;
+      }
+      .thumb img {
+        width: 32px;
+        height: 32px;
+        display: block;
+      }
+      .thumb.missing {
+        border: 1px dashed var(--destructive);
+        border-radius: 6px;
+        font: 600 9px var(--mono);
+        color: var(--destructive);
+        overflow: hidden;
+      }
+      .thumb:hover::after {
+        content: '×';
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        border-radius: 6px;
+        background: rgb(17 17 17 / 0.72);
+        color: #fff;
+        font: 600 18px var(--sans);
+      }
+      .stack-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .stack-actions .btn {
+        height: 28px;
+        padding: 0 9px;
+        border-width: 1px;
+        border-color: var(--border);
+        font-size: 12px;
+      }
+      .stack-actions .btn.primary {
+        border: 2px solid var(--foreground);
+        background: var(--foreground);
+        color: var(--background);
+      }
+      .stack-actions .btn.danger {
+        margin-left: auto;
+        color: var(--destructive);
+      }
+      .stack-actions .btn.danger.confirm {
+        background: var(--destructive);
+        color: #fff;
+        border-color: var(--destructive);
+      }
+      .aside-head .btn {
+        height: 30px;
+        border-color: var(--foreground);
+      }
+
+      /* Toast + context menu */
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 20px;
+        transform: translate(-50%, 20px);
+        opacity: 0;
+        padding: 10px 16px;
+        border-radius: 8px;
+        background: var(--foreground);
+        color: var(--background);
+        font-weight: 600;
+        pointer-events: none;
+        transition:
+          opacity 0.15s,
+          transform 0.2s cubic-bezier(0.3, 1.6, 0.6, 1);
+      }
+      .toast.on {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+      .toast.error {
+        background: var(--destructive);
+        color: #fff;
+      }
+      .menu {
+        position: fixed;
+        z-index: 10;
+        display: none;
+        min-width: 210px;
+        padding: 4px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--card);
+        box-shadow: 0 8px 24px rgb(0 0 0 / 0.18);
+      }
+      .menu.on {
+        display: block;
+      }
+      .menu .menu-title {
+        padding: 6px 10px 4px;
+        font: 600 11px var(--mono);
+        color: var(--muted-foreground);
+      }
+      .menu button {
+        display: block;
+        width: 100%;
+        padding: 6px 10px;
+        border: 0;
+        border-radius: 5px;
+        background: none;
+        text-align: left;
+      }
+      .menu button:hover {
+        background: var(--highlight);
+        color: var(--highlight-foreground);
+      }
+      .error-screen {
+        grid-row: 1 / -1;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+        text-align: center;
+        color: var(--muted-foreground);
+      }
+
+      /* Native appearance: system font and colors over the window's Liquid Glass backdrop. */
+      .native {
+        --background: transparent;
+        --foreground: -apple-system-label;
+        --card: rgb(255 255 255 / 0.5);
+        --muted: rgb(120 120 128 / 0.14);
+        --muted-foreground: -apple-system-secondary-label;
+        --border: rgb(0 0 0 / 0.1);
+        --highlight: -apple-system-control-accent;
+        --highlight-foreground: #ffffff;
+        --glass-edge: inset 0 1px 0 rgb(255 255 255 / 0.7), 0 1px 3px rgb(0 0 0 / 0.08);
+        --menu-bg: rgb(246 246 246 / 0.96);
+        --sans: -apple-system, system-ui, sans-serif;
+        --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        .native {
+          --card: rgb(255 255 255 / 0.08);
+          --muted: rgb(118 118 128 / 0.24);
+          --border: rgb(255 255 255 / 0.12);
+          --glass-edge: inset 0 1px 0 rgb(255 255 255 / 0.14), 0 1px 3px rgb(0 0 0 / 0.3);
+          --menu-bg: rgb(40 40 40 / 0.96);
+        }
+      }
+      .native body {
+        background: transparent;
+        font-size: 13px;
+        /* The native toolbar replaces the header; leave room for it. */
+        padding-top: var(--chrome-top, 52px);
+      }
+      .native header {
+        display: none;
+      }
+      .native header,
+      .native aside,
+      .native .task-form {
+        background: transparent;
+      }
+      .native header {
+        border-bottom-color: transparent;
+      }
+      .native .task-form {
+        background: var(--menu-bg);
+      }
+      .native .wordmark i {
+        border-color: currentColor;
+        background: #ffd21f;
+      }
+      .native .search,
+      .native header .field {
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: var(--card);
+        box-shadow: var(--glass-edge);
+      }
+      .native .search:focus-visible,
+      .native .field:focus-visible {
+        border-color: var(--highlight);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--highlight) 35%, transparent);
+      }
+      .native .seg {
+        border-radius: 999px;
+        box-shadow: inset 0 0 0 1px var(--border);
+      }
+      .native .seg button {
+        border-radius: 999px;
+      }
+      .native .seg button[aria-pressed='true'] {
+        background: rgb(255 255 255 / 0.92);
+        color: #000;
+        box-shadow: 0 1px 3px rgb(0 0 0 / 0.18);
+      }
+      @media (prefers-color-scheme: dark) {
+        .native .seg button[aria-pressed='true'] {
+          background: rgb(255 255 255 / 0.22);
+          color: #fff;
+        }
+      }
+      .native .btn,
+      .native .stack-actions .btn,
+      .native .task-row .btn {
+        border-radius: 999px;
+      }
+      .native .selbar {
+        margin: 0 12px 8px;
+        border: 0;
+        border-radius: 14px;
+      }
+      .native .selbar:not(.on) {
+        margin-bottom: 0;
+      }
+      .native .selbar.on .btn {
+        border-color: rgb(255 255 255 / 0.7);
+      }
+      .native .selbar.on .btn.solid {
+        background: #fff;
+        color: var(--highlight);
+        border-color: #fff;
+      }
+      .native .stage {
+        margin: 0 0 12px 12px;
+        border-radius: 18px;
+        background: rgb(255 255 255 / 0.28);
+        box-shadow: var(--glass-edge);
+      }
+      @media (prefers-color-scheme: dark) {
+        .native .stage {
+          background: rgb(0 0 0 / 0.28);
+        }
+      }
+      .native aside {
+        border-left: 0;
+      }
+      /* No backdrop-filter on repeated elements: each one is a blurred layer recomposited on
+         every scroll frame. The window's backdrop already blurs the desktop behind them. */
+      .native .tile {
+        border-radius: 16px;
+      }
+      .native .tile.sel {
+        border-color: var(--highlight);
+        background: var(--highlight);
+        color: #fff;
+      }
+      .native .tile .order {
+        background: #fff;
+        color: var(--highlight);
+      }
+      .native .stack,
+      .native .task-row,
+      .native .menu {
+        border-radius: 14px;
+        border-color: var(--border);
+        background: var(--card);
+      }
+      .native .menu {
+        background: var(--menu-bg);
+        box-shadow: 0 8px 24px rgb(0 0 0 / 0.18);
+      }
+      .native .stack.active {
+        border: 2px solid var(--highlight);
+        box-shadow: var(--glass-edge);
+      }
+      .native .thumbs {
+        border-radius: 10px;
+      }
+      .native .stack-actions .btn.primary,
+      .native .task-form .btn.primary {
+        border-color: var(--highlight);
+        background: var(--highlight);
+        color: #fff;
+      }
+      .native .menu button:hover {
+        color: #fff;
+      }
+      .native .toast {
+        border-radius: 999px;
+        background: rgb(30 30 30 / 0.78);
+        color: #fff;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header">
+      <div class="brand">
+        <span class="wordmark">skill<i></i>icons</span>
+        <span class="tagline">manager</span>
+      </div>
+      <div class="seg" data-key="view" data-i18n-label="viewLabel">
+        <button data-value="icons" data-i18n="tabIcons"></button>
+        <button data-value="tasks" data-i18n="tabTasks"></button>
+      </div>
+      <input class="search tasks-only" id="task-search" type="search" data-i18n-placeholder="taskSearch" autocomplete="off" spellcheck="false" />
+      <div class="seg tasks-only" data-key="taskStatus" data-i18n-label="statusLabel">
+        <span class="seg-label" data-i18n="status"></span>
+        <button data-value="all" data-i18n="all"></button>
+        <button data-value="pending" data-i18n="st_pending"></button>
+        <button data-value="researched" data-i18n="st_researched"></button>
+        <button data-value="added" data-i18n="st_added"></button>
+      </div>
+      <select class="field tasks-only" id="task-category-filter" data-i18n-label="categoryLabel"></select>
+      <input class="search icons-only" id="search" type="search" data-i18n-placeholder="search" autocomplete="off" spellcheck="false" />
+      <div class="seg icons-only" data-key="theme" data-i18n-label="themeLabel">
+        <span class="seg-label" data-i18n="theme"></span>
+        <button data-value="dark">Dark</button>
+        <button data-value="light">Light</button>
+      </div>
+      <div class="seg icons-only" data-key="filter" data-i18n-label="filterLabel">
+        <span class="seg-label" data-i18n="show"></span>
+        <button data-value="all" data-i18n="all"></button>
+        <button data-value="themed" data-i18n="themed"></button>
+        <button data-value="plain" data-i18n="plain"></button>
+      </div>
+      <div class="seg icons-only" data-key="pathMode" data-i18n-label="pathLabel">
+        <span class="seg-label" data-i18n="path"></span>
+        <button data-value="relative" data-i18n="relative" data-i18n-title="relativeTip"></button>
+        <button data-value="absolute" data-i18n="absolute" data-i18n-title="absoluteTip"></button>
+      </div>
+    </header>
+
+    <div class="selbar" id="selbar">
+      <span class="count" id="count"></span>
+      <span id="selcount"></span>
+      <span class="spacer"></span>
+      <button class="btn solid" data-action="copy-selection" data-i18n="copySelection"></button>
+      <button class="btn" data-action="new-stack" data-i18n="newStack"></button>
+      <button class="btn" data-action="add-to-active" id="add-to-active"></button>
+      <button class="btn" data-action="clear-selection" data-i18n="clear"></button>
+    </div>
+
+    <main>
+      <section class="tasks tasks-only" id="tasks">
+        <form class="task-form" id="task-form">
+          <input class="field" id="task-name" required autocomplete="off" spellcheck="false" data-i18n-placeholder="taskNamePh" />
+          <select class="field" id="task-cat" data-i18n-label="categoryLabel"></select>
+          <select class="field" id="task-prio" data-i18n-label="priorityLabel"></select>
+          <button class="btn primary" type="submit" data-i18n="add"></button>
+        </form>
+        <div id="task-list"></div>
+      </section>
+      <section class="stage icons-only" id="stage"><div class="grid" id="grid"></div></section>
+      <aside class="icons-only">
+        <div class="aside-head">
+          <h2 data-i18n="stacks"></h2>
+          <button class="btn" data-action="new-stack" data-i18n="newShort"></button>
+        </div>
+        <div class="stacks" id="stacks"></div>
+      </aside>
+    </main>
+
+    <div class="menu" id="menu"></div>
+    <div class="toast" id="toast"></div>
+
+    <script>
+      // The app injects window.APP_LANG from the system's preferred languages.
+      const messages = {
+        en: {
+          search: 'Search icons  (⌘F)',
+          theme: 'Theme',
+          themeLabel: 'Icon theme',
+          show: 'Show',
+          filterLabel: 'Filter',
+          all: 'All',
+          themed: 'Themed',
+          plain: 'No theme',
+          path: 'Path',
+          pathLabel: 'Path format',
+          relative: 'Relative',
+          absolute: 'Absolute',
+          relativeTip:
+            'Relative to the repo root, e.g. icons/React-Dark.svg. Use it in code and scripts run from the repo, so it works on any machine.',
+          absoluteTip:
+            'Full path on this Mac, e.g. /Users/you/skill-icons/icons/React-Dark.svg. Works from any folder, but only on this machine.',
+          copySelection: 'Copy array ⌘C',
+          newStack: 'New stack',
+          addToActive: 'Add to active stack',
+          addTo: 'Add to “{name}”',
+          clear: 'Clear  esc',
+          stacks: 'Stacks',
+          newShort: '+ New',
+          notFound: 'Icons folder not found',
+          nothingToCopy: 'Nothing to copy',
+          copied: n => (n === 1 ? '1 icon copied' : `${n} icons copied`),
+          missingSkipped: n => ` (${n} missing skipped)`,
+          flagPlain: 'no theme',
+          flagNoLight: 'no light',
+          flagNoDark: 'no dark',
+          noResults: 'No icons found.',
+          count: (v, total, themed, plain) =>
+            `${v}/${total} icons · ${themed} themed · ${plain} no theme`,
+          selected: n => `${n} selected`,
+          emptyStacks: 'Select icons in the grid and create a stack.',
+          remove: 'Remove {name}',
+          gone: '{name} no longer exists in icons/',
+          empty: 'empty',
+          copyArray: 'Copy array',
+          addSelection: '+ Selection',
+          select: 'Select',
+          delete: 'Delete',
+          confirm: 'Confirm?',
+          stackName: 'Stack {n}',
+          added: (n, name) => `${n} added to “${name}”`,
+          selection: 'Selection',
+          copyEntry: 'Copy entry',
+          entryCopied: 'Entry copied',
+          reveal: 'Show in Finder',
+          open: 'Open {file}',
+          viewLabel: 'View',
+          tabIcons: 'Icons',
+          tabTasks: 'Candidates',
+          taskSearch: 'Search candidates  (⌘F)',
+          status: 'Status',
+          statusLabel: 'Status',
+          categoryLabel: 'Category',
+          priorityLabel: 'Priority',
+          allCategories: 'All categories',
+          st_pending: 'Pending',
+          st_researched: 'Researched',
+          st_added: 'Added',
+          pr_high: 'High',
+          pr_normal: 'Normal',
+          pr_low: 'Low',
+          taskNamePh: 'Icon name, e.g. Spotify',
+          add: 'Add',
+          taskCount: (v, total, pending) => `${v}/${total} candidates · ${pending} pending`,
+          noTasks: 'No candidates match.',
+          noCandidatesFile: 'icon-candidates.json not found in the repo.',
+          existsInIcons: 'in icons/',
+          copyCommand: 'Command',
+          copyCommandTitle: 'Copy the bun skill-icon generate command',
+          commandCopied: 'Command copied',
+          alreadyCandidate: '{name} is already a candidate',
+          alreadyIcon: '{name} already exists in icons/',
+          candidateAdded: '{name} added',
+          saveFailed: 'Could not save icon-candidates.json',
+        },
+        pt: {
+          search: 'Buscar ícone  (⌘F)',
+          theme: 'Tema',
+          themeLabel: 'Tema dos ícones',
+          show: 'Mostrar',
+          filterLabel: 'Filtro',
+          all: 'Todos',
+          themed: 'Com tema',
+          plain: 'Sem tema',
+          path: 'Caminho',
+          pathLabel: 'Formato do caminho',
+          relative: 'Relativo',
+          absolute: 'Absoluto',
+          relativeTip:
+            'A partir da raiz do repo, ex.: icons/React-Dark.svg. Use em código e scripts rodados no repo; funciona em qualquer máquina.',
+          absoluteTip:
+            'Caminho completo neste Mac, ex.: /Users/voce/skill-icons/icons/React-Dark.svg. Funciona de qualquer pasta, mas só nesta máquina.',
+          copySelection: 'Copiar array ⌘C',
+          newStack: 'Nova pilha',
+          addToActive: 'Adicionar à pilha ativa',
+          addTo: 'Adicionar a “{name}”',
+          clear: 'Limpar  esc',
+          stacks: 'Pilhas',
+          newShort: '+ Nova',
+          notFound: 'Pasta de ícones não encontrada',
+          nothingToCopy: 'Nada para copiar',
+          copied: n => (n === 1 ? '1 ícone copiado' : `${n} ícones copiados`),
+          missingSkipped: n => ` (${n} ausente${n > 1 ? 's' : ''} ignorado${n > 1 ? 's' : ''})`,
+          flagPlain: 'sem tema',
+          flagNoLight: 'sem light',
+          flagNoDark: 'sem dark',
+          noResults: 'Nenhum ícone encontrado.',
+          count: (v, total, themed, plain) =>
+            `${v}/${total} ícones · ${themed} com tema · ${plain} sem tema`,
+          selected: n => `${n} selecionado${n === 1 ? '' : 's'}`,
+          emptyStacks: 'Selecione ícones na grade e crie uma pilha.',
+          remove: 'Remover {name}',
+          gone: '{name} não existe mais em icons/',
+          empty: 'vazia',
+          copyArray: 'Copiar array',
+          addSelection: '+ Seleção',
+          select: 'Selecionar',
+          delete: 'Excluir',
+          confirm: 'Confirmar?',
+          stackName: 'Pilha {n}',
+          added: (n, name) => `${n} adicionado${n === 1 ? '' : 's'} a “${name}”`,
+          selection: 'Seleção',
+          copyEntry: 'Copiar entrada',
+          entryCopied: 'Entrada copiada',
+          reveal: 'Mostrar no Finder',
+          open: 'Abrir {file}',
+          viewLabel: 'Visão',
+          tabIcons: 'Ícones',
+          tabTasks: 'Candidatos',
+          taskSearch: 'Buscar candidato  (⌘F)',
+          status: 'Status',
+          statusLabel: 'Status',
+          categoryLabel: 'Categoria',
+          priorityLabel: 'Prioridade',
+          allCategories: 'Todas as categorias',
+          st_pending: 'Pendente',
+          st_researched: 'Pesquisado',
+          st_added: 'Adicionado',
+          pr_high: 'Alta',
+          pr_normal: 'Normal',
+          pr_low: 'Baixa',
+          taskNamePh: 'Nome do ícone, ex.: Spotify',
+          add: 'Adicionar',
+          taskCount: (v, total, pending) =>
+            `${v}/${total} candidatos · ${pending} pendente${pending === 1 ? '' : 's'}`,
+          noTasks: 'Nenhum candidato encontrado.',
+          noCandidatesFile: 'icon-candidates.json não encontrado no repo.',
+          existsInIcons: 'já em icons/',
+          copyCommand: 'Comando',
+          copyCommandTitle: 'Copiar o comando bun skill-icon generate',
+          commandCopied: 'Comando copiado',
+          alreadyCandidate: '{name} já é candidato',
+          alreadyIcon: '{name} já existe em icons/',
+          candidateAdded: '{name} adicionado',
+          saveFailed: 'Não consegui salvar o icon-candidates.json',
+        },
+      };
+      const lang = (window.APP_LANG || navigator.language || 'en').toLowerCase().startsWith('pt')
+        ? 'pt'
+        : 'en';
+      const m = messages[lang];
+      const t = (key, ...args) => {
+        const msg = m[key];
+        if (typeof msg === 'function') return msg(...args);
+        const vars = args[0] ?? {};
+        return msg.replace(/\{(\w+)\}/g, (_, k) => vars[k]);
+      };
+      document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+      for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = t(el.dataset.i18n);
+      for (const el of document.querySelectorAll('[data-i18n-placeholder]'))
+        el.placeholder = t(el.dataset.i18nPlaceholder);
+      for (const el of document.querySelectorAll('[data-i18n-title]'))
+        el.title = t(el.dataset.i18nTitle);
+      for (const el of document.querySelectorAll('[data-i18n-label]'))
+        el.setAttribute('aria-label', t(el.dataset.i18nLabel));
+
+      const bridge = (cmd, data = {}) =>
+        window.webkit.messageHandlers.bridge.postMessage({ cmd, ...data });
+      const $ = id => document.getElementById(id);
+      const esc = s =>
+        String(s).replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
+
+      let repo = '';
+      let icons = []; // [{ base, themed, dark?, light?, plain? }]
+      let byBase = new Map();
+      let version = Date.now();
+      let visible = [];
+      let selection = new Set(); // keeps click order
+      let lastClicked = null;
+      let query = '';
+      let state = {
+        theme: 'dark',
+        filter: 'all',
+        pathMode: 'relative',
+        stacks: [], // [{ id, name, items: [base] }]
+        activeStack: null,
+        view: 'icons',
+        taskStatus: 'all',
+        taskCategory: '',
+      };
+
+      // ---------- Data ----------
+
+      function group(files) {
+        const map = new Map();
+        for (const file of files) {
+          const m = file.match(/^(.*?)(?:-(Dark|Light))?\.svg$/);
+          if (!m) continue;
+          const base = m[1];
+          const icon = map.get(base) ?? { base };
+          icon[m[2] ? m[2].toLowerCase() : 'plain'] = file;
+          map.set(base, icon);
+        }
+        return [...map.values()]
+          .map(i => ({ ...i, themed: Boolean(i.dark || i.light) }))
+          .sort((a, b) => a.base.localeCompare(b.base, 'en', { sensitivity: 'base' }));
+      }
+
+      async function loadIcons() {
+        try {
+          const res = await bridge('list');
+          repo = res.repoPath;
+          icons = group(res.files);
+          byBase = new Map(icons.map(i => [i.base, i]));
+          version = Date.now();
+          render();
+        } catch (err) {
+          document.body.innerHTML = `<div class="error-screen"><div><h2>${t('notFound')}</h2><p>${esc(err.message ?? err)}</p></div></div>`;
+        }
+      }
+
+      const filePath = file =>
+        state.pathMode === 'absolute' ? `${repo}/icons/${file}` : `icons/${file}`;
+      const src = file =>
+        `file://${`${repo}/icons/${file}`.split('/').map(encodeURIComponent).join('/')}?v=${version}`;
+      const shownFile = (icon, theme = state.theme) =>
+        icon.themed ? (icon[theme] ?? icon.dark ?? icon.light) : icon.plain;
+
+      function entry(icon) {
+        if (!icon.themed) return filePath(icon.plain);
+        const out = {};
+        if (icon.light) out.light = filePath(icon.light);
+        if (icon.dark) out.dark = filePath(icon.dark);
+        return out;
+      }
+
+      async function copyBases(bases, label) {
+        const present = bases.map(b => byBase.get(b)).filter(Boolean);
+        const missing = bases.length - present.length;
+        if (!present.length) return toast(t('nothingToCopy'), true);
+        await bridge('copy', { text: JSON.stringify(present.map(entry), null, 2) });
+        toast(
+          `${label}: ${t('copied', present.length)}` + (missing ? t('missingSkipped', missing) : ''),
+        );
+      }
+
+      // ---------- Persistence ----------
+
+      let saveTimer;
+      function save() {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => bridge('saveState', { json: JSON.stringify(state) }), 200);
+      }
+
+      async function loadState() {
+        try {
+          const json = await bridge('loadState');
+          if (json) state = { ...state, ...JSON.parse(json) };
+        } catch {}
+      }
+
+      // ---------- Rendering ----------
+
+      function render() {
+        document.body.dataset.view = state.view;
+        renderHeader();
+        renderGrid();
+        renderStacks();
+        renderSelbar();
+        renderTasks();
+        syncNativeToolbar();
+      }
+
+      // The app mirrors this into the native toolbar (native appearance).
+      function syncNativeToolbar() {
+        const { view, theme, filter, pathMode, taskStatus, taskCategory } = state;
+        bridge('toolbarState', {
+          view,
+          theme,
+          filter,
+          pathMode,
+          taskStatus,
+          taskCategory,
+          query,
+          taskQuery,
+          categories: categoryIds,
+        }).catch(() => {});
+      }
+      window.nativeControl = (key, value) => {
+        state[key] = value;
+        save();
+        render();
+      };
+      window.nativeSearch = text => {
+        if (state.view === 'tasks') {
+          taskQuery = $('task-search').value = text;
+          renderTasks();
+        } else {
+          query = $('search').value = text;
+          renderGrid();
+        }
+      };
+
+      function renderHeader() {
+        for (const seg of document.querySelectorAll('.seg')) {
+          for (const b of seg.querySelectorAll('button'))
+            b.setAttribute('aria-pressed', String(state[seg.dataset.key] === b.dataset.value));
+        }
+      }
+
+      function renderGrid() {
+        const q = query.trim().toLowerCase();
+        visible = icons.filter(
+          i =>
+            (state.filter === 'all' || (state.filter === 'themed') === i.themed) &&
+            (!q || i.base.toLowerCase().includes(q)),
+        );
+        const order = [...selection];
+        $('grid').innerHTML = visible.length
+          ? visible
+              .map(i => {
+                const pos = order.indexOf(i.base);
+                const flag = !i.themed
+                  ? `<span class="flag">${t('flagPlain')}</span>`
+                  : !i.light
+                    ? `<span class="flag warn">${t('flagNoLight')}</span>`
+                    : !i.dark
+                      ? `<span class="flag warn">${t('flagNoDark')}</span>`
+                      : '';
+                return `<button class="tile${pos >= 0 ? ' sel' : ''}" data-base="${esc(i.base)}" title="${esc(i.base)}">
+                  ${pos >= 0 ? `<span class="order">${pos + 1}</span>` : ''}${flag}
+                  <img loading="lazy" src="${src(shownFile(i))}" alt="" />
+                  <span class="name">${esc(i.base)}</span>
+                </button>`;
+              })
+              .join('')
+          : `<div class="empty">${t('noResults')}</div>`;
+        const themedCount = icons.filter(i => i.themed).length;
+        if (state.view === 'icons') $('count').textContent = t('count', visible.length, icons.length, themedCount, icons.length - themedCount);
+      }
+
+      /** Updates selection classes and order badges in place, without rebuilding the grid. */
+      function updateTileMarks() {
+        const order = [...selection];
+        for (const tile of $('grid').querySelectorAll('.tile')) {
+          const pos = order.indexOf(tile.dataset.base);
+          tile.classList.toggle('sel', pos >= 0);
+          let badge = tile.querySelector('.order');
+          if (pos < 0) {
+            badge?.remove();
+            continue;
+          }
+          if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'order';
+            tile.prepend(badge);
+          }
+          badge.textContent = String(pos + 1);
+        }
+      }
+
+      function renderSelbar() {
+        $('selbar').classList.toggle('on', state.view === 'icons' && selection.size > 0);
+        $('selcount').textContent = t('selected', selection.size);
+        $('add-to-active').disabled = !activeStack();
+        $('add-to-active').textContent = activeStack()
+          ? t('addTo', { name: activeStack().name })
+          : t('addToActive');
+      }
+
+      const activeStack = () => state.stacks.find(s => s.id === state.activeStack);
+
+      function renderStacks() {
+        if (!state.stacks.length) {
+          $('stacks').innerHTML =
+            `<div class="empty">${t('emptyStacks')}</div>`;
+          return;
+        }
+        $('stacks').innerHTML = state.stacks
+          .map(s => {
+            const thumbs = s.items
+              .map(b => {
+                const icon = byBase.get(b);
+                return icon
+                  ? `<button class="thumb" data-remove="${esc(b)}" title="${esc(t('remove', { name: b }))}"><img src="${src(shownFile(icon))}" alt="" /></button>`
+                  : `<button class="thumb missing" data-remove="${esc(b)}" title="${esc(t('gone', { name: b }))}">${esc(b.slice(0, 4))}</button>`;
+              })
+              .join('');
+            return `<div class="stack${s.id === state.activeStack ? ' active' : ''}" data-stack="${s.id}">
+              <div class="stack-top">
+                <input class="stack-name" value="${esc(s.name)}" spellcheck="false" />
+                <span class="stack-count">${s.items.length}</span>
+              </div>
+              <div class="thumbs">${thumbs || `<span class="hint">${t('empty')}</span>`}</div>
+              <div class="stack-actions">
+                <button class="btn primary" data-stack-action="copy">${t('copyArray')}</button>
+                <button class="btn" data-stack-action="add" ${selection.size ? '' : 'disabled'}>${t('addSelection')}</button>
+                <button class="btn" data-stack-action="select">${t('select')}</button>
+                <button class="btn danger" data-stack-action="delete">${t('delete')}</button>
+              </div>
+            </div>`;
+          })
+          .join('');
+      }
+
+      let toastTimer;
+      function toast(text, error = false) {
+        const t = $('toast');
+        t.textContent = text;
+        t.classList.toggle('error', error);
+        t.classList.add('on');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove('on'), 1800);
+      }
+
+      // ---------- Actions ----------
+
+      function newStack() {
+        const id = crypto.randomUUID();
+        let n = state.stacks.length + 1;
+        while (state.stacks.some(s => s.name === t('stackName', { n }))) n++;
+        state.stacks.unshift({ id, name: t('stackName', { n }), items: [...selection] });
+        state.activeStack = id;
+        selection.clear();
+        save();
+        render();
+        const input = document.querySelector(`[data-stack="${id}"] .stack-name`);
+        input?.focus();
+        input?.select();
+      }
+
+      function addSelectionTo(stack) {
+        if (!stack) return;
+        const before = stack.items.length;
+        for (const b of selection) if (!stack.items.includes(b)) stack.items.push(b);
+        toast(t('added', stack.items.length - before, stack.name));
+        selection.clear();
+        save();
+        render();
+      }
+
+      const actions = {
+        'copy-selection': () => copyBases([...selection], t('selection')),
+        'new-stack': newStack,
+        'add-to-active': () => addSelectionTo(activeStack()),
+        'clear-selection': () => {
+          selection.clear();
+          render();
+        },
+      };
+
+      // ---------- Events ----------
+
+      document.addEventListener('click', e => {
+        hideMenu();
+        const seg = e.target.closest('.seg button');
+        if (seg) {
+          state[seg.closest('.seg').dataset.key] = seg.dataset.value;
+          save();
+          return render();
+        }
+        const action = e.target.closest('[data-action]');
+        if (action && !action.disabled) return actions[action.dataset.action]();
+
+        const tile = e.target.closest('.tile');
+        if (tile) {
+          const base = tile.dataset.base;
+          if (e.shiftKey && lastClicked) {
+            const a = visible.findIndex(i => i.base === lastClicked);
+            const b = visible.findIndex(i => i.base === base);
+            if (a >= 0 && b >= 0) {
+              const [from, to] = a < b ? [a, b] : [b, a];
+              for (const i of visible.slice(from, to + 1)) selection.add(i.base);
+            }
+          } else if (selection.has(base)) selection.delete(base);
+          else selection.add(base);
+          lastClicked = base;
+          updateTileMarks();
+          renderSelbar();
+          renderStacks();
+          return;
+        }
+
+        const taskAction = e.target.closest('[data-task-action]');
+        if (taskAction) return onTaskAction(taskAction);
+
+        const stackEl = e.target.closest('.stack');
+        if (!stackEl) return;
+        const stack = state.stacks.find(s => s.id === stackEl.dataset.stack);
+        const remove = e.target.closest('[data-remove]');
+        const stackAction = e.target.closest('[data-stack-action]');
+        if (remove) {
+          stack.items = stack.items.filter(b => b !== remove.dataset.remove);
+        } else if (stackAction?.dataset.stackAction === 'copy') {
+          copyBases(stack.items, stack.name);
+        } else if (stackAction?.dataset.stackAction === 'add') {
+          addSelectionTo(stack);
+        } else if (stackAction?.dataset.stackAction === 'select') {
+          selection = new Set(stack.items.filter(b => byBase.has(b)));
+        } else if (stackAction?.dataset.stackAction === 'delete') {
+          // Two clicks to delete: no native confirm() inside the app.
+          if (!stackAction.classList.contains('confirm')) {
+            stackAction.classList.add('confirm');
+            stackAction.textContent = t('confirm');
+            setTimeout(() => {
+              stackAction.classList.remove('confirm');
+              stackAction.textContent = t('delete');
+            }, 2500);
+            return;
+          }
+          state.stacks = state.stacks.filter(s => s !== stack);
+          if (state.activeStack === stack.id) state.activeStack = state.stacks[0]?.id ?? null;
+        }
+        if (!e.target.closest('.stack-name')) {
+          state.activeStack = stack?.id ?? state.activeStack;
+          save();
+          render();
+        } else if (state.activeStack !== stack.id) {
+          state.activeStack = stack.id;
+          save();
+          for (const el of document.querySelectorAll('.stack'))
+            el.classList.toggle('active', el === stackEl);
+          renderSelbar();
+        }
+      });
+
+      document.addEventListener('change', e => {
+        const field = e.target.closest('[data-field]');
+        if (field) return updateCandidate(field.closest('.task-row').dataset.id, field.dataset.field, field.value);
+        if (e.target.id === 'task-category-filter') {
+          state.taskCategory = e.target.value;
+          save();
+          return renderTasks();
+        }
+        const input = e.target.closest('.stack-name');
+        if (!input) return;
+        const stack = state.stacks.find(s => s.id === input.closest('.stack').dataset.stack);
+        stack.name = input.value.trim() || stack.name;
+        save();
+        renderSelbar();
+      });
+
+      $('search').addEventListener('input', e => {
+        query = e.target.value;
+        renderGrid();
+      });
+
+      document.addEventListener('keydown', e => {
+        const typing = e.target.matches('input, select');
+        if (e.metaKey && e.key === 'f') {
+          e.preventDefault();
+          if (document.documentElement.classList.contains('native')) return bridge('focusSearch');
+          const search = state.view === 'tasks' ? $('task-search') : $('search');
+          search.focus();
+          search.select();
+        } else if (e.key === 'Escape') {
+          hideMenu();
+          if (typing) e.target.blur();
+          else {
+            selection.clear();
+            render();
+          }
+        } else if (e.key === 'Enter' && e.target.matches('.stack-name')) {
+          e.target.blur();
+        } else if (state.view !== 'icons') {
+          return;
+        } else if (!typing && e.metaKey && e.key === 'a') {
+          e.preventDefault();
+          for (const i of visible) selection.add(i.base);
+          render();
+        } else if (!typing && e.metaKey && e.key === 'c' && selection.size) {
+          e.preventDefault();
+          copyBases([...selection], t('selection'));
+        }
+      });
+
+      // Context menu on tiles
+      const menu = $('menu');
+      function hideMenu() {
+        menu.classList.remove('on');
+      }
+      document.addEventListener('contextmenu', e => {
+        e.preventDefault();
+        const tile = e.target.closest('.tile');
+        if (!tile) return hideMenu();
+        const icon = byBase.get(tile.dataset.base);
+        const files = [icon.light, icon.dark, icon.plain].filter(Boolean);
+        const abs = f => `${repo}/icons/${f}`;
+        const items = [
+          [t('copyEntry'), () => bridge('copy', { text: JSON.stringify(entry(icon), null, 2) }).then(() => toast(t('entryCopied')))],
+          [t('reveal'), () => bridge('reveal', { paths: files.map(abs) })],
+          ...files.map(f => [t('open', { file: f }), () => bridge('open', { path: abs(f) })]),
+        ];
+        menu.innerHTML =
+          `<div class="menu-title">${esc(icon.base)}</div>` +
+          items.map((it, i) => `<button data-menu="${i}">${esc(it[0])}</button>`).join('');
+        menu.onclick = ev => {
+          const b = ev.target.closest('[data-menu]');
+          if (b) items[Number(b.dataset.menu)][1]();
+          hideMenu();
+          ev.stopPropagation();
+        };
+        menu.classList.add('on');
+        const { innerWidth: w, innerHeight: h } = window;
+        const r = menu.getBoundingClientRect();
+        menu.style.left = `${Math.min(e.clientX, w - r.width - 8)}px`;
+        menu.style.top = `${Math.min(e.clientY, h - r.height - 8)}px`;
+      });
+      window.addEventListener('blur', hideMenu);
+
+      // Called by the app when ./icons changes on disk.
+      let changeTimer;
+      window.iconsChanged = () => {
+        clearTimeout(changeTimer);
+        changeTimer = setTimeout(loadIcons, 250);
+      };
+
+      // The app drags the window from the header, except over these controls.
+      function reportLayout() {
+        const header = $('header');
+        const rects = [...header.querySelectorAll('input, select, .seg')].map(el => {
+          const r = el.getBoundingClientRect();
+          return [r.x, r.y, r.width, r.height];
+        });
+        bridge('layout', { height: header.getBoundingClientRect().bottom, rects });
+      }
+      new ResizeObserver(reportLayout).observe($('header'));
+      window.addEventListener('resize', reportLayout);
+      window.setFullscreen = on => {
+        document.documentElement.classList.toggle('fullscreen', on);
+        reportLayout();
+      };
+
+      // ---------- Candidates ----------
+
+      const CANDIDATES_FILE = 'icon-candidates.json';
+      const PRIORITIES = ['high', 'normal', 'low'];
+      const STATUSES = ['pending', 'researched', 'added'];
+      let candidates = null; // parsed icon-candidates.json
+      let candidatesLoaded = false;
+      let categoryIds = [];
+      let taskQuery = '';
+
+      const candidateId = name => name.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const byName = (a, b) => a.name.localeCompare(b.name, 'en', { sensitivity: 'base' });
+      const iconIds = () => new Set(icons.map(i => i.base.toLowerCase()));
+      const allCandidates = () =>
+        Object.entries(candidates?.categories ?? {}).flatMap(([category, list]) =>
+          list.map(c => ({ ...c, category })),
+        );
+      const options = (values, selected, label = v => v) =>
+        values
+          .map(v => `<option value="${esc(v)}"${v === selected ? ' selected' : ''}>${esc(label(v))}</option>`)
+          .join('');
+
+      async function loadCandidates() {
+        try {
+          const text = await bridge('readCandidates');
+          candidates = text ? JSON.parse(text) : null;
+        } catch {
+          candidates = null;
+        }
+        candidatesLoaded = true;
+        const ids = await bridge('readCategories').catch(() => []);
+        categoryIds = [...new Set([...ids, ...Object.keys(candidates?.categories ?? {})])].sort();
+        $('task-cat').innerHTML = options(categoryIds, $('task-cat').value || categoryIds[0]);
+        $('task-prio').innerHTML = options(PRIORITIES, $('task-prio').value || 'normal', p => t(`pr_${p}`));
+        renderTasks();
+        syncNativeToolbar();
+      }
+
+      // Re-reads the file before each change so edits made elsewhere (git pull, editor) are kept.
+      async function mutateCandidates(fn) {
+        try {
+          const data = JSON.parse(await bridge('readCandidates'));
+          if (fn(data) === false) return false;
+          const sorted = {};
+          for (const key of Object.keys(data.categories).sort()) {
+            if (data.categories[key].length) sorted[key] = data.categories[key].sort(byName);
+          }
+          data.categories = sorted;
+          await bridge('writeCandidates', { text: `${JSON.stringify(data, null, 2)}\n` });
+          candidates = data;
+          renderTasks();
+          return true;
+        } catch {
+          toast(t('saveFailed'), true);
+          return false;
+        }
+      }
+
+      function findCandidate(data, id) {
+        for (const [category, list] of Object.entries(data.categories)) {
+          const index = list.findIndex(c => c.id === id);
+          if (index >= 0) return { category, list, index, item: list[index] };
+        }
+        return null;
+      }
+
+      function updateCandidate(id, field, value) {
+        mutateCandidates(data => {
+          const found = findCandidate(data, id);
+          if (!found) return false;
+          if (field === 'category') {
+            found.list.splice(found.index, 1);
+            (data.categories[value] ??= []).push(found.item);
+          } else {
+            found.item[field] = value;
+          }
+        });
+      }
+
+      function onTaskAction(button) {
+        const row = button.closest('.task-row');
+        const c = allCandidates().find(x => x.id === row.dataset.id);
+        if (!c) return;
+        if (button.dataset.taskAction === 'command') {
+          const cmd = `bun skill-icon generate --name ${c.name} --generate <logo.svg> --category ${c.category}`;
+          return bridge('copy', { text: cmd }).then(() => toast(t('commandCopied')));
+        }
+        // Two clicks to delete, like the stacks.
+        if (!button.classList.contains('confirm')) {
+          button.classList.add('confirm');
+          button.textContent = t('confirm');
+          setTimeout(() => {
+            button.classList.remove('confirm');
+            button.textContent = t('delete');
+          }, 2500);
+          return;
+        }
+        mutateCandidates(data => {
+          const found = findCandidate(data, c.id);
+          if (!found) return false;
+          found.list.splice(found.index, 1);
+        });
+      }
+
+      $('task-form').addEventListener('submit', e => {
+        e.preventDefault();
+        const name = $('task-name').value.trim();
+        const id = candidateId(name);
+        if (!id) return;
+        if (allCandidates().some(c => c.id === id)) return toast(t('alreadyCandidate', { name }), true);
+        if (iconIds().has(id)) return toast(t('alreadyIcon', { name }), true);
+        const category = $('task-cat').value;
+        const priority = $('task-prio').value;
+        mutateCandidates(data => {
+          if (findCandidate(data, id)) return false;
+          (data.categories[category] ??= []).push({ name, id, priority, status: 'pending' });
+        }).then(saved => {
+          if (!saved) return;
+          $('task-name').value = '';
+          toast(t('candidateAdded', { name }));
+        });
+      });
+
+      $('task-search').addEventListener('input', e => {
+        taskQuery = e.target.value;
+        renderTasks();
+      });
+
+      function renderTasks() {
+        $('task-category-filter').innerHTML =
+          `<option value="">${esc(t('allCategories'))}</option>` +
+          options(categoryIds, state.taskCategory);
+        if (!candidates) {
+          $('task-list').innerHTML = candidatesLoaded
+            ? `<div class="empty">${t('noCandidatesFile')}</div>`
+            : '';
+          return;
+        }
+        const all = allCandidates();
+        const q = taskQuery.trim().toLowerCase();
+        const shown = all.filter(
+          c =>
+            (state.taskStatus === 'all' || c.status === state.taskStatus) &&
+            (!state.taskCategory || c.category === state.taskCategory) &&
+            (!q || c.name.toLowerCase().includes(q) || c.id.includes(q)),
+        );
+        if (state.view === 'tasks')
+          $('count').textContent = t(
+            'taskCount',
+            shown.length,
+            all.length,
+            all.filter(c => c.status === 'pending').length,
+          );
+        const existing = iconIds();
+        const row = c => `<div class="task-row${c.status === 'added' ? ' done' : ''}" data-id="${esc(c.id)}">
+            <span class="dot ${esc(c.priority)}"></span>
+            <span class="task-name">${esc(c.name)} <span class="id">${esc(c.id)}</span>${
+              existing.has(c.id) ? `<span class="flag">${t('existsInIcons')}</span>` : ''
+            }</span>
+            <select class="field" data-field="category" aria-label="${esc(t('categoryLabel'))}">${options(categoryIds, c.category)}</select>
+            <select class="field" data-field="priority" aria-label="${esc(t('priorityLabel'))}">${options(PRIORITIES, c.priority, p => t(`pr_${p}`))}</select>
+            <select class="field" data-field="status" aria-label="${esc(t('statusLabel'))}">${options(STATUSES, c.status, s => t(`st_${s}`))}</select>
+            <button class="btn" data-task-action="command" title="${esc(t('copyCommandTitle'))}">${t('copyCommand')}</button>
+            <button class="btn danger" data-task-action="delete">${t('delete')}</button>
+          </div>`;
+        const groups = PRIORITIES.map(p => [p, shown.filter(c => c.priority === p).sort(byName)]).filter(
+          ([, list]) => list.length,
+        );
+        $('task-list').innerHTML = groups.length
+          ? groups
+              .map(
+                ([p, list]) =>
+                  `<div class="group-head"><span class="dot ${p}"></span>${t(`pr_${p}`)} · ${list.length}</div>${list.map(row).join('')}`,
+              )
+              .join('')
+          : `<div class="empty">${t('noTasks')}</div>`;
+      }
+
+      let candidatesTimer;
+      window.candidatesChanged = () => {
+        clearTimeout(candidatesTimer);
+        candidatesTimer = setTimeout(loadCandidates, 250);
+      };
+
+      loadState().then(() => Promise.all([loadIcons(), loadCandidates()]));
+    </script>
+  </body>
+</html>

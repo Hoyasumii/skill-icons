@@ -7,6 +7,9 @@
   "scripts": {
     "icons": "bun scripts/build-icons.ts",
     "skill-icon": "bun scripts/skill-icon.ts",
+    "manager": "sh tools/icon-manager/dmg.sh --open",
+    "manager:build": "sh tools/icon-manager/build.sh",
+    "manager:dmg": "sh tools/icon-manager/dmg.sh",
     "dev": "bun run icons && VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite",
     "build": "bun run icons && tsc -b && VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite build",
     "preview": "bun run build && VITE_CONFIG_NATIVE_IGNORE_WARNING=true vite preview",
