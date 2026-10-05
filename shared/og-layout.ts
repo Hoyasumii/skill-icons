@@ -16,17 +16,74 @@ export const OG_FOOTER_BASELINE = OG_FOOTER_TOP + 44.5;
 export const OG_DEFAULT_TITLE = 'My skills';
 export const OG_TITLE_SIZE = 64;
 
+export interface OgPalette {
+  background: string;
+  ink: string;
+  muted: string;
+  /** Opacity of the footer rule (and of the icon outline), over `ink`. */
+  line: number;
+  /** Opacity of the "+N" tile's dashed border, over `ink`. */
+  dash: number;
+  /** Color and weight of "build yours →". */
+  cta: string;
+  ctaWeight: 400 | 600;
+  /** Opacity of the dotted background, over `ink`; 0 = none. */
+  dots: number;
+}
+
 /**
- * The card's colors on each `bg`: the site's --card, --foreground and --muted-foreground; `line`
- * is the opacity of the rule. The "N skills" pill is yellow and ink on both.
+ * The card's colors on each `bg`. Light is the site's card (white + ink); dark is the brand's ink
+ * (#111111), dotted, with a yellow call to action. The wordmark square and the "N skills" pill are
+ * yellow and OG_INK on both.
  */
-export const OG_PALETTE: Record<
-  Theme,
-  { background: string; ink: string; muted: string; line: number }
-> = {
-  light: { background: '#ffffff', ink: '#111111', muted: '#5c5c56', line: 0.14 },
-  dark: { background: '#1e1e1e', ink: '#f1f1ec', muted: '#a6a69f', line: 0.16 },
+export const OG_PALETTE: Record<Theme, OgPalette> = {
+  light: {
+    background: '#ffffff',
+    ink: '#111111',
+    muted: '#5c5c56',
+    line: 0.14,
+    dash: 0.2,
+    cta: '#111111',
+    ctaWeight: 400,
+    dots: 0,
+  },
+  dark: {
+    background: '#111111',
+    ink: '#f1f1ec',
+    muted: '#a6a69f',
+    line: 0.16,
+    dash: 0.24,
+    cta: '#ffd21f',
+    ctaWeight: 600,
+    dots: 0.07,
+  },
 };
+
+export const OG_ACCENT = '#FFD21F';
+export const OG_INK = '#111111';
+
+/** The dotted background: dot centers at (24·i, 24·j) over the whole card. */
+export const OG_DOT_SPACING = 24;
+export const OG_DOT_RADIUS = 1.5;
+
+/** Corner radius of an icon tile (60/256) and of the "+N" tile, as a share of its size. */
+export const OG_TILE_RADIUS = 0.234;
+
+/** The icon tile and the card share a tone, so each tile gets a 2px outline. */
+export function ogNeedsOutline(bg: Theme, theme: Theme): boolean {
+  return bg === theme;
+}
+
+/** The outline of the tile at (x, y): 2px wide, just outside it, in `ink` at `line`. */
+export function ogOutline(x: number, y: number, size: number) {
+  return {
+    x: x - 1,
+    y: y - 1,
+    size: size + 2,
+    radius: size * OG_TILE_RADIUS + 1,
+    width: 2,
+  };
+}
 
 const COLUMNS = 8;
 const MAX_TILES = COLUMNS * 2;
