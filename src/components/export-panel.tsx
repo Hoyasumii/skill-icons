@@ -10,6 +10,7 @@ import { StackTray, type StackProps } from '@/components/stack-tray';
 import { Button } from '@/components/ui/button';
 import { SheetClose } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useSiteTheme } from '@/hooks/use-site-theme';
 import { useI18n } from '@/i18n';
 import {
   FORMATS,
@@ -68,6 +69,8 @@ export function ExportPanel({
   const { t } = useI18n();
   const [packageOpen, setPackageOpen] = useState(false);
   const options = { icons: stack.icons, theme: stack.theme, perLine };
+  // A link copied from the dark site unfurls into the dark cover.
+  const bg = useSiteTheme();
   const empty = stack.icons.length === 0;
   // An emptied stack takes the panel away; the popover goes with it.
   if (empty && packageOpen) setPackageOpen(false);
@@ -77,7 +80,7 @@ export function ExportPanel({
   const linkTitle = alt === t.preview.heading ? undefined : alt;
 
   const snippet = LINK_FORMATS[format].render(
-    buildIconsUrl(API_URL, { ...options, title: linkTitle }),
+    buildIconsUrl(API_URL, { ...options, bg, title: linkTitle }),
     alt,
   );
   const component = renderFramework(framework, options, alt);
@@ -147,6 +150,7 @@ export function ExportPanel({
         title={title}
         onTitleChange={onTitleChange}
         linkTitle={linkTitle}
+        bg={bg}
       />
       <Tabs value={format} onValueChange={value => onFormatChange(value as Format)}>
         <SectionLabel id="format-label" icon={BracesIcon}>

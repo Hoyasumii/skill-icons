@@ -26,7 +26,13 @@ import { useCopy } from '@/hooks/use-copy';
 import { useI18n } from '@/i18n';
 import { cn } from '@/lib/utils';
 import { cleanTitle, MAX_TITLE_LENGTH } from '../../shared/badge-title';
-import { API_URL, buildIconsUrl, type IconsUrlOptions } from '../../shared/icons';
+import {
+  API_URL,
+  buildIconsUrl,
+  DEFAULT_THEME,
+  type IconsUrlOptions,
+  type Theme,
+} from '../../shared/icons';
 import { OG_DEFAULT_TITLE, OG_HEIGHT, OG_WIDTH } from '../../shared/og-layout';
 
 const FLIP_MS = 640;
@@ -119,11 +125,13 @@ interface ReadmePreviewProps {
   onTitleChange: (title: string | undefined) => void;
   /** The title the copied link carries; undefined while it is the default. */
   linkTitle: string | undefined;
+  /** The cover's background, the site theme; the badge itself ignores it. */
+  bg: Theme;
 }
 
 /**
  * The real badge on a page that follows the site theme; its icons follow the icon theme. It
- * flips over to the card a shared link unfurls into.
+ * flips over to the card a shared link unfurls into, which follows both the same way.
  */
 export function ReadmePreview({
   options,
@@ -133,6 +141,7 @@ export function ReadmePreview({
   title,
   onTitleChange,
   linkTitle,
+  bg,
 }: ReadmePreviewProps) {
   const { t } = useI18n();
   const inputId = useId();
@@ -149,7 +158,7 @@ export function ReadmePreview({
   // Dev previews hit the local Worker; the built site (Pages is static) uses the public API.
   const src = buildIconsUrl(import.meta.env.DEV ? '' : API_URL, options);
   // The cover button copies the image itself (/og), the same query as the /icons link.
-  const coverImage = buildIconsUrl(API_URL, { ...options, title: linkTitle }).replace(
+  const coverImage = buildIconsUrl(API_URL, { ...options, bg, title: linkTitle }).replace(
     '/icons?',
     '/og?',
   );
@@ -247,8 +256,9 @@ export function ReadmePreview({
               >
                 <OgCover
                   icons={options.icons}
+                  theme={options.theme ?? DEFAULT_THEME}
                   title={linkTitle ?? OG_DEFAULT_TITLE}
-                  link={buildIconsUrl(API_URL, options)}
+                  link={buildIconsUrl(API_URL, { ...options, bg })}
                 />
               </div>
               <CopyCoverLink key={coverImage} value={coverImage} />

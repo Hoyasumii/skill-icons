@@ -46,8 +46,9 @@ Source of truth: the Design canvas “Skill Icons Design System” (artboards **
 
 The README preview has no tokens of its own: it sits on `--background` and follows the _site_ theme
 (only its icons follow the icon theme). The package popover's scrim is lighter than `--scrim`:
-`rgb(17 17 17 / .16)` light, `rgb(0 0 0 / .38)` dark. The OpenGraph cover is fixed white + ink in
-both themes, like the PNG it reproduces.
+`rgb(17 17 17 / .16)` light, `rgb(0 0 0 / .38)` dark. The OpenGraph cover follows the site theme too
+(`--card` / `--foreground` / `--muted-foreground`: white + ink, `#1E1E1E` + `#F1F1EC` in dark), like
+the PNG it reproduces with `bg=dark`; its icons follow the icon theme.
 
 The **dock** inverts the theme: background `--foreground`, text `--background`.
 
@@ -286,7 +287,7 @@ Sizes are px. “ink” = `foreground`, “hair” = `border`, “soft” = `mut
 
 - **Front** — header 44 min-height: FileText + mono 12 file name (“README.md”, or the framework's file) left; right, a 32 high hairline button “ver capa” / “view cover” (Image 14, mono 12). Body: the editable title (18/700, dashed underline, pencil), then the real badge image (`buildIconsUrl`). Empty text when no icons.
 - **Back** — header “og:image · 1200×630” + button “ver README” / “ver componente” (RefreshCcw). The section label becomes “Capa do link · OpenGraph”. Body: the **OpenGraph cover**, then a secondary button “Copiar link com esta capa” (hairline, Link, 44 high; copied: ink fill, Check, “Link copiado!” for 1.6 s) that copies the `/icons` link with `title`, and a mono 11 note “é o que aparece ao colar o link no Discord, Slack, X ou WhatsApp”.
-- **OpenGraph cover** — the Worker's `/og` card in HTML: `container-type: inline-size`, `aspect-ratio: 1200/630`, every measure in `cqw` (1 cqw = 12 px of the PNG). Wordmark, yellow “N skills” pill, title, up to 8×2 dark icons with a dashed “+N” tile, the rule, and the footer (the `/icons` link without `title` or protocol, “build yours →”). Fixed white + ink. Title = the edited title, cleaned, or “My skills”. The geometry comes from `shared/og-layout.ts`, which `worker/og.ts` also uses, so the two never drift.
+- **OpenGraph cover** — the Worker's `/og` card in HTML: `container-type: inline-size`, `aspect-ratio: 1200/630`, every measure in `cqw` (1 cqw = 12 px of the PNG). Wordmark, yellow “N skills” pill (ink text in both themes), title, up to 8×2 icons in the icon theme with a dashed “+N” tile, the rule (`--border`), and the footer (the `/icons` link without `title` or protocol, “build yours →”). Background, text and muted follow the site theme (`--card`, `--foreground`, `--muted-foreground`), so it changes inside the theme switch's circle reveal; every copied `/icons` link and the `/og` link carry `bg=dark` while the site is dark, and the Worker paints the PNG with the same colors (`OG_PALETTE`). Title = the edited title, cleaned, or “My skills”. The geometry comes from `shared/og-layout.ts`, which `worker/og.ts` also uses, so the two never drift.
 - **Flip** — wrapper `perspective: 1400px`, `clip-path: inset(-120px -120px -6px -120px)` (the turn has room above and to the sides; the face turning away never covers the format tabs). Inner `transform-style: preserve-3d`, `rotateY(180deg)` in 640 ms `--ease-sheet`. Faces `backface-visibility: hidden`; the back is `rotateY(180deg)`, absolutely placed over the front. The face turning away gets `aria-hidden` and, after 300 ms (edge-on), `visibility: hidden`, which takes it out of the tab order; the face turning in is visible at once and its button takes focus. The inner's height is the visible face's, measured with a ResizeObserver (images loading, title wrapping, stack changes); `auto` before the first measure.
 
 **CodeBlock** — soft bg, 1 px hair, radius 12, padding 12, mono 13/19, `pre-wrap` + `break-all`, max-height 132 with scroll.

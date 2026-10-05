@@ -5,6 +5,8 @@ import { cleanTitle } from './badge-title';
 export type Theme = 'dark' | 'light';
 
 export const DEFAULT_THEME: Theme = 'dark';
+/** Background of a link's cover (/og): the site theme it was copied from. */
+export const DEFAULT_BG: Theme = 'light';
 export const DEFAULT_PER_LINE = 15;
 export const MIN_PER_LINE = 1;
 export const MAX_PER_LINE = 50;
@@ -69,6 +71,8 @@ export interface IconsUrlOptions {
   icons: string[];
   theme?: Theme;
   perLine?: number;
+  /** Background of the link's cover card; the SVG ignores it. */
+  bg?: Theme;
   /** Badge title for the link preview card; the SVG itself ignores it. */
   title?: string;
 }
@@ -76,11 +80,12 @@ export interface IconsUrlOptions {
 /** Builds an /icons URL, omitting parameters that match the defaults. */
 export function buildIconsUrl(
   base: string,
-  { icons, theme, perLine, title }: IconsUrlOptions,
+  { icons, theme, perLine, bg, title }: IconsUrlOptions,
 ): string {
   const params = [`i=${icons.map(shortestName).join(',')}`];
   if (theme && theme !== DEFAULT_THEME) params.push(`theme=${theme}`);
   if (perLine && perLine !== DEFAULT_PER_LINE) params.push(`perline=${perLine}`);
+  if (bg && bg !== DEFAULT_BG) params.push(`bg=${bg}`);
   const cleanedTitle = cleanTitle(title);
   if (cleanedTitle) params.push(`title=${encodeURIComponent(cleanedTitle)}`);
   return `${base}/icons?${params.join('&')}`;

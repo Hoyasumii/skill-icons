@@ -174,9 +174,22 @@ describe('link previews', () => {
     expect(res.headers.get('Content-Type')).toBe('image/png');
   });
 
-  it('validates /og params', async () => {
-    const res = await get('/og?i=js&theme=blue');
+  it('renders the light icons on a dark background', async () => {
+    const res = await get('/og?i=js,ts&theme=light&bg=dark');
+    expect(res.status).toBe(200);
+    expect(res.headers.get('Content-Type')).toBe('image/png');
+  });
+
+  it.each(['/og?i=js&theme=blue', '/og?i=js&bg=blue'])('validates %s', async path => {
+    const res = await get(path);
     expect(res.status).toBe(400);
+  });
+
+  it('keeps bg off the SVG and passes it on to the card', async () => {
+    const svg = await get('/icons?i=js&bg=dark');
+    expect(svg.headers.get('Content-Type')).toBe('image/svg+xml');
+    const html = await (await asBot('/icons?i=js&bg=dark', 'Discordbot/2.0')).text();
+    expect(html).toContain('content="https://example.com/og?i=js&amp;bg=dark"');
   });
 });
 

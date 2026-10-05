@@ -26,6 +26,13 @@ describe('buildIconsUrl', () => {
     );
   });
 
+  it('includes a dark cover background before the title, never the light default', () => {
+    expect(buildIconsUrl('', { icons: ['javascript'], bg: 'dark', title: 'Mine' })).toBe(
+      '/icons?i=js&bg=dark&title=Mine',
+    );
+    expect(buildIconsUrl('', { icons: ['javascript'], bg: 'light' })).toBe('/icons?i=js');
+  });
+
   it('includes a trimmed, encoded title', () => {
     expect(buildIconsUrl('', { icons: ['javascript'], title: '  Stack do trabalho & mais ' })).toBe(
       '/icons?i=js&title=Stack%20do%20trabalho%20%26%20mais',

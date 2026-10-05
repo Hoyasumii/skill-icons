@@ -4,18 +4,19 @@ import { MoonIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { useHydrated } from '@/hooks/use-hydrated';
+import { useSiteTheme } from '@/hooks/use-site-theme';
 import { useI18n } from '@/i18n';
 import { circleReveal, imagesOnScreen } from '@/lib/circle-reveal';
 import { cn } from '@/lib/utils';
 
 export function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
   const { t } = useI18n();
   // Remounting the icon on each switch replays its spin; the first render stays still.
   const [switches, setSwitches] = useState(0);
   // The prerendered HTML can't know the theme; until hydration the icon follows the page's class.
   const hydrated = useHydrated();
-  const dark = hydrated && resolvedTheme === 'dark';
+  const dark = useSiteTheme() === 'dark';
 
   const toggle = (e: MouseEvent<HTMLButtonElement>) => {
     const next = dark ? 'light' : 'dark';

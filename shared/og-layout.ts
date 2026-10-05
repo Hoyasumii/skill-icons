@@ -1,3 +1,5 @@
+import type { Theme } from './icons';
+
 // Geometry of the "shared stack" OpenGraph card, in px of the 1200×630 image. The Worker draws it
 // as an SVG (worker/og.ts) and the builder as HTML (the preview's back face), from these numbers.
 
@@ -13,6 +15,18 @@ export const OG_FOOTER_TOP = 524;
 export const OG_FOOTER_BASELINE = OG_FOOTER_TOP + 44.5;
 export const OG_DEFAULT_TITLE = 'My skills';
 export const OG_TITLE_SIZE = 64;
+
+/**
+ * The card's colors on each `bg`: the site's --card, --foreground and --muted-foreground; `line`
+ * is the opacity of the rule. The "N skills" pill is yellow and ink on both.
+ */
+export const OG_PALETTE: Record<
+  Theme,
+  { background: string; ink: string; muted: string; line: number }
+> = {
+  light: { background: '#ffffff', ink: '#111111', muted: '#5c5c56', line: 0.14 },
+  dark: { background: '#1e1e1e', ink: '#f1f1ec', muted: '#a6a69f', line: 0.16 },
+};
 
 const COLUMNS = 8;
 const MAX_TILES = COLUMNS * 2;

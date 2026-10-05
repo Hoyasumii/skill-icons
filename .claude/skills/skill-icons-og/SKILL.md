@@ -11,10 +11,11 @@ Renders the two Open Graph images from the design system v3 (artboards **OG · s
 | Variant | When | Look |
 |---|---|---|
 | `site` | the home page's `og:image` (`public/og-site.png`) | stone `#EDEDE8` background, wordmark, headline "Build your stack. Paste it in your README." with a yellow highlight, a tilted 4×4 cluster of icons, footer with the site URL |
-| `stack` | a shared link with `?i=…` | white background, ink text, yellow pill "N skills", the stack title (default "My skills"), icons in up to 8 columns × 2 rows (`+N` tile when there are more), footer with the share URL and "build yours →" |
+| `stack` | a shared link with `?i=…` | white background and ink text (`#1E1E1E` / `#F1F1EC` with `bg=dark`), yellow pill "N skills", the stack title (default "My skills"), icons in up to 8 columns × 2 rows (`+N` tile when there are more), footer with the share URL and "build yours →" |
 
-Rules that must not drift: icons in both images always use the **dark variant** (`-Dark.svg`),
-whatever the `theme` in the link; text is ink `#111111`; the only accent is `#FFD21F`.
+Rules that must not drift: this script draws the defaults, icons in the **dark variant**
+(`-Dark.svg`) and ink `#111111` text; the only accent is `#FFD21F`. The Worker's `/og` follows the
+link instead: icons in its `theme`, colors from `bg` (`OG_PALETTE` in `shared/og-layout.ts`).
 
 ## Requirements
 

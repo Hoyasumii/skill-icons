@@ -1,5 +1,6 @@
 import iconsJson from '../generated/icons.json';
 import {
+  DEFAULT_BG,
   DEFAULT_PER_LINE,
   DEFAULT_THEME,
   MAX_PER_LINE,
@@ -75,6 +76,8 @@ interface IconsRequest {
   iconNames: string[];
   theme: Theme;
   perLine: number;
+  /** Background of the /og card; the SVG ignores it. */
+  bg: Theme;
 }
 
 /** Validates the /icons query; returns a 400 response when it is invalid. */
@@ -87,6 +90,9 @@ function parseIconsRequest(searchParams: URLSearchParams): IconsRequest | Respon
     return badRequest('Theme must be either "light" or "dark"');
   const theme: Theme = themeParam;
 
+  const bg = searchParams.get('bg') || DEFAULT_BG;
+  if (bg !== 'dark' && bg !== 'light') return badRequest('Bg must be either "light" or "dark"');
+
   const perLineParam = searchParams.get('perline');
   const perLine = perLineParam ? Number(perLineParam) : DEFAULT_PER_LINE;
   if (!Number.isInteger(perLine) || perLine < MIN_PER_LINE || perLine > MAX_PER_LINE)
@@ -98,7 +104,7 @@ function parseIconsRequest(searchParams: URLSearchParams): IconsRequest | Respon
   const iconNames = parseShortNames(iconShortNames, theme);
   if (iconNames.length === 0) return badRequest("You didn't format the icons param correctly!");
 
-  return { iconNames, theme, perLine };
+  return { iconNames, theme, perLine, bg };
 }
 
 /** A person opening the link in a tab, as opposed to an <img>, GitHub camo or a crawler. */
@@ -145,15 +151,15 @@ async function handleOg(request: Request): Promise<Response> {
   const cached = await cache.match(request.url);
   if (cached) return cached;
 
-  // The card always shows the dark icons, whatever the link's theme; its footer shows the /icons link.
-  const iconSvgs = parsed.iconNames.map(i => icons[i.replace(/-light$/, '-dark')]);
+  // The card shows the icons in the link's theme on its `bg`; its footer shows the /icons link.
+  const iconSvgs = parsed.iconNames.map(i => icons[i]);
   // `title` comes from the builder (its page link or a copied /icons link); the footer leaves it out.
   const title = cleanTitle(url.searchParams.get('title'));
   const linkParams = new URLSearchParams(url.search);
   linkParams.delete('title');
   const link = new URL('/icons', url);
   link.search = linkParams.toString().replaceAll('%2C', ',');
-  const png = await renderOgPng(iconSvgs, link, title);
+  const png = await renderOgPng(iconSvgs, link, title, parsed.bg);
   const res = new Response(png, {
     headers: { 'Content-Type': 'image/png', ...CACHE_HEADERS, ...NOINDEX },
   });
