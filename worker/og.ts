@@ -91,7 +91,7 @@ function dotGrid(ink: string, opacity: number): string {
  * protocol; `title` is the link's own badge title, if it has one; `bg` picks the card's colors.
  * When the icon tiles share the card's tone (`bg` = `theme`), each one gets an outline.
  */
-function buildOgSvg(
+export function buildOgSvg(
   iconSvgs: string[],
   link: URL,
   title = OG_DEFAULT_TITLE,

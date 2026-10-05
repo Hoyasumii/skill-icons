@@ -1,5 +1,6 @@
 import { exports } from 'cloudflare:workers';
 import { describe, expect, it } from 'vitest';
+import { buildOgSvg } from '../worker/og';
 
 const get = (path: string) => exports.default.fetch(`https://example.com${path}`);
 
@@ -230,4 +231,43 @@ describe('search engines', () => {
       expect(res.headers.get('X-Robots-Tag')).toBe('noindex');
     },
   );
+});
+
+describe('the /og card', () => {
+  const link = new URL('https://example.com/icons?i=js');
+  const card = (count: number, bg: 'light' | 'dark', theme: 'light' | 'dark') =>
+    buildOgSvg(Array(count).fill('<rect width="256" height="256"/>'), link, undefined, bg, theme);
+  const outlines = (svg: string) => svg.match(/stroke-width="2"/g)?.length ?? 0;
+
+  it('outlines the dark icons on the dark background, over dots', () => {
+    const svg = card(10, 'dark', 'dark');
+    expect(outlines(svg)).toBe(10);
+    expect(svg).toContain('<pattern id="dots"');
+    expect(svg).toContain('stroke="#f1f1ec" stroke-opacity="0.16" stroke-width="2"');
+  });
+
+  it('draws neither outlines nor dots for dark icons on the light background', () => {
+    const svg = card(10, 'light', 'dark');
+    expect(outlines(svg)).toBe(0);
+    expect(svg).not.toContain('<pattern');
+  });
+
+  it('outlines the light icons on the light background, without dots', () => {
+    const svg = card(10, 'light', 'light');
+    expect(outlines(svg)).toBe(10);
+    expect(svg).not.toContain('<pattern');
+    expect(svg).toContain('stroke="#111111" stroke-opacity="0.14" stroke-width="2"');
+  });
+
+  it('never outlines the "+N" tile', () => {
+    const svg = card(18, 'dark', 'dark');
+    expect(outlines(svg)).toBe(15);
+    expect(svg).toContain('+3</text>');
+  });
+
+  it('keeps the wordmark square ink-bordered and the call to action yellow on dark', () => {
+    const svg = card(3, 'dark', 'light');
+    expect(svg).toContain('fill="#FFD21F" stroke="#111111" stroke-width="3"');
+    expect(svg).toMatch(/font-weight="600" font-size="20" fill="#ffd21f">build yours →/);
+  });
 });
