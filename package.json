@@ -20,6 +20,7 @@
     "pack:lib": "bun run build:lib && cd packages/skill-icons && npm pack --dry-run --ignore-scripts",
     "test": "bun run icons && vitest run",
     "typecheck": "bun run icons && tsc -b",
+    "og": "python3 .claude/skills/skill-icons-og/scripts/render_og.py site --icons-dir icons --out public/og-site.png && python3 .claude/skills/skill-icons-og/scripts/render_og.py site --icons-dir icons --bg dark --out public/og-site-dark.png",
     "cf-typegen": "wrangler types",
     "format": "biome format --write .",
     "prepare": "husky",

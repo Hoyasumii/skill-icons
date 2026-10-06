@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 """Render Skill Icons Open Graph images (1200x630 PNG).
 
-Two variants, matching the design canvas (artboards "OG · site" and "OG · pilha compartilhada"):
-  site   - static image for the home page (stone background, headline, tilted icon cluster)
+Two variants, matching the design canvas (artboards "OG · site", "OG · site · escuro" and "OG · pilha compartilhada"):
+  site   - static image for the home page (stone background, headline, tilted icon cluster);
+           with --bg dark, the dark cover (#141414 with a dot grid) that "?bg=dark" page links get
   stack  - image for a shared stack link (white background, title, icon grid, share URL)
+
+The site image's footer shows the icon count, read from --icons-dir: an icon with -Dark/-Light
+variants counts once.
 
 Icons always use the dark variant (-Dark.svg) in both images.
 
 Examples:
   python render_og.py site  --icons-dir ./icons --out public/og-site.png
+  python render_og.py site  --icons-dir ./icons --bg dark --out public/og-site-dark.png
   python render_og.py stack --icons-dir ./icons --url "https://hoyasumii.github.io/skill-icons/?i=ts,react,bun" --out og-stack.png
   python render_og.py stack --icons-dir ./icons --icons ts,react,bun --title "Stack do trabalho" --out og.png
 """
@@ -60,6 +65,11 @@ def resolve(name: str, files: dict[str, Path], aliases: dict[str, str]) -> Path 
     return files.get(f"{key}-dark") or files.get(key)
 
 
+def count_icons(files: dict[str, Path]) -> int:
+    """Icons in the set, as the site counts them: "react-dark" and "react-light" are one icon."""
+    return len({re.sub(r"-(dark|light)$", "", name) for name in files})
+
+
 def font_css() -> str:
     def face(family: str, file: str, weight: str) -> str:
         return (
@@ -95,24 +105,28 @@ def page(body: str, background: str, ink: str) -> str:
     )
 
 
-def build_site(icons: list[Path]) -> str:
+def build_site(icons: list[Path], count: int, dark: bool = False) -> str:
     tiles = []
     for i, path in enumerate(icons[:16]):
-        bg = "#FFD21F" if i in SITE_HIGHLIGHTS else "transparent"
+        highlighted = i in SITE_HIGHLIGHTS
+        bg = "#FFD21F" if highlighted else "transparent"
+        img = f'<img src="{path.as_uri()}" alt="">'
+        # On the dark ground the loose tiles get the stack card's 2px ring, or they sink into it.
+        if dark and not highlighted:
+            img = f'<span class="ring">{img}</span>'
         tiles.append(
-            f'<span class="tile" style="background:{bg};transform:rotate({SITE_TILTS[i % len(SITE_TILTS)]}deg)">'
-            f'<img src="{path.as_uri()}" alt=""></span>'
+            f'<span class="tile" style="background:{bg};transform:rotate({SITE_TILTS[i % len(SITE_TILTS)]}deg)">{img}</span>'
         )
     body = f"""
-<div class="site">
+<div class="site{' dark' if dark else ''}">
   <div class="site-copy">
     {wordmark(40, 16, 4, '#111111')}
     <h1>Build your stack.<br>Paste it in your <mark>README</mark>.</h1>
-    <div class="site-foot"><span>{SITE_URL}</span><i></i><span class="muted">371 icons · npm package</span></div>
+    <div class="site-foot"><span>{SITE_URL}</span><i></i><span class="muted">{count} icons · npm package</span></div>
   </div>
   <div class="cluster">{''.join(tiles)}</div>
 </div>"""
-    return page(body, "#EDEDE8", "#111111")
+    return page(body, "#141414", "#F1F1EC") if dark else page(body, "#EDEDE8", "#111111")
 
 
 def build_stack(icons: list[Path], title: str, share: str) -> str:
@@ -166,6 +180,7 @@ def main() -> int:
     ap.add_argument("--url", help="share link; its i= param gives the icons")
     ap.add_argument("--icons", help="comma-separated icon names or aliases (overrides --url)")
     ap.add_argument("--title", default="My skills", help="stack title (default: My skills)")
+    ap.add_argument("--bg", choices=["light", "dark"], default="light", help="site image background (default: light)")
     ap.add_argument("--out", required=True, type=Path)
     args = ap.parse_args()
 
@@ -199,7 +214,7 @@ def main() -> int:
         return 1
 
     if args.variant == "site":
-        markup = build_site(resolved)
+        markup = build_site(resolved, count_icons(files), args.bg == "dark")
     else:
         share = args.url or f"{SITE_URL}/?i={','.join(names)}"
         share = re.sub(r"^https?://", "", share)
