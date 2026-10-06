@@ -11,7 +11,7 @@ Renders the two Open Graph images from the design system v3 (artboards **OG · s
 | Variant | When | Look |
 |---|---|---|
 | `site` | the home page's `og:image` (`public/og-site.png`) | stone `#EDEDE8` background, wordmark, headline "Build your stack. Paste it in your README." with a yellow highlight, a tilted 4×4 cluster of icons, footer with the site URL |
-| `site --bg dark` | `public/og-site-dark.png`, the `og:image` of any page link with `?bg=dark` (the Worker swaps it in) and the README cover in dark mode | the artboard **OG · site · escuro**: same layout on `#141414` with a 24px dot grid, `#F1F1EC` text, a yellow footer dot, and a 2px `rgb(241 241 236 / .16)` ring on the tiles without the yellow highlight |
+| `site --bg dark` | `public/og-site-dark.png`, the `og:image` of any page link with `?bg=dark` (the Worker swaps it in) and the README cover in dark mode | the artboard **OG · site · escuro**: same layout on `#141414`, `#F1F1EC` text, a yellow footer dot, and a 2px `rgb(241 241 236 / .16)` ring on the tiles without the yellow highlight |
 | `stack` | a shared link with `?i=…` | white background and ink text (`#1E1E1E` / `#F1F1EC` with `bg=dark`), yellow pill "N skills", the stack title (default "My skills"), icons in up to 8 columns × 2 rows (`+N` tile when there are more), footer with the share URL and "build yours →" |
 
 Rules that must not drift: this script draws the defaults, icons in the **dark variant**

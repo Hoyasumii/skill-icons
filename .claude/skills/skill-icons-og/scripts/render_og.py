@@ -3,7 +3,7 @@
 
 Two variants, matching the design canvas (artboards "OG · site", "OG · site · escuro" and "OG · pilha compartilhada"):
   site   - static image for the home page (stone background, headline, tilted icon cluster);
-           with --bg dark, the dark cover (#141414 with a dot grid) that "?bg=dark" page links get
+           with --bg dark, the dark cover (#141414) that "?bg=dark" page links get
   stack  - image for a shared stack link (white background, title, icon grid, share URL)
 
 The site image's footer shows the icon count, read from --icons-dir: an icon with -Dark/-Light

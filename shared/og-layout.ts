@@ -27,13 +27,11 @@ export interface OgPalette {
   /** Color and weight of "build yours →". */
   cta: string;
   ctaWeight: 400 | 600;
-  /** Opacity of the dotted background, over `ink`; 0 = none. */
-  dots: number;
 }
 
 /**
  * The card's colors on each `bg`. Light is the site's card (white + ink); dark is the brand's ink
- * (#111111), dotted, with a yellow call to action. The wordmark square and the "N skills" pill are
+ * (#111111), with a yellow call to action. The wordmark square and the "N skills" pill are
  * yellow and OG_INK on both.
  */
 export const OG_PALETTE: Record<Theme, OgPalette> = {
@@ -45,7 +43,6 @@ export const OG_PALETTE: Record<Theme, OgPalette> = {
     dash: 0.2,
     cta: '#111111',
     ctaWeight: 400,
-    dots: 0,
   },
   dark: {
     background: '#111111',
@@ -55,16 +52,11 @@ export const OG_PALETTE: Record<Theme, OgPalette> = {
     dash: 0.24,
     cta: '#ffd21f',
     ctaWeight: 600,
-    dots: 0.07,
   },
 };
 
 export const OG_ACCENT = '#FFD21F';
 export const OG_INK = '#111111';
-
-/** The dotted background: dot centers at (24·i, 24·j) over the whole card. */
-export const OG_DOT_SPACING = 24;
-export const OG_DOT_RADIUS = 1.5;
 
 /** Corner radius of an icon tile (60/256) and of the "+N" tile, as a share of its size. */
 export const OG_TILE_RADIUS = 0.234;

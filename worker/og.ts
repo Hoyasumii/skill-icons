@@ -7,8 +7,6 @@ import monoSemiBold from './fonts/ibm-plex-mono-semibold.bin';
 import {
   OG_ACCENT as ACCENT,
   OG_DEFAULT_TITLE,
-  OG_DOT_RADIUS as DOT_RADIUS,
-  OG_DOT_SPACING as DOT_SPACING,
   OG_FOOTER_BASELINE as footerBaseline,
   OG_FOOTER_TOP as FOOTER_TOP,
   OG_HEADER_HEIGHT,
@@ -77,14 +75,6 @@ function outline(x: number, y: number, size: number, ink: string, opacity: numbe
   return `<rect x="${o.x}" y="${o.y}" width="${o.size}" height="${o.size}" rx="${o.radius}" fill="none" stroke="${ink}" stroke-opacity="${opacity}" stroke-width="${o.width}"/>`;
 }
 
-/** Dots at (24·i, 24·j) over the whole card; a dot on each corner keeps the edge dots whole. */
-function dotGrid(ink: string, opacity: number): string {
-  const dot = (cx: number, cy: number) =>
-    `<circle cx="${cx}" cy="${cy}" r="${DOT_RADIUS}" fill="${ink}" fill-opacity="${opacity}"/>`;
-  const corners = [0, DOT_SPACING].flatMap(cy => [0, DOT_SPACING].map(cx => dot(cx, cy)));
-  return `<defs><pattern id="dots" width="${DOT_SPACING}" height="${DOT_SPACING}" patternUnits="userSpaceOnUse">${corners.join('')}</pattern></defs><rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="url(#dots)"/>`;
-}
-
 /**
  * The "shared stack" card from the design system: wordmark and skill count, title, icons in up
  * to 8 columns × 2 rows (a "+N" tile takes the last slot when there are more) and the link.
@@ -108,7 +98,7 @@ export function buildOgSvg(
     cell,
     href,
   } = ogLayout(iconSvgs.length, title, link.href);
-  const { ink, muted, line, dash, cta, ctaWeight, dots } = OG_PALETTE[bg];
+  const { ink, muted, line, dash, cta, ctaWeight } = OG_PALETTE[bg];
   const outlined = ogNeedsOutline(bg, theme);
   const shown = iconSvgs.slice(0, shownCount);
 
@@ -126,7 +116,6 @@ export function buildOgSvg(
   const headerCenter = PAD_Y + OG_HEADER_HEIGHT / 2;
 
   return `<svg width="${OG_WIDTH}" height="${OG_HEIGHT}" viewBox="0 0 ${OG_WIDTH} ${OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  ${dots > 0 ? dotGrid(ink, dots) : ''}
   ${wordmark(headerCenter, ink)}
   ${countPill(iconSvgs.length, headerCenter)}
   <text x="${PAD_X}" y="${titleBaseline}" font-family="${SANS}" font-weight="700" font-size="${titleSize}" letter-spacing="${-0.035 * titleSize}" fill="${ink}">${escapeHtml(title)}</text>

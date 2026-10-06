@@ -3,8 +3,6 @@ import { iconSrc } from '@/lib/icons';
 import type { Theme } from '../../shared/icons';
 import {
   OG_ACCENT,
-  OG_DOT_RADIUS,
-  OG_DOT_SPACING,
   OG_FOOTER_BASELINE,
   OG_FOOTER_TOP,
   OG_HEADER_HEIGHT,
@@ -48,7 +46,7 @@ export function OgCover({ icons, theme, bg, title, link }: OgCoverProps) {
     title,
     link,
   );
-  const { background, ink, muted, line, dash, cta, ctaWeight, dots } = OG_PALETTE[bg];
+  const { background, ink, muted, line, dash, cta, ctaWeight } = OG_PALETTE[bg];
   const outlined = ogNeedsOutline(bg, theme);
   const headerCenter = OG_PAD_Y + OG_HEADER_HEIGHT / 2;
   const at = (x: number, y: number): CSSProperties => ({
@@ -70,12 +68,6 @@ export function OgCover({ icons, theme, bg, title, link }: OgCoverProps) {
           aspectRatio: `${OG_WIDTH} / ${OG_HEIGHT}`,
           backgroundColor: background,
           color: ink,
-          // Dots centered on multiples of OG_DOT_SPACING, as in the PNG's pattern.
-          ...(dots > 0 && {
-            backgroundImage: `radial-gradient(circle, ${alpha(ink, dots)} ${u(OG_DOT_RADIUS)}, transparent ${u(OG_DOT_RADIUS + 0.1)})`,
-            backgroundSize: `${u(OG_DOT_SPACING)} ${u(OG_DOT_SPACING)}`,
-            backgroundPosition: `${u(-OG_DOT_SPACING / 2)} ${u(-OG_DOT_SPACING / 2)}`,
-          }),
         }}
       >
         {/* Wordmark: "skill", a 12px square 7px either side, "icons". */}

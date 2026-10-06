@@ -269,23 +269,20 @@ describe('the /og card', () => {
     buildOgSvg(Array(count).fill('<rect width="256" height="256"/>'), link, undefined, bg, theme);
   const outlines = (svg: string) => svg.match(/stroke-width="2"/g)?.length ?? 0;
 
-  it('outlines the dark icons on the dark background, over dots', () => {
+  it('outlines the dark icons on the dark background', () => {
     const svg = card(10, 'dark', 'dark');
     expect(outlines(svg)).toBe(10);
-    expect(svg).toContain('<pattern id="dots"');
     expect(svg).toContain('stroke="#f1f1ec" stroke-opacity="0.16" stroke-width="2"');
   });
 
-  it('draws neither outlines nor dots for dark icons on the light background', () => {
+  it('draws no outlines for dark icons on the light background', () => {
     const svg = card(10, 'light', 'dark');
     expect(outlines(svg)).toBe(0);
-    expect(svg).not.toContain('<pattern');
   });
 
-  it('outlines the light icons on the light background, without dots', () => {
+  it('outlines the light icons on the light background', () => {
     const svg = card(10, 'light', 'light');
     expect(outlines(svg)).toBe(10);
-    expect(svg).not.toContain('<pattern');
     expect(svg).toContain('stroke="#111111" stroke-opacity="0.14" stroke-width="2"');
   });
 
