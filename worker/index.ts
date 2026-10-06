@@ -11,7 +11,14 @@ import {
 import { cleanTitle } from '../shared/badge-title';
 import { localeRedirect } from '../shared/page-meta';
 import { handleMcp } from './mcp';
-import { isPreviewBot, ogPage, renderOgPng, withSiteOgBg } from './og';
+import {
+  isPreviewBot,
+  ogPage,
+  renderOgPng,
+  renderSiteOgPng,
+  SITE_OG_ICONS,
+  withSiteOgBg,
+} from './og';
 
 const icons: Record<string, string> = iconsJson;
 const iconNameList = [...new Set(Object.keys(icons).map(i => i.split('-')[0]))];
@@ -141,7 +148,7 @@ function handleIcons(request: Request, url: URL): Response {
   });
 }
 
-/** Part of /og's cache key only; the public URLs never carry it. */
+/** Part of the cover PNGs' cache key only; the public URLs never carry it. */
 const OG_CACHE_VERSION = '2';
 
 async function handleOg(request: Request): Promise<Response> {
@@ -151,26 +158,56 @@ async function handleOg(request: Request): Promise<Response> {
 
   // Rasterizing is the expensive part, so each URL is rendered once per colo. Bump OG_CACHE_VERSION
   // when the card changes, so PNGs drawn by an older card don't outlive it.
+  return cachedPng(request, () => {
+    // The card shows the icons in the link's theme on its `bg`; its footer shows the /icons link.
+    const iconSvgs = parsed.iconNames.map(i => icons[i]);
+    // `title` comes from the builder (its page link or a copied /icons link); the footer leaves it out.
+    const title = cleanTitle(url.searchParams.get('title'));
+    const linkParams = new URLSearchParams(url.search);
+    linkParams.delete('title');
+    const link = new URL('/icons', url);
+    link.search = linkParams.toString().replaceAll('%2C', ',');
+    return renderOgPng(iconSvgs, link, title, parsed.bg, parsed.theme);
+  });
+}
+
+/** Rasterized PNGs are kept in the colo's cache under their URL, OG_CACHE_VERSION and `key`. */
+async function cachedPng(
+  request: Request,
+  render: () => Promise<Uint8Array>,
+  key: Record<string, string> = {},
+): Promise<Response> {
   const cacheKey = new URL(request.url);
   cacheKey.searchParams.set('v', OG_CACHE_VERSION);
+  for (const [name, value] of Object.entries(key)) cacheKey.searchParams.set(name, value);
   const cache = caches.default;
   const cached = await cache.match(cacheKey.href);
   if (cached) return cached;
 
-  // The card shows the icons in the link's theme on its `bg`; its footer shows the /icons link.
-  const iconSvgs = parsed.iconNames.map(i => icons[i]);
-  // `title` comes from the builder (its page link or a copied /icons link); the footer leaves it out.
-  const title = cleanTitle(url.searchParams.get('title'));
-  const linkParams = new URLSearchParams(url.search);
-  linkParams.delete('title');
-  const link = new URL('/icons', url);
-  link.search = linkParams.toString().replaceAll('%2C', ',');
-  const png = await renderOgPng(iconSvgs, link, title, parsed.bg, parsed.theme);
-  const res = new Response(png, {
+  const res = new Response(await render(), {
     headers: { 'Content-Type': 'image/png', ...CACHE_HEADERS, ...NOINDEX },
   });
   await cache.put(cacheKey.href, res.clone());
   return res;
+}
+
+/** The site cover (the README's and the pages' link preview), with today's icon count. */
+async function handleSiteOg(request: Request, url: URL): Promise<Response> {
+  const bg = url.searchParams.get('bg') || 'light';
+  if (bg !== 'dark' && bg !== 'light') return badRequest('Bg must be either "light" or "dark"');
+
+  return cachedPng(
+    request,
+    () =>
+      renderSiteOgPng(
+        parseShortNames(SITE_OG_ICONS, 'dark').map(i => icons[i]),
+        iconNameList.length,
+        url.host,
+        bg,
+      ),
+    // A deploy that adds icons draws a new cover instead of serving the old count.
+    { n: String(iconNameList.length) },
+  );
 }
 
 /**
@@ -211,6 +248,7 @@ export default {
     try {
       if (path === 'icons') return handleIcons(request, url);
       if (path === 'og') return await handleOg(request);
+      if (path === 'og/site') return await handleSiteOg(request, url);
       if (path === 'mcp') {
         // A browser opening the server URL gets the page that explains how to install it.
         const wantsPage =

@@ -167,7 +167,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
     window.toolbarStyle = .unified
     window.webView = webView
     window.delegate = self
-    window.minSize = NSSize(width: 760, height: 480)
+    window.minSize = NSSize(width: 900, height: 480)
     backdrop = makeBackdrop()
     let container = NSView()
     for view in [backdrop!, webView!] {
@@ -404,13 +404,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         replyHandler(nil, error.localizedDescription)
       }
     case "readCategories":
-      // Category ids accepted by `bun skill-icon generate`, from shared/icon-categories.ts.
+      // [[category, [icon ids]]] in file order, from shared/icon-categories.ts. The ids are
+      // the ones `bun skill-icon generate` accepts; the icons feed the sidebar.
       let file = (repoPath as NSString).appendingPathComponent("shared/icon-categories.ts")
-      let source = (try? String(contentsOfFile: file, encoding: .utf8)) ?? ""
-      let regex = try! NSRegularExpression(pattern: "^  (\\w+): \\{", options: .anchorsMatchLines)
-      let ids = regex.matches(in: source, range: NSRange(source.startIndex..., in: source))
-        .compactMap { Range($0.range(at: 1), in: source).map { String(source[$0]) } }
-      replyHandler(ids, nil)
+      let source = ((try? String(contentsOfFile: file, encoding: .utf8)) ?? "") as NSString
+      let block = try! NSRegularExpression(pattern: "^  (\\w+): \\{([^}]*)\\}", options: .anchorsMatchLines)
+      let key = try! NSRegularExpression(pattern: "(\\w+): 1")
+      let categories = block.matches(in: source as String, range: NSRange(location: 0, length: source.length))
+        .map { match -> [Any] in
+          let body = source.substring(with: match.range(at: 2)) as NSString
+          let icons = key.matches(in: body as String, range: NSRange(location: 0, length: body.length))
+            .map { body.substring(with: $0.range(at: 1)) }
+          return [source.substring(with: match.range(at: 1)), icons]
+        }
+      replyHandler(categories, nil)
     case "loadState":
       replyHandler(try? String(contentsOf: stateURL, encoding: .utf8), nil)
     case "saveState":

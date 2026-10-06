@@ -38,16 +38,19 @@ export function isPreviewBot(request: Request): boolean {
   return PREVIEW_BOTS.test(request.headers.get('User-Agent') ?? '');
 }
 
-/** "skill ◇ icons" at 30px, vertically centered on the header row. The square is yellow and INK on both backgrounds. */
-function wordmark(centerY: number, ink: string): string {
-  // Familjen Grotesk: "skill" is 1.8067em wide; letter-spacing -0.03em; the square sits 4px gap + 3px margin away.
-  const skillWidth = 1.8067 * 30 - 5 * 0.9;
-  const squareX = PAD_X + skillWidth + 7;
-  const iconsX = squareX + 12 + 7;
-  const baseline = centerY + 12;
+/** "skill ◇ icons" at `size` px (30 on the stack card), vertically centered on `centerY`. The square is yellow and INK on both backgrounds. */
+function wordmark(centerY: number, ink: string, size = 30): string {
+  // Familjen Grotesk: "skill" is 1.8067em wide; letter-spacing -0.03em; the square (0.4em, with a
+  // 0.1em border) sits a 4px gap plus a 0.1em margin away.
+  const skillWidth = 1.8067 * size - 5 * 0.03 * size;
+  const square = 0.4 * size;
+  const border = 0.1 * size;
+  const squareX = PAD_X + skillWidth + 4 + border;
+  const iconsX = squareX + square + border + 4;
+  const baseline = centerY + 0.4 * size;
   const text = (x: number, value: string) =>
-    `<text x="${x}" y="${baseline}" font-family="${SANS}" font-weight="700" font-size="30" letter-spacing="-0.9" fill="${ink}">${value}</text>`;
-  return `${text(PAD_X, 'skill')}<rect x="${squareX + 1.5}" y="${centerY - 4.5}" width="9" height="9" fill="${ACCENT}" stroke="${INK}" stroke-width="3" transform="rotate(12 ${squareX + 6} ${centerY})"/>${text(iconsX, 'icons')}`;
+    `<text x="${x}" y="${baseline}" font-family="${SANS}" font-weight="700" font-size="${size}" letter-spacing="${-0.03 * size}" fill="${ink}">${value}</text>`;
+  return `${text(PAD_X, 'skill')}<rect x="${squareX + border / 2}" y="${centerY - square / 2 + border / 2}" width="${square - border}" height="${square - border}" fill="${ACCENT}" stroke="${INK}" stroke-width="${border}" transform="rotate(12 ${squareX + square / 2} ${centerY})"/>${text(iconsX, 'icons')}`;
 }
 
 /** Yellow "N skills" pill, right-aligned on the header row. */
@@ -128,19 +131,12 @@ export function buildOgSvg(
 
 let wasmReady: Promise<void> | undefined;
 
-/** buildOgSvg, rasterized to a PNG on the card's background. */
-export async function renderOgPng(
-  iconSvgs: string[],
-  link: URL,
-  title = OG_DEFAULT_TITLE,
-  bg: Theme = 'light',
-  theme: Theme = DEFAULT_THEME,
-): Promise<Uint8Array> {
+async function rasterize(svg: string, background: string): Promise<Uint8Array> {
   wasmReady ??= initWasm(resvgWasm);
   await wasmReady;
 
-  return new Resvg(buildOgSvg(iconSvgs, link, title, bg, theme), {
-    background: OG_PALETTE[bg].background,
+  return new Resvg(svg, {
+    background,
     font: {
       fontBuffers: [groteskBold, monoRegular, monoSemiBold].map(font => new Uint8Array(font)),
       defaultFontFamily: MONO,
@@ -148,6 +144,107 @@ export async function renderOgPng(
   })
     .render()
     .asPng();
+}
+
+/** buildOgSvg, rasterized to a PNG on the card's background. */
+export function renderOgPng(
+  iconSvgs: string[],
+  link: URL,
+  title = OG_DEFAULT_TITLE,
+  bg: Theme = 'light',
+  theme: Theme = DEFAULT_THEME,
+): Promise<Uint8Array> {
+  return rasterize(buildOgSvg(iconSvgs, link, title, bg, theme), OG_PALETTE[bg].background);
+}
+
+/** Icons of the site cover's tilted 4×4 cluster, drawn in their dark variant. */
+export const SITE_OG_ICONS = [
+  'ts',
+  'react',
+  'rust',
+  'docker',
+  'bun',
+  'postgres',
+  'figma',
+  'python',
+  'git',
+  'tailwind',
+  'vite',
+  'github',
+  'svelte',
+  'claude',
+  'astro',
+  'vue',
+];
+/** Tiles of the cluster that get the yellow highlight. */
+const SITE_HIGHLIGHTS = new Set([1, 6, 11]);
+const SITE_TILTS = [-6, 4, -3, 8, 5, -9, 3, -4, -7, 6, -2, 10, 4, -8, 3, -5];
+
+const SITE_PALETTE: Record<Theme, { background: string; ink: string; muted: string; dot: string }> =
+  {
+    light: { background: '#EDEDE8', ink: '#111111', muted: '#5C5C56', dot: '#111111' },
+    dark: { background: '#141414', ink: '#F1F1EC', muted: '#A6A69F', dot: ACCENT },
+  };
+
+/**
+ * The site cover from the design system ("OG · site" and "OG · site · escuro"): wordmark,
+ * "Build your stack. Paste it in your README.", the tilted icon cluster and a footer with the
+ * site's `host` and the live icon `count`. Measured from the skill-icons-og skill's template.
+ */
+export function buildSiteOgSvg(
+  iconSvgs: string[],
+  count: number,
+  host: string,
+  bg: Theme = 'light',
+): string {
+  const { ink, muted, dot } = SITE_PALETTE[bg];
+  const headline = (y: number, body: string) =>
+    `<text x="${PAD_X}" y="${y}" font-family="${SANS}" font-weight="700" font-size="76" letter-spacing="-3.04" fill="${ink}">${body}</text>`;
+
+  // A 4×4 grid of 108px tiles, 12px apart, turned -4° about the cluster's center and pushed 30px along it.
+  const tiles = iconSvgs
+    .slice(0, 16)
+    .map((svg, i) => {
+      const x = 666 + (i % 4) * 120;
+      const y = 85 + Math.floor(i / 4) * 120;
+      const highlighted = SITE_HIGHLIGHTS.has(i);
+      const plate = highlighted
+        ? `<rect x="${x}" y="${y}" width="108" height="108" rx="27" fill="${ACCENT}"/>`
+        : '';
+      // On the dark ground the loose tiles get a 2px ring, or they sink into it.
+      const ring =
+        bg === 'dark' && !highlighted
+          ? `<rect x="${x + 11}" y="${y + 11}" width="86" height="86" rx="20.7" fill="none" stroke="#F1F1EC" stroke-opacity="0.16" stroke-width="2"/>`
+          : '';
+      const icon = `<g transform="translate(${x + 12} ${y + 12}) scale(${84 / 256})">${svg}</g>`;
+      return `<g transform="rotate(${SITE_TILTS[i]} ${x + 54} ${y + 54})">${plate}${icon}${ring}</g>`;
+    })
+    .join('');
+
+  // IBM Plex Mono is 12px a character at 20px; the dot sits 14px after the host.
+  const dotX = PAD_X + host.length * MONO_ADVANCE * 20 + 14;
+
+  return `<svg width="${OG_WIDTH}" height="${OG_HEIGHT}" viewBox="0 0 ${OG_WIDTH} ${OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  ${wordmark(84, ink, 40)}
+  ${headline(281.8, 'Build your stack.')}
+  ${headline(356.27, 'Paste it in your')}
+  <rect x="${PAD_X}" y="352.73" width="284.27" height="95" fill="${ACCENT}"/>
+  ${headline(430.74, `<tspan x="${PAD_X + 4}" fill="${INK}">README</tspan><tspan x="356.27">.</tspan>`)}
+  <text x="${PAD_X}" y="569" font-family="${MONO}" font-size="20" fill="${ink}">${escapeHtml(host)}</text>
+  <circle cx="${dotX + 3}" cy="561.5" r="3" fill="${dot}"/>
+  <text x="${dotX + 20}" y="569" font-family="${MONO}" font-size="20" fill="${muted}">${count} icons · npm package</text>
+  <g transform="rotate(-4 901 319) translate(30 0)">${tiles}</g>
+</svg>`;
+}
+
+/** buildSiteOgSvg, rasterized to a PNG on the cover's background. */
+export function renderSiteOgPng(
+  iconSvgs: string[],
+  count: number,
+  host: string,
+  bg: Theme = 'light',
+): Promise<Uint8Array> {
+  return rasterize(buildSiteOgSvg(iconSvgs, count, host, bg), SITE_PALETTE[bg].background);
 }
 
 function escapeHtml(value: string): string {

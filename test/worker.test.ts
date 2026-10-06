@@ -1,6 +1,6 @@
 import { exports } from 'cloudflare:workers';
 import { describe, expect, it } from 'vitest';
-import { buildOgSvg, withSiteOgBg } from '../worker/og';
+import { buildOgSvg, buildSiteOgSvg, withSiteOgBg } from '../worker/og';
 
 const get = (path: string) => exports.default.fetch(`https://example.com${path}`);
 
@@ -186,6 +186,25 @@ describe('link previews', () => {
     expect(res.status).toBe(400);
   });
 
+  it.each(['/og/site', '/og/site?bg=dark'])('renders the site cover at %s', async path => {
+    const res = await get(path);
+    expect(res.status).toBe(200);
+    expect(res.headers.get('Content-Type')).toBe('image/png');
+    const png = new DataView(await res.arrayBuffer());
+    expect([png.getUint32(16), png.getUint32(20)]).toEqual([1200, 630]);
+  });
+
+  it('counts every icon on the site cover', async () => {
+    const all = await (await get('/api/icons')).json<string[]>();
+    const svg = buildSiteOgSvg([], all.length, 'example.com');
+    expect(svg).toContain(`${all.length} icons · npm package`);
+    expect(svg).toContain('>example.com<');
+  });
+
+  it('validates the site cover bg', async () => {
+    expect((await get('/og/site?bg=blue')).status).toBe(400);
+  });
+
   it('keeps bg off the SVG and passes it on to the card', async () => {
     const svg = await get('/icons?i=js&bg=dark');
     expect(svg.headers.get('Content-Type')).toBe('image/svg+xml');
@@ -253,7 +272,7 @@ describe('the site link preview', () => {
 });
 
 describe('search engines', () => {
-  it.each(['/icons?i=js', '/og?i=js', '/api/icons', '/api/svgs'])(
+  it.each(['/icons?i=js', '/og?i=js', '/og/site', '/api/icons', '/api/svgs'])(
     'keeps %s out of the index without blocking it',
     async path => {
       const res = await get(path);

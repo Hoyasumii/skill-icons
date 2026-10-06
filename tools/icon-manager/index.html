@@ -212,7 +212,7 @@
       /* Layout */
       main {
         display: grid;
-        grid-template-columns: 1fr 320px;
+        grid-template-columns: 200px 1fr 320px;
         min-height: 0;
       }
       body[data-view='tasks'] main {
@@ -364,6 +364,83 @@
         .task-name {
           grid-column: 2 / -1;
         }
+      }
+      /* Categories, as in the site's sidebar */
+      .categories {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 16px 10px 16px 12px;
+        border-right: 1px solid var(--border);
+        background: var(--background);
+      }
+      .categories-label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 10px 8px;
+        font: 500 11px var(--mono);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted-foreground);
+      }
+      .categories svg {
+        flex-shrink: 0;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .categories-label svg {
+        width: 13px;
+        height: 13px;
+        stroke-width: 2.2;
+      }
+      .cat {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        height: 32px;
+        padding: 0 10px;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        text-align: left;
+      }
+      .cat:hover {
+        background: var(--muted);
+      }
+      .cat[aria-pressed='true'] {
+        background: var(--highlight);
+        color: var(--highlight-foreground);
+        font-weight: 600;
+      }
+      .cat .label {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        min-width: 0;
+      }
+      .cat .label span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .cat svg {
+        width: 15px;
+        height: 15px;
+        stroke-width: 2.1;
+      }
+      .cat .n {
+        font: 12px var(--mono);
+        opacity: 0.6;
+      }
+      .cat.none:not([aria-pressed='true']) {
+        color: var(--muted-foreground);
       }
       .stage {
         overflow-y: auto;
@@ -790,6 +867,14 @@
       .native aside {
         border-left: 0;
       }
+      .native .categories {
+        background: transparent;
+        border-right: 0;
+        padding-top: 4px;
+      }
+      .native .cat {
+        border-radius: 8px;
+      }
       /* No backdrop-filter on repeated elements: each one is a blurred layer recomposited on
          every scroll frame. The window's backdrop already blurs the desktop behind them. */
       .native .tile {
@@ -902,6 +987,7 @@
         </form>
         <div id="task-list"></div>
       </section>
+      <nav class="categories icons-only" id="categories" aria-labelledby="categories-label"></nav>
       <section class="stage icons-only" id="stage"><div class="grid" id="grid"></div></section>
       <aside class="icons-only">
         <div class="aside-head">
@@ -1006,6 +1092,29 @@
           alreadyIcon: '{name} already exists in icons/',
           candidateAdded: '{name} added',
           saveFailed: 'Could not save icon-candidates.json',
+          categoriesLabel: 'Categories',
+          uncategorized: 'No category',
+          uncategorizedTip: 'Not listed in shared/icon-categories.ts',
+          categoryNames: {
+            language: 'Languages',
+            frontend: 'Frontend',
+            backend: 'Backend',
+            database: 'Databases',
+            cloud: 'Cloud',
+            devops: 'DevOps',
+            tooling: 'Tooling',
+            testing: 'Testing',
+            observability: 'Observability',
+            auth: 'Auth',
+            ide: 'IDEs',
+            ai: 'AI',
+            design: 'Design',
+            game: 'Game dev',
+            payments: 'Payments',
+            os: 'OS & hardware',
+            social: 'Social',
+            productivity: 'Productivity',
+          },
         },
         pt: {
           search: 'Buscar ícone  (⌘F)',
@@ -1092,6 +1201,29 @@
           alreadyIcon: '{name} já existe em icons/',
           candidateAdded: '{name} adicionado',
           saveFailed: 'Não consegui salvar o icon-candidates.json',
+          categoriesLabel: 'Categorias',
+          uncategorized: 'Sem categoria',
+          uncategorizedTip: 'Fora do shared/icon-categories.ts',
+          categoryNames: {
+            language: 'Linguagens',
+            frontend: 'Frontend',
+            backend: 'Backend',
+            database: 'Bancos de dados',
+            cloud: 'Nuvem',
+            devops: 'DevOps',
+            tooling: 'Ferramentas',
+            testing: 'Testes',
+            observability: 'Observabilidade',
+            auth: 'Autenticação',
+            ide: 'IDEs',
+            ai: 'IA',
+            design: 'Design',
+            game: 'Jogos',
+            payments: 'Pagamentos',
+            os: 'SO e hardware',
+            social: 'Redes sociais',
+            productivity: 'Produtividade',
+          },
         },
       };
       const lang = (window.APP_LANG || navigator.language || 'en').toLowerCase().startsWith('pt')
@@ -1134,6 +1266,7 @@
         stacks: [], // [{ id, name, items: [base] }]
         activeStack: null,
         view: 'icons',
+        category: '', // '' all, NO_CATEGORY or an id from shared/icon-categories.ts
         taskStatus: 'all',
         taskCategory: '',
       };
@@ -1155,11 +1288,25 @@
           .sort((a, b) => a.base.localeCompare(b.base, 'en', { sensitivity: 'base' }));
       }
 
+      // Icon categories, re-read with the icons since new icons come with a category.
+      const NO_CATEGORY = '-';
+      let iconCategories = []; // category ids in the site's order
+      let categoryOf = new Map(); // icon id → category
+
+      async function loadCategories() {
+        const list = await bridge('readCategories').catch(() => []);
+        iconCategories = list.map(([id]) => id);
+        categoryOf = new Map(list.flatMap(([id, ids]) => ids.map(icon => [icon, id])));
+      }
+
       async function loadIcons() {
         try {
-          const res = await bridge('list');
+          const [res] = await Promise.all([bridge('list'), loadCategories()]);
           repo = res.repoPath;
-          icons = group(res.files);
+          icons = group(res.files).map(i => ({
+            ...i,
+            category: categoryOf.get(i.base.toLowerCase()) ?? NO_CATEGORY,
+          }));
           byBase = new Map(icons.map(i => [i.base, i]));
           version = Date.now();
           render();
@@ -1221,6 +1368,7 @@
         if (!bases.length) return false;
         for (const b of bases) selection.add(b);
         query = $('search').value = '';
+        state.category = '';
         render();
         toast(t('pasted', bases.length));
         return true;
@@ -1294,11 +1442,14 @@
 
       function renderGrid() {
         const q = query.trim().toLowerCase();
-        visible = icons.filter(
+        // Search and the theme filter narrow every category; the sidebar counts follow them.
+        const matches = icons.filter(
           i =>
             (state.filter === 'all' || (state.filter === 'themed') === i.themed) &&
             (!q || i.base.toLowerCase().includes(q)),
         );
+        renderCategories(matches);
+        visible = state.category ? matches.filter(i => i.category === state.category) : matches;
         const order = [...selection];
         $('grid').innerHTML = visible.length
           ? visible
@@ -1321,6 +1472,65 @@
           : `<div class="empty">${t('noResults')}</div>`;
         const themedCount = icons.filter(i => i.themed).length;
         if (state.view === 'icons') $('count').textContent = t('count', visible.length, icons.length, themedCount, icons.length - themedCount);
+      }
+
+      // Lucide glyphs, the same ones the site's sidebar uses.
+      const GLYPHS = {
+        all: '<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>',
+        filter: '<path d="M2 5h20"/><path d="M6 12h12"/><path d="M9 19h6"/>',
+        none: '<circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/>',
+        language: '<path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/>',
+        frontend: '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>',
+        backend: '<rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/>',
+        database: '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>',
+        cloud: '<path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>',
+        devops: '<path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8"/>',
+        tooling: '<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/>',
+        testing: '<path d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2"/><path d="M6.453 15h11.094"/><path d="M8.5 2h7"/>',
+        observability: '<path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>',
+        auth: '<rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+        ide: '<path d="m7 11 2-2-2-2"/><path d="M11 13h4"/><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>',
+        ai: '<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>',
+        design: '<path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z"/><path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18"/><path d="m2.3 2.3 7.286 7.286"/><circle cx="11" cy="11" r="2"/>',
+        game: '<line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/>',
+        payments: '<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/><path d="M6 14h2"/>',
+        os: '<path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="8" rx="1"/>',
+        social: '<path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/>',
+        productivity: '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 7v7"/><path d="M12 7v4"/><path d="M16 7v9"/>',
+      };
+      const glyph = name => `<svg viewBox="0 0 24 24" aria-hidden="true">${GLYPHS[name] ?? GLYPHS.all}</svg>`;
+
+      /**
+       * The left column. Like the site, the list stays put while searching (categories with no
+       * icons at all are left out) and only the numbers follow `matches`. "No category" shows
+       * only while some icon in icons/ is missing from shared/icon-categories.ts.
+       */
+      function renderCategories(matches) {
+        const total = new Map();
+        for (const i of icons) total.set(i.category, (total.get(i.category) ?? 0) + 1);
+        const counts = new Map();
+        for (const i of matches) counts.set(i.category, (counts.get(i.category) ?? 0) + 1);
+        const ids = [
+          '',
+          ...iconCategories.filter(c => total.has(c)),
+          ...(total.has(NO_CATEGORY) ? [NO_CATEGORY] : []),
+        ];
+        // A category that no longer has icons (or a removed one) falls back to all.
+        if (!ids.includes(state.category)) state.category = '';
+        const label = c =>
+          c === '' ? t('all') : c === NO_CATEGORY ? t('uncategorized') : (m.categoryNames[c] ?? c);
+        $('categories').innerHTML =
+          `<span class="categories-label" id="categories-label">${glyph('filter')}${esc(t('categoriesLabel'))}</span>` +
+          ids
+            .map(c => {
+              const n = c ? (counts.get(c) ?? 0) : matches.length;
+              const extra = c === NO_CATEGORY ? ` class="cat none" title="${esc(t('uncategorizedTip'))}"` : ' class="cat"';
+              return `<button type="button"${extra} data-category="${esc(c)}" aria-pressed="${state.category === c}">
+                <span class="label">${glyph(c === '' ? 'all' : c === NO_CATEGORY ? 'none' : c)}<span>${esc(label(c))}</span></span>
+                <span class="n">${n}</span>
+              </button>`;
+            })
+            .join('');
       }
 
       /** Updates selection classes and order badges in place, without rebuilding the grid. */
@@ -1470,6 +1680,15 @@
         }
         const action = e.target.closest('[data-action]');
         if (action && !action.disabled) return actions[action.dataset.action]();
+
+        const category = e.target.closest('[data-category]');
+        if (category) {
+          state.category = category.dataset.category;
+          save();
+          renderGrid();
+          $('stage').scrollTop = 0;
+          return;
+        }
 
         const tile = e.target.closest('.tile');
         if (tile) {
@@ -1665,8 +1884,9 @@
           candidates = null;
         }
         candidatesLoaded = true;
-        const ids = await bridge('readCategories').catch(() => []);
-        categoryIds = [...new Set([...ids, ...Object.keys(candidates?.categories ?? {})])].sort();
+        categoryIds = [
+          ...new Set([...iconCategories, ...Object.keys(candidates?.categories ?? {})]),
+        ].sort();
         $('task-cat').innerHTML = options(categoryIds, $('task-cat').value || categoryIds[0]);
         $('task-prio').innerHTML = options(PRIORITIES, $('task-prio').value || 'normal', p => t(`pr_${p}`));
         renderTasks();
@@ -1819,7 +2039,8 @@
         candidatesTimer = setTimeout(loadCandidates, 250);
       };
 
-      loadState().then(() => Promise.all([loadIcons(), loadCandidates()]));
+      // The candidates' category pickers need the categories loadIcons reads.
+      loadState().then(loadIcons).then(loadCandidates);
     </script>
   </body>
 </html>
