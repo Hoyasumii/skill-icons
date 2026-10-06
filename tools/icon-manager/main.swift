@@ -609,7 +609,14 @@ extension AppDelegate: NSToolbarDelegate {
   }
 
   @objc func searchChanged(_ sender: NSSearchField) {
-    sendToPage("nativeSearch", sender.stringValue)
+    guard let data = try? JSONSerialization.data(withJSONObject: [sender.stringValue]),
+      let json = String(data: data, encoding: .utf8)
+    else { return }
+    // A pasted array of icons selects them; the page answers true and the field empties.
+    webView.evaluateJavaScript("window.nativeSearch && window.nativeSearch(...\(json))") {
+      result, _ in
+      if result as? Bool == true { sender.stringValue = "" }
+    }
   }
 }
 

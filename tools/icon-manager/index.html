@@ -592,8 +592,23 @@
         border-color: var(--destructive);
       }
       .aside-head .btn {
-        height: 30px;
+        height: 28px;
+        padding: 0 9px;
         border-color: var(--foreground);
+        font-size: 12px;
+      }
+      .aside-head-actions {
+        display: flex;
+        gap: 6px;
+      }
+      .aside-head .btn.danger {
+        border-color: var(--border);
+        color: var(--destructive);
+      }
+      .aside-head .btn.danger.confirm {
+        background: var(--destructive);
+        color: #fff;
+        border-color: var(--destructive);
       }
 
       /* Toast + context menu */
@@ -891,7 +906,11 @@
       <aside class="icons-only">
         <div class="aside-head">
           <h2 data-i18n="stacks"></h2>
-          <button class="btn" data-action="new-stack" data-i18n="newShort"></button>
+          <div class="aside-head-actions">
+            <button class="btn" data-action="copy-stacks" id="copy-stacks" data-i18n="copyAll" data-i18n-title="copyAllTitle"></button>
+            <button class="btn danger" data-action="delete-stacks" id="delete-stacks" data-i18n="deleteAll"></button>
+            <button class="btn" data-action="new-stack" data-i18n="newShort"></button>
+          </div>
         </div>
         <div class="stacks" id="stacks"></div>
       </aside>
@@ -927,9 +946,14 @@
           clear: 'Clear  esc',
           stacks: 'Stacks',
           newShort: '+ New',
+          copyAll: 'Copy all',
+          copyAllTitle: 'Copy the icons of every stack as one array',
+          deleteAll: 'Delete all',
+          allStacks: 'All stacks',
           notFound: 'Icons folder not found',
           nothingToCopy: 'Nothing to copy',
           copied: n => (n === 1 ? '1 icon copied' : `${n} icons copied`),
+          pasted: n => (n === 1 ? '1 icon selected' : `${n} icons selected`),
           missingSkipped: n => ` (${n} missing skipped)`,
           flagPlain: 'no theme',
           flagNoLight: 'no light',
@@ -1007,9 +1031,14 @@
           clear: 'Limpar  esc',
           stacks: 'Pilhas',
           newShort: '+ Nova',
+          copyAll: 'Copiar tudo',
+          copyAllTitle: 'Copiar os ícones de todas as pilhas como um único array',
+          deleteAll: 'Excluir tudo',
+          allStacks: 'Todas as pilhas',
           notFound: 'Pasta de ícones não encontrada',
           nothingToCopy: 'Nada para copiar',
           copied: n => (n === 1 ? '1 ícone copiado' : `${n} ícones copiados`),
+          pasted: n => (n === 1 ? '1 ícone selecionado' : `${n} ícones selecionados`),
           missingSkipped: n => ` (${n} ausente${n > 1 ? 's' : ''} ignorado${n > 1 ? 's' : ''})`,
           flagPlain: 'sem tema',
           flagNoLight: 'sem light',
@@ -1164,6 +1193,39 @@
         );
       }
 
+      /**
+       * Icons named by a pasted array: the one "Copy" makes (`"icons/Vite.svg"` items and
+       * `{ "light": …, "dark": … }` pairs) or plain names (`["Vite", "React"]`). Empty when the
+       * text isn't a JSON array or names no icon.
+       */
+      function pastedIcons(text) {
+        let parsed;
+        try {
+          parsed = JSON.parse(text.trim());
+        } catch {
+          return [];
+        }
+        if (!Array.isArray(parsed)) return [];
+        const strings = v =>
+          typeof v === 'string' ? [v] : v && typeof v === 'object' ? Object.values(v).flatMap(strings) : [];
+        const byLower = new Map(icons.map(i => [i.base.toLowerCase(), i.base]));
+        const bases = strings(parsed).map(s =>
+          byLower.get(s.trim().replace(/^.*\//, '').replace(/\.svg$/i, '').replace(/-(dark|light)$/i, '').toLowerCase()),
+        );
+        return [...new Set(bases.filter(Boolean))];
+      }
+
+      /** Selects the icons of a pasted array, keeping the current selection. False when it isn't one. */
+      function selectPasted(text) {
+        const bases = state.view === 'icons' ? pastedIcons(text) : [];
+        if (!bases.length) return false;
+        for (const b of bases) selection.add(b);
+        query = $('search').value = '';
+        render();
+        toast(t('pasted', bases.length));
+        return true;
+      }
+
       // ---------- Persistence ----------
 
       let saveTimer;
@@ -1212,6 +1274,8 @@
         render();
       };
       window.nativeSearch = text => {
+        // The native field clears itself when this answers true.
+        if (selectPasted(text)) return true;
         if (state.view === 'tasks') {
           taskQuery = $('task-search').value = text;
           renderTasks();
@@ -1291,6 +1355,7 @@
       const activeStack = () => state.stacks.find(s => s.id === state.activeStack);
 
       function renderStacks() {
+        $('copy-stacks').disabled = $('delete-stacks').disabled = !state.stacks.length;
         if (!state.stacks.length) {
           $('stacks').innerHTML =
             `<div class="empty">${t('emptyStacks')}</div>`;
@@ -1359,8 +1424,32 @@
         render();
       }
 
+      // Two clicks for destructive buttons (no native confirm() inside the app):
+      // the first arms it, the second within 2.5s returns true.
+      function confirmClick(button, label) {
+        if (button.classList.contains('confirm')) return true;
+        button.classList.add('confirm');
+        button.textContent = t('confirm');
+        setTimeout(() => {
+          button.classList.remove('confirm');
+          button.textContent = t(label);
+        }, 2500);
+        return false;
+      }
+
       const actions = {
         'copy-selection': () => copyBases([...selection], t('selection')),
+        'copy-stacks': () =>
+          copyBases([...new Set(state.stacks.flatMap(s => s.items))], t('allStacks')),
+        'delete-stacks': () => {
+          if (!confirmClick($('delete-stacks'), 'deleteAll')) return;
+          $('delete-stacks').classList.remove('confirm');
+          $('delete-stacks').textContent = t('deleteAll');
+          state.stacks = [];
+          state.activeStack = null;
+          save();
+          render();
+        },
         'new-stack': newStack,
         'add-to-active': () => addSelectionTo(activeStack()),
         'clear-selection': () => {
@@ -1418,16 +1507,7 @@
         } else if (stackAction?.dataset.stackAction === 'select') {
           selection = new Set(stack.items.filter(b => byBase.has(b)));
         } else if (stackAction?.dataset.stackAction === 'delete') {
-          // Two clicks to delete: no native confirm() inside the app.
-          if (!stackAction.classList.contains('confirm')) {
-            stackAction.classList.add('confirm');
-            stackAction.textContent = t('confirm');
-            setTimeout(() => {
-              stackAction.classList.remove('confirm');
-              stackAction.textContent = t('delete');
-            }, 2500);
-            return;
-          }
+          if (!confirmClick(stackAction, 'delete')) return;
           state.stacks = state.stacks.filter(s => s !== stack);
           if (state.activeStack === stack.id) state.activeStack = state.stacks[0]?.id ?? null;
         }
@@ -1458,6 +1538,10 @@
         stack.name = input.value.trim() || stack.name;
         save();
         renderSelbar();
+      });
+
+      $('search').addEventListener('paste', e => {
+        if (selectPasted(e.clipboardData.getData('text'))) e.preventDefault();
       });
 
       $('search').addEventListener('input', e => {
