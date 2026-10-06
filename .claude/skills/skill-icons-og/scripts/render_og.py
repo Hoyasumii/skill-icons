@@ -25,7 +25,7 @@ HERE = Path(__file__).resolve().parent
 ASSETS = HERE.parent / "assets"
 FONTS = ASSETS / "fonts"
 
-SITE_URL = "hoyasumii.github.io/skill-icons"
+SITE_URL = "skill-icons.alanreisanjo.workers.dev"
 DEFAULT_SITE_ICONS = [
     "ts", "react", "rust", "docker", "bun", "postgres", "figma", "python",
     "git", "tailwind", "vite", "github", "svelte", "claude", "astro", "vue",
