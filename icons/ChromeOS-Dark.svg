@@ -1,0 +1,88 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="256" height="256" rx="60" fill="#262626"/>
+<svg x="28" y="28" width="200" height="200" viewBox="-0.004 -0.004 48.008 48.008" fill="#FFFFFF" preserveAspectRatio="xMidYMid meet">
+<defs
+    >
+    <linearGradient
+       id="chromeos_a"
+       x1="3.2172999"
+       y1="15"
+       x2="44.7812"
+       y2="15"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#d93025"
+         />
+      <stop
+         offset="1"
+         stop-color="#ea4335"
+         />
+    </linearGradient>
+    <linearGradient
+       id="chromeos_b"
+       x1="20.721901"
+       y1="47.6791"
+       x2="41.503899"
+       y2="11.6837"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#fcc934"
+         />
+      <stop
+         offset="1"
+         stop-color="#fbbc04"
+         />
+    </linearGradient>
+    <linearGradient
+       id="chromeos_c"
+       x1="26.598101"
+       y1="46.501499"
+       x2="5.8161001"
+       y2="10.506"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#1e8e3e"
+         />
+      <stop
+         offset="1"
+         stop-color="#34a853"
+         />
+    </linearGradient>
+  </defs><g
+      
+      
+       style="display:inline">
+      <circle
+         cx="24"
+         cy="23.994699"
+         r="12"
+         style="fill:#ffffff"
+         />
+      <path
+         d="M 3.2154,36 A 24,24 0 1 0 12,3.2154 24,24 0 0 0 3.2154,36 Z M 34.3923,18 A 12,12 0 1 1 18,13.6077 12,12 0 0 1 34.3923,18 Z"
+         style="fill:none"
+         />
+      <path
+         d="M 24,12 H 44.7812 A 23.9939,23.9939 0 0 0 3.2173,12.0029 L 13.6079,30 13.6172,29.9976 A 11.9852,11.9852 0 0 1 24,12 Z"
+         style="fill:url(#chromeos_a)"
+         />
+      <circle
+         cx="24"
+         cy="24"
+         r="9.5"
+         style="fill:#1a73e8"
+         />
+      <path
+         d="M 34.3913,30.0029 24.0007,48 A 23.994,23.994 0 0 0 44.78,12.0031 H 23.9989 l -0.0025,0.0093 a 11.985,11.985 0 0 1 10.3949,17.9905 z"
+         style="fill:url(#chromeos_b)"
+         />
+      <path
+         d="M 13.6086,30.0031 3.218,12.006 A 23.994,23.994 0 0 0 24.0025,48 L 34.3931,30.0029 34.3864,29.9961 a 11.9852,11.9852 0 0 1 -20.7778,0.007 z"
+         style="fill:url(#chromeos_c)"
+         />
+    </g>
+</svg>
+</svg>

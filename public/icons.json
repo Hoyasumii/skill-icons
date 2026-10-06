@@ -35,9 +35,34 @@
     "category": "design"
   },
   {
+    "id": "airtable",
+    "name": "Airtable",
+    "category": "productivity"
+  },
+  {
     "id": "aiscript",
     "name": "AiScript",
     "category": "language"
+  },
+  {
+    "id": "alacritty",
+    "name": "Alacritty",
+    "category": "ide"
+  },
+  {
+    "id": "alfred",
+    "name": "Alfred",
+    "category": "productivity"
+  },
+  {
+    "id": "alma",
+    "name": "AlmaLinux",
+    "category": "os"
+  },
+  {
+    "id": "alpine",
+    "name": "Alpine Linux",
+    "category": "os"
   },
   {
     "id": "alpinejs",
@@ -65,9 +90,19 @@
     "category": "frontend"
   },
   {
+    "id": "animejs",
+    "name": "Anime.js",
+    "category": "frontend"
+  },
+  {
     "id": "ansible",
     "name": "Ansible",
     "category": "devops"
+  },
+  {
+    "id": "antdesign",
+    "name": "Ant Design",
+    "category": "frontend"
   },
   {
     "id": "antigravity",
@@ -75,14 +110,34 @@
     "category": "ide"
   },
   {
+    "id": "anytype",
+    "name": "Anytype",
+    "category": "productivity"
+  },
+  {
+    "id": "apidog",
+    "name": "Apidog",
+    "category": "tooling"
+  },
+  {
     "id": "apollo",
     "name": "Apollo",
     "category": "backend"
   },
   {
+    "id": "appcode",
+    "name": "AppCode",
+    "category": "ide"
+  },
+  {
     "id": "apple",
     "name": "Apple",
     "category": "os"
+  },
+  {
+    "id": "applemusic",
+    "name": "Apple Music",
+    "category": "social"
   },
   {
     "id": "applepay",
@@ -93,6 +148,16 @@
     "id": "appwrite",
     "name": "Appwrite",
     "category": "backend"
+  },
+  {
+    "id": "aqua",
+    "name": "Aqua",
+    "category": "ide"
+  },
+  {
+    "id": "arc",
+    "name": "Arc",
+    "category": "productivity"
   },
   {
     "id": "arch",
@@ -110,9 +175,29 @@
     "category": "devops"
   },
   {
+    "id": "arkui",
+    "name": "Ark UI",
+    "category": "frontend"
+  },
+  {
+    "id": "asana",
+    "name": "Asana",
+    "category": "productivity"
+  },
+  {
     "id": "astro",
     "name": "Astro",
     "category": "frontend"
+  },
+  {
+    "id": "astronvim",
+    "name": "AstroNvim",
+    "category": "ide"
+  },
+  {
+    "id": "asyncapi",
+    "name": "AsyncAPI",
+    "category": "tooling"
   },
   {
     "id": "atom",
@@ -140,6 +225,11 @@
     "category": "design"
   },
   {
+    "id": "awesomewm",
+    "name": "awesomeWM",
+    "category": "os"
+  },
+  {
     "id": "aws",
     "name": "AWS",
     "category": "cloud"
@@ -160,9 +250,44 @@
     "category": "tooling"
   },
   {
+    "id": "babylonjs",
+    "name": "Babylon.js",
+    "category": "frontend"
+  },
+  {
+    "id": "backbone",
+    "name": "Backbone.js",
+    "category": "frontend"
+  },
+  {
+    "id": "bandcamp",
+    "name": "Bandcamp",
+    "category": "social"
+  },
+  {
+    "id": "basecamp",
+    "name": "Basecamp",
+    "category": "productivity"
+  },
+  {
     "id": "bash",
     "name": "Bash",
     "category": "language"
+  },
+  {
+    "id": "bazel",
+    "name": "Bazel",
+    "category": "tooling"
+  },
+  {
+    "id": "bear",
+    "name": "Bear",
+    "category": "productivity"
+  },
+  {
+    "id": "behance",
+    "name": "Behance",
+    "category": "social"
   },
   {
     "id": "betterauth",
@@ -185,6 +310,11 @@
     "category": "devops"
   },
   {
+    "id": "black",
+    "name": "Black",
+    "category": "tooling"
+  },
+  {
     "id": "blender",
     "name": "Blender",
     "category": "design"
@@ -200,9 +330,24 @@
     "category": "frontend"
   },
   {
+    "id": "brackets",
+    "name": "Brackets",
+    "category": "ide"
+  },
+  {
+    "id": "bruno",
+    "name": "Bruno",
+    "category": "tooling"
+  },
+  {
     "id": "bsd",
     "name": "BSD",
     "category": "os"
+  },
+  {
+    "id": "bulma",
+    "name": "Bulma",
+    "category": "frontend"
   },
   {
     "id": "bun",
@@ -210,9 +355,24 @@
     "category": "backend"
   },
   {
+    "id": "buymeacoffee",
+    "name": "Buy Me a Coffee",
+    "category": "social"
+  },
+  {
     "id": "c",
     "name": "C",
     "category": "language"
+  },
+  {
+    "id": "cal",
+    "name": "Cal.com",
+    "category": "productivity"
+  },
+  {
+    "id": "calendly",
+    "name": "Calendly",
+    "category": "productivity"
   },
   {
     "id": "canva",
@@ -220,14 +380,64 @@
     "category": "design"
   },
   {
+    "id": "capacitor",
+    "name": "Capacitor",
+    "category": "frontend"
+  },
+  {
     "id": "cassandra",
     "name": "Cassandra",
     "category": "database"
   },
   {
+    "id": "centos",
+    "name": "CentOS",
+    "category": "os"
+  },
+  {
+    "id": "cesium",
+    "name": "Cesium",
+    "category": "frontend"
+  },
+  {
+    "id": "chakraui",
+    "name": "Chakra UI",
+    "category": "frontend"
+  },
+  {
+    "id": "chalk",
+    "name": "Chalk",
+    "category": "tooling"
+  },
+  {
+    "id": "changesets",
+    "name": "Changesets",
+    "category": "tooling"
+  },
+  {
+    "id": "chartjs",
+    "name": "Chart.js",
+    "category": "frontend"
+  },
+  {
     "id": "chatgpt",
     "name": "ChatGPT",
     "category": "ai"
+  },
+  {
+    "id": "chocolatey",
+    "name": "Chocolatey",
+    "category": "tooling"
+  },
+  {
+    "id": "chromeos",
+    "name": "ChromeOS",
+    "category": "os"
+  },
+  {
+    "id": "citty",
+    "name": "citty",
+    "category": "tooling"
   },
   {
     "id": "claude",
@@ -243,6 +453,11 @@
     "id": "clickhouse",
     "name": "ClickHouse",
     "category": "database"
+  },
+  {
+    "id": "clickup",
+    "name": "ClickUp",
+    "category": "productivity"
   },
   {
     "id": "cline",
@@ -275,6 +490,16 @@
     "category": "tooling"
   },
   {
+    "id": "codesandbox",
+    "name": "CodeSandbox",
+    "category": "tooling"
+  },
+  {
+    "id": "codespaces",
+    "name": "GitHub Codespaces",
+    "category": "tooling"
+  },
+  {
     "id": "codex",
     "name": "Codex",
     "category": "ai"
@@ -283,6 +508,31 @@
     "id": "coffeescript",
     "name": "CoffeeScript",
     "category": "language"
+  },
+  {
+    "id": "colab",
+    "name": "Google Colab",
+    "category": "tooling"
+  },
+  {
+    "id": "commitlint",
+    "name": "commitlint",
+    "category": "tooling"
+  },
+  {
+    "id": "conan",
+    "name": "Conan",
+    "category": "tooling"
+  },
+  {
+    "id": "conda",
+    "name": "conda",
+    "category": "tooling"
+  },
+  {
+    "id": "confluence",
+    "name": "Confluence",
+    "category": "productivity"
   },
   {
     "id": "convex",
@@ -313,6 +563,11 @@
     "id": "css",
     "name": "CSS",
     "category": "language"
+  },
+  {
+    "id": "curl",
+    "name": "curl",
+    "category": "tooling"
   },
   {
     "id": "cursor",
@@ -350,6 +605,11 @@
     "category": "ide"
   },
   {
+    "id": "dataspell",
+    "name": "DataSpell",
+    "category": "ide"
+  },
+  {
     "id": "debian",
     "name": "Debian",
     "category": "os"
@@ -368,6 +628,11 @@
     "id": "deno",
     "name": "Deno",
     "category": "backend"
+  },
+  {
+    "id": "devbox",
+    "name": "Devbox",
+    "category": "tooling"
   },
   {
     "id": "devto",
@@ -415,9 +680,19 @@
     "category": "backend"
   },
   {
+    "id": "dribbble",
+    "name": "Dribbble",
+    "category": "social"
+  },
+  {
     "id": "drizzle",
     "name": "Drizzle",
     "category": "backend"
+  },
+  {
+    "id": "dropbox",
+    "name": "Dropbox",
+    "category": "productivity"
   },
   {
     "id": "duckdb",
@@ -428,6 +703,11 @@
     "id": "dynamodb",
     "name": "DynamoDB",
     "category": "database"
+  },
+  {
+    "id": "echarts",
+    "name": "Apache ECharts",
+    "category": "frontend"
   },
   {
     "id": "eclipse",
@@ -443,6 +723,16 @@
     "id": "electron",
     "name": "Electron",
     "category": "tooling"
+  },
+  {
+    "id": "element",
+    "name": "Element",
+    "category": "social"
+  },
+  {
+    "id": "elementary",
+    "name": "elementary OS",
+    "category": "os"
   },
   {
     "id": "elixir",
@@ -480,6 +770,21 @@
     "category": "tooling"
   },
   {
+    "id": "evernote",
+    "name": "Evernote",
+    "category": "productivity"
+  },
+  {
+    "id": "excel",
+    "name": "Microsoft Excel",
+    "category": "productivity"
+  },
+  {
+    "id": "execa",
+    "name": "Execa",
+    "category": "tooling"
+  },
+  {
     "id": "expo",
     "name": "Expo",
     "category": "frontend"
@@ -488,6 +793,16 @@
     "id": "expressjs",
     "name": "Express",
     "category": "backend"
+  },
+  {
+    "id": "facebook",
+    "name": "Facebook",
+    "category": "social"
+  },
+  {
+    "id": "farcaster",
+    "name": "Farcaster",
+    "category": "social"
   },
   {
     "id": "fastapi",
@@ -505,6 +820,11 @@
     "category": "social"
   },
   {
+    "id": "fedora",
+    "name": "Fedora",
+    "category": "os"
+  },
+  {
     "id": "fiber",
     "name": "Fiber",
     "category": "backend"
@@ -520,9 +840,29 @@
     "category": "database"
   },
   {
+    "id": "fish",
+    "name": "fish",
+    "category": "ide"
+  },
+  {
     "id": "flask",
     "name": "Flask",
     "category": "backend"
+  },
+  {
+    "id": "fleet",
+    "name": "Fleet",
+    "category": "ide"
+  },
+  {
+    "id": "flickr",
+    "name": "Flickr",
+    "category": "social"
+  },
+  {
+    "id": "flowbite",
+    "name": "Flowbite",
+    "category": "frontend"
   },
   {
     "id": "flutter",
@@ -535,6 +875,11 @@
     "category": "cloud"
   },
   {
+    "id": "formik",
+    "name": "Formik",
+    "category": "frontend"
+  },
+  {
     "id": "forth",
     "name": "Forth",
     "category": "language"
@@ -543,6 +888,16 @@
     "id": "fortran",
     "name": "Fortran",
     "category": "language"
+  },
+  {
+    "id": "foundation",
+    "name": "Foundation",
+    "category": "frontend"
+  },
+  {
+    "id": "freebsd",
+    "name": "FreeBSD",
+    "category": "os"
   },
   {
     "id": "gamemakerstudio",
@@ -560,14 +915,34 @@
     "category": "cloud"
   },
   {
+    "id": "geany",
+    "name": "Geany",
+    "category": "ide"
+  },
+  {
+    "id": "gedit",
+    "name": "gedit",
+    "category": "ide"
+  },
+  {
     "id": "gemini",
     "name": "Gemini",
     "category": "ai"
   },
   {
+    "id": "gentoo",
+    "name": "Gentoo",
+    "category": "os"
+  },
+  {
     "id": "gherkin",
     "name": "Gherkin",
     "category": "language"
+  },
+  {
+    "id": "ghostty",
+    "name": "Ghostty",
+    "category": "ide"
   },
   {
     "id": "gin",
@@ -595,9 +970,19 @@
     "category": "ai"
   },
   {
+    "id": "githubsponsors",
+    "name": "GitHub Sponsors",
+    "category": "social"
+  },
+  {
     "id": "gitlab",
     "name": "GitLab",
     "category": "devops"
+  },
+  {
+    "id": "gitpod",
+    "name": "Gitpod",
+    "category": "tooling"
   },
   {
     "id": "gleam",
@@ -605,9 +990,19 @@
     "category": "language"
   },
   {
+    "id": "glitch",
+    "name": "Glitch",
+    "category": "tooling"
+  },
+  {
     "id": "gmail",
     "name": "Gmail",
     "category": "social"
+  },
+  {
+    "id": "gnome",
+    "name": "GNOME",
+    "category": "os"
   },
   {
     "id": "godot",
@@ -625,9 +1020,29 @@
     "category": "language"
   },
   {
+    "id": "googledocs",
+    "name": "Google Docs",
+    "category": "productivity"
+  },
+  {
+    "id": "googledrive",
+    "name": "Google Drive",
+    "category": "productivity"
+  },
+  {
+    "id": "googlemeet",
+    "name": "Google Meet",
+    "category": "productivity"
+  },
+  {
     "id": "googlepay",
     "name": "Google Pay",
     "category": "payments"
+  },
+  {
+    "id": "googlesheets",
+    "name": "Google Sheets",
+    "category": "productivity"
   },
   {
     "id": "gradle",
@@ -650,9 +1065,19 @@
     "category": "ai"
   },
   {
+    "id": "gsap",
+    "name": "GSAP",
+    "category": "frontend"
+  },
+  {
     "id": "gtk",
     "name": "GTK",
     "category": "os"
+  },
+  {
+    "id": "guilded",
+    "name": "Guilded",
+    "category": "social"
   },
   {
     "id": "gulp",
@@ -660,9 +1085,34 @@
     "category": "tooling"
   },
   {
+    "id": "hackernews",
+    "name": "Hacker News",
+    "category": "social"
+  },
+  {
+    "id": "haiku",
+    "name": "Haiku",
+    "category": "os"
+  },
+  {
+    "id": "harmonyos",
+    "name": "HarmonyOS",
+    "category": "os"
+  },
+  {
+    "id": "hashnode",
+    "name": "Hashnode",
+    "category": "social"
+  },
+  {
     "id": "haskell",
     "name": "Haskell",
     "category": "language"
+  },
+  {
+    "id": "hatch",
+    "name": "Hatch",
+    "category": "tooling"
   },
   {
     "id": "haxe",
@@ -673,6 +1123,11 @@
     "id": "haxeflixel",
     "name": "HaxeFlixel",
     "category": "game"
+  },
+  {
+    "id": "headlessui",
+    "name": "Headless UI",
+    "category": "frontend"
   },
   {
     "id": "helix",
@@ -695,9 +1150,24 @@
     "category": "backend"
   },
   {
+    "id": "highcharts",
+    "name": "Highcharts",
+    "category": "frontend"
+  },
+  {
+    "id": "homebrew",
+    "name": "Homebrew",
+    "category": "tooling"
+  },
+  {
     "id": "hono",
     "name": "Hono",
     "category": "backend"
+  },
+  {
+    "id": "hoppscotch",
+    "name": "Hoppscotch",
+    "category": "tooling"
   },
   {
     "id": "html",
@@ -710,6 +1180,11 @@
     "category": "frontend"
   },
   {
+    "id": "httpie",
+    "name": "HTTPie",
+    "category": "tooling"
+  },
+  {
     "id": "huggingface",
     "name": "Hugging Face",
     "category": "ai"
@@ -718,6 +1193,21 @@
     "id": "husky",
     "name": "Husky",
     "category": "tooling"
+  },
+  {
+    "id": "hyprland",
+    "name": "Hyprland",
+    "category": "os"
+  },
+  {
+    "id": "i3",
+    "name": "i3",
+    "category": "os"
+  },
+  {
+    "id": "icloud",
+    "name": "iCloud",
+    "category": "productivity"
   },
   {
     "id": "idea",
@@ -730,14 +1220,34 @@
     "category": "design"
   },
   {
+    "id": "inferno",
+    "name": "Inferno",
+    "category": "frontend"
+  },
+  {
     "id": "inkscape",
     "name": "Inkscape",
     "category": "design"
   },
   {
+    "id": "inquirer",
+    "name": "Inquirer.js",
+    "category": "tooling"
+  },
+  {
+    "id": "insomnia",
+    "name": "Insomnia",
+    "category": "tooling"
+  },
+  {
     "id": "instagram",
     "name": "Instagram",
     "category": "social"
+  },
+  {
+    "id": "ionic",
+    "name": "Ionic",
+    "category": "frontend"
   },
   {
     "id": "ios",
@@ -748,6 +1258,11 @@
     "id": "ipfs",
     "name": "IPFS",
     "category": "devops"
+  },
+  {
+    "id": "iterm2",
+    "name": "iTerm2",
+    "category": "ide"
   },
   {
     "id": "java",
@@ -770,9 +1285,19 @@
     "category": "testing"
   },
   {
+    "id": "jetpackcompose",
+    "name": "Jetpack Compose",
+    "category": "os"
+  },
+  {
     "id": "jira",
     "name": "Jira",
     "category": "productivity"
+  },
+  {
+    "id": "jotai",
+    "name": "Jotai",
+    "category": "frontend"
   },
   {
     "id": "jquery",
@@ -780,9 +1305,19 @@
     "category": "frontend"
   },
   {
+    "id": "jsfiddle",
+    "name": "JSFiddle",
+    "category": "tooling"
+  },
+  {
     "id": "json",
     "name": "JSON",
     "category": "language"
+  },
+  {
+    "id": "jsr",
+    "name": "JSR",
+    "category": "tooling"
   },
   {
     "id": "julia",
@@ -795,13 +1330,43 @@
     "category": "ai"
   },
   {
+    "id": "just",
+    "name": "just",
+    "category": "tooling"
+  },
+  {
     "id": "kafka",
     "name": "Kafka",
     "category": "devops"
   },
   {
+    "id": "kaggle",
+    "name": "Kaggle",
+    "category": "tooling"
+  },
+  {
+    "id": "kakaotalk",
+    "name": "KakaoTalk",
+    "category": "social"
+  },
+  {
+    "id": "kakoune",
+    "name": "Kakoune",
+    "category": "ide"
+  },
+  {
     "id": "kali",
     "name": "Kali Linux",
+    "category": "os"
+  },
+  {
+    "id": "kate",
+    "name": "Kate",
+    "category": "ide"
+  },
+  {
+    "id": "kde",
+    "name": "KDE",
     "category": "os"
   },
   {
@@ -810,14 +1375,34 @@
     "category": "auth"
   },
   {
+    "id": "kick",
+    "name": "Kick",
+    "category": "social"
+  },
+  {
+    "id": "kitty",
+    "name": "kitty",
+    "category": "ide"
+  },
+  {
     "id": "knip",
     "name": "Knip",
     "category": "tooling"
   },
   {
+    "id": "kofi",
+    "name": "Ko-fi",
+    "category": "social"
+  },
+  {
     "id": "kotlin",
     "name": "Kotlin",
     "category": "language"
+  },
+  {
+    "id": "kotlinmultiplatform",
+    "name": "Kotlin Multiplatform",
+    "category": "os"
   },
   {
     "id": "ktor",
@@ -840,6 +1425,11 @@
     "category": "observability"
   },
   {
+    "id": "lapce",
+    "name": "Lapce",
+    "category": "ide"
+  },
+  {
     "id": "laravel",
     "name": "Laravel",
     "category": "backend"
@@ -850,14 +1440,44 @@
     "category": "language"
   },
   {
+    "id": "lazyvim",
+    "name": "LazyVim",
+    "category": "ide"
+  },
+  {
+    "id": "leaflet",
+    "name": "Leaflet",
+    "category": "frontend"
+  },
+  {
+    "id": "lefthook",
+    "name": "Lefthook",
+    "category": "tooling"
+  },
+  {
+    "id": "lemmy",
+    "name": "Lemmy",
+    "category": "social"
+  },
+  {
     "id": "lemonsqueezy",
     "name": "Lemon Squeezy",
     "category": "payments"
   },
   {
+    "id": "lerna",
+    "name": "Lerna",
+    "category": "tooling"
+  },
+  {
     "id": "less",
     "name": "Less",
     "category": "language"
+  },
+  {
+    "id": "line",
+    "name": "LINE",
+    "category": "social"
   },
   {
     "id": "linear",
@@ -880,14 +1500,54 @@
     "category": "frontend"
   },
   {
+    "id": "logseq",
+    "name": "Logseq",
+    "category": "productivity"
+  },
+  {
+    "id": "loom",
+    "name": "Loom",
+    "category": "productivity"
+  },
+  {
+    "id": "lottie",
+    "name": "Lottie",
+    "category": "frontend"
+  },
+  {
     "id": "lua",
     "name": "Lua",
     "category": "language"
   },
   {
+    "id": "lunarvim",
+    "name": "LunarVim",
+    "category": "ide"
+  },
+  {
     "id": "macos",
     "name": "macOS",
     "category": "os"
+  },
+  {
+    "id": "make",
+    "name": "Make",
+    "category": "productivity"
+  },
+  {
+    "id": "manjaro",
+    "name": "Manjaro",
+    "category": "os"
+  },
+  {
+    "id": "mantine",
+    "name": "Mantine",
+    "category": "frontend"
+  },
+  {
+    "id": "mapbox",
+    "name": "Mapbox",
+    "category": "frontend"
   },
   {
     "id": "mariadb",
@@ -898,6 +1558,11 @@
     "id": "markdown",
     "name": "Markdown",
     "category": "language"
+  },
+  {
+    "id": "marko",
+    "name": "Marko",
+    "category": "frontend"
   },
   {
     "id": "mastercard",
@@ -920,6 +1585,21 @@
     "category": "language"
   },
   {
+    "id": "matrix",
+    "name": "Matrix",
+    "category": "social"
+  },
+  {
+    "id": "matterjs",
+    "name": "Matter.js",
+    "category": "frontend"
+  },
+  {
+    "id": "mattermost",
+    "name": "Mattermost",
+    "category": "social"
+  },
+  {
     "id": "maven",
     "name": "Maven",
     "category": "tooling"
@@ -930,9 +1610,29 @@
     "category": "backend"
   },
   {
+    "id": "medium",
+    "name": "Medium",
+    "category": "social"
+  },
+  {
     "id": "mercadopago",
     "name": "Mercado Pago",
     "category": "payments"
+  },
+  {
+    "id": "meson",
+    "name": "Meson",
+    "category": "tooling"
+  },
+  {
+    "id": "micro",
+    "name": "micro",
+    "category": "ide"
+  },
+  {
+    "id": "million",
+    "name": "Million",
+    "category": "frontend"
   },
   {
     "id": "mint",
@@ -940,9 +1640,24 @@
     "category": "os"
   },
   {
+    "id": "mise",
+    "name": "mise",
+    "category": "tooling"
+  },
+  {
     "id": "misskey",
     "name": "Misskey",
     "category": "social"
+  },
+  {
+    "id": "mithril",
+    "name": "Mithril.js",
+    "category": "frontend"
+  },
+  {
+    "id": "mobx",
+    "name": "MobX",
+    "category": "frontend"
   },
   {
     "id": "mocha",
@@ -950,14 +1665,39 @@
     "category": "testing"
   },
   {
+    "id": "mockoon",
+    "name": "Mockoon",
+    "category": "tooling"
+  },
+  {
     "id": "mojo",
     "name": "Mojo",
     "category": "language"
   },
   {
+    "id": "monday",
+    "name": "monday.com",
+    "category": "productivity"
+  },
+  {
     "id": "mongodb",
     "name": "MongoDB",
     "category": "database"
+  },
+  {
+    "id": "moonrepo",
+    "name": "moon",
+    "category": "tooling"
+  },
+  {
+    "id": "motion",
+    "name": "Motion",
+    "category": "frontend"
+  },
+  {
+    "id": "mypy",
+    "name": "mypy",
+    "category": "tooling"
   },
   {
     "id": "mysql",
@@ -990,6 +1730,16 @@
     "category": "backend"
   },
   {
+    "id": "netbsd",
+    "name": "NetBSD",
+    "category": "os"
+  },
+  {
+    "id": "netflix",
+    "name": "Netflix",
+    "category": "social"
+  },
+  {
     "id": "netlify",
     "name": "Netlify",
     "category": "cloud"
@@ -1015,14 +1765,39 @@
     "category": "language"
   },
   {
+    "id": "nixos",
+    "name": "NixOS",
+    "category": "os"
+  },
+  {
     "id": "nodejs",
     "name": "Node.js",
     "category": "backend"
   },
   {
+    "id": "nodemon",
+    "name": "nodemon",
+    "category": "tooling"
+  },
+  {
+    "id": "nostr",
+    "name": "Nostr",
+    "category": "social"
+  },
+  {
+    "id": "notepadplusplus",
+    "name": "Notepad++",
+    "category": "ide"
+  },
+  {
     "id": "notion",
     "name": "Notion",
     "category": "productivity"
+  },
+  {
+    "id": "nova",
+    "name": "Nova",
+    "category": "ide"
   },
   {
     "id": "npm",
@@ -1045,9 +1820,19 @@
     "category": "frontend"
   },
   {
+    "id": "nvm",
+    "name": "nvm",
+    "category": "tooling"
+  },
+  {
     "id": "nx",
     "name": "Nx",
     "category": "tooling"
+  },
+  {
+    "id": "observable",
+    "name": "Observable",
+    "category": "frontend"
   },
   {
     "id": "obsidian",
@@ -1060,6 +1845,11 @@
     "category": "language"
   },
   {
+    "id": "oclif",
+    "name": "oclif",
+    "category": "tooling"
+  },
+  {
     "id": "octave",
     "name": "Octave",
     "category": "language"
@@ -1070,9 +1860,29 @@
     "category": "ai"
   },
   {
+    "id": "onedrive",
+    "name": "Microsoft OneDrive",
+    "category": "productivity"
+  },
+  {
+    "id": "onenote",
+    "name": "Microsoft OneNote",
+    "category": "productivity"
+  },
+  {
     "id": "openai",
     "name": "OpenAI",
     "category": "ai"
+  },
+  {
+    "id": "openapi",
+    "name": "OpenAPI",
+    "category": "tooling"
+  },
+  {
+    "id": "openbsd",
+    "name": "OpenBSD",
+    "category": "os"
   },
   {
     "id": "openclaw",
@@ -1085,9 +1895,19 @@
     "category": "ai"
   },
   {
+    "id": "opencollective",
+    "name": "Open Collective",
+    "category": "social"
+  },
+  {
     "id": "opencv",
     "name": "OpenCV",
     "category": "ai"
+  },
+  {
+    "id": "openlayers",
+    "name": "OpenLayers",
+    "category": "frontend"
   },
   {
     "id": "openshift",
@@ -1098,6 +1918,11 @@
     "id": "openstack",
     "name": "OpenStack",
     "category": "cloud"
+  },
+  {
+    "id": "opensuse",
+    "name": "openSUSE",
+    "category": "os"
   },
   {
     "id": "opentelemetry",
@@ -1130,9 +1955,34 @@
     "category": "ai"
   },
   {
+    "id": "parcel",
+    "name": "Parcel",
+    "category": "tooling"
+  },
+  {
+    "id": "parkui",
+    "name": "Park UI",
+    "category": "frontend"
+  },
+  {
+    "id": "patreon",
+    "name": "Patreon",
+    "category": "social"
+  },
+  {
     "id": "paypal",
     "name": "PayPal",
     "category": "payments"
+  },
+  {
+    "id": "pdm",
+    "name": "PDM",
+    "category": "tooling"
+  },
+  {
+    "id": "peertube",
+    "name": "PeerTube",
+    "category": "social"
   },
   {
     "id": "perl",
@@ -1165,9 +2015,24 @@
     "category": "frontend"
   },
   {
+    "id": "pinterest",
+    "name": "Pinterest",
+    "category": "social"
+  },
+  {
     "id": "pix",
     "name": "Pix",
     "category": "payments"
+  },
+  {
+    "id": "pixelfed",
+    "name": "Pixelfed",
+    "category": "social"
+  },
+  {
+    "id": "pixijs",
+    "name": "PixiJS",
+    "category": "frontend"
   },
   {
     "id": "pkl",
@@ -1195,9 +2060,24 @@
     "category": "testing"
   },
   {
+    "id": "plotly",
+    "name": "Plotly",
+    "category": "frontend"
+  },
+  {
+    "id": "pm2",
+    "name": "PM2",
+    "category": "tooling"
+  },
+  {
     "id": "pnpm",
     "name": "pnpm",
     "category": "tooling"
+  },
+  {
+    "id": "pocket",
+    "name": "Pocket",
+    "category": "productivity"
   },
   {
     "id": "pocketbase",
@@ -1205,9 +2085,29 @@
     "category": "database"
   },
   {
+    "id": "poetry",
+    "name": "Poetry",
+    "category": "tooling"
+  },
+  {
     "id": "polar",
     "name": "Polar",
     "category": "payments"
+  },
+  {
+    "id": "polymer",
+    "name": "Polymer",
+    "category": "frontend"
+  },
+  {
+    "id": "popos",
+    "name": "Pop!_OS",
+    "category": "os"
+  },
+  {
+    "id": "postcss",
+    "name": "PostCSS",
+    "category": "frontend"
   },
   {
     "id": "postgresql",
@@ -1225,9 +2125,19 @@
     "category": "tooling"
   },
   {
+    "id": "powerpoint",
+    "name": "Microsoft PowerPoint",
+    "category": "productivity"
+  },
+  {
     "id": "powershell",
     "name": "PowerShell",
     "category": "language"
+  },
+  {
+    "id": "preact",
+    "name": "Preact",
+    "category": "frontend"
   },
   {
     "id": "premiere",
@@ -1250,6 +2160,11 @@
     "category": "game"
   },
   {
+    "id": "producthunt",
+    "name": "Product Hunt",
+    "category": "social"
+  },
+  {
     "id": "prometheus",
     "name": "Prometheus",
     "category": "observability"
@@ -1270,6 +2185,11 @@
     "category": "ide"
   },
   {
+    "id": "pylint",
+    "name": "Pylint",
+    "category": "tooling"
+  },
+  {
     "id": "pytest",
     "name": "pytest",
     "category": "testing"
@@ -1288,6 +2208,16 @@
     "id": "qt",
     "name": "Qt",
     "category": "os"
+  },
+  {
+    "id": "qubes",
+    "name": "Qubes OS",
+    "category": "os"
+  },
+  {
+    "id": "qwik",
+    "name": "Qwik",
+    "category": "frontend"
   },
   {
     "id": "r",
@@ -1320,6 +2250,11 @@
     "category": "os"
   },
   {
+    "id": "raycast",
+    "name": "Raycast",
+    "category": "productivity"
+  },
+  {
     "id": "razorpay",
     "name": "Razorpay",
     "category": "payments"
@@ -1327,6 +2262,11 @@
   {
     "id": "react",
     "name": "React",
+    "category": "frontend"
+  },
+  {
+    "id": "reacthookform",
+    "name": "React Hook Form",
     "category": "frontend"
   },
   {
@@ -1340,8 +2280,28 @@
     "category": "frontend"
   },
   {
+    "id": "reactos",
+    "name": "ReactOS",
+    "category": "os"
+  },
+  {
     "id": "reactquery",
     "name": "TanStack Query",
+    "category": "frontend"
+  },
+  {
+    "id": "reactrouter",
+    "name": "React Router",
+    "category": "frontend"
+  },
+  {
+    "id": "readwise",
+    "name": "Readwise",
+    "category": "productivity"
+  },
+  {
+    "id": "recoil",
+    "name": "Recoil",
     "category": "frontend"
   },
   {
@@ -1390,6 +2350,16 @@
     "category": "ide"
   },
   {
+    "id": "rive",
+    "name": "Rive",
+    "category": "frontend"
+  },
+  {
+    "id": "roam",
+    "name": "Roam Research",
+    "category": "productivity"
+  },
+  {
     "id": "robloxstudio",
     "name": "Roblox Studio",
     "category": "game"
@@ -1398,6 +2368,21 @@
     "id": "rocket",
     "name": "Rocket",
     "category": "productivity"
+  },
+  {
+    "id": "rocketchat",
+    "name": "Rocket.Chat",
+    "category": "social"
+  },
+  {
+    "id": "rocky",
+    "name": "Rocky Linux",
+    "category": "os"
+  },
+  {
+    "id": "rolldown",
+    "name": "Rolldown",
+    "category": "tooling"
   },
   {
     "id": "rollupjs",
@@ -1420,9 +2405,34 @@
     "category": "language"
   },
   {
+    "id": "rubymine",
+    "name": "RubyMine",
+    "category": "ide"
+  },
+  {
+    "id": "ruff",
+    "name": "Ruff",
+    "category": "tooling"
+  },
+  {
+    "id": "rush",
+    "name": "Rush",
+    "category": "tooling"
+  },
+  {
     "id": "rust",
     "name": "Rust",
     "category": "language"
+  },
+  {
+    "id": "rustrover",
+    "name": "RustRover",
+    "category": "ide"
+  },
+  {
+    "id": "rye",
+    "name": "Rye",
+    "category": "tooling"
   },
   {
     "id": "sass",
@@ -1435,9 +2445,19 @@
     "category": "language"
   },
   {
+    "id": "scalar",
+    "name": "Scalar",
+    "category": "tooling"
+  },
+  {
     "id": "scikitlearn",
     "name": "scikit-learn",
     "category": "ai"
+  },
+  {
+    "id": "scoop",
+    "name": "Scoop",
+    "category": "tooling"
   },
   {
     "id": "selenium",
@@ -1460,9 +2480,24 @@
     "category": "frontend"
   },
   {
+    "id": "shortcut",
+    "name": "Shortcut",
+    "category": "productivity"
+  },
+  {
+    "id": "signal",
+    "name": "Signal",
+    "category": "social"
+  },
+  {
     "id": "signoz",
     "name": "SigNoz",
     "category": "observability"
+  },
+  {
+    "id": "skeleton",
+    "name": "Skeleton",
+    "category": "frontend"
   },
   {
     "id": "sketch",
@@ -1480,6 +2515,16 @@
     "category": "social"
   },
   {
+    "id": "slackware",
+    "name": "Slackware",
+    "category": "os"
+  },
+  {
+    "id": "snapchat",
+    "name": "Snapchat",
+    "category": "social"
+  },
+  {
     "id": "solidity",
     "name": "Solidity",
     "category": "language"
@@ -1488,6 +2533,16 @@
     "id": "solidjs",
     "name": "SolidJS",
     "category": "frontend"
+  },
+  {
+    "id": "soundcloud",
+    "name": "SoundCloud",
+    "category": "social"
+  },
+  {
+    "id": "spacemacs",
+    "name": "Spacemacs",
+    "category": "ide"
   },
   {
     "id": "spotify",
@@ -1520,6 +2575,11 @@
     "category": "payments"
   },
   {
+    "id": "stackblitz",
+    "name": "StackBlitz",
+    "category": "tooling"
+  },
+  {
     "id": "stackoverflow",
     "name": "Stack Overflow",
     "category": "tooling"
@@ -1528,6 +2588,31 @@
     "id": "starlight",
     "name": "Starlight",
     "category": "frontend"
+  },
+  {
+    "id": "starship",
+    "name": "Starship",
+    "category": "ide"
+  },
+  {
+    "id": "stencil",
+    "name": "Stencil",
+    "category": "frontend"
+  },
+  {
+    "id": "stimulus",
+    "name": "Stimulus",
+    "category": "frontend"
+  },
+  {
+    "id": "stoat",
+    "name": "Stoat",
+    "category": "social"
+  },
+  {
+    "id": "stoplight",
+    "name": "Stoplight",
+    "category": "tooling"
   },
   {
     "id": "storybook",
@@ -1550,14 +2635,29 @@
     "category": "frontend"
   },
   {
+    "id": "stylelint",
+    "name": "stylelint",
+    "category": "tooling"
+  },
+  {
     "id": "sublime",
     "name": "Sublime Text",
     "category": "ide"
   },
   {
+    "id": "substack",
+    "name": "Substack",
+    "category": "social"
+  },
+  {
     "id": "supabase",
     "name": "Supabase",
     "category": "database"
+  },
+  {
+    "id": "superhuman",
+    "name": "Superhuman",
+    "category": "productivity"
   },
   {
     "id": "svelte",
@@ -1570,6 +2670,16 @@
     "category": "language"
   },
   {
+    "id": "swagger",
+    "name": "Swagger",
+    "category": "tooling"
+  },
+  {
+    "id": "sway",
+    "name": "Sway",
+    "category": "os"
+  },
+  {
     "id": "swc",
     "name": "SWC",
     "category": "tooling"
@@ -1580,9 +2690,19 @@
     "category": "language"
   },
   {
+    "id": "swr",
+    "name": "SWR",
+    "category": "frontend"
+  },
+  {
     "id": "symfony",
     "name": "Symfony",
     "category": "backend"
+  },
+  {
+    "id": "tails",
+    "name": "Tails",
+    "category": "os"
   },
   {
     "id": "tailwindcss",
@@ -1595,9 +2715,19 @@
     "category": "frontend"
   },
   {
+    "id": "taskfile",
+    "name": "Task",
+    "category": "tooling"
+  },
+  {
     "id": "tauri",
     "name": "Tauri",
     "category": "tooling"
+  },
+  {
+    "id": "teams",
+    "name": "Microsoft Teams",
+    "category": "productivity"
   },
   {
     "id": "telegram",
@@ -1620,9 +2750,34 @@
     "category": "testing"
   },
   {
+    "id": "things",
+    "name": "Things",
+    "category": "productivity"
+  },
+  {
+    "id": "threads",
+    "name": "Threads",
+    "category": "social"
+  },
+  {
     "id": "threejs",
     "name": "three.js",
     "category": "frontend"
+  },
+  {
+    "id": "tiktok",
+    "name": "TikTok",
+    "category": "social"
+  },
+  {
+    "id": "tmux",
+    "name": "tmux",
+    "category": "ide"
+  },
+  {
+    "id": "todoist",
+    "name": "Todoist",
+    "category": "productivity"
   },
   {
     "id": "trae",
@@ -1635,9 +2790,19 @@
     "category": "devops"
   },
   {
+    "id": "trello",
+    "name": "Trello",
+    "category": "productivity"
+  },
+  {
     "id": "trpc",
     "name": "tRPC",
     "category": "backend"
+  },
+  {
+    "id": "tumblr",
+    "name": "Tumblr",
+    "category": "social"
   },
   {
     "id": "turbopack",
@@ -1655,6 +2820,11 @@
     "category": "database"
   },
   {
+    "id": "twitch",
+    "name": "Twitch",
+    "category": "social"
+  },
+  {
     "id": "twitter",
     "name": "Twitter",
     "category": "social"
@@ -1670,9 +2840,19 @@
     "category": "os"
   },
   {
+    "id": "unbuild",
+    "name": "unbuild",
+    "category": "tooling"
+  },
+  {
     "id": "unity",
     "name": "Unity",
     "category": "game"
+  },
+  {
+    "id": "unocss",
+    "name": "UnoCSS",
+    "category": "frontend"
   },
   {
     "id": "unrealengine",
@@ -1685,6 +2865,11 @@
     "category": "database"
   },
   {
+    "id": "uv",
+    "name": "uv",
+    "category": "tooling"
+  },
+  {
     "id": "v",
     "name": "V",
     "category": "language"
@@ -1695,9 +2880,19 @@
     "category": "language"
   },
   {
+    "id": "vcpkg",
+    "name": "vcpkg",
+    "category": "tooling"
+  },
+  {
     "id": "vercel",
     "name": "Vercel",
     "category": "cloud"
+  },
+  {
+    "id": "verdaccio",
+    "name": "Verdaccio",
+    "category": "tooling"
   },
   {
     "id": "verilog",
@@ -1705,9 +2900,24 @@
     "category": "language"
   },
   {
+    "id": "viber",
+    "name": "Viber",
+    "category": "social"
+  },
+  {
+    "id": "victory",
+    "name": "Victory",
+    "category": "frontend"
+  },
+  {
     "id": "vim",
     "name": "Vim",
     "category": "ide"
+  },
+  {
+    "id": "vimeo",
+    "name": "Vimeo",
+    "category": "social"
   },
   {
     "id": "visa",
@@ -1728,6 +2938,16 @@
     "id": "vitest",
     "name": "Vitest",
     "category": "testing"
+  },
+  {
+    "id": "void",
+    "name": "Void",
+    "category": "ide"
+  },
+  {
+    "id": "volta",
+    "name": "Volta",
+    "category": "tooling"
   },
   {
     "id": "vscode",
@@ -1755,6 +2975,11 @@
     "category": "ide"
   },
   {
+    "id": "wayland",
+    "name": "Wayland",
+    "category": "os"
+  },
+  {
     "id": "webassembly",
     "name": "WebAssembly",
     "category": "language"
@@ -1772,6 +2997,16 @@
   {
     "id": "webstorm",
     "name": "WebStorm",
+    "category": "ide"
+  },
+  {
+    "id": "wechat",
+    "name": "WeChat",
+    "category": "social"
+  },
+  {
+    "id": "wezterm",
+    "name": "WezTerm",
     "category": "ide"
   },
   {
@@ -1795,6 +3030,16 @@
     "category": "ide"
   },
   {
+    "id": "wiremock",
+    "name": "WireMock",
+    "category": "tooling"
+  },
+  {
+    "id": "word",
+    "name": "Microsoft Word",
+    "category": "productivity"
+  },
+  {
     "id": "wordpress",
     "name": "WordPress",
     "category": "cloud"
@@ -1805,14 +3050,34 @@
     "category": "cloud"
   },
   {
+    "id": "wsl",
+    "name": "WSL",
+    "category": "os"
+  },
+  {
+    "id": "x11",
+    "name": "X11",
+    "category": "os"
+  },
+  {
     "id": "xcode",
     "name": "Xcode",
     "category": "ide"
   },
   {
     "id": "xd",
-    "name": "Adobe XD",
+    "name": "XD",
     "category": "design"
+  },
+  {
+    "id": "xfce",
+    "name": "Xfce",
+    "category": "os"
+  },
+  {
+    "id": "xstate",
+    "name": "XState",
+    "category": "frontend"
   },
   {
     "id": "yaml",
@@ -1835,8 +3100,18 @@
     "category": "social"
   },
   {
+    "id": "zapier",
+    "name": "Zapier",
+    "category": "productivity"
+  },
+  {
     "id": "zed",
     "name": "Zed",
+    "category": "ide"
+  },
+  {
+    "id": "zellij",
+    "name": "Zellij",
     "category": "ide"
   },
   {
@@ -1850,8 +3125,33 @@
     "category": "frontend"
   },
   {
+    "id": "zoom",
+    "name": "Zoom",
+    "category": "productivity"
+  },
+  {
+    "id": "zorin",
+    "name": "Zorin OS",
+    "category": "os"
+  },
+  {
+    "id": "zsh",
+    "name": "Zsh",
+    "category": "ide"
+  },
+  {
+    "id": "zulip",
+    "name": "Zulip",
+    "category": "social"
+  },
+  {
     "id": "zustand",
     "name": "Zustand",
     "category": "frontend"
+  },
+  {
+    "id": "zx",
+    "name": "Zx",
+    "category": "tooling"
   }
 ]

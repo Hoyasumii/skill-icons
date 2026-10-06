@@ -55,6 +55,7 @@ export const shortNames: Record<string, string> = {
   rxjava: 'reactivex',
   ghactions: 'githubactions',
   sklearn: 'scikitlearn',
+  framermotion: 'motion',
 };
 
 /** All aliases that resolve to the given icon name. */
