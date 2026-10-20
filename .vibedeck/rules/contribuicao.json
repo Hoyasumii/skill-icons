@@ -1,0 +1,70 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-topic.schema.json",
+  "author" : "human",
+  "createdAt" : "2026-10-20T15:29:46Z",
+  "description" : "Regras do CONTRIBUTING.md e do template de PR que valem para toda tarefa.",
+  "id" : "8EB4346D-30D2-4054-9E3A-27D70C1FC8E8",
+  "rules" : [
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:46Z",
+      "details" : "Exigido no CONTRIBUTING.md e no checklist do PR; o deploy.yml roda os mesmos passos em todo push na main.",
+      "id" : "1F5B433C-9DF2-4863-B9D4-F4A51F68C2D0",
+      "severity" : "must",
+      "test" : {
+        "command" : ".vibedeck/tests/contribuicao/1f5b433c.sh",
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "script",
+        "reason" : "Roda bun run typecheck e bun run test.",
+        "ruleHash" : "3ee4d2085e754e2d"
+      },
+      "text" : "bun run typecheck e bun run test passam"
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:46Z",
+      "details" : "bun run knip passa; o pre-commit do husky roda bunx knip.",
+      "id" : "6EFDB945-9962-4184-A195-4B71A6DD8B43",
+      "severity" : "must",
+      "test" : {
+        "command" : ".vibedeck/tests/contribuicao/6efdb945.sh",
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "script",
+        "reason" : "Roda bunx knip, como o pre-commit.",
+        "ruleHash" : "674db55a939d3a85"
+      },
+      "text" : "Sem código, export ou dependência sem uso (knip)"
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:46Z",
+      "details" : "Formatter do biome.json (2 espaços, 100 colunas, aspas simples, ponto e vírgula); corrija com bun run format.",
+      "id" : "E3CEFF99-B1B6-4BCF-93DF-C124C2930B2F",
+      "severity" : "should",
+      "test" : {
+        "command" : ".vibedeck/tests/contribuicao/e3ceff99.sh",
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "script",
+        "reason" : "biome format (modo checagem) nos arquivos alterados, fora os do VibeDeck.",
+        "ruleHash" : "0b743232b3ba6ac3"
+      },
+      "text" : "Arquivos formatados com Biome"
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:46Z",
+      "details" : "feat:, fix:, docs:, chore:, test:, perf:… com escopo opcional (feat(og): …); validado pelo commitlint no hook commit-msg.",
+      "id" : "F942375E-3652-4D89-A248-587D92811015",
+      "severity" : "must",
+      "test" : {
+        "command" : ".vibedeck/tests/contribuicao/f942375e.sh",
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "script",
+        "reason" : "commitlint nos commits de origin/main..HEAD; sem commits novos, não se aplica.",
+        "ruleHash" : "0a8a8177ff5c7adb"
+      },
+      "text" : "Mensagens de commit e títulos de PR seguem Conventional Commits"
+    }
+  ],
+  "title" : "Contribuição"
+}

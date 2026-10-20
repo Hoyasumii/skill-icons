@@ -1,0 +1,56 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-topic.schema.json",
+  "author" : "human",
+  "createdAt" : "2026-10-20T15:29:46Z",
+  "description" : "Regras para adicionar ou corrigir ícones (CONTRIBUTING.md).",
+  "id" : "DBC77236-D07A-46A1-8A0D-EED720944BB9",
+  "paths" : [
+    "icons/**",
+    "shared/icon-categories.ts"
+  ],
+  "rules" : [
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:46Z",
+      "details" : "Press kit ou brand guidelines; logos só identificam a ferramenta/serviço. Cite o link no PR.",
+      "id" : "D6554B5C-7898-4FF4-9DEC-66526EE58F57",
+      "severity" : "must",
+      "test" : {
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "manual",
+        "reason" : "A origem do logo não fica no repositório.",
+        "ruleHash" : "4cc2c3357f8c01e3"
+      },
+      "text" : "Logo vem da fonte oficial da marca"
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:46Z",
+      "details" : "Ex.: Visual Studio Code, Next.js, shadcn/ui. Quando o nome do arquivo difere, adicionar entrada em displayNames de shared/icon-categories.ts.",
+      "id" : "02541400-8EDE-427E-BD42-4600F1DAAD79",
+      "severity" : "must",
+      "test" : {
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "manual",
+        "reason" : "A grafia oficial depende da marca.",
+        "ruleHash" : "0b0685f2ea2480f8"
+      },
+      "text" : "Nome de exibição usa a grafia oficial da marca"
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:46Z",
+      "details" : "bun skill-icon generate --name <Name> --generate ./logo.svg --category <categoria> (--background para ícone único com cor da marca); depois bun run icons e conferir Dark e Light no site.",
+      "id" : "742BD4B1-76FE-4BEF-9DF5-08501A31DF44",
+      "severity" : "should",
+      "test" : {
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "manual",
+        "reason" : "Como o ícone foi gerado e a categoria certa dependem de julgamento.",
+        "ruleHash" : "f66c5a123f4f36e8"
+      },
+      "text" : "Ícone gerado com bun skill-icon generate e na categoria certa"
+    }
+  ],
+  "title" : "Ícones"
+}

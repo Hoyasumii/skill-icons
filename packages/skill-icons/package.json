@@ -1,6 +1,6 @@
 {
   "name": "@hoyasumii/skill-icons",
-  "version": "0.1.0",
+  "version": "26.10.2",
   "description": "370+ tech, language and tool icons with dark and light themes, as lazy-loaded SVG components for React, Vue, Svelte, Angular, Solid, Astro and Web Components.",
   "keywords": [
     "skill-icons",

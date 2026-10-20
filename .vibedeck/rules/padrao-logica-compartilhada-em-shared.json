@@ -1,0 +1,47 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-topic.schema.json",
+  "author" : "human",
+  "createdAt" : "2026-10-20T15:29:37Z",
+  "description" : "Regras de negócio usadas pelo site e pelo worker (ícones, URLs, OG, metadados, MCP) ficam em shared/ como funções puras, sem APIs de DOM ou do runtime.\n\nNo projeto: Ex.: shared/og-layout.ts calcula o layout do card OG usado por worker/og.ts e pelo preview; shared/icons.ts monta URLs para site, API e MCP. Testes em test/*.test.ts.",
+  "id" : "5B31D4AC-15F2-4F73-B333-D9859645A4EB",
+  "paths" : [
+    "shared/**",
+    "src/**",
+    "worker/**",
+    "scripts/**"
+  ],
+  "rules" : [
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:37Z",
+      "id" : "B230FFC6-C38F-41FB-8C46-A0E1BAC459CD",
+      "severity" : "must",
+      "test" : {
+        "command" : ".vibedeck/tests/padrao-logica-compartilhada-em-shared/b230ffc6.sh",
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "script",
+        "reason" : "grep por window/document/storage/navigator/fetch/env.ASSETS/cloudflare: em shared/.",
+        "ruleHash" : "2b36112e04509bd9"
+      },
+      "text" : "Código em shared/ não usa window, document, localStorage, fetch nem bindings do Worker; efeitos ficam em src/ (site) ou worker/ (Cloudflare)."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:37Z",
+      "id" : "478F96D0-DA8F-466A-A3C5-7BB501BB70F5",
+      "severity" : "must",
+      "test" : {
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "manual",
+        "reason" : "Duplicação de lógica entre site, worker e scripts exige leitura do código.",
+        "ruleHash" : "b097011d5d1fa106"
+      },
+      "text" : "Lógica usada por mais de uma ponta (site, worker, scripts) vive em shared/ e é importada de lá, sem duplicar."
+    }
+  ],
+  "sourcePattern" : "logica-compartilhada-em-shared",
+  "tags" : [
+    "padrao"
+  ],
+  "title" : "Padrão: Lógica compartilhada em shared/"
+}

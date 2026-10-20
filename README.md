@@ -33,6 +33,10 @@ Skill Icons gives you hundreds of icons in a few ways:
 
 # Docs
 
+<!-- vibedeck:stack:start -->
+[![My Skills](https://skill-icons.alanreisanjo.workers.dev/icons?i=ts,react,vite,tailwind,shadcnui,radixui,bun,workers,mcp,zod,vitest,biome,husky,ghactions,swift,py)](https://skill-icons.alanreisanjo.workers.dev)
+<!-- vibedeck:stack:end -->
+
 - [Example](#example)
 - [Builder](#builder)
 - [Specifying Icons](#specifying-icons)

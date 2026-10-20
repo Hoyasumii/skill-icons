@@ -1,0 +1,56 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-topic.schema.json",
+  "author" : "human",
+  "createdAt" : "2026-10-20T15:29:37Z",
+  "description" : "A UI segue o DESIGN.md: tokens como CSS variables, primitivas shadcn em src/components/ui, toda copy via i18n (en + pt-BR).\n\nNo projeto: Restilize primitivas pelas CSS variables antes de mexer em src/components/ui; o amarelo --highlight marca só o que é do usuário.",
+  "id" : "A7F8A068-8289-4A8A-977F-A2C6A874B5FD",
+  "paths" : [
+    "src/**"
+  ],
+  "rules" : [
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:37Z",
+      "id" : "376B2B92-5017-4AFA-A421-5DAB87A2E7C9",
+      "severity" : "must",
+      "test" : {
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "manual",
+        "reason" : "Saber se um texto é visível ao usuário exige ler o componente.",
+        "ruleHash" : "20346883e4b1fc62"
+      },
+      "text" : "Todo texto visível da UI passa pelo i18n (src/i18n/messages/en.ts e pt-BR.ts), com as duas línguas preenchidas."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:37Z",
+      "id" : "78BAEFF2-B932-496A-B853-A2C58C6FA45D",
+      "severity" : "must",
+      "test" : {
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "manual",
+        "reason" : "Distinguir valor solto de token exige contexto do componente.",
+        "ruleHash" : "83808ff22384bc6b"
+      },
+      "text" : "Cores, raios e tipografia vêm dos tokens do DESIGN.md (CSS variables em src/index.css), sem valores soltos nos componentes."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:37Z",
+      "id" : "6D91E2A4-A295-48ED-ABA4-2F211D889AC9",
+      "severity" : "must",
+      "test" : {
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "manual",
+        "reason" : "Tamanho de alvo e estilo visual dependem do layout renderizado.",
+        "ruleHash" : "b0a0ec51805f0fe8"
+      },
+      "text" : "Alvos interativos têm no mínimo 44 × 44 px; sem gradientes, glass, blur, emoji ou glow na UI."
+    }
+  ],
+  "sourcePattern" : "design-system-marca-texto-design-md",
+  "tags" : [
+    "padrao"
+  ],
+  "title" : "Padrão: Design System Marca-texto (DESIGN.md)"
+}

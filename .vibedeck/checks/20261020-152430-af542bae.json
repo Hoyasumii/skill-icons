@@ -1,0 +1,25 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-check.schema.json",
+  "author" : "ai",
+  "createdAt" : "2026-10-20T15:24:30.229Z",
+  "failures" : [
+
+  ],
+  "files" : [
+    "icons/NotepadPlusPlus-Dark.svg",
+    "icons/NotepadPlusPlus-Light.svg",
+    "icons/NotepadPlusPlus.svg"
+  ],
+  "id" : "AF542BAE-5166-4F4D-B04B-2FBE546C0A70",
+  "passed" : true,
+  "results" : [
+
+  ],
+  "task" : "Notepad++ vira ícone único com degradê verde e contorno preto",
+  "topics" : [
+
+  ],
+  "warnings" : [
+
+  ]
+}

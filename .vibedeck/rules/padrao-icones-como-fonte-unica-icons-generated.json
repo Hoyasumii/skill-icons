@@ -1,0 +1,36 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-topic.schema.json",
+  "author" : "human",
+  "createdAt" : "2026-10-20T15:29:37Z",
+  "description" : "icons/*.svg é a única fonte; bun run icons (scripts/build-icons.ts) gera generated/, public/svg/ e packages/skill-icons/src/generated/.\n\nNo projeto: Ícones novos saem de bun skill-icon generate; nomes de exibição em displayNames de shared/icon-categories.ts.",
+  "id" : "9EF4F041-DE1F-46C9-957E-A02E61C620FD",
+  "paths" : [
+    "icons/**",
+    "generated/**",
+    "public/svg/**",
+    "packages/skill-icons/src/generated/**",
+    "scripts/**",
+    "shared/icon-categories.ts"
+  ],
+  "rules" : [
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T15:29:37Z",
+      "id" : "10385057-A572-4955-BEA8-ABA70A477BDB",
+      "severity" : "must",
+      "test" : {
+        "command" : ".vibedeck/tests/padrao-icones-como-fonte-unica-icons-generated/10385057.sh",
+        "generatedAt" : "2026-10-20T15:31:15Z",
+        "mode" : "script",
+        "reason" : "Falha se generated/, public/svg/ ou packages/skill-icons/src/generated/ estão entre os arquivos alterados.",
+        "ruleHash" : "71193784327dc5e4"
+      },
+      "text" : "Nunca editar à mão generated/, public/svg/ nem packages/skill-icons/src/generated/; alterar icons/ ou scripts/build-icons.ts e rodar bun run icons."
+    }
+  ],
+  "sourcePattern" : "icones-como-fonte-unica-icons-generated",
+  "tags" : [
+    "padrao"
+  ],
+  "title" : "Padrão: Ícones como fonte única (icons/ → generated/)"
+}

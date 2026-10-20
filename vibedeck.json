@@ -1,0 +1,184 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/project.schema.json",
+  "id" : "D01C39AF-2C8B-4B22-BF20-F631EC515687",
+  "links" : [
+
+  ],
+  "name" : "skill-icons",
+  "patterns" : [
+    {
+      "author" : "ai",
+      "category" : "custom",
+      "id" : "logica-compartilhada-em-shared",
+      "name" : "Lógica compartilhada em shared/",
+      "note" : "Ex.: shared/og-layout.ts calcula o layout do card OG usado por worker/og.ts e pelo preview; shared/icons.ts monta URLs para site, API e MCP. Testes em test/*.test.ts.",
+      "summary" : "Regras de negócio usadas pelo site e pelo worker (ícones, URLs, OG, metadados, MCP) ficam em shared/ como funções puras, sem APIs de DOM ou do runtime.",
+      "topic" : "padrao-logica-compartilhada-em-shared"
+    },
+    {
+      "author" : "ai",
+      "category" : "custom",
+      "id" : "icones-como-fonte-unica-icons-generated",
+      "name" : "Ícones como fonte única (icons/ → generated/)",
+      "note" : "Ícones novos saem de bun skill-icon generate; nomes de exibição em displayNames de shared/icon-categories.ts.",
+      "summary" : "icons/*.svg é a única fonte; bun run icons (scripts/build-icons.ts) gera generated/, public/svg/ e packages/skill-icons/src/generated/.",
+      "topic" : "padrao-icones-como-fonte-unica-icons-generated"
+    },
+    {
+      "author" : "ai",
+      "category" : "custom",
+      "id" : "design-system-marca-texto-design-md",
+      "name" : "Design System Marca-texto (DESIGN.md)",
+      "note" : "Restilize primitivas pelas CSS variables antes de mexer em src/components/ui; o amarelo --highlight marca só o que é do usuário.",
+      "summary" : "A UI segue o DESIGN.md: tokens como CSS variables, primitivas shadcn em src/components/ui, toda copy via i18n (en + pt-BR).",
+      "topic" : "padrao-design-system-marca-texto-design-md"
+    }
+  ],
+  "reviewKinds" : [
+    {
+      "id" : "disable",
+      "label" : "Inativar",
+      "symbol" : "nosign"
+    },
+    {
+      "id" : "hide",
+      "label" : "Ocultar",
+      "symbol" : "eye.slash"
+    },
+    {
+      "id" : "fix",
+      "label" : "Corrigir",
+      "symbol" : "wrench.and.screwdriver"
+    },
+    {
+      "id" : "change",
+      "label" : "Alterar",
+      "symbol" : "pencil"
+    },
+    {
+      "id" : "remove",
+      "label" : "Remover",
+      "symbol" : "trash"
+    },
+    {
+      "id" : "note",
+      "label" : "Nota",
+      "symbol" : "note.text"
+    }
+  ],
+  "stack" : [
+    {
+      "author" : "ai",
+      "category" : "language",
+      "icon" : "typescript",
+      "name" : "TypeScript",
+      "note" : "TS 7 em todo o código (site, worker, scripts, pacote); checar com bun run typecheck (tsc -b)."
+    },
+    {
+      "author" : "ai",
+      "category" : "frontend",
+      "icon" : "react",
+      "name" : "React",
+      "note" : "React 19 no site (src/), pré-renderizado no build (src/prerender.tsx) e hidratado no cliente."
+    },
+    {
+      "author" : "ai",
+      "category" : "tooling",
+      "icon" : "vite",
+      "name" : "Vite",
+      "note" : "Vite 8 com @cloudflare/vite-plugin; dev/build rodam bun run icons antes."
+    },
+    {
+      "author" : "ai",
+      "category" : "frontend",
+      "icon" : "tailwindcss",
+      "name" : "Tailwind CSS",
+      "note" : "Tailwind v4 via @tailwindcss/vite; tokens do DESIGN.md como CSS variables em src/index.css."
+    },
+    {
+      "author" : "ai",
+      "category" : "frontend",
+      "icon" : "shadcnui",
+      "name" : "shadcn/ui",
+      "note" : "Primitivas shadcn (style radix-nova) em src/components/ui; não editar à mão, restilizar pelas CSS variables."
+    },
+    {
+      "author" : "ai",
+      "category" : "frontend",
+      "icon" : "radixui",
+      "name" : "Radix UI",
+      "note" : "Base das primitivas shadcn (pacote radix-ui); usar via src/components/ui, não direto nas features."
+    },
+    {
+      "author" : "ai",
+      "category" : "backend",
+      "icon" : "bun",
+      "name" : "Bun",
+      "note" : "Gerenciador de pacotes e runtime dos scripts (scripts/*.ts, bun skill-icon); workspaces em packages/*."
+    },
+    {
+      "author" : "ai",
+      "category" : "cloud",
+      "icon" : "workers",
+      "name" : "Cloudflare Workers",
+      "note" : "Worker em worker/index.ts (API /api/*, MCP /mcp, OG /og) + assets estáticos; deploy com wrangler (wrangler.jsonc)."
+    },
+    {
+      "author" : "ai",
+      "category" : "backend",
+      "icon" : "mcp",
+      "name" : "MCP",
+      "note" : "Servidor MCP remoto em worker/mcp.ts com @modelcontextprotocol/sdk (Streamable HTTP) e schemas zod."
+    },
+    {
+      "author" : "ai",
+      "category" : "frontend",
+      "icon" : "zod",
+      "name" : "Zod",
+      "note" : "Zod 4 para validar entradas das ferramentas MCP e da API."
+    },
+    {
+      "author" : "ai",
+      "category" : "testing",
+      "icon" : "vitest",
+      "name" : "Vitest",
+      "note" : "Vitest 4 com @cloudflare/vitest-pool-workers; testes em test/ e packages/skill-icons/test (bun run test)."
+    },
+    {
+      "author" : "ai",
+      "category" : "tooling",
+      "icon" : "biome",
+      "name" : "Biome",
+      "note" : "Só formatter (linter desligado): 2 espaços, 100 colunas, aspas simples, ponto e vírgula; bun run format."
+    },
+    {
+      "author" : "ai",
+      "category" : "tooling",
+      "icon" : "husky",
+      "name" : "Husky",
+      "note" : "pre-commit roda knip; commit-msg roda commitlint (Conventional Commits)."
+    },
+    {
+      "author" : "ai",
+      "category" : "devops",
+      "icon" : "githubactions",
+      "name" : "GitHub Actions",
+      "note" : "deploy.yml em push na main (typecheck, testes, build, deploy); release/pages/manager-release."
+    },
+    {
+      "author" : "ai",
+      "category" : "language",
+      "icon" : "swift",
+      "name" : "Swift",
+      "note" : "App macOS Skill Icons Manager em tools/icon-manager (main.swift)."
+    },
+    {
+      "author" : "ai",
+      "category" : "language",
+      "icon" : "python",
+      "name" : "Python",
+      "note" : "Render das imagens OG em .claude/skills/skill-icons-og/scripts e scripts/retheme-icons.py."
+    }
+  ],
+  "version" : 1
+}

@@ -1,0 +1,57 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-check.schema.json",
+  "author" : "ai",
+  "createdAt" : "2026-10-20T15:31:29.520Z",
+  "failures" : [
+
+  ],
+  "files" : [
+    ".claude/settings.local.json",
+    ".vibedeck/tests/contribuicao/e3ceff99.sh",
+    "README.md",
+    "vibedeck.json"
+  ],
+  "id" : "245F6729-144D-4E59-8A6D-0AD731ED37E4",
+  "passed" : true,
+  "results" : [
+    {
+      "exitCode" : 0,
+      "note" : ".vibedeck/tests/contribuicao/1f5b433c.sh (exit 0)\n… (saída cortada)\ntextprotocol/sdk/dist/esm/server/mcp.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/index.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/protocol.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/zod-compat.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/types.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/interfaces.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/zod-json-schema-compat.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/validation/ajv-provider.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/server.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/helpers.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/completable.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/uriTemplate.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/toolNameValidation.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/mcp-server.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/webStandardStreamableHttp.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/mediaType.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/requestBody.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/sseKeepAlive.js\" points to missing source files\n\n Test Files  11 passed (11)\n      Tests  155 passed (155)\n   Start at  12:31:25\n   Duration  3.89s (transform 1.11s, setup 0ms, import 4.99s, tests 2.27s, environment 0ms)",
+      "ruleId" : "1F5B433C-9DF2-4863-B9D4-F4A51F68C2D0",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "pass"
+    },
+    {
+      "exitCode" : 0,
+      "note" : ".vibedeck/tests/contribuicao/6efdb945.sh (exit 0)\n(sem saída)",
+      "ruleId" : "6EFDB945-9962-4184-A195-4B71A6DD8B43",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "pass"
+    },
+    {
+      "exitCode" : 1,
+      "note" : ".vibedeck/tests/contribuicao/e3ceff99.sh (exit 1)\n.claude/settings.local.json format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n  × Formatter would have printed the following content:\n  \n     1  1 │   {\n     2    │ - ··\"hooks\"·:·{\n     3    │ - ····\"Stop\"·:·[\n        2 │ + ··\"hooks\":·{\n        3 │ + ····\"Stop\":·[\n     4  4 │         {\n     5    │ - ········\"hooks\"·:·[\n        5 │ + ········\"hooks\":·[\n     6  6 │             {\n     7    │ - ············\"command\"·:·\"'/Users/hoy/.local/bin/vibedeck'·hook·stop\",\n     8    │ - ············\"timeout\"·:·600,\n     9    │ - ············\"type\"·:·\"command\"\n        7 │ + ············\"command\":·\"'/Users/hoy/.local/bin/vibedeck'·hook·stop\",\n        8 │ + ············\"timeout\":·600,\n        9 │ + ············\"type\":·\"command\"\n    10 10 │             }\n    11 11 │           ]\n  \n\nChecked 1 file in 9ms. No fixes applied.\nFound 1 error.\nformat ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n  × Some errors were emitted while running checks.\n  \n\nRode bun run format",
+      "ruleId" : "E3CEFF99-B1B6-4BCF-93DF-C124C2930B2F",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "fail"
+    },
+    {
+      "exitCode" : 77,
+      "note" : ".vibedeck/tests/contribuicao/f942375e.sh (exit 77)\n(sem saída)",
+      "ruleId" : "F942375E-3652-4D89-A248-587D92811015",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "na"
+    }
+  ],
+  "task" : "Stack, padrões, regras com testes, hook Stop e MCP do VibeDeck configurados",
+  "topics" : [
+    "contribuicao"
+  ],
+  "warnings" : [
+    "Arquivos formatados com Biome"
+  ]
+}
