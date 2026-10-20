@@ -1,5 +1,17 @@
 import { describe, expect, it } from 'vitest';
-import { LIGHT_MEDIA, remoteIconsUrl, renderIcon, renderIcons } from '../src/core/index.js';
+import {
+  composeIcons,
+  iconKey,
+  loadIcon,
+  svgDataUri,
+  LIGHT_MEDIA,
+  remoteIconsUrl,
+  renderIcon,
+  renderIcons,
+} from '../src/core/index.js';
+
+import { loaders } from '../src/generated/loaders.js';
+import { tintIconSvg } from '../src/generated/tint.js';
 
 const DATA = 'src="data:image/svg+xml;charset=utf-8,';
 
@@ -132,4 +144,55 @@ describe('escaping', () => {
     expect(html).toContain('data-ok="yes"');
     expect(html.match(/ src=/g)).toHaveLength(1);
   });
+});
+
+describe('tinted HTML', () => {
+  it('renders both auto sources from the dark SVG, including unthemed icons', async () => {
+    for (const name of ['react', 'adonis', 'astro'] as const) {
+      const original = (await loaders[iconKey(name, 'dark')!]()).raw;
+      for (const grid of [false, true]) {
+        const html = grid
+          ? await renderIcons([name], { theme: 'auto', tint: '5fd3c4' })
+          : await renderIcon(name, { theme: 'auto', tint: '5fd3c4' });
+        expect(html).toContain(`<picture><source media="${LIGHT_MEDIA}"`);
+        for (const [attribute, theme] of [
+          ['src', 'dark'],
+          ['srcset', 'light'],
+        ] as const) {
+          const uri = new RegExp(` ${attribute}="([^"]+)"`).exec(html)![1];
+          const expected = tintIconSvg(original, '5fd3c4', theme);
+          expect(decodeURIComponent(uri.split(',').slice(1).join(','))).toBe(
+            grid ? composeIcons([expected]) : expected,
+          );
+        }
+      }
+    }
+  });
+
+  it('passes normalized tint to both latest URLs for singles and grids', async () => {
+    const options = { latest: true, theme: 'auto', tint: '#5FD3C4' } as const;
+    for (const html of [
+      await renderIcon('react', options),
+      await renderIcons(['react'], options),
+    ]) {
+      expect(html.match(/&amp;tint=5fd3c4/g)).toHaveLength(2);
+      expect(html).toContain('&amp;theme=dark');
+      expect(html).toContain('&amp;theme=light');
+    }
+  });
+
+  it.each(['dark', 'light'] as const)(
+    'preserves exact original %s HTML without tint',
+    async theme => {
+      for (const name of ['react', 'adonis'] as const) {
+        const original = (await loadIcon(iconKey(name, theme)!))!;
+        const single = `<img alt="${name}" src="${svgDataUri(original)}" width="48" height="48">`;
+        const grid = `<img alt="${name}" src="${svgDataUri(composeIcons([original]))}" width="48">`;
+        expect(await renderIcon(name, { theme })).toBe(single);
+        expect(await renderIcons([name], { theme })).toBe(grid);
+        expect(await renderIcon(name, { theme, tint: 'xyz' })).toBe(single);
+        expect(await renderIcons([name], { theme, tint: 'xyz' })).toBe(grid);
+      }
+    },
+  );
 });

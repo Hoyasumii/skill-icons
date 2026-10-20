@@ -42,6 +42,8 @@ type ImgProps = Omit<
 interface CommonProps extends ImgProps {
   /** 'dark', 'light' or 'auto' to follow the system. Defaults to the provider's theme, then 'dark'. */
   theme?: ThemeOption;
+  /** Hex color used to tint icons. Omit to inherit from the provider. */
+  tint?: string;
   /** Size of one icon in pixels. Defaults to 48. */
   size?: number;
 }
@@ -68,19 +70,25 @@ export type IconsProps = CommonProps & {
 } & ((LocalMode & { names: readonly IconName[] }) | (LatestMode & { names: readonly string[] }));
 
 // The context holds an accessor, so a provider's `theme` stays reactive.
+const TintContext = createContext<Accessor<string | undefined>>(() => undefined);
 const ThemeContext = createContext<Accessor<ThemeOption | undefined>>(() => undefined);
 
 export interface SkillIconsProviderProps {
   /** Default theme for every Icon and Icons inside. Omit to inherit from an outer provider. */
   theme?: ThemeOption;
+  /** Hex color used to tint icons. Omit to inherit from the provider. */
+  tint?: string;
   children?: JSX.Element;
 }
 
 export function SkillIconsProvider(props: SkillIconsProviderProps) {
   const parent = useContext(ThemeContext);
+  const parentTint = useContext(TintContext);
   return (
     <ThemeContext.Provider value={() => props.theme ?? parent()}>
-      {props.children}
+      <TintContext.Provider value={() => props.tint ?? parentTint()}>
+        {props.children}
+      </TintContext.Provider>
     </ThemeContext.Provider>
   );
 }
@@ -163,12 +171,15 @@ export function Icon(props: IconProps) {
     'latest',
     'baseUrl',
     'theme',
+    'tint',
     'size',
   ]);
   const themes = useThemes(() => own.theme);
+  const inheritedTint = useContext(TintContext);
+  const tint = () => own.tint ?? inheritedTint();
   const size = () => own.size ?? DEFAULT_SIZE;
   const keys = createMemo(
-    () => (own.latest ? [] : themes().flatMap(t => iconKey(own.name, t) ?? [])),
+    () => (own.latest ? [] : themes().flatMap(t => iconKey(own.name, t, tint()) ?? [])),
     [],
     {
       equals: (a, b) => a.join() === b.join(),
@@ -177,7 +188,13 @@ export function Icon(props: IconProps) {
   const sources = useSources(() => keys().join(','), keys, peekIcon, loadIcon);
   const remote = () =>
     themes().map(t =>
-      remoteIconsUrl({ icons: [own.name], theme: t, perLine: 1, baseUrl: own.baseUrl }),
+      remoteIconsUrl({
+        icons: [own.name],
+        theme: t,
+        perLine: 1,
+        baseUrl: own.baseUrl,
+        tint: tint(),
+      }),
     );
 
   return (
@@ -201,26 +218,43 @@ export function Icons(props: IconsProps) {
     { perLine: DEFAULT_PER_LINE },
     props as IconsProps & { perLine: number },
   );
-  const [own, img] = splitProps(merged, ['names', 'latest', 'baseUrl', 'theme', 'size', 'perLine']);
+  const [own, img] = splitProps(merged, [
+    'names',
+    'latest',
+    'baseUrl',
+    'theme',
+    'tint',
+    'size',
+    'perLine',
+  ]);
   const themes = useThemes(() => own.theme);
+  const inheritedTint = useContext(TintContext);
+  const tint = () => own.tint ?? inheritedTint();
   const size = () => own.size ?? DEFAULT_SIZE;
   const known = createMemo(
     () => (own.latest ? [...own.names] : own.names.filter(name => iconKey(name))),
     [],
     { equals: (a, b) => a.join() === b.join() },
   );
-  const id = () => (own.latest ? '' : `${known().join(',')}|${themes().join(',')}|${own.perLine}`);
+  const id = () =>
+    own.latest ? '' : `${known().join(',')}|${themes().join(',')}|${own.perLine}|${tint() ?? ''}`;
   const sources = useSources(
     id,
     themes,
-    t => peekIcons(known(), t as Theme, own.perLine),
-    t => loadIcons(known(), t as Theme, own.perLine),
+    t => peekIcons(known(), t as Theme, own.perLine, tint()),
+    t => loadIcons(known(), t as Theme, own.perLine, tint()),
   );
   const box = () => iconsSize(known().length, own.perLine, size());
   const alt = () => known().join(', ');
   const remote = () =>
     themes().map(t =>
-      remoteIconsUrl({ icons: known(), theme: t, perLine: own.perLine, baseUrl: own.baseUrl }),
+      remoteIconsUrl({
+        icons: known(),
+        theme: t,
+        perLine: own.perLine,
+        baseUrl: own.baseUrl,
+        tint: tint(),
+      }),
     );
 
   return (

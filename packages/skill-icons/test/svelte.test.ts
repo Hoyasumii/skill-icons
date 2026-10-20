@@ -1,3 +1,4 @@
+import { iconKey, loadIcons, svgDataUri } from '../src/core/index.js';
 import { render } from 'svelte/server';
 import type { Component } from 'svelte';
 import { describe, expect, it } from 'vitest';
@@ -103,4 +104,19 @@ describe('SkillIconsProvider', () => {
   it('lets an inner provider override the outer one', () => {
     expect(tree('auto', 'light')).toMatch(/^<img [^>]*theme=light/);
   });
+});
+
+it('renders tinted local icons and grids without forwarding tint to the image', async () => {
+  const svg = (await loadIcon(iconKey('react', 'light', '#5FC')!))!;
+  const grid = (await loadIcons(['react'], 'light', 15, '#5FC'))!;
+  const single = html(Icon, { name: 'react', theme: 'light', tint: '#5FC' });
+  const composed = html(Icons, { names: ['react'], theme: 'light', tint: '#5FC' });
+  expect(single).toContain(svgDataUri(svg));
+  expect(composed).toContain(svgDataUri(grid));
+  expect(single).not.toContain(' tint=');
+});
+
+it('inherits tint through nested providers and lets icon props override it', () => {
+  expect(html(Tree, { outerTint: '5fd3c4' })).toContain('tint=5fd3c4');
+  expect(html(Tree, { outerTint: '5fd3c4', tint: '#F33' })).toContain('tint=ff3333');
 });

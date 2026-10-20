@@ -4,7 +4,7 @@ import { Icon, Icons, SkillIconsProvider } from '../../src/svelte/index.js';
 </script>
 
 <SkillIconsProvider theme="auto">
-  <Icon name="react" />
+  <Icon name="react" tint="#5FC" />
   <Icon name="js" theme="light" size={32} alt="JavaScript" class="icon" />
   <!-- @ts-expect-error unknown names are rejected outside latest mode -->
   <Icon name="nope" />
@@ -14,8 +14,8 @@ import { Icon, Icons, SkillIconsProvider } from '../../src/svelte/index.js';
   <!-- @ts-expect-error not a theme -->
   <Icon name="js" theme="blue" />
 
-  <Icons names={['js', 'ts']} perLine={2} />
+  <Icons tint="5fd3c4" names={['js', 'ts']} perLine={2} />
   <!-- @ts-expect-error unknown names are rejected outside latest mode -->
-  <Icons names={['js', 'nope']} />
+  <Icons tint="5fd3c4" names={['js', 'nope']} />
   <Icons latest names={['js', 'nope']} />
 </SkillIconsProvider>

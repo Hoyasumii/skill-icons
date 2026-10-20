@@ -6,10 +6,13 @@ import {
   loadIcon,
   loadIcons,
   peekIcon,
+  peekIcons,
   remoteIconsUrl,
   resolveIconName,
   themeVariants,
 } from '../src/core/index.js';
+import { loaders } from '../src/generated/loaders.js';
+import { tintIconSvg } from '../src/generated/tint.js';
 
 describe('resolveIconName', () => {
   it('resolves names and aliases case-insensitively', () => {
@@ -78,5 +81,61 @@ describe('themeVariants', () => {
     expect(themeVariants('auto')).toEqual(['dark', 'light']);
     expect(themeVariants('light')).toEqual(['light']);
     expect(themeVariants()).toEqual(['dark']);
+  });
+});
+
+describe('tinted icons', () => {
+  it('normalizes short hex and ignores invalid colors', async () => {
+    const expected = await loadIcons(['react'], 'light', 1, '55ffcc');
+    expect(await loadIcons(['react'], 'light', 1, '#5FC')).toBe(expected);
+    expect(await loadIcons(['react'], 'light', 1, '5fc')).toBe(expected);
+    expect(await loadIcons(['react'], 'light', 1, 'xyz')).toBe(
+      await loadIcons(['react'], 'light', 1),
+    );
+    expect(iconKey('react', 'light', 'xyz')).toBe('react-light');
+  });
+
+  it.each(['dark', 'light'] as const)('uses the dark SVG with the %s tint palette', async theme => {
+    for (const name of ['react', 'adonis', 'astro']) {
+      const original = (await loaders[iconKey(name, 'dark')!]()).raw;
+      const expected = tintIconSvg(original, '5fd3c4', theme);
+      const key = iconKey(name, theme, '#5FD3C4')!;
+      expect(await loadIcon(key)).toBe(expected);
+      expect(peekIcon(key)).toBe(expected);
+      expect(await loadIcons([name], theme, 1, '5fd3c4')).toBe(composeIcons([expected], 1));
+    }
+  });
+
+  it('keeps independent cache entries for colors, themes and originals', async () => {
+    expect(peekIcons(['react'], 'dark', 1, '123abc')).toBeUndefined();
+    const a = await loadIcons(['react'], 'dark', 1, '123abc');
+    const b = await loadIcons(['react'], 'dark', 1, 'ff3b30');
+    const light = await loadIcons(['react'], 'light', 1, '123abc');
+    expect(a).not.toBe(b);
+    expect(a).not.toBe(light);
+    expect(peekIcons(['react'], 'dark', 1, '123abc')).toBe(a);
+    expect(peekIcons(['react'], 'dark', 1, 'ff3b30')).toBe(b);
+    expect(peekIcons(['react'], 'light', 1, '123abc')).toBe(light);
+    expect(peekIcons(['react'], 'dark', 1, 'xyz')).toBe(await loadIcons(['react'], 'dark', 1));
+  });
+
+  it.each(['dark', 'light'] as const)('preserves original %s SVGs without tint', async theme => {
+    for (const name of ['react', 'adonis']) {
+      const key = name === 'react' ? `react-${theme}` : name;
+      const original = (await loaders[key]()).default;
+      const expected = composeIcons([original], 1);
+      expect(await loadIcons([name], theme, 1)).toBe(expected);
+      expect(peekIcons([name], theme, 1)).toBe(expected);
+    }
+  });
+
+  it('only adds normalized valid tint to remote URLs', () => {
+    const original = remoteIconsUrl({ icons: ['react'], theme: 'light' });
+    expect(remoteIconsUrl({ icons: ['react'], theme: 'light', tint: 'xyz' })).toBe(original);
+    for (const tint of ['#5FC', '5fc', '55ffcc']) {
+      expect(remoteIconsUrl({ icons: ['react'], theme: 'light', tint })).toBe(
+        `${original}&tint=55ffcc`,
+      );
+    }
   });
 });

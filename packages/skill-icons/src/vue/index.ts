@@ -36,6 +36,8 @@ export type { IconName, Theme, ThemeOption };
 interface CommonProps {
   /** 'dark', 'light' or 'auto' to follow the system. Defaults to the provider's theme, then 'dark'. */
   theme?: ThemeOption;
+  /** Hex color used to tint icons. Omit to inherit from the provider. */
+  tint?: string;
   /** Size of one icon in pixels. Defaults to 48. */
   size?: number;
 }
@@ -61,11 +63,18 @@ export type IconsProps = CommonProps & {
   perLine?: number;
 } & ((LocalMode & { names: readonly IconName[] }) | (LatestMode & { names: readonly string[] }));
 
+const TINT_KEY: InjectionKey<ComputedRef<string | undefined>> = Symbol('skill-icons-tint');
+
 const THEME_KEY: InjectionKey<ComputedRef<ThemeOption | undefined>> = Symbol('skill-icons-theme');
 
 /** Sets the default theme for every Icon and Icons inside. Omit `theme` to inherit. */
 export const SkillIconsProvider = defineComponent(
-  (props: { theme?: ThemeOption }, { slots }) => {
+  (props: { theme?: ThemeOption; tint?: string }, { slots }) => {
+    const parentTint = inject(TINT_KEY, undefined);
+    provide(
+      TINT_KEY,
+      computed(() => props.tint ?? parentTint?.value),
+    );
     const parent = inject(THEME_KEY, undefined);
     provide(
       THEME_KEY,
@@ -73,7 +82,7 @@ export const SkillIconsProvider = defineComponent(
     );
     return () => slots.default?.();
   },
-  { name: 'SkillIconsProvider', props: { theme: String as PropType<ThemeOption> } },
+  { name: 'SkillIconsProvider', props: { theme: String as PropType<ThemeOption>, tint: String } },
 );
 
 function useThemes(theme: () => ThemeOption | undefined): ComputedRef<Theme[]> {
@@ -139,6 +148,7 @@ function runtimeProps(props: Record<string, unknown>): never {
 }
 
 const commonProps = {
+  tint: String,
   latest: Boolean,
   baseUrl: String,
   theme: String as PropType<ThemeOption>,
@@ -148,8 +158,10 @@ const commonProps = {
 export const Icon = defineComponent(
   (props: IconProps, { attrs }) => {
     const themes = useThemes(() => props.theme);
+    const inheritedTint = inject(TINT_KEY, undefined);
+    const tint = computed(() => props.tint ?? inheritedTint?.value);
     const keys = computed(() =>
-      props.latest ? [] : themes.value.flatMap(t => iconKey(props.name, t) ?? []),
+      props.latest ? [] : themes.value.flatMap(t => iconKey(props.name, t, tint.value) ?? []),
     );
     const local = useSources(
       () => keys.value.join(','),
@@ -163,7 +175,7 @@ export const Icon = defineComponent(
       const img = { alt: name, ...attrs, width: size, height: size };
       if (props.latest) {
         const remote = themes.value.map(t =>
-          remoteIconsUrl({ icons: [name], theme: t, perLine: 1, baseUrl }),
+          remoteIconsUrl({ icons: [name], theme: t, perLine: 1, baseUrl, tint: tint.value }),
         );
         return themedImg(remote, img);
       }
@@ -182,15 +194,20 @@ export const Icon = defineComponent(
 export const Icons = defineComponent(
   (props: IconsProps, { attrs }) => {
     const themes = useThemes(() => props.theme);
+    const inheritedTint = inject(TINT_KEY, undefined);
+    const tint = computed(() => props.tint ?? inheritedTint?.value);
     const perLine = () => props.perLine ?? DEFAULT_PER_LINE;
     const known = computed(() =>
       props.latest ? props.names : props.names.filter(name => iconKey(name)),
     );
     const local = useSources(
-      () => (props.latest ? '' : `${known.value.join(',')}|${themes.value.join(',')}|${perLine()}`),
+      () =>
+        props.latest
+          ? ''
+          : `${known.value.join(',')}|${themes.value.join(',')}|${perLine()}|${tint.value ?? ''}`,
       () => themes.value,
-      t => peekIcons(known.value, t as Theme, perLine()),
-      t => loadIcons(known.value, t as Theme, perLine()),
+      t => peekIcons(known.value, t as Theme, perLine(), tint.value),
+      t => loadIcons(known.value, t as Theme, perLine(), tint.value),
     );
 
     return () => {
@@ -201,7 +218,7 @@ export const Icons = defineComponent(
       const img = { alt: icons.join(', '), ...attrs, width };
       if (props.latest) {
         const remote = themes.value.map(t =>
-          remoteIconsUrl({ icons, theme: t, perLine: perLine(), baseUrl }),
+          remoteIconsUrl({ icons, theme: t, perLine: perLine(), baseUrl, tint: tint.value }),
         );
         return themedImg(remote, img);
       }

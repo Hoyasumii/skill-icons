@@ -100,3 +100,35 @@ describe('Vue', () => {
     app.unmount();
   });
 });
+
+it('React reloads a local grid when tint changes or is removed', async () => {
+  const el = container();
+  const root = createRoot(el);
+  await act(async () => root.render(<ReactIcons names={['react']} tint="5fd3c4" />));
+  await vi.waitFor(() => expect(srcOf(el)).toMatch(/^data:/));
+  const before = srcOf(el);
+  await act(async () => root.render(<ReactIcons names={['react']} tint="ff3b30" />));
+  await vi.waitFor(() => expect(srcOf(el)).not.toBe(before));
+  const tinted = srcOf(el);
+  await act(async () => root.render(<ReactIcons names={['react']} />));
+  await vi.waitFor(() => expect(srcOf(el)).not.toBe(tinted));
+  await act(async () => root.unmount());
+});
+
+it('Vue reloads a local grid when tint changes or is removed', async () => {
+  const el = container();
+  const props = reactive<{ names: IconName[]; tint?: string }>({
+    names: ['react'],
+    tint: '5fd3c4',
+  });
+  const app = createApp({ render: () => vh(VueIcons, props) });
+  app.mount(el);
+  await vi.waitFor(() => expect(srcOf(el)).toMatch(/^data:/));
+  const before = srcOf(el);
+  props.tint = 'ff3b30';
+  await vi.waitFor(() => expect(srcOf(el)).not.toBe(before));
+  const tinted = srcOf(el);
+  props.tint = undefined;
+  await vi.waitFor(() => expect(srcOf(el)).not.toBe(tinted));
+  app.unmount();
+});

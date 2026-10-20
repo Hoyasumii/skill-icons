@@ -6,6 +6,8 @@ export type ImgProps = Omit<HTMLImgAttributes, 'src' | 'srcset' | 'width' | 'hei
 interface CommonProps extends ImgProps {
   /** 'dark', 'light' or 'auto' to follow the system. Defaults to the provider's theme, then 'dark'. */
   theme?: ThemeOption;
+  /** Hex color used to tint icons. Omit to inherit from the provider. */
+  tint?: string;
   /** Size of one icon in pixels. Defaults to 48. */
   size?: number;
 }

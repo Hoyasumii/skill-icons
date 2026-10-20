@@ -23,6 +23,18 @@ export function useThemes(theme: ThemeGetter): () => Theme[] {
   return () => themeVariants(theme() ?? inherited?.() ?? DEFAULT_THEME);
 }
 
+const TINT_KEY = Symbol('skill-icons-tint');
+
+export function provideTint(tint: () => string | undefined): void {
+  const parent = getContext<(() => string | undefined) | undefined>(TINT_KEY);
+  setContext(TINT_KEY, () => tint() ?? parent?.());
+}
+
+export function useTint(tint: () => string | undefined): () => string | undefined {
+  const inherited = getContext<(() => string | undefined) | undefined>(TINT_KEY);
+  return () => tint() ?? inherited?.();
+}
+
 function complete(svgs: (string | undefined)[]): string[] | undefined {
   return svgs.length > 0 && svgs.every(svg => svg !== undefined) ? (svgs as string[]) : undefined;
 }

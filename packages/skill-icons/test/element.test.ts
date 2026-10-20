@@ -1,3 +1,4 @@
+import { iconKey, loadIcons, svgDataUri } from '../src/core/index.js';
 // @vitest-environment happy-dom
 import { afterEach, beforeAll, describe, expect, it } from 'vitest';
 import { loadIcon } from '../src/core/index.js';
@@ -220,4 +221,43 @@ describe('registration', () => {
     const { defineSkillIcons: define } = await import('../src/element/index.js');
     expect(() => define()).not.toThrow();
   });
+});
+
+it('renders tinted local icons and grids without forwarding tint to the image', async () => {
+  const svg = (await loadIcon(iconKey('react', 'light', '#5FC')!))!;
+  const grid = (await loadIcons(['react'], 'light', 15, '#5FC'))!;
+  const single = mount(
+    '<skill-icon name="react" theme="light" tint="#5FC"></skill-icon>',
+  ).innerHTML;
+  const composed = mount(
+    '<skill-icons names="react" theme="light" tint="#5FC"></skill-icons>',
+  ).innerHTML;
+  expect(single).toContain(svgDataUri(svg));
+  expect(composed).toContain(svgDataUri(grid));
+  expect(single).not.toContain(' tint=');
+});
+
+it('updates the image when tint is changed and removed', async () => {
+  await loadIcon('react-dark');
+  const el = mount('<skill-icon name="react"></skill-icon>') as SkillIconElement;
+  const original = el.querySelector('img')!.src;
+  el.setAttribute('tint', 'ff3b30');
+  const tinted = (await loadIcon(iconKey('react', 'dark', 'ff3b30')!))!;
+  await tick();
+  expect(el.querySelector('img')!.src).toBe(svgDataUri(tinted));
+  expect(el.querySelector('img')!.src).not.toBe(original);
+  el.removeAttribute('tint');
+  expect(el.querySelector('img')!.src).toBe(original);
+});
+
+it('reacts to inherited tint changes and respects explicit overrides', () => {
+  const provider = mount(
+    '<skill-icons-provider tint="5fd3c4"><skill-icons-provider><skill-icon latest name="react"></skill-icon><skill-icons latest names="react" tint="#F33"></skill-icons></skill-icons-provider></skill-icons-provider>',
+  ) as SkillIconsProviderElement;
+  expect(provider.querySelectorAll('img')[0]!.src).toContain('tint=5fd3c4');
+  expect(provider.querySelectorAll('img')[1]!.src).toContain('tint=ff3333');
+  provider.tint = 'ff3b30';
+  expect(provider.querySelectorAll('img')[0]!.src).toContain('tint=ff3b30');
+  provider.removeAttribute('tint');
+  expect(provider.querySelectorAll('img')[0]!.src).not.toContain('tint=');
 });

@@ -88,3 +88,23 @@ describe('Svelte', () => {
     unmount(app);
   });
 });
+
+it('reloads a local grid when tint changes or is removed', async () => {
+  const el = container();
+  const props = reactiveProps<{ names: IconName[]; tint?: string }>({
+    names: ['react'],
+    tint: '5fd3c4',
+  });
+  const app = mount(Icons, { target: el, props });
+  flushSync();
+  await vi.waitFor(() => expect(srcOf(el)).toMatch(/^data:/));
+  const before = srcOf(el);
+  props.tint = 'ff3b30';
+  flushSync();
+  await vi.waitFor(() => expect(srcOf(el)).not.toBe(before));
+  const tinted = srcOf(el);
+  props.tint = undefined;
+  flushSync();
+  await vi.waitFor(() => expect(srcOf(el)).not.toBe(tinted));
+  await unmount(app);
+});

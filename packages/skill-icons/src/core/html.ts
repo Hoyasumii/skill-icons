@@ -22,6 +22,8 @@ export type HtmlAttrs = Readonly<Record<string, string | number | boolean | null
 interface CommonHtmlOptions {
   /** 'dark', 'light' or 'auto' to emit a <picture> following the system. Defaults to 'dark'. */
   theme?: ThemeOption;
+  /** Hex tint; invalid colors render the original icon. */
+  tint?: string;
   /** Size of one icon in pixels. Defaults to 48. */
   size?: number;
   /** Extra <img> attributes (class, style, loading, ...). Values are escaped, invalid names skipped. */
@@ -95,15 +97,15 @@ export async function renderIcon(
   options: RenderIconOptions & LatestHtmlMode,
 ): Promise<string>;
 export async function renderIcon(name: string, options: RenderIconOptions = {}): Promise<string> {
-  const { theme, size = DEFAULT_SIZE, attrs, latest, baseUrl } = options;
+  const { theme, tint, size = DEFAULT_SIZE, attrs, latest, baseUrl } = options;
   const themes = themeVariants(theme ?? DEFAULT_THEME);
   if (latest) {
     const sources = themes.map(t =>
-      remoteIconsUrl({ icons: [name], theme: t, perLine: 1, baseUrl }),
+      remoteIconsUrl({ icons: [name], theme: t, perLine: 1, baseUrl, tint }),
     );
     return renderImg(sources, name, size, size, attrs);
   }
-  const keys = themes.flatMap(t => iconKey(name, t) ?? []);
+  const keys = themes.flatMap(t => iconKey(name, t, tint) ?? []);
   if (keys.length === 0) return '';
   const svgs = await Promise.all(keys.map(loadIcon));
   if (svgs.some(svg => svg === undefined)) return '';
@@ -125,6 +127,7 @@ export async function renderIcons(
 ): Promise<string> {
   const {
     theme,
+    tint,
     size = DEFAULT_SIZE,
     perLine = DEFAULT_PER_LINE,
     attrs,
@@ -137,10 +140,12 @@ export async function renderIcons(
   const { width } = iconsSize(known.length, perLine, size);
   const alt = known.join(', ');
   if (latest) {
-    const sources = themes.map(t => remoteIconsUrl({ icons: known, theme: t, perLine, baseUrl }));
+    const sources = themes.map(t =>
+      remoteIconsUrl({ icons: known, theme: t, perLine, baseUrl, tint }),
+    );
     return renderImg(sources, alt, width, undefined, attrs);
   }
-  const svgs = await Promise.all(themes.map((t: Theme) => loadIcons(known, t, perLine)));
+  const svgs = await Promise.all(themes.map((t: Theme) => loadIcons(known, t, perLine, tint)));
   if (svgs.some(svg => svg === undefined)) return '';
   return renderImg((svgs as string[]).map(svgDataUri), alt, width, undefined, attrs);
 }

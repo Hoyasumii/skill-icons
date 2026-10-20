@@ -745,6 +745,100 @@
         background: var(--highlight);
         color: var(--highlight-foreground);
       }
+      /* Tint preview */
+      .tint-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        height: 34px;
+        padding: 0 9px 0 3px;
+        border: 0;
+        border-radius: 8px;
+        background: var(--muted);
+      }
+      .tint-dot,
+      .tint-swatches button {
+        width: 18px;
+        height: 18px;
+        border: 0;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.18);
+      }
+      /* No tint: an empty circle with a slash. */
+      .tint-dot:not([style*='background']) {
+        background: linear-gradient(135deg, transparent 44%, var(--muted-foreground) 44% 56%, transparent 56%);
+        box-shadow: inset 0 0 0 1.5px var(--muted-foreground);
+      }
+      .tint-pop {
+        position: fixed;
+        z-index: 10;
+        display: none;
+        width: 252px;
+        padding: 8px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--card);
+        box-shadow: 0 8px 24px rgb(0 0 0 / 0.18);
+      }
+      .tint-pop.on {
+        display: block;
+      }
+      .tint-none {
+        display: block;
+        width: 100%;
+        padding: 6px 10px;
+        border: 0;
+        border-radius: 5px;
+        background: none;
+        text-align: left;
+        font-weight: 600;
+      }
+      .tint-none[aria-pressed='true'] {
+        background: var(--foreground);
+        color: var(--background);
+      }
+      .tint-swatches {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 8px;
+        padding: 10px 6px;
+        justify-items: center;
+      }
+      .tint-swatches button {
+        width: 22px;
+        height: 22px;
+      }
+      .tint-swatches button[aria-pressed='true'] {
+        outline: 2px solid var(--foreground);
+        outline-offset: 2px;
+      }
+      .tint-custom {
+        display: grid;
+        gap: 4px;
+        padding: 0 4px;
+        font: 600 11px var(--mono);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--muted-foreground);
+      }
+      .tint-custom .field {
+        width: 100%;
+        text-transform: none;
+        letter-spacing: 0;
+        color: var(--foreground);
+      }
+      .tint-note {
+        margin: 8px 4px 2px;
+        font-size: 11px;
+        color: var(--muted-foreground);
+      }
+      .tint-invalid {
+        display: none;
+        color: var(--destructive);
+      }
+      .tint-pop.invalid .tint-invalid {
+        display: block;
+      }
       .error-screen {
         grid-row: 1 / -1;
         display: grid;
@@ -896,6 +990,13 @@
         border-color: var(--border);
         background: var(--card);
       }
+      .native .tint-pop {
+        border-radius: 14px;
+        background: var(--menu-bg);
+      }
+      .native .tint-button {
+        border-radius: 999px;
+      }
       .native .menu {
         background: var(--menu-bg);
         box-shadow: 0 8px 24px rgb(0 0 0 / 0.18);
@@ -954,6 +1055,12 @@
         <button data-value="dark">Dark</button>
         <button data-value="light">Light</button>
       </div>
+      <!-- Tint preview: recolors the icons on screen only (shared/tint.ts, bundled as tint.js). -->
+      <div class="tint icons-only" id="tint" data-i18n-label="tintLabel">
+        <button class="tint-button" id="tint-button" aria-haspopup="dialog" data-i18n-title="tintLabel">
+          <span class="seg-label" data-i18n="tint"></span><span class="tint-dot" id="tint-dot"></span>
+        </button>
+      </div>
       <div class="seg icons-only" data-key="filter" data-i18n-label="filterLabel">
         <span class="seg-label" data-i18n="show"></span>
         <button data-value="all" data-i18n="all"></button>
@@ -1003,8 +1110,19 @@
     </main>
 
     <div class="menu" id="menu"></div>
+    <div class="tint-pop" id="tint-pop" role="dialog" data-i18n-label="tintLabel">
+      <button class="tint-none" data-tint="" data-i18n="tintNone"></button>
+      <div class="tint-swatches" id="tint-swatches"></div>
+      <label class="tint-custom">
+        <span data-i18n="tintCustom"></span>
+        <input class="field mono" id="tint-input" type="text" autocomplete="off" spellcheck="false" data-i18n-placeholder="tintPlaceholder" />
+      </label>
+      <p class="tint-note tint-invalid" data-i18n="tintInvalid"></p>
+      <p class="tint-note" data-i18n="tintHint"></p>
+    </div>
     <div class="toast" id="toast"></div>
 
+    <script src="tint.js"></script>
     <script>
       // The app injects window.APP_LANG from the system's preferred languages.
       const messages = {
@@ -1012,6 +1130,13 @@
           search: 'Search icons  (⌘F)',
           theme: 'Theme',
           themeLabel: 'Icon theme',
+          tint: 'Tint',
+          tintLabel: 'Icon tint (preview only)',
+          tintNone: 'No tint',
+          tintCustom: 'Custom color',
+          tintPlaceholder: 'Hex, e.g. #5fd3c4',
+          tintInvalid: 'Not a color: showing the original icons',
+          tintHint: 'Preview only. Copy and Show in Finder still use the original icons/ files.',
           show: 'Show',
           filterLabel: 'Filter',
           all: 'All',
@@ -1120,6 +1245,13 @@
           search: 'Buscar ícone  (⌘F)',
           theme: 'Tema',
           themeLabel: 'Tema dos ícones',
+          tint: 'Tinta',
+          tintLabel: 'Tinta dos ícones (só prévia)',
+          tintNone: 'Sem tinta',
+          tintCustom: 'Cor personalizada',
+          tintPlaceholder: 'Hex, ex.: #5fd3c4',
+          tintInvalid: 'Não é uma cor: mostrando os ícones originais',
+          tintHint: 'Só prévia. Copiar e Mostrar no Finder continuam usando os arquivos originais de icons/.',
           show: 'Mostrar',
           filterLabel: 'Filtro',
           all: 'Todos',
@@ -1261,6 +1393,7 @@
       let query = '';
       let state = {
         theme: 'dark',
+        tint: '',
         filter: 'all',
         pathMode: 'relative',
         stacks: [], // [{ id, name, items: [base] }]
@@ -1309,6 +1442,7 @@
           }));
           byBase = new Map(icons.map(i => [i.base, i]));
           version = Date.now();
+          svgReads.clear();
           render();
         } catch (err) {
           document.body.innerHTML = `<div class="error-screen"><div><h2>${t('notFound')}</h2><p>${esc(err.message ?? err)}</p></div></div>`;
@@ -1321,6 +1455,31 @@
         `file://${`${repo}/icons/${file}`.split('/').map(encodeURIComponent).join('/')}?v=${version}`;
       const shownFile = (icon, theme = state.theme) =>
         icon.themed ? (icon[theme] ?? icon.dark ?? icon.light) : icon.plain;
+
+      // The original file URL and selected file stay unchanged without tint.
+      const svgReads = new Map();
+      function previewImage(icon, lazy = false) {
+        const original = src(shownFile(icon));
+        const tint = IconTint.parseTint(state.tint);
+        const file = tint ? (icon.themed ? (icon.dark ?? icon.light) : icon.plain) : '';
+        return `<img ${lazy ? 'loading="lazy" ' : ''}src="${original}"${file ? ` data-tint-file="${esc(file)}"` : ''} alt="" />`;
+      }
+      function tintPreviews(root) {
+        const tint = IconTint.parseTint(state.tint);
+        if (!tint) return;
+        const theme = state.theme;
+        const currentVersion = version;
+        for (const img of root.querySelectorAll('img[data-tint-file]')) {
+          const file = img.dataset.tintFile;
+          if (!svgReads.has(file)) svgReads.set(file, bridge('readSvg', { file }));
+          svgReads.get(file).then(svg => {
+            // Old reads must never paint over a newer theme, tint or disk refresh.
+            if (!img.isConnected || currentVersion !== version || theme !== state.theme ||
+                tint !== IconTint.parseTint(state.tint)) return;
+            img.src = `data:image/svg+xml,${encodeURIComponent(IconTint.tintIconSvg(svg, tint, theme))}`;
+          }).catch(() => { svgReads.delete(file); });
+        }
+      }
 
       function entry(icon) {
         if (!icon.themed) return filePath(icon.plain);
@@ -1374,6 +1533,50 @@
         return true;
       }
 
+      // Shared swatches and parser; only the UI preference is persisted.
+      $('tint-swatches').innerHTML = IconTint.TINT_SWATCHES.map(color =>
+        `<button data-tint="${color}" style="background:#${color}" aria-label="#${color}" title="#${color}"></button>`,
+      ).join('');
+      function renderTint() {
+        const tint = IconTint.parseTint(state.tint) ?? '';
+        $('tint-dot').style.background = tint ? `#${tint}` : '';
+        for (const button of $('tint-pop').querySelectorAll('[data-tint]'))
+          button.setAttribute('aria-pressed', String(button.dataset.tint === tint));
+        if (document.activeElement !== $('tint-input')) $('tint-input').value = state.tint;
+        $('tint-pop').classList.toggle('invalid', !!state.tint.trim() && !tint);
+        $('tint-input').setAttribute('aria-invalid', String(!!state.tint.trim() && !tint));
+      }
+      function toggleTint(native = false) {
+        const pop = $('tint-pop');
+        const rect = $('tint-button').getBoundingClientRect();
+        pop.style.left = `${native ? Math.max(8, innerWidth - 290) : Math.min(rect.left, innerWidth - 276)}px`;
+        pop.style.top = native ? 'var(--chrome-top)' : `${rect.bottom + 6}px`;
+        pop.classList.toggle('on');
+        $('tint-button').setAttribute('aria-expanded', String(pop.classList.contains('on')));
+        if (pop.classList.contains('on')) $('tint-input').focus();
+      }
+      window.nativeTint = () => toggleTint(true);
+      $('tint-button').onclick = () => toggleTint();
+      $('tint-pop').addEventListener('click', e => {
+        const button = e.target.closest('[data-tint]');
+        if (!button) return;
+        state.tint = button.dataset.tint;
+        $('tint-input').value = state.tint;
+        save();
+        render();
+      });
+      $('tint-input').addEventListener('input', e => {
+        state.tint = e.target.value;
+        save();
+        render();
+      });
+      document.addEventListener('click', e => {
+        if (!e.target.closest('#tint, #tint-pop')) {
+          $('tint-pop').classList.remove('on');
+          $('tint-button').setAttribute('aria-expanded', 'false');
+        }
+      });
+
       // ---------- Persistence ----------
 
       let saveTimer;
@@ -1386,6 +1589,7 @@
         try {
           const json = await bridge('loadState');
           if (json) state = { ...state, ...JSON.parse(json) };
+          if (typeof state.tint !== 'string') state.tint = '';
         } catch {}
       }
 
@@ -1394,6 +1598,7 @@
       function render() {
         document.body.dataset.view = state.view;
         renderHeader();
+        renderTint();
         renderGrid();
         renderStacks();
         renderSelbar();
@@ -1464,12 +1669,13 @@
                       : '';
                 return `<button class="tile${pos >= 0 ? ' sel' : ''}" data-base="${esc(i.base)}" title="${esc(i.base)}">
                   ${pos >= 0 ? `<span class="order">${pos + 1}</span>` : ''}${flag}
-                  <img loading="lazy" src="${src(shownFile(i))}" alt="" />
+                  ${previewImage(i, true)}
                   <span class="name">${esc(i.base)}</span>
                 </button>`;
               })
               .join('')
           : `<div class="empty">${t('noResults')}</div>`;
+        tintPreviews($('grid'));
         const themedCount = icons.filter(i => i.themed).length;
         if (state.view === 'icons') $('count').textContent = t('count', visible.length, icons.length, themedCount, icons.length - themedCount);
       }
@@ -1577,7 +1783,7 @@
               .map(b => {
                 const icon = byBase.get(b);
                 return icon
-                  ? `<button class="thumb" data-remove="${esc(b)}" title="${esc(t('remove', { name: b }))}"><img src="${src(shownFile(icon))}" alt="" /></button>`
+                  ? `<button class="thumb" data-remove="${esc(b)}" title="${esc(t('remove', { name: b }))}">${previewImage(icon)}</button>`
                   : `<button class="thumb missing" data-remove="${esc(b)}" title="${esc(t('gone', { name: b }))}">${esc(b.slice(0, 4))}</button>`;
               })
               .join('');
@@ -1596,6 +1802,7 @@
             </div>`;
           })
           .join('');
+        tintPreviews($('stacks'));
       }
 
       let toastTimer;
@@ -1778,6 +1985,8 @@
           search.select();
         } else if (e.key === 'Escape') {
           hideMenu();
+          $('tint-pop').classList.remove('on');
+          $('tint-button').setAttribute('aria-expanded', 'false');
           if (typing) e.target.blur();
           else {
             selection.clear();
@@ -1841,7 +2050,7 @@
       // The app drags the window from the header, except over these controls.
       function reportLayout() {
         const header = $('header');
-        const rects = [...header.querySelectorAll('input, select, .seg')].map(el => {
+        const rects = [...header.querySelectorAll('input, select, .seg, .tint')].map(el => {
           const r = el.getBoundingClientRect();
           return [r.x, r.y, r.width, r.height];
         });

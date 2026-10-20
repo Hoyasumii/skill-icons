@@ -2,13 +2,22 @@
 import { DEFAULT_SIZE, iconKey, loadIcon, peekIcon, remoteIconsUrl } from '../core/index.js';
 import Placeholder from './Placeholder.svelte';
 import ThemedImg from './ThemedImg.svelte';
-import { useSources, useThemes } from './theme.svelte.js';
+import { useSources, useThemes, useTint } from './theme.svelte.js';
 import type { IconProps } from './types.js';
 
-let { name, latest, baseUrl, theme, size = DEFAULT_SIZE, ...img }: IconProps = $props();
+let {
+  name,
+  latest,
+  baseUrl,
+  theme,
+  tint: explicitTint,
+  size = DEFAULT_SIZE,
+  ...img
+}: IconProps = $props();
 
 const themes = useThemes(() => theme);
-const keys = $derived(latest ? [] : themes().flatMap(t => iconKey(name, t) ?? []));
+const tint = useTint(() => explicitTint);
+const keys = $derived(latest ? [] : themes().flatMap(t => iconKey(name, t, tint()) ?? []));
 const local = useSources(
   () => keys.join(','),
   () => keys,
@@ -16,7 +25,11 @@ const local = useSources(
   loadIcon,
 );
 const remote = $derived(
-  latest ? themes().map(t => remoteIconsUrl({ icons: [name], theme: t, perLine: 1, baseUrl })) : [],
+  latest
+    ? themes().map(t =>
+        remoteIconsUrl({ icons: [name], theme: t, perLine: 1, baseUrl, tint: tint() }),
+      )
+    : [],
 );
 </script>
 

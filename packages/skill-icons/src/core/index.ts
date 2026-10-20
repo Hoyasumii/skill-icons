@@ -11,6 +11,7 @@ import {
   themedIconNames,
 } from '../generated/catalog.js';
 import { loaders } from '../generated/loaders.js';
+import { parseTint, tintIconSvg } from '../generated/tint.js';
 
 export {
   API_URL,
@@ -59,10 +60,17 @@ export function isIconName(name: string): name is IconName {
 }
 
 /** The SVG key for a name and theme, e.g. "react-dark", or undefined if unknown. */
-export function iconKey(name: string, theme: Theme = DEFAULT_THEME): string | undefined {
+export function iconKey(
+  name: string,
+  theme: Theme = DEFAULT_THEME,
+  tint?: string,
+): string | undefined {
   const resolved = resolveIconName(name);
   if (!resolved) return undefined;
-  return themedIconNames.has(resolved) ? `${resolved}-${theme}` : resolved;
+  const color = parseTint(tint);
+  const sourceTheme = color ? 'dark' : theme;
+  const key = themedIconNames.has(resolved) ? `${resolved}-${sourceTheme}` : resolved;
+  return color ? `${key}|${color}|${theme}` : key;
 }
 
 const cache = new Map<string, string>();
@@ -77,14 +85,20 @@ export function peekIcon(key: string): string | undefined {
 export function loadIcon(key: string): Promise<string | undefined> {
   const cached = cache.get(key);
   if (cached !== undefined) return Promise.resolve(cached);
-  const loader = loaders[key];
+  const [source, tint, theme] = key.split('|');
+  const color = parseTint(tint);
+  if (tint !== undefined && (!color || (theme !== 'dark' && theme !== 'light'))) {
+    return Promise.resolve(undefined);
+  }
+  const loader = loaders[source];
   if (!loader) return Promise.resolve(undefined);
   let promise = pending.get(key);
   if (!promise) {
     promise = loader().then(mod => {
-      cache.set(key, mod.default);
+      const svg = color ? tintIconSvg(mod.raw, color, theme as Theme) : mod.default;
+      cache.set(key, svg);
       pending.delete(key);
-      return mod.default;
+      return svg;
     });
     pending.set(key, promise);
   }
@@ -129,8 +143,9 @@ export async function loadIcons(
   iconList: readonly string[],
   theme: Theme = DEFAULT_THEME,
   perLine: number = DEFAULT_PER_LINE,
+  tint?: string,
 ): Promise<string | undefined> {
-  const keys = iconList.flatMap(name => iconKey(name, theme) ?? []);
+  const keys = iconList.flatMap(name => iconKey(name, theme, tint) ?? []);
   const svgs = (await Promise.all(keys.map(loadIcon))).filter(svg => svg !== undefined);
   return svgs.length > 0 ? composeIcons(svgs, perLine) : undefined;
 }
@@ -140,8 +155,9 @@ export function peekIcons(
   iconList: readonly string[],
   theme: Theme = DEFAULT_THEME,
   perLine: number = DEFAULT_PER_LINE,
+  tint?: string,
 ): string | undefined {
-  const keys = iconList.flatMap(name => iconKey(name, theme) ?? []);
+  const keys = iconList.flatMap(name => iconKey(name, theme, tint) ?? []);
   const svgs = keys.map(peekIcon);
   if (svgs.length === 0 || svgs.some(svg => svg === undefined)) return undefined;
   return composeIcons(svgs as string[], perLine);
@@ -157,6 +173,7 @@ export interface RemoteIconsOptions {
   theme?: Theme;
   perLine?: number;
   baseUrl?: string;
+  tint?: string;
 }
 
 /** URL of the deployed /icons API, used by components in `latest` mode. */
@@ -165,9 +182,11 @@ export function remoteIconsUrl({
   theme = DEFAULT_THEME,
   perLine = DEFAULT_PER_LINE,
   baseUrl = API_URL,
+  tint,
 }: RemoteIconsOptions): string {
   const list = icons.map(name => encodeURIComponent(name.trim().toLowerCase())).join(',');
-  return `${baseUrl.replace(/\/+$/, '')}/icons?i=${list}&theme=${theme}&perline=${clampPerLine(perLine)}`;
+  const color = parseTint(tint);
+  return `${baseUrl.replace(/\/+$/, '')}/icons?i=${list}&theme=${theme}&perline=${clampPerLine(perLine)}${color ? `&tint=${color}` : ''}`;
 }
 
 export {

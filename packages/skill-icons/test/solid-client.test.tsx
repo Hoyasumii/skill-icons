@@ -17,7 +17,6 @@ afterEach(() => {
   for (const dispose of disposers.splice(0)) dispose();
 });
 
-const settle = () => new Promise(resolve => setTimeout(resolve, 20));
 const srcOf = (el: HTMLElement) => el.querySelector('img')?.getAttribute('src') ?? '';
 const altOf = (el: HTMLElement) => el.querySelector('img')?.getAttribute('alt');
 
@@ -28,8 +27,7 @@ describe('Solid', () => {
     const span = el.querySelector('span[aria-hidden]');
     expect(span?.getAttribute('class')).toContain('a');
     expect(span?.getAttribute('style')).toContain('width: 24px');
-    await settle();
-    expect(el.querySelector('span')).toBeNull();
+    await vi.waitFor(() => expect(el.querySelector('span')).toBeNull());
     expect(altOf(el)).toBe('jest');
     expect(srcOf(el)).toMatch(/^data:image\/svg\+xml/);
     expect(el.querySelector('img')?.getAttribute('class')).toContain('a');
@@ -49,8 +47,7 @@ describe('Solid', () => {
     expect(peekIcon('bun')).toBeUndefined();
     setName('bun');
     expect(srcOf(el)).toBe(before);
-    await settle();
-    expect(srcOf(el)).not.toBe(before);
+    await vi.waitFor(() => expect(srcOf(el)).not.toBe(before));
     expect(srcOf(el)).toMatch(/^data:/);
   });
 
@@ -58,10 +55,10 @@ describe('Solid', () => {
     const [name, setName] = createSignal<IconName>('graphql');
     const el = mount(() => <Icon name={name()} />);
     setName('astro');
-    await settle();
+    await vi.waitFor(() => expect(altOf(el)).toBe('astro'));
     const astro = srcOf(el);
     await loadIcon('graphql-dark');
-    await settle();
+    await Promise.resolve();
     expect(srcOf(el)).toBe(astro);
   });
 
@@ -113,17 +110,32 @@ describe('Solid', () => {
         <Icons names={[]} />
       </>
     ));
-    await settle();
+    await Promise.resolve();
     expect(el.querySelector('img, span')).toBeNull();
   });
 
   it('composes several icons', async () => {
     const [names, setNames] = createSignal<IconName[]>(['js']);
     const el = mount(() => <Icons names={names()} alt="Skills" />);
-    await settle();
-    expect(altOf(el)).toBe('Skills');
+    await vi.waitFor(() => expect(altOf(el)).toBe('Skills'));
     const one = srcOf(el);
     setNames(['js', 'ts']);
     await vi.waitFor(() => expect(srcOf(el)).not.toBe(one));
   });
+});
+
+it('reloads a local grid when tint changes or is removed', async () => {
+  const [tint, setTint] = createSignal<string | undefined>('5fd3c4');
+  const el = mount(() => (
+    <SkillIconsProvider tint={tint()}>
+      <Icons names={['react']} />
+    </SkillIconsProvider>
+  ));
+  await vi.waitFor(() => expect(srcOf(el)).toMatch(/^data:/));
+  const before = srcOf(el);
+  setTint('ff3b30');
+  await vi.waitFor(() => expect(srcOf(el)).not.toBe(before));
+  const tinted = srcOf(el);
+  setTint(undefined);
+  await vi.waitFor(() => expect(srcOf(el)).not.toBe(tinted));
 });

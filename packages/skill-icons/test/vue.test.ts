@@ -1,3 +1,4 @@
+import { iconKey, loadIcons, svgDataUri } from '../src/core/index.js';
 import { createSSRApp, defineComponent, h, type Component } from 'vue';
 import { renderToString } from 'vue/server-renderer';
 import { describe, expect, it } from 'vitest';
@@ -99,4 +100,29 @@ describe('SkillIconsProvider', () => {
   it('lets an inner provider override the outer one', async () => {
     expect(await render(tree('auto', 'light'))).toMatch(/^<img [^>]*theme=light/);
   });
+});
+
+it('renders tinted local icons and grids without forwarding tint to the image', async () => {
+  const svg = (await loadIcon(iconKey('react', 'light', '#5FC')!))!;
+  const grid = (await loadIcons(['react'], 'light', 15, '#5FC'))!;
+  const single = await render(Icon, { name: 'react', theme: 'light', tint: '#5FC' });
+  const composed = await render(Icons, { names: ['react'], theme: 'light', tint: '#5FC' });
+  expect(single).toContain(svgDataUri(svg));
+  expect(composed).toContain(svgDataUri(grid));
+  expect(single).not.toContain(' tint=');
+});
+
+it('inherits tint through providers and lets icon props override it in latest mode', async () => {
+  const tree = defineComponent(
+    () => () =>
+      h(SkillIconsProvider, { tint: '5fd3c4' }, () =>
+        h(SkillIconsProvider, {}, () => [
+          h(Icon, { latest: true, name: 'react' }),
+          h(Icons, { latest: true, names: ['react'], tint: '#F33' }),
+        ]),
+      ),
+  );
+  const out = await render(tree);
+  expect(out).toContain('tint=5fd3c4');
+  expect(out).toContain('tint=ff3333');
 });

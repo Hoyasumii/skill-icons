@@ -36,7 +36,7 @@ for (const file of readdirSync(ICONS_DIR)
   // One module per SVG, so the package can load each icon as its own chunk.
   writeFileSync(
     `${PACKAGE_GENERATED_DIR}/icons/${name}.ts`,
-    `export default ${JSON.stringify(svg.trim())};\n`,
+    `export const raw = ${JSON.stringify(svg)};\nexport default raw.trim();\n`,
   );
 }
 
@@ -109,12 +109,26 @@ export const MAX_PER_LINE = ${MAX_PER_LINE};
 writeFileSync(
   `${PACKAGE_GENERATED_DIR}/loaders.ts`,
   `${banner}
-export const loaders: Record<string, () => Promise<{ default: string }>> = {
+export const loaders: Record<string, () => Promise<{ default: string; raw: string }>> = {
 ${Object.keys(icons)
   .map(key => `  ${JSON.stringify(key)}: () => import('./icons/${key}.js'),`)
   .join('\n')}
 };
 `,
+);
+
+// Tint mirror: shared/tint.ts verbatim, except its Theme import. The package can't reach shared/,
+// and core imports generated/, so Theme is inlined rather than imported from core (no cycle).
+const TINT_THEME_IMPORT = "import type { Theme } from './icons';";
+const tintSource = readFileSync('./shared/tint.ts', 'utf8');
+if (!tintSource.includes(TINT_THEME_IMPORT)) {
+  throw new Error(
+    `shared/tint.ts no longer contains \`${TINT_THEME_IMPORT}\`; update build-icons.ts.`,
+  );
+}
+writeFileSync(
+  `${PACKAGE_GENERATED_DIR}/tint.ts`,
+  banner + tintSource.replace(TINT_THEME_IMPORT, "type Theme = 'dark' | 'light';"),
 );
 
 console.log(`Generated ${names.length} icons (${Object.keys(icons).length} SVGs).`);

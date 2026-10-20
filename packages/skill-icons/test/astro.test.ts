@@ -1,3 +1,5 @@
+import { loadIcon } from '../src/core/index.js';
+import { iconKey, loadIcons, svgDataUri } from '../src/core/index.js';
 import { experimental_AstroContainer as AstroContainer } from 'astro/container';
 import { beforeAll, describe, expect, it } from 'vitest';
 import Icon from '../src/astro/Icon.astro';
@@ -120,4 +122,14 @@ describe('Icons', () => {
     expect(out).toContain('src="https://x.dev/icons?i=js,newthing&amp;theme=dark&amp;perline=5"');
     expect(out).toContain('alt="js, newthing"');
   });
+});
+
+it('renders tinted local icons and grids without forwarding tint to the image', async () => {
+  const svg = (await loadIcon(iconKey('react', 'light', '#5FC')!))!;
+  const grid = (await loadIcons(['react'], 'light', 15, '#5FC'))!;
+  const single = await html(Icon, { name: 'react', theme: 'light', tint: '#5FC' });
+  const composed = await html(Icons, { names: ['react'], theme: 'light', tint: '#5FC' });
+  expect(single).toContain(svgDataUri(svg));
+  expect(composed).toContain(svgDataUri(grid));
+  expect(single).not.toContain(' tint=');
 });

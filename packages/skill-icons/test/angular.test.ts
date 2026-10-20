@@ -7,6 +7,9 @@ import { afterEach, beforeAll, describe, expect, it } from 'vitest';
 // The compiled output (see angular.setup.ts), with its own copy of the core and its cache.
 import {
   loadIcon,
+  iconKey,
+  loadIcons,
+  svgDataUri,
   peekIcon,
   type ThemeOption,
 } from '../node_modules/.cache/angular-test/core/index.js';
@@ -248,4 +251,29 @@ describe('provideSkillIcons', () => {
     );
     expect(img(el)?.getAttribute('src')).toContain('theme=dark');
   });
+});
+
+it('renders tinted local icons and grids', async () => {
+  const svg = (await loadIcon(iconKey('react', 'light', '#5FC')!))!;
+  const grid = (await loadIcons(['react'], 'light', 15, '#5FC'))!;
+  const { el } = await mount(
+    `<skill-icon name="react" theme="light" tint="#5FC" /><skill-icons [names]="['react']" theme="light" tint="#5FC" />`,
+  );
+  const images = el.querySelectorAll('img');
+  expect(images[0]?.getAttribute('src')).toBe(svgDataUri(svg));
+  expect(images[1]?.getAttribute('src')).toBe(svgDataUri(grid));
+});
+
+it('inherits tint from DI and nested component providers, with explicit overrides', async () => {
+  const tint = signal('5fd3c4');
+  const { el, fixture } = await mount(
+    `<skill-icons-provider><skill-icon latest name="react" /><skill-icons latest [names]="['react']" tint="#F33" /></skill-icons-provider>`,
+    {},
+    [provideSkillIcons({ tint })],
+  );
+  expect(el.querySelectorAll('img')[0]?.getAttribute('src')).toContain('tint=5fd3c4');
+  expect(el.querySelectorAll('img')[1]?.getAttribute('src')).toContain('tint=ff3333');
+  tint.set('ff3b30');
+  await fixture.whenStable();
+  expect(el.querySelectorAll('img')[0]?.getAttribute('src')).toContain('tint=ff3b30');
 });

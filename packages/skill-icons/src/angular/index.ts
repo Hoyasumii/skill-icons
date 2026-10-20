@@ -46,6 +46,8 @@ export type IconNameInput = IconName | (string & {});
 export type ImgClass = string | string[] | Set<string> | Record<string, unknown>;
 export type ImgStyle = string | Record<string, string | number | null | undefined>;
 
+const TINT = new InjectionToken<Signal<string | undefined>>('SKILL_ICONS_TINT');
+
 const THEME = new InjectionToken<Signal<ThemeOption | undefined>>('SKILL_ICONS_THEME');
 
 type ThemeSource = ThemeOption | Signal<ThemeOption | undefined> | undefined;
@@ -55,15 +57,27 @@ type ThemeSource = ThemeOption | Signal<ThemeOption | undefined> | undefined;
  * a route's `providers` or a component's `providers`. `theme` may be a signal, which keeps
  * the icons reactive. Omit it to inherit from an outer provider.
  */
-export function provideSkillIcons(options: { theme?: ThemeSource } = {}): Provider {
-  return {
-    provide: THEME,
-    useFactory: () => {
-      const parent = inject(THEME, { skipSelf: true, optional: true });
-      const { theme } = options;
-      return computed(() => (isSignal(theme) ? theme() : theme) ?? parent?.());
+export function provideSkillIcons(
+  options: { theme?: ThemeSource; tint?: string | Signal<string | undefined> } = {},
+): Provider[] {
+  return [
+    {
+      provide: THEME,
+      useFactory: () => {
+        const parent = inject(THEME, { skipSelf: true, optional: true });
+        const { theme } = options;
+        return computed(() => (isSignal(theme) ? theme() : theme) ?? parent?.());
+      },
     },
-  };
+    {
+      provide: TINT,
+      useFactory: () => {
+        const parent = inject(TINT, { skipSelf: true, optional: true });
+        const { tint } = options;
+        return computed(() => (isSignal(tint) ? tint() : tint) ?? parent?.());
+      },
+    },
+  ];
 }
 
 /** Same as `provideSkillIcons`, as a component: `<skill-icons-provider theme="auto">...</...>`. */
@@ -73,6 +87,14 @@ export function provideSkillIcons(options: { theme?: ThemeSource } = {}): Provid
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { style: 'display: contents' },
   providers: [
+    {
+      provide: TINT,
+      useFactory: () => {
+        const self = inject(SkillIconsProvider);
+        const parent = inject(TINT, { skipSelf: true, optional: true });
+        return computed(() => self.tint() ?? parent?.());
+      },
+    },
     {
       provide: THEME,
       useFactory: () => {
@@ -86,11 +108,18 @@ export function provideSkillIcons(options: { theme?: ThemeSource } = {}): Provid
 export class SkillIconsProvider {
   /** Default theme for every Icon and Icons inside. Omit to inherit from an outer provider. */
   readonly theme = input<ThemeOption | undefined>();
+  /** Hex color used to tint icons. Omit to inherit from the provider. */
+  readonly tint = input<string | undefined>();
 }
 
 function injectThemes(theme: Signal<ThemeOption | undefined>): Signal<Theme[]> {
   const inherited = inject(THEME, { optional: true });
   return computed(() => themeVariants(theme() ?? inherited?.() ?? DEFAULT_THEME));
+}
+
+function injectTint(tint: Signal<string | undefined>): Signal<string | undefined> {
+  const inherited = inject(TINT, { optional: true });
+  return computed(() => tint() ?? inherited?.());
 }
 
 function complete(svgs: (string | undefined)[]): string[] | undefined {
@@ -192,6 +221,8 @@ export class Icon {
   readonly name = input.required<IconNameInput>();
   /** 'dark', 'light' or 'auto' to follow the system. Defaults to the provider's theme, then 'dark'. */
   readonly theme = input<ThemeOption | undefined>();
+  /** Hex color used to tint icons. Omit to inherit from the provider. */
+  readonly tint = input<string | undefined>();
   /** Size of one icon in pixels. Defaults to 48. */
   readonly size = input(DEFAULT_SIZE, { transform: sizeAttribute });
   /** Load from the deployed API instead of the bundle. */
@@ -205,8 +236,11 @@ export class Icon {
 
   protected readonly lightMedia = LIGHT_MEDIA;
   private readonly themes = injectThemes(this.theme);
+  private readonly effectiveTint = injectTint(this.tint);
   private readonly keys = computed(() =>
-    this.latest() ? [] : this.themes().flatMap(t => iconKey(this.name(), t) ?? []),
+    this.latest()
+      ? []
+      : this.themes().flatMap(t => iconKey(this.name(), t, this.effectiveTint()) ?? []),
   );
   private readonly local = injectSources(
     computed(() => this.keys().join(',')),
@@ -221,7 +255,13 @@ export class Icon {
     if (this.latest()) {
       const baseUrl = this.baseUrl();
       const sources = this.themes().map(t =>
-        remoteIconsUrl({ icons: [name], theme: t, perLine: 1, baseUrl }),
+        remoteIconsUrl({
+          icons: [name],
+          theme: t,
+          perLine: 1,
+          baseUrl,
+          tint: this.effectiveTint(),
+        }),
       );
       return { kind: 'img', sources, alt: name, width: size, height: size };
     }
@@ -245,6 +285,8 @@ export class Icons {
   /** Icon names or aliases. Any strings with `latest`. */
   readonly names = input.required<readonly IconNameInput[]>();
   readonly theme = input<ThemeOption | undefined>();
+  /** Hex color used to tint icons. Omit to inherit from the provider. */
+  readonly tint = input<string | undefined>();
   /** Size of one icon in pixels. Defaults to 48. */
   readonly size = input(DEFAULT_SIZE, { transform: sizeAttribute });
   /** Icons per line, between 1 and 50. Defaults to 15. */
@@ -258,16 +300,19 @@ export class Icons {
 
   protected readonly lightMedia = LIGHT_MEDIA;
   private readonly themes = injectThemes(this.theme);
+  private readonly effectiveTint = injectTint(this.tint);
   private readonly known = computed(() =>
     this.latest() ? this.names() : this.names().filter(name => iconKey(name)),
   );
   private readonly local = injectSources(
     computed(() =>
-      this.latest() ? '' : `${this.known().join(',')}|${this.themes().join(',')}|${this.perLine()}`,
+      this.latest()
+        ? ''
+        : `${this.known().join(',')}|${this.themes().join(',')}|${this.perLine()}|${this.effectiveTint() ?? ''}`,
     ),
     this.themes,
-    t => peekIcons(this.known(), t as Theme, this.perLine()),
-    t => loadIcons(this.known(), t as Theme, this.perLine()),
+    t => peekIcons(this.known(), t as Theme, this.perLine(), this.effectiveTint()),
+    t => loadIcons(this.known(), t as Theme, this.perLine(), this.effectiveTint()),
   );
 
   protected readonly view = computed((): View | undefined => {
@@ -278,7 +323,9 @@ export class Icons {
     const alt = icons.join(', ');
     if (this.latest()) {
       const baseUrl = this.baseUrl();
-      const sources = this.themes().map(t => remoteIconsUrl({ icons, theme: t, perLine, baseUrl }));
+      const sources = this.themes().map(t =>
+        remoteIconsUrl({ icons, theme: t, perLine, baseUrl, tint: this.effectiveTint() }),
+      );
       return { kind: 'img', sources, alt, width };
     }
     const sources = this.local();

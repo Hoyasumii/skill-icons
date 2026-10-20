@@ -19,6 +19,7 @@ const {
   names,
   latest,
   baseUrl,
+  tint,
   theme = DEFAULT_THEME,
   size = DEFAULT_SIZE,
   perLine = DEFAULT_PER_LINE,
@@ -30,9 +31,9 @@ const known: readonly string[] = latest ? names : names.filter(name => iconKey(n
 let sources: string[] = [];
 if (known.length > 0) {
   if (latest) {
-    sources = themes.map(t => remoteIconsUrl({ icons: known, theme: t, perLine, baseUrl }));
+    sources = themes.map(t => remoteIconsUrl({ icons: known, theme: t, perLine, baseUrl, tint }));
   } else {
-    const svgs = await Promise.all(themes.map(t => loadIcons(known, t, perLine)));
+    const svgs = await Promise.all(themes.map(t => loadIcons(known, t, perLine, tint)));
     if (svgs.every(svg => svg !== undefined)) sources = (svgs as string[]).map(svgDataUri);
   }
 }

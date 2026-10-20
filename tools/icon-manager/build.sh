@@ -19,13 +19,20 @@ rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources/fonts"
 
 for arch in arm64 x86_64; do
-  swiftc -O -swift-version 5 -target "$arch-apple-macos13.0" -framework AppKit -framework WebKit \
+  swiftc -O -module-cache-path "$TMP/ModuleCache" -swift-version 5 -target "$arch-apple-macos13.0" -framework AppKit -framework WebKit \
     "$DIR/main.swift" -o "$TMP/SkillIconsManager-$arch"
 done
 lipo -create "$TMP"/SkillIconsManager-* -output "$APP/Contents/MacOS/SkillIconsManager"
 
 sed -e "s|__REPO_PATH__|$REPO_PATH|" -e "s|__VERSION__|${VERSION:-1.0}|" \
   "$DIR/Info.plist" >"$APP/Contents/Info.plist"
+# Bundle the shared implementation; this entry only exposes its public preview API.
+cat >"$TMP/tint-entry.ts" <<EOF
+import { parseTint, tintIconSvg, TINT_SWATCHES } from '$REPO/shared/tint.ts';
+globalThis.IconTint = { parseTint, tintIconSvg, TINT_SWATCHES };
+EOF
+bun build "$TMP/tint-entry.ts" --format=iife --target=browser --minify \
+  --outfile="$APP/Contents/Resources/tint.js"
 cp "$DIR/index.html" "$APP/Contents/Resources/"
 cp "$REPO/node_modules/@fontsource-variable/familjen-grotesk/files/familjen-grotesk-latin-wght-normal.woff2" \
   "$REPO/node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2" \

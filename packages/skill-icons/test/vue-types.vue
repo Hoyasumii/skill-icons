@@ -5,7 +5,7 @@ import { Icon, Icons, SkillIconsProvider } from '../src/vue/index.js';
 
 <template>
   <SkillIconsProvider theme="auto">
-    <Icon name="react" />
+    <Icon name="react" tint="#5FC" />
     <Icon name="js" theme="light" :size="32" alt="JavaScript" class="icon" />
     <!-- @vue-expect-error unknown names are rejected outside latest mode -->
     <Icon name="nope" />

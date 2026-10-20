@@ -393,6 +393,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
         r.count == 4 ? CGRect(x: r[0], y: r[1], width: r[2], height: r[3]) : nil
       }
       replyHandler(true, nil)
+    case "readSvg":
+      // Accept a direct SVG child only, including after resolving symlinks. Read-only.
+      guard let file = body["file"] as? String, file.hasSuffix(".svg"),
+        (file as NSString).lastPathComponent == file
+      else { return replyHandler(nil, L("Invalid SVG file", "Arquivo SVG inválido")) }
+      let root = URL(fileURLWithPath: iconsPath).resolvingSymlinksInPath()
+      let url = root.appendingPathComponent(file).resolvingSymlinksInPath()
+      guard url.deletingLastPathComponent() == root else {
+        return replyHandler(nil, L("Invalid SVG file", "Arquivo SVG inválido"))
+      }
+      do { replyHandler(try String(contentsOf: url, encoding: .utf8), nil) }
+      catch { replyHandler(nil, error.localizedDescription) }
     case "readCandidates":
       replyHandler(try? String(contentsOfFile: candidatesPath, encoding: .utf8), nil)
     case "writeCandidates":
@@ -452,6 +464,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSMe
 extension NSToolbarItem.Identifier {
   static let view = Self("view")
   static let theme = Self("theme")
+  static let tint = Self("tint")
   static let filter = Self("filter")
   static let pathMode = Self("pathMode")
   static let taskStatus = Self("taskStatus")
@@ -494,7 +507,7 @@ extension AppDelegate: NSToolbarDelegate {
     guard appearance == "native" else { return [] }
     return pageView == "tasks"
       ? [.view, .flexibleSpace, .taskStatus, .taskCategory, .search]
-      : [.view, .flexibleSpace, .theme, .filter, .pathMode, .search]
+      : [.view, .flexibleSpace, .theme, .tint, .filter, .pathMode, .search]
   }
 
   func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
@@ -502,7 +515,7 @@ extension AppDelegate: NSToolbarDelegate {
   }
 
   func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-    [.view, .theme, .filter, .pathMode, .taskStatus, .taskCategory, .search, .flexibleSpace]
+    [.view, .theme, .tint, .filter, .pathMode, .taskStatus, .taskCategory, .search, .flexibleSpace]
   }
 
   func toolbar(
@@ -510,6 +523,14 @@ extension AppDelegate: NSToolbarDelegate {
     willBeInsertedIntoToolbar flag: Bool
   ) -> NSToolbarItem? {
     switch id {
+    case .tint:
+      let button = NSButton(title: L("Tint", "Tinta"), target: self, action: #selector(tintClicked(_:)))
+      button.bezelStyle = .rounded
+      button.toolTip = L("Icon tint (preview only)", "Tinta dos ícones (só prévia)")
+      let item = NSToolbarItem(itemIdentifier: id)
+      item.view = button
+      item.label = L("Tint", "Tinta")
+      return item
     case .search:
       let item = NSSearchToolbarItem(itemIdentifier: id)
       item.searchField.sendsSearchStringImmediately = true
@@ -609,6 +630,10 @@ extension AppDelegate: NSToolbarDelegate {
       options.indices.contains(sender.selectedSegment)
     else { return }
     sendToPage("nativeControl", key, options[sender.selectedSegment].0)
+  }
+
+  @objc func tintClicked(_ sender: NSButton) {
+    sendToPage("nativeTint")
   }
 
   @objc func categoryChanged(_ sender: NSPopUpButton) {

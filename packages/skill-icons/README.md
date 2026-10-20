@@ -12,7 +12,7 @@ npm install @hoyasumii/skill-icons   # or: pnpm add / yarn add / bun add
 import { Icon, Icons } from '@hoyasumii/skill-icons/react';
 
 <Icon name="react" />
-<Icon name="ts" theme="light" size={32} />
+<Icon name="ts" theme="light" tint="5fd3c4" size={32} />
 <Icons names={['js', 'ts', 'react']} perLine={2} />
 ```
 
@@ -131,7 +131,7 @@ Framework-free custom elements, with no dependencies. Register them once, then u
 <skill-icons names="js,ts,react" per-line="2" theme="auto"></skill-icons>
 ```
 
-Attributes are `name`, `names` (comma separated), `theme`, `size`, `per-line`, `latest`, `base-url`, plus `alt` and `img-class` for the generated `<img>`. Each one has a matching property (`el.names = ['js', 'ts']`, `el.perLine = 2`, `el.latest = true`) and changing either re-renders. Behavior matches the other entries: cached icons render synchronously, the previous icon stays while a new one loads, `'auto'` uses a `<picture>`, and unknown names render nothing.
+Attributes are `name`, `names` (comma separated), `theme`, `tint`, `size`, `per-line`, `latest`, `base-url`, plus `alt` and `img-class` for the generated `<img>`. Each one has a matching property (`el.names = ['js', 'ts']`, `el.perLine = 2`, `el.latest = true`) and changing either re-renders. Behavior matches the other entries: cached icons render synchronously, the previous icon stays while a new one loads, `'auto'` uses a `<picture>`, and unknown names render nothing.
 
 The elements render into the light DOM, so style the `<img>` with your own CSS or `img-class`. They are `display: inline` hosts, and the loading placeholder is a sized inline-block `<span>`; no global CSS is injected. `defineSkillIcons()` is idempotent and does nothing on the server, and importing the module never touches the DOM. Only `element/define` has side effects, so the rest stays tree-shakable.
 
@@ -145,6 +145,7 @@ Each icon is bundled as its own chunk and only downloaded when rendered.
 | ------------------- | ---------------------------------------------- | ------------------------------------------------ |
 | `name` / `names`    |                                                | Icon names or aliases (`js`, `ts`, `k8s`, ...)   |
 | `theme`             | `'dark'`                                       | `'dark'`, `'light'` or `'auto'`                  |
+| `tint`              |                                                | Hex color, e.g. `'5fd3c4'`, `'#5FD3C4'` or `'5fc'` |
 | `size`              | `48`                                           | Size of one icon, in pixels                      |
 | `perLine` (`Icons`) | `15`                                           | Icons per line, from 1 to 50                     |
 | `latest`            | `false`                                        | Load from the deployed API instead of the bundle |
@@ -188,6 +189,29 @@ const { resolvedTheme } = useTheme(); // e.g. next-themes
 <SkillIconsProvider theme={resolvedTheme === 'light' ? 'light' : 'dark'}>
 ```
 
+## Tint
+
+Pass `tint` to an `Icon` or `Icons` component (or use the `tint` attribute on the custom elements) to recolor its SVG:
+
+```tsx
+<Icon name="react" theme="light" tint="#5FD3C4" />
+<Icons names={['react', 'astro']} theme="auto" tint="5fc" />
+```
+
+Tint always starts from the icon's **dark variant**, then applies the requested theme using the same tint algorithm as the `/icons?tint=` API. Icons without theme variants use their single SVG. With `theme="auto"`, both the dark and light images are tinted. In `latest` mode, the tint is sent to the API for each theme.
+
+Colors accept three or six hex digits, with an optional `#`, and are normalized to six lowercase digits. An invalid color falls back to the original icon. Omit `tint` to keep the original colors.
+
+Suggested colors come from the shared `TINT_SWATCHES` export in [shared/tint.ts](../../shared/tint.ts), also used by the site and icon-manager. That file is the source of the palette; the package does not maintain a separate list.
+
+For the composed SVG directly, `loadIcons(names, theme, perLine, tint)` accepts tint as its fourth argument:
+
+```ts
+import { loadIcons } from '@hoyasumii/skill-icons';
+
+const svg = await loadIcons(['react', 'astro'], 'light', 2, '5fd3c4');
+```
+
 ## `latest` mode
 
 By default, names are typed against the icons bundled with the installed version. With `latest`, any string is accepted and icons load from the deployed API at runtime, so new icons work without updating the package:
@@ -204,7 +228,12 @@ For SSR without a framework, emails or static site generators, the core (`@hoyas
 ```ts
 import { renderIcon, renderIcons } from '@hoyasumii/skill-icons';
 
-await renderIcon('react', { theme: 'auto', size: 32, attrs: { class: 'icon', loading: 'lazy' } });
+await renderIcon('react', {
+  theme: 'auto',
+  tint: '5fd3c4',
+  size: 32,
+  attrs: { class: 'icon', loading: 'lazy' },
+});
 await renderIcons(['js', 'ts', 'react'], { perLine: 3 });
 await renderIcon('some-new-icon', { latest: true, baseUrl: 'https://my-deploy.dev' }); // remote URL
 ```

@@ -33,6 +33,8 @@ type ImgProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'srcSet' | 'wi
 interface CommonProps extends ImgProps {
   /** 'dark', 'light' or 'auto' to follow the system. Defaults to the provider's theme, then 'dark'. */
   theme?: ThemeOption;
+  /** Hex color used to tint icons. Omit to inherit from the provider. */
+  tint?: string;
   /** Size of one icon in pixels. Defaults to 48. */
   size?: number;
 }
@@ -58,17 +60,26 @@ export type IconsProps = CommonProps & {
   perLine?: number;
 } & ((LocalMode & { names: readonly IconName[] }) | (LatestMode & { names: readonly string[] }));
 
+const TintContext = createContext<string | undefined>(undefined);
+
 const ThemeContext = createContext<ThemeOption | undefined>(undefined);
 
 export interface SkillIconsProviderProps {
   /** Default theme for every Icon and Icons inside. Omit to inherit from an outer provider. */
   theme?: ThemeOption;
+  /** Hex color used to tint icons. Omit to inherit from the provider. */
+  tint?: string;
   children?: ReactNode;
 }
 
-export function SkillIconsProvider({ theme, children }: SkillIconsProviderProps) {
+export function SkillIconsProvider({ theme, tint, children }: SkillIconsProviderProps) {
   const parent = useContext(ThemeContext);
-  return <ThemeContext.Provider value={theme ?? parent}>{children}</ThemeContext.Provider>;
+  const parentTint = useContext(TintContext);
+  return (
+    <ThemeContext.Provider value={theme ?? parent}>
+      <TintContext.Provider value={tint ?? parentTint}>{children}</TintContext.Provider>
+    </ThemeContext.Provider>
+  );
 }
 
 function useThemes(theme: ThemeOption | undefined): Theme[] {
@@ -141,14 +152,16 @@ function Placeholder({
 }
 
 export function Icon(props: IconProps) {
-  const { name, latest, baseUrl, theme, size = DEFAULT_SIZE, ...img } = props;
+  const { name, latest, baseUrl, theme, tint: explicitTint, size = DEFAULT_SIZE, ...img } = props;
   const themes = useThemes(theme);
-  const keys = latest ? [] : themes.flatMap(t => iconKey(name, t) ?? []);
+  const inheritedTint = useContext(TintContext);
+  const tint = explicitTint ?? inheritedTint;
+  const keys = latest ? [] : themes.flatMap(t => iconKey(name, t, tint) ?? []);
   const local = useSources(keys.join(','), keys, peekIcon, loadIcon);
 
   if (latest) {
     const remote = themes.map(t =>
-      remoteIconsUrl({ icons: [name], theme: t, perLine: 1, baseUrl }),
+      remoteIconsUrl({ icons: [name], theme: t, perLine: 1, baseUrl, tint }),
     );
     return <ThemedImg alt={name} {...img} sources={remote} width={size} height={size} />;
   }
@@ -163,18 +176,21 @@ export function Icons(props: IconsProps) {
     latest,
     baseUrl,
     theme,
+    tint: explicitTint,
     size = DEFAULT_SIZE,
     perLine = DEFAULT_PER_LINE,
     ...img
   } = props;
   const themes = useThemes(theme);
+  const inheritedTint = useContext(TintContext);
+  const tint = explicitTint ?? inheritedTint;
   const known = latest ? names : names.filter(name => iconKey(name));
-  const id = latest ? '' : `${known.join(',')}|${themes.join(',')}|${perLine}`;
+  const id = latest ? '' : `${known.join(',')}|${themes.join(',')}|${perLine}|${tint ?? ''}`;
   const local = useSources(
     id,
     themes,
-    t => peekIcons(known, t as Theme, perLine),
-    t => loadIcons(known, t as Theme, perLine),
+    t => peekIcons(known, t as Theme, perLine, tint),
+    t => loadIcons(known, t as Theme, perLine, tint),
   );
 
   if (known.length === 0) return null;
@@ -182,7 +198,9 @@ export function Icons(props: IconsProps) {
   const alt = known.join(', ');
 
   if (latest) {
-    const remote = themes.map(t => remoteIconsUrl({ icons: known, theme: t, perLine, baseUrl }));
+    const remote = themes.map(t =>
+      remoteIconsUrl({ icons: known, theme: t, perLine, baseUrl, tint }),
+    );
     return <ThemedImg alt={alt} {...img} sources={remote} width={width} />;
   }
   if (!local) return <Placeholder width={width} height={height} {...img} />;

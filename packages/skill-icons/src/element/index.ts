@@ -80,7 +80,7 @@ interface Plan {
 
 abstract class SkillBaseElement extends Base {
   static get observedAttributes(): string[] {
-    return ['theme', 'size', 'latest', 'base-url', 'alt', 'img-class'];
+    return ['theme', 'tint', 'size', 'latest', 'base-url', 'alt', 'img-class'];
   }
 
   #state: { id: string; svgs: string[] | undefined } | undefined;
@@ -88,6 +88,15 @@ abstract class SkillBaseElement extends Base {
   #drawn: string | undefined;
 
   protected abstract plan(themes: Theme[]): Plan;
+
+  /** Hex color used to tint icons. */
+  get tint(): string | undefined {
+    return this.getAttribute('tint') ?? undefined;
+  }
+  set tint(value: string | undefined) {
+    if (value === undefined) this.removeAttribute('tint');
+    else this.setAttribute('tint', value);
+  }
 
   /** The theme set on this element, if any. */
   get theme(): ThemeOption | undefined {
@@ -103,6 +112,13 @@ abstract class SkillBaseElement extends Base {
     let provider = findProvider(this);
     while (provider && !provider.theme) provider = findProvider(provider);
     return provider?.theme ?? DEFAULT_THEME;
+  }
+
+  get effectiveTint(): string | undefined {
+    if (this.tint !== undefined) return this.tint;
+    let provider = findProvider(this);
+    while (provider && provider.tint === undefined) provider = findProvider(provider);
+    return provider?.tint;
   }
 
   /** Size of one icon in pixels. */
@@ -275,11 +291,17 @@ export class SkillIconElement extends SkillBaseElement {
     };
     if (this.latest) {
       const remote = themes.map(t =>
-        remoteIconsUrl({ icons: [name], theme: t, perLine: 1, baseUrl: this.baseUrl }),
+        remoteIconsUrl({
+          icons: [name],
+          theme: t,
+          perLine: 1,
+          baseUrl: this.baseUrl,
+          tint: this.effectiveTint,
+        }),
       );
       return { ...base, empty: name.trim() === '', remote, id: '' };
     }
-    const keys = themes.flatMap(t => iconKey(name, t) ?? []);
+    const keys = themes.flatMap(t => iconKey(name, t, this.effectiveTint) ?? []);
     return { ...base, empty: keys.length === 0, parts: keys, id: keys.join(',') };
   }
 }
@@ -322,16 +344,22 @@ export class SkillIconsElement extends SkillBaseElement {
     };
     if (latest) {
       const remote = themes.map(t =>
-        remoteIconsUrl({ icons: known, theme: t, perLine, baseUrl: this.baseUrl }),
+        remoteIconsUrl({
+          icons: known,
+          theme: t,
+          perLine,
+          baseUrl: this.baseUrl,
+          tint: this.effectiveTint,
+        }),
       );
       return { ...base, remote, id: '', parts: [], peek: peekIcon, load: loadIcon };
     }
     return {
       ...base,
-      id: `${known.join(',')}|${themes.join(',')}|${perLine}`,
+      id: `${known.join(',')}|${themes.join(',')}|${perLine}|${this.effectiveTint ?? ''}`,
       parts: themes,
-      peek: t => peekIcons(known, t as Theme, perLine),
-      load: t => loadIcons(known, t as Theme, perLine),
+      peek: t => peekIcons(known, t as Theme, perLine, this.effectiveTint),
+      load: t => loadIcons(known, t as Theme, perLine, this.effectiveTint),
     };
   }
 }
@@ -344,7 +372,16 @@ export class SkillIconsElement extends SkillBaseElement {
  */
 export class SkillIconsProviderElement extends Base {
   static get observedAttributes(): string[] {
-    return ['theme'];
+    return ['theme', 'tint'];
+  }
+
+  /** Hex color used to tint icons. */
+  get tint(): string | undefined {
+    return this.getAttribute('tint') ?? undefined;
+  }
+  set tint(value: string | undefined) {
+    if (value === undefined) this.removeAttribute('tint');
+    else this.setAttribute('tint', value);
   }
 
   get theme(): ThemeOption | undefined {

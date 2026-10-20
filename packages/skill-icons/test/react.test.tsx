@@ -1,3 +1,4 @@
+import { iconKey, loadIcons, svgDataUri } from '../src/core/index.js';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { loadIcon } from '../src/core/index.js';
@@ -114,4 +115,27 @@ describe('SkillIconsProvider', () => {
       ),
     ).toMatch(/^<picture>/);
   });
+});
+
+it('renders tinted local icons and grids without forwarding tint to the image', async () => {
+  const svg = (await loadIcon(iconKey('react', 'light', '#5FC')!))!;
+  const grid = (await loadIcons(['react'], 'light', 15, '#5FC'))!;
+  const single = render(<Icon name="react" theme="light" tint="#5FC" />);
+  const composed = render(<Icons names={['react']} theme="light" tint="#5FC" />);
+  expect(single).toContain(svgDataUri(svg));
+  expect(composed).toContain(svgDataUri(grid));
+  expect(single).not.toContain(' tint=');
+});
+
+it('inherits tint through providers and lets icon props override it in latest mode', () => {
+  const out = render(
+    <SkillIconsProvider tint="5fd3c4">
+      <SkillIconsProvider>
+        <Icon latest name="react" />
+        <Icons latest names={['react']} tint="#F33" />
+      </SkillIconsProvider>
+    </SkillIconsProvider>,
+  );
+  expect(out).toContain('tint=5fd3c4');
+  expect(out).toContain('tint=ff3333');
 });
