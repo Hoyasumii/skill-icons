@@ -19,10 +19,34 @@ Thanks for helping. The short version:
    file name differs, add an entry to `displayNames` in `shared/icon-categories.ts`.
 4. Run `bun run icons` and check the result on the site, in the Dark and Light variants.
 
-Never edit `generated/` or `public/svg/` by hand: `bun run icons` rebuilds them from `icons/`.
+Never edit `generated/`, `public/svg/` or `packages/skill-icons/src/generated/` by hand: `bun run icons` rebuilds them from `icons/`.
 
 Logos belong to their owners. Only add them to identify the tool or service they stand for, and take them from the
 official source.
 
 Report security problems privately, as [SECURITY.md](SECURITY.md) describes, and not in a public issue.
 Everyone taking part is expected to follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Library releases
+
+Every push to `main` runs `.github/workflows/release.yml`. Changes to `icons/`, the library,
+its generator or shared metadata rebuild and publish `@hoyasumii/skill-icons` from the SVG sources.
+Pull requests typecheck, test and build the library before merging.
+
+The release script compares the package sources with the latest stable version published on npm
+and its Git tag. It preserves an unpublished version when available, otherwise advances CalVer
+(`YY.M.PATCH`, starting at `.0` in a new month). It records versions in both package manifests and
+`bun.lock`, adds a CHANGELOG section with added, changed and removed icons, and commits and tags
+that version before publishing. Existing CHANGELOG entries are preserved, including the 26.10.2
+history cutoff. Unchanged published sources do not produce another npm version.
+
+Releases are serialized. If npm publishing fails, rerun Release from Actions on `main` (or use
+`workflow_dispatch` on `main`); it reuses the unpublished version and never overwrites a tag.
+If npm succeeded but GitHub release creation failed, a rerun only creates the missing release.
+Explicit `v*` tag pushes are still supported and must match the library version and CHANGELOG.
+
+Repository settings must allow the workflow's `GITHUB_TOKEN` to push release commits and tags.
+Configure the npm package's [Trusted Publisher](https://docs.npmjs.com/trusted-publishers/)
+with owner `Hoyasumii`, repository `skill-icons`, workflow `release.yml`, and no environment.
+The workflow uses Node 24, the latest npm CLI and `id-token: write` for OIDC publishing.
+A registry/authentication failure fails the job; it is never treated as a successful release.
