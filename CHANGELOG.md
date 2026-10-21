@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [26.10.3] - 2026-10-21
+
+### Package
+
+- feat(tint): complete site and API integration and project records
+- feat(tint): support web library and icon manager previews
+
 ## [26.10.2] - 2026-10-20
 
 ### Added

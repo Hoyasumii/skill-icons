@@ -47,7 +47,7 @@
     },
     "packages/skill-icons": {
       "name": "@hoyasumii/skill-icons",
-      "version": "26.10.2",
+      "version": "26.10.3",
       "devDependencies": {
         "@angular/common": "^21",
         "@angular/compiler": "^21",
