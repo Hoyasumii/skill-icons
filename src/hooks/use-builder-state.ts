@@ -9,10 +9,13 @@ import {
 import { useI18n } from '@/i18n';
 import { resolveIconName } from '@/lib/icons';
 import { cleanTitle } from '../../shared/badge-title';
+import { parseTint, type Tint } from '../../shared/tint';
 
 export interface BuilderState {
   icons: string[];
   theme: Theme;
+  /** Color every icon is redrawn in; undefined keeps their own colors. */
+  tint?: Tint;
   perLine: number;
   /** Badge title as typed; undefined until edited, so the default follows the language. */
   title?: string;
@@ -36,6 +39,8 @@ function readStateFromUrl(): BuilderState {
   const themeParam = params.get('t') ?? params.get('theme');
   const theme: Theme = themeParam === 'light' ? 'light' : DEFAULT_THEME;
 
+  const tint = parseTint(params.get('tint'));
+
   const perLineParam = Number(params.get('perline'));
   const perLine =
     Number.isInteger(perLineParam) && perLineParam >= MIN_PER_LINE && perLineParam <= MAX_PER_LINE
@@ -45,13 +50,17 @@ function readStateFromUrl(): BuilderState {
   // Not `t`: that one is already short for theme.
   const title = cleanTitle(params.get('title'));
 
-  return { icons, theme, perLine, title };
+  return { icons, theme, tint, perLine, title };
 }
 
-function writeStateToUrl({ icons, theme, perLine, title }: BuilderState, defaultTitle: string) {
+function writeStateToUrl(
+  { icons, theme, tint, perLine, title }: BuilderState,
+  defaultTitle: string,
+) {
   const params = new URLSearchParams();
   if (icons.length) params.set('i', icons.join(','));
   if (theme !== DEFAULT_THEME) params.set('theme', theme);
+  if (tint) params.set('tint', tint);
   if (perLine !== DEFAULT_PER_LINE) params.set('perline', String(perLine));
   const cleanedTitle = cleanTitle(title);
   if (cleanedTitle && cleanedTitle !== defaultTitle) params.set('title', cleanedTitle);
@@ -90,6 +99,8 @@ export function useBuilderState() {
     setIcons: (icons: string[]) => setState(s => ({ ...s, icons })),
     clearIcons: () => setState(s => ({ ...s, icons: [] })),
     setTheme: (theme: Theme) => setState(s => ({ ...s, theme })),
+    /** Undefined goes back to the icons' own colors. */
+    setTint: (tint: Tint | undefined) => setState(s => ({ ...s, tint })),
     setPerLine: (perLine: number) => setState(s => ({ ...s, perLine })),
     /** Undefined goes back to the default title. */
     setTitle: (title: string | undefined) => setState(s => ({ ...s, title })),

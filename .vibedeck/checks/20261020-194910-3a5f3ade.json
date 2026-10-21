@@ -1,0 +1,74 @@
+{
+  "$schema": "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-check.schema.json",
+  "author": "ai",
+  "createdAt": "2026-10-20T19:49:10.958Z",
+  "failures": ["bun run typecheck e bun run test passam"],
+  "files": [
+    "packages/skill-icons/src/angular/index.ts",
+    "packages/skill-icons/src/astro/Icon.astro",
+    "packages/skill-icons/src/astro/Icons.astro",
+    "packages/skill-icons/src/astro/types.ts",
+    "packages/skill-icons/src/element/index.ts",
+    "packages/skill-icons/src/react/index.tsx",
+    "packages/skill-icons/src/solid/index.tsx",
+    "packages/skill-icons/src/svelte/Icon.svelte",
+    "packages/skill-icons/src/svelte/Icons.svelte",
+    "packages/skill-icons/src/svelte/SkillIconsProvider.svelte",
+    "packages/skill-icons/src/svelte/theme.svelte.ts",
+    "packages/skill-icons/src/svelte/types.ts",
+    "packages/skill-icons/src/vue/index.ts",
+    "packages/skill-icons/test/angular.test.ts",
+    "packages/skill-icons/test/astro-types.astro",
+    "packages/skill-icons/test/astro.test.ts",
+    "packages/skill-icons/test/client.test.tsx",
+    "packages/skill-icons/test/element.test.ts",
+    "packages/skill-icons/test/react.test.tsx",
+    "packages/skill-icons/test/solid-client.test.tsx",
+    "packages/skill-icons/test/solid.test.tsx",
+    "packages/skill-icons/test/svelte-client.test.ts",
+    "packages/skill-icons/test/svelte-fixtures/Tree.svelte",
+    "packages/skill-icons/test/svelte-fixtures/Types.svelte",
+    "packages/skill-icons/test/svelte.test.ts",
+    "packages/skill-icons/test/vue-types.vue",
+    "packages/skill-icons/test/vue.test.ts"
+  ],
+  "id": "3A5F3ADE-F7F7-4541-B92D-7F75252BCCC7",
+  "passed": false,
+  "results": [
+    {
+      "exitCode": 1,
+      "note": ".vibedeck/tests/contribuicao/1f5b433c.sh (exit 1)\n… (saída cortada)\nrIcons)\u001b[33m.\u001b[39m\u001b[34mtoHaveLength\u001b[39m(\u001b[34m1\u001b[39m)\u001b[33m;\u001b[39m\n    \u001b[90m 38|\u001b[39m       expect(encoder.encode(svg)).toEqual(encoder.encode(workerIcons[0…\n    \u001b[90m   |\u001b[39m                                   \u001b[31m^\u001b[39m\n    \u001b[90m 39|\u001b[39m     })\u001b[33m;\u001b[39m\n    \u001b[90m 40|\u001b[39m\n\n\u001b[31m\u001b[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯\u001b[22m\u001b[39m\n\n\u001b[41m\u001b[1m FAIL \u001b[22m\u001b[49m test/tint-parity.test.ts\u001b[2m > \u001b[22mcore × /icons parity (light)\u001b[2m > \u001b[22mtint=#5FD3C4\u001b[2m > \u001b[22mmatches void byte for byte\n\u001b[31m\u001b[1mAssertionError\u001b[22m: expected Uint8Array[ 60, 115, 118, 103, …(45975) ] to deeply equal Uint8Array[ 60, 115, 118, 103, …(45976) ]\u001b[39m\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[33m@@ -45883,11 +45883,10 @@\u001b[39m\n\u001b[2m    47,\u001b[22m\n\u001b[2m    115,\u001b[22m\n\u001b[2m    118,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[32m-   10,\u001b[39m\n\u001b[2m    60,\u001b[22m\n\u001b[2m    47,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[2m    10,\u001b[22m\n\n\u001b[36m \u001b[2m❯\u001b[22m test/tint-parity.test.ts:\u001b[2m38:35\u001b[22m\u001b[39m\n    \u001b[90m 36|\u001b[39m       \u001b[35mconst\u001b[39m workerIcons \u001b[33m=\u001b[39m \u001b[34miconSvgs\u001b[39m(\u001b[35mawait\u001b[39m response\u001b[33m.\u001b[39m\u001b[34mtext\u001b[39m())\u001b[33m;\u001b[39m\n    \u001b[90m 37|\u001b[39m       \u001b[34mexpect\u001b[39m(workerIcons)\u001b[33m.\u001b[39m\u001b[34mtoHaveLength\u001b[39m(\u001b[34m1\u001b[39m)\u001b[33m;\u001b[39m\n    \u001b[90m 38|\u001b[39m       expect(encoder.encode(svg)).toEqual(encoder.encode(workerIcons[0…\n    \u001b[90m   |\u001b[39m                                   \u001b[31m^\u001b[39m\n    \u001b[90m 39|\u001b[39m     })\u001b[33m;\u001b[39m\n    \u001b[90m 40|\u001b[39m\n\n\u001b[31m\u001b[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯\u001b[22m\u001b[39m\n\n\u001b[41m\u001b[1m FAIL \u001b[22m\u001b[49m test/tint-parity.test.ts\u001b[2m > \u001b[22mcore × /icons parity (light)\u001b[2m > \u001b[22mtint=#5FD3C4\u001b[2m > \u001b[22mmatches a grid with vector and embedded raster icons byte for byte\n\u001b[31m\u001b[1mAssertionError\u001b[22m: expected [ …(5) ] to deeply equal [ …(5) ]\u001b[39m\n\n\u001b[32m- Expected\u001b[39m\n\u001b[31m+ Received\u001b[39m\n\n\u001b[33m@@ -3958,11 +3958,10 @@\u001b[39m\n\u001b[2m      47,\u001b[22m\n\u001b[2m      115,\u001b[22m\n\u001b[2m      118,\u001b[22m\n\u001b[2m      103,\u001b[22m\n\u001b[2m      62,\u001b[22m\n\u001b[32m-     10,\u001b[39m\n\u001b[2m      60,\u001b[22m\n\u001b[2m      47,\u001b[22m\n\u001b[2m      103,\u001b[22m\n\u001b[2m      62,\u001b[22m\n\u001b[2m      10,\u001b[22m\n\u001b[33m@@ -7302,11 +7301,10 @@\u001b[39m\n\u001b[2m      47,\u001b[22m\n\u001b[2m      115,\u001b[22m\n\u001b[2m      118,\u001b[22m\n\u001b[2m      103,\u001b[22m\n\u001b[2m      62,\u001b[22m\n\u001b[32m-     10,\u001b[39m\n\u001b[2m      60,\u001b[22m\n\u001b[2m      47,\u001b[22m\n\u001b[2m      103,\u001b[22m\n\u001b[2m      62,\u001b[22m\n\u001b[2m      10,\u001b[22m\n\u001b[33m@@ -14884,11 +14882,10 @@\u001b[39m\n\u001b[2m      47,\u001b[22m\n\u001b[2m      115,\u001b[22m\n\u001b[2m      118,\u001b[22m\n\u001b[2m      103,\u001b[22m\n\u001b[2m      62,\u001b[22m\n\u001b[32m-     10,\u001b[39m\n\u001b[2m      60,\u001b[22m\n\u001b[2m      47,\u001b[22m\n\u001b[2m      103,\u001b[22m\n\u001b[2m      62,\u001b[22m\n\u001b[2m      10,\u001b[22m\n\u001b[33m@@ -60893,11 +60890,10 @@\u001b[39m\n\u001b[2m      47,\u001b[22m\n\u001b[2m      115,\u001b[22m\n\u001b[2m      118,\u001b[22m\n\u001b[2m      103,\u001b[22m\n\u001b[2m      62,\u001b[22m\n\u001b[32m-     10,\u001b[39m\n\u001b[2m      60,\u001b[22m\n\u001b[2m      47,\u001b[22m\n\u001b[2m      103,\u001b[22m\n\u001b[2m      62,\u001b[22m\n\u001b[2m      10,\u001b[22m\n\n\u001b[36m \u001b[2m❯\u001b[22m test/tint-parity.test.ts:\u001b[2m56:59\u001b[22m\u001b[39m\n    \u001b[90m 54|\u001b[39m       \u001b[34mexpect\u001b[39m(coreIcons)\u001b[33m.\u001b[39m\u001b[34mtoHaveLength\u001b[39m(icons\u001b[33m.\u001b[39mlength)\u001b[33m;\u001b[39m\n    \u001b[90m 55|\u001b[39m       \u001b[34mexpect\u001b[39m(workerIcons)\u001b[33m.\u001b[39m\u001b[34mtoHaveLength\u001b[39m(icons\u001b[33m.\u001b[39mlength)\u001b[33m;\u001b[39m\n    \u001b[90m 56|\u001b[39m       \u001b[34mexpect\u001b[39m(coreIcons\u001b[33m.\u001b[39m\u001b[34mmap\u001b[39m(icon \u001b[33m=>\u001b[39m encoder\u001b[33m.\u001b[39m\u001b[34mencode\u001b[39m(icon)))\u001b[33m.\u001b[39m\u001b[34mtoEqual\u001b[39m(\n    \u001b[90m   |\u001b[39m                                                           \u001b[31m^\u001b[39m\n    \u001b[90m 57|\u001b[39m         workerIcons\u001b[33m.\u001b[39m\u001b[34mmap\u001b[39m(icon \u001b[33m=>\u001b[39m encoder\u001b[33m.\u001b[39m\u001b[34mencode\u001b[39m(icon))\u001b[33m,\u001b[39m\n    \u001b[90m 58|\u001b[39m       )\u001b[33m;\u001b[39m\n\n\u001b[31m\u001b[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯\u001b[22m\u001b[39m\n\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[31m1 failed\u001b[39m\u001b[22m\u001b[2m | \u001b[22m\u001b[1m\u001b[32m12 passed\u001b[39m\u001b[22m\u001b[90m (13)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[31m10 failed\u001b[39m\u001b[22m\u001b[2m | \u001b[22m\u001b[1m\u001b[32m191 passed\u001b[39m\u001b[22m\u001b[90m (201)\u001b[39m\n\u001b[2m   Start at \u001b[22m 16:48:56\n\u001b[2m   Duration \u001b[22m 14.38s\u001b[2m (transform 5.96s, setup 0ms, import 17.03s, tests 21.66s, environment 0ms)\u001b[22m\n\nerror: script \"test\" exited with code 1\nbun run test falhou",
+      "ruleId": "1F5B433C-9DF2-4863-B9D4-F4A51F68C2D0",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "fail"
+    },
+    {
+      "exitCode": 0,
+      "note": ".vibedeck/tests/contribuicao/6efdb945.sh (exit 0)\n(sem saída)",
+      "ruleId": "6EFDB945-9962-4184-A195-4B71A6DD8B43",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "pass"
+    },
+    {
+      "exitCode": 1,
+      "note": ".vibedeck/tests/contribuicao/e3ceff99.sh (exit 1)\npackages/skill-icons/test/svelte-fixtures/Tree.svelte format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n  × Formatter would have printed the following content:\n  \n     3  3 │   import { Icon, SkillIconsProvider } from '../../src/svelte/index.js';\n     4  4 │   \n     5    │ - let·{·outer,·inner,·theme,·outerTint,·tint·}:·{·outer?:·ThemeOption;·inner?:·ThemeOption;·theme?:·ThemeOption;·outerTint?:·string;·tint?:·string·}·=\n     6    │ - ··$props();\n        5 │ + let·{\n        6 │ + ··outer,\n        7 │ + ··inner,\n        8 │ + ··theme,\n        9 │ + ··outerTint,\n       10 │ + ··tint,\n       11 │ + }:·{\n       12 │ + ··outer?:·ThemeOption;\n       13 │ + ··inner?:·ThemeOption;\n       14 │ + ··theme?:·ThemeOption;\n       15 │ + ··outerTint?:·string;\n       16 │ + ··tint?:·string;\n       17 │ + }·=·$props();\n     7 18 │   </script>\n     8 19 │   \n  \n\nChecked 27 files in 17ms. No fixes applied.\nFound 1 error.\nformat ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n  × Some errors were emitted while running checks.\n  \n\nRode bun run format",
+      "ruleId": "E3CEFF99-B1B6-4BCF-93DF-C124C2930B2F",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "fail"
+    },
+    {
+      "exitCode": 77,
+      "note": ".vibedeck/tests/contribuicao/f942375e.sh (exit 77)\n(sem saída)",
+      "ruleId": "F942375E-3652-4D89-A248-587D92811015",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "na"
+    }
+  ],
+  "task": "Subtarefa 4: expor tint nos sete entry points, providers e atualização de atributos do custom element",
+  "topics": ["contribuicao"],
+  "warnings": ["Arquivos formatados com Biome"]
+}

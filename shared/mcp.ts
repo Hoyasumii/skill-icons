@@ -2,6 +2,7 @@ import iconList from '../generated/icon-list.json';
 import { categories, type IconCategory } from './icon-categories';
 import { aliasesOf, API_URL, buildIconsUrl, shortNames, type Theme } from './icons';
 import { MCP_URL } from './links';
+import { parseTint } from './tint';
 
 // What the MCP tools answer, without the SDK: the Worker serves it, the /mcp page shows it as examples.
 
@@ -157,11 +158,16 @@ export function searchIcons({
 export interface BadgeInput {
   icons: string[];
   theme?: Theme;
+  /** Hex color the icons are redrawn in, e.g. "5fd3c4". */
+  tint?: string;
   perLine?: number;
 }
 
 /** What skill_icons_badge answers. */
-export function buildBadge({ icons, theme, perLine }: BadgeInput): McpAnswer {
+export function buildBadge({ icons, theme, tint, perLine }: BadgeInput): McpAnswer {
+  const tintHex = parseTint(tint);
+  if (tint && !tintHex)
+    return { data: { error: 'The tint must be a hex color, like "5fd3c4".' }, isError: true };
   const ids: string[] = [];
   const unknown: { input: string; suggestions: string[] }[] = [];
   for (const input of icons) {
@@ -172,7 +178,7 @@ export function buildBadge({ icons, theme, perLine }: BadgeInput): McpAnswer {
   if (ids.length === 0) {
     return { data: { error: 'None of the icons exist.', unknown }, isError: true };
   }
-  const url = buildIconsUrl(API_URL, { icons: ids, theme, perLine });
+  const url = buildIconsUrl(API_URL, { icons: ids, theme, tint: tintHex, perLine });
   return {
     data: {
       url,

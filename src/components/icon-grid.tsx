@@ -5,7 +5,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { useCursorTooltip } from '@/hooks/use-cursor-tooltip';
 import { useI18n } from '@/i18n';
-import { iconSrc, type IconInfo } from '@/lib/icons';
+import type { IconInfo } from '@/lib/icons';
+import { useIconSrc } from '@/hooks/use-icon-src';
 import { popClass } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 import type { Theme } from '../../shared/icons';
@@ -58,6 +59,7 @@ export function IconGrid({
   onToggle,
   onClearSearch,
 }: IconGridProps) {
+  const iconSrc = useIconSrc();
   const { bind, hide, tooltip } = useCursorTooltip();
   const { t } = useI18n();
 

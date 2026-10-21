@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { iconSrc } from '@/lib/icons';
+import { useIconSrc } from '@/hooks/use-icon-src';
 import type { Theme } from '../../shared/icons';
 import {
   OG_ACCENT,
@@ -41,6 +41,7 @@ interface OgCoverProps {
  * the page; its icons are in the icon theme, outlined when they share the card's tone.
  */
 export function OgCover({ icons, theme, bg, title, link }: OgCoverProps) {
+  const iconSrc = useIconSrc();
   const { shown, extra, size, titleTop, titleSize, cell, href } = ogLayout(
     icons.length,
     title,

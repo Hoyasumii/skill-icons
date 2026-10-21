@@ -31,6 +31,18 @@ describe('/icons', () => {
     expect(res.status).toBe(400);
   });
 
+  it('redraws the icons in a tint, from their dark variants', async () => {
+    const svg = await (await get('/icons?i=js,react&theme=light&tint=%235FD3C4')).text();
+    expect(svg.match(/<g transform="translate\(\d+, \d+\)"/g)).toHaveLength(2);
+    expect(svg.match(/<linearGradient id="si-tint-light-5fd3c4-tile"/g)).toHaveLength(2);
+    expect(svg).not.toContain('<filter');
+  });
+
+  it.each(['red', '12345', 'ggg'])('rejects tint=%s', async tint => {
+    const res = await get(`/icons?i=js&tint=${tint}`);
+    expect(res.status).toBe(400);
+  });
+
   it('rejects an invalid theme', async () => {
     const res = await get('/icons?i=js&theme=blue');
     expect(res.status).toBe(400);

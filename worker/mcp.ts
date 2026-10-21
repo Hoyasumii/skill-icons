@@ -87,6 +87,13 @@ function buildSkillIconsMcpServer(): McpServer {
           .enum(['dark', 'light'])
           .optional()
           .describe(`Icon background for themed icons (default ${DEFAULT_THEME}).`),
+        tint: z
+          .string()
+          .regex(/^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/)
+          .optional()
+          .describe(
+            'Hex color to redraw every icon in, like macOS tinted icons (e.g. "5fd3c4"); the theme picks a dark or light tile.',
+          ),
         perLine: z
           .number()
           .int()

@@ -9,6 +9,7 @@ import {
   type Theme,
 } from '../shared/icons';
 import { cleanTitle } from '../shared/badge-title';
+import { parseTint, tintIconSvg, type Tint } from '../shared/tint';
 import { localeRedirect } from '../shared/page-meta';
 import { handleMcp } from './mcp';
 import {
@@ -35,10 +36,8 @@ const CACHE_HEADERS = { 'Cache-Control': 'public, max-age=86400' };
 /** Images and data, not pages: crawlers may fetch them (link previews need to) but not list them in search. */
 const NOINDEX = { 'X-Robots-Tag': 'noindex' };
 
-function generateSvg(iconNames: string[], perLine: number): string {
-  const iconSvgList = iconNames.map(i => icons[i]);
-
-  const length = Math.min(perLine * 300, iconNames.length * 300) - 44;
+function generateSvg(iconSvgList: string[], perLine: number): string {
+  const length = Math.min(perLine * 300, iconSvgList.length * 300) - 44;
   const height = Math.ceil(iconSvgList.length / perLine) * 300 - 44;
   const scaledHeight = height * SCALE;
   const scaledWidth = length * SCALE;
@@ -81,6 +80,8 @@ function json(data: unknown): Response {
 
 interface IconsRequest {
   iconNames: string[];
+  /** The icons' SVGs, in the theme and tint asked for. */
+  iconSvgs: string[];
   theme: Theme;
   perLine: number;
   /** Background of the /og card; the SVG ignores it. */
@@ -97,6 +98,10 @@ function parseIconsRequest(searchParams: URLSearchParams): IconsRequest | Respon
     return badRequest('Theme must be either "light" or "dark"');
   const theme: Theme = themeParam;
 
+  const tintParam = searchParams.get('tint');
+  const tint: Tint | undefined = parseTint(tintParam);
+  if (tintParam && !tint) return badRequest('Tint must be a hex color, like "5fd3c4" or "#5fd3c4"');
+
   const bg = searchParams.get('bg') || DEFAULT_BG;
   if (bg !== 'dark' && bg !== 'light') return badRequest('Bg must be either "light" or "dark"');
 
@@ -108,10 +113,12 @@ function parseIconsRequest(searchParams: URLSearchParams): IconsRequest | Respon
     );
 
   const iconShortNames = iconParam === 'all' ? iconNameList : iconParam.split(',');
-  const iconNames = parseShortNames(iconShortNames, theme);
+  // Tinted icons start from the dark variants, whose glyphs stand out the most from their tile.
+  const iconNames = parseShortNames(iconShortNames, tint ? 'dark' : theme);
   if (iconNames.length === 0) return badRequest("You didn't format the icons param correctly!");
+  const iconSvgs = iconNames.map(i => (tint ? tintIconSvg(icons[i], tint, theme) : icons[i]));
 
-  return { iconNames, theme, perLine, bg };
+  return { iconNames, iconSvgs, theme, perLine, bg };
 }
 
 /** A person opening the link in a tab, as opposed to an <img>, GitHub camo or a crawler. */
@@ -137,7 +144,7 @@ function handleIcons(request: Request, url: URL): Response {
   if (isPreviewBot(request))
     return ogPage(url, parsed.iconNames, cleanTitle(url.searchParams.get('title')));
 
-  return new Response(generateSvg(parsed.iconNames, parsed.perLine), {
+  return new Response(generateSvg(parsed.iconSvgs, parsed.perLine), {
     // A cached SVG must not answer a later navigation to the same URL.
     headers: {
       'Content-Type': 'image/svg+xml',
@@ -160,14 +167,13 @@ async function handleOg(request: Request): Promise<Response> {
   // when the card changes, so PNGs drawn by an older card don't outlive it.
   return cachedPng(request, () => {
     // The card shows the icons in the link's theme on its `bg`; its footer shows the /icons link.
-    const iconSvgs = parsed.iconNames.map(i => icons[i]);
     // `title` comes from the builder (its page link or a copied /icons link); the footer leaves it out.
     const title = cleanTitle(url.searchParams.get('title'));
     const linkParams = new URLSearchParams(url.search);
     linkParams.delete('title');
     const link = new URL('/icons', url);
     link.search = linkParams.toString().replaceAll('%2C', ',');
-    return renderOgPng(iconSvgs, link, title, parsed.bg, parsed.theme);
+    return renderOgPng(parsed.iconSvgs, link, title, parsed.bg, parsed.theme);
   });
 }
 

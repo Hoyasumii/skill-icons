@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-check.schema.json",
+  "author": "ai",
+  "createdAt": "2026-10-20T19:39:58.483Z",
+  "failures": [],
+  "files": [
+    "tools/icon-manager/build.sh",
+    "tools/icon-manager/index.html",
+    "tools/icon-manager/main.swift",
+    "tools/icon-manager/tint.test.ts"
+  ],
+  "id": "0128B2AB-9128-4B3F-BAB4-55A27A9BF57D",
+  "passed": true,
+  "results": [
+    {
+      "exitCode": 0,
+      "note": ".vibedeck/tests/contribuicao/1f5b433c.sh (exit 0)\n… (saída cortada)\nfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/interfaces.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/zod-json-schema-compat.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/validation/ajv-provider.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/server.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/helpers.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/completable.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/uriTemplate.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/toolNameValidation.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/mcp-server.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/webStandardStreamableHttp.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/mediaType.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/requestBody.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/sseKeepAlive.js\" points to missing source files\n \u001b[32m✓\u001b[39m test/mcp.test.ts \u001b[2m(\u001b[22m\u001b[2m20 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[32m 58\u001b[2mms\u001b[22m\u001b[39m\n \u001b[32m✓\u001b[39m test/worker.test.ts \u001b[2m(\u001b[22m\u001b[2m62 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 4579\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m returns an SVG for valid icons \u001b[33m 4022\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m12 passed\u001b[39m\u001b[22m\u001b[90m (12)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m177 passed\u001b[39m\u001b[22m\u001b[90m (177)\u001b[39m\n\u001b[2m   Start at \u001b[22m 16:39:48\n\u001b[2m   Duration \u001b[22m 8.28s\u001b[2m (transform 2.61s, setup 0ms, import 11.78s, tests 4.68s, environment 0ms)\u001b[22m\n\n$ vitest run --config scripts/release.vitest.config.ts\n\n\u001b[1m\u001b[30m\u001b[46m RUN \u001b[49m\u001b[39m\u001b[22m \u001b[36mv4.1.11 \u001b[39m\u001b[90m/Users/hoy/Documents/skill-icons\u001b[39m\n\n \u001b[32m✓\u001b[39m scripts/release.test.ts \u001b[2m(\u001b[22m\u001b[2m7 tests\u001b[22m\u001b[2m)\u001b[22m\u001b[33m 1105\u001b[2mms\u001b[22m\u001b[39m\n     \u001b[33m\u001b[2m✓\u001b[22m\u001b[39m updates manifests and lockfile, preserves history, and reuses an unpublished retry \u001b[33m 404\u001b[2mms\u001b[22m\u001b[39m\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m7 passed\u001b[39m\u001b[22m\u001b[90m (7)\u001b[39m\n\u001b[2m   Start at \u001b[22m 16:39:57\n\u001b[2m   Duration \u001b[22m 1.23s\u001b[2m (transform 24ms, setup 0ms, import 33ms, tests 1.10s, environment 0ms)\u001b[22m",
+      "ruleId": "1F5B433C-9DF2-4863-B9D4-F4A51F68C2D0",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "pass"
+    },
+    {
+      "exitCode": 0,
+      "note": ".vibedeck/tests/contribuicao/6efdb945.sh (exit 0)\n(sem saída)",
+      "ruleId": "6EFDB945-9962-4184-A195-4B71A6DD8B43",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "pass"
+    },
+    {
+      "exitCode": 0,
+      "note": ".vibedeck/tests/contribuicao/e3ceff99.sh (exit 0)\nChecked 1 file in 18ms. No fixes applied.",
+      "ruleId": "E3CEFF99-B1B6-4BCF-93DF-C124C2930B2F",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "pass"
+    },
+    {
+      "exitCode": 77,
+      "note": ".vibedeck/tests/contribuicao/f942375e.sh (exit 77)\n(sem saída)",
+      "ruleId": "F942375E-3652-4D89-A248-587D92811015",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "na"
+    }
+  ],
+  "task": "Subtarefa 6: tint compartilhado no icon-manager, preview somente leitura",
+  "topics": ["contribuicao"],
+  "warnings": []
+}

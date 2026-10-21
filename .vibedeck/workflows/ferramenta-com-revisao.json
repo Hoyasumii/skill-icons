@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vibedeck-schema.alanreisanjo.workers.dev/v1/workflow.schema.json",
+  "author": "human",
+  "createdAt": "2026-10-20T19:16:44Z",
+  "id": "433103E6-B1DE-4148-9B27-9287DE8A5674",
+  "input": "<objetivo, critérios de aceite e, se houver, a lista de partes da tarefa>",
+  "maxSteps": 30,
+  "steps": [
+    {
+      "id": "planejar",
+      "kind": "skill",
+      "maxVisits": 2,
+      "note": "Além do plano normal, verifique se a tarefa pode ser enumerada. Se puder, divida-a em subtarefas numeradas (1, 2, 3…), pequenas, coesas e o mais independentes possível. Para cada uma, informe escopo, arquivos ou módulos envolvidos, dependências entre subtarefas, critério de aceite e o agente responsável. Ordene por dependência e indique quais podem rodar em paralelo. O plano deve usar mais de um agente: um por subtarefa ou por grupo de subtarefas independentes. Se não der para enumerar a tarefa, registre uma única subtarefa e explique o motivo. Termine com PLANEJADO.",
+      "ref": "planejamento-de-ferramenta",
+      "transitions": [
+        {
+          "to": "planejar",
+          "when": "o plano não lista nenhuma subtarefa enumerada ou faltam decisões do usuário para dividir a tarefa"
+        },
+        {
+          "to": "implementar-subtarefa",
+          "verdict": "PLANEJADO"
+        }
+      ]
+    },
+    {
+      "id": "implementar-subtarefa",
+      "kind": "command",
+      "maxVisits": 12,
+      "note": "Pegue a próxima subtarefa pendente do plano, ou a que voltou com AJUSTAR, e implemente somente o escopo dela. Delegue cada subtarefa independente a um subagente próprio, com escopo, arquivos e critério de aceite explícitos. Subtarefas paralelas definidas no plano podem ser despachadas juntas para agentes distintos. Não mexa no escopo de outras subtarefas. Ao final, informe quais subtarefas foram concluídas e quais continuam pendentes. Termine com IMPLEMENTADO.",
+      "ref": "desenvolver-ferramenta",
+      "transitions": [
+        {
+          "to": "revisar-subtarefa",
+          "verdict": "IMPLEMENTADO"
+        }
+      ]
+    },
+    {
+      "id": "revisar-subtarefa",
+      "kind": "agent",
+      "maxVisits": 12,
+      "note": "Revise apenas as subtarefas entregues na etapa anterior, comparando com o escopo e o critério de aceite de cada uma no plano. Ao final, liste as subtarefas que ainda estão pendentes. Termine com APROVADO ou AJUSTAR.",
+      "ref": "revisor-de-ferramentas",
+      "transitions": [
+        {
+          "to": "implementar-subtarefa",
+          "verdict": "AJUSTAR"
+        },
+        {
+          "to": "implementar-subtarefa",
+          "verdict": "APROVADO",
+          "when": "ainda restam subtarefas pendentes no plano"
+        },
+        {
+          "to": "revisar-integracao",
+          "verdict": "APROVADO"
+        }
+      ]
+    },
+    {
+      "id": "revisar-integracao",
+      "kind": "agent",
+      "maxVisits": 3,
+      "note": "Com todas as subtarefas aprovadas, revise o conjunto: integração entre as partes, duplicações, contratos entre módulos, testes de ponta a ponta e o check de regras dos arquivos alterados contra o objetivo original. Termine com APROVADO ou AJUSTAR.",
+      "ref": "revisor-de-manutencao",
+      "transitions": [
+        {
+          "to": "corrigir-integracao",
+          "verdict": "AJUSTAR"
+        }
+      ]
+    },
+    {
+      "id": "corrigir-integracao",
+      "kind": "command",
+      "maxVisits": 3,
+      "note": "Corrija só os problemas de integração apontados na revisão anterior, sem refazer subtarefas já aprovadas. Se as correções puderem ser enumeradas e forem independentes, delegue cada uma a um subagente. Termine com IMPLEMENTADO após testes e check aprovados.",
+      "ref": "corrigir-sistema",
+      "transitions": [
+        {
+          "to": "revisar-integracao",
+          "verdict": "IMPLEMENTADO"
+        }
+      ]
+    }
+  ],
+  "summary": "Planejar decompondo a tarefa em subtarefas enumeradas → implementar e revisar cada subtarefa em um ciclo próprio (um agente por fatia) → revisão de integração do conjunto com correções, se necessário.",
+  "tags": ["kit", "multiagente", "subtarefas"],
+  "title": "Ferramenta em subtarefas com múltiplos agentes",
+  "updatedAt": "2026-10-20T19:19:55Z"
+}

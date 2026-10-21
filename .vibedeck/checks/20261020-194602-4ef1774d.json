@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-check.schema.json",
+  "author": "ai",
+  "createdAt": "2026-10-20T19:46:02.843Z",
+  "failures": ["bun run typecheck e bun run test passam"],
+  "files": ["packages/skill-icons/README.md", "test/tint-parity.test.ts"],
+  "id": "4EF1774D-D372-4BEE-AA47-5FF69AEEA2AA",
+  "passed": false,
+  "results": [
+    {
+      "exitCode": 1,
+      "note": ".vibedeck/tests/contribuicao/1f5b433c.sh (exit 1)\n… (saída cortada)\n2m-   10,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[2m    60,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    32,\u001b[22m\n\u001b[2m    116,\u001b[22m\n\u001b[2m    114,\u001b[22m\n\u001b[33m@@ -7857,21 +7721,10 @@\u001b[39m\n\u001b[2m    48,\u001b[22m\n\u001b[2m    48,\u001b[22m\n\u001b[2m    41,\u001b[22m\n\u001b[2m    34,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[32m-   10,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[2m    60,\u001b[22m\n\u001b[2m    115,\u001b[22m\n\u001b[2m    118,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    32,\u001b[22m\n\u001b[33m@@ -15327,11 +15180,10 @@\u001b[39m\n\u001b[2m    47,\u001b[22m\n\u001b[2m    115,\u001b[22m\n\u001b[2m    118,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[32m-   10,\u001b[39m\n\u001b[2m    60,\u001b[22m\n\u001b[2m    47,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[2m    10,\u001b[22m\n\u001b[33m@@ -15448,42 +15300,14 @@\u001b[39m\n\u001b[2m    47,\u001b[22m\n\u001b[2m    115,\u001b[22m\n\u001b[2m    118,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[32m-   10,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[2m    60,\u001b[22m\n\u001b[2m    47,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[32m-   10,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   10,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[2m    60,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    32,\u001b[22m\n\u001b[2m    116,\u001b[22m\n\u001b[2m    114,\u001b[22m\n\u001b[33m@@ -15513,21 +15337,10 @@\u001b[39m\n\u001b[2m    48,\u001b[22m\n\u001b[2m    48,\u001b[22m\n\u001b[2m    41,\u001b[22m\n\u001b[2m    34,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[32m-   10,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[2m    60,\u001b[22m\n\u001b[2m    115,\u001b[22m\n\u001b[2m    118,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    32,\u001b[22m\n\u001b[33m@@ -61410,11 +61223,10 @@\u001b[39m\n\u001b[2m    47,\u001b[22m\n\u001b[2m    115,\u001b[22m\n\u001b[2m    118,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[32m-   10,\u001b[39m\n\u001b[2m    60,\u001b[22m\n\u001b[2m    47,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[2m    10,\u001b[22m\n\u001b[33m@@ -61531,40 +61343,16 @@\u001b[39m\n\u001b[2m    47,\u001b[22m\n\u001b[2m    115,\u001b[22m\n\u001b[2m    118,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[32m-   10,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[2m    60,\u001b[22m\n\u001b[2m    47,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[32m-   10,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   10,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[2m    60,\u001b[22m\n\u001b[2m    47,\u001b[22m\n\u001b[2m    115,\u001b[22m\n\u001b[2m    118,\u001b[22m\n\u001b[2m    103,\u001b[22m\n\u001b[2m    62,\u001b[22m\n\u001b[32m-   10,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[32m-   32,\u001b[39m\n\u001b[2m  ]\u001b[22m\n\n\u001b[36m \u001b[2m❯\u001b[22m test/tint-parity.test.ts:\u001b[2m34:35\u001b[22m\u001b[39m\n    \u001b[90m 32|\u001b[39m       \u001b[34mexpect\u001b[39m(svg)\u001b[33m.\u001b[39m\u001b[34mtoContain\u001b[39m(\u001b[32m'<image'\u001b[39m)\u001b[33m;\u001b[39m\n    \u001b[90m 33|\u001b[39m       if (tint) expect(svg).toContain(`si-tint-${theme}-5fd3c4-raster`…\n    \u001b[90m 34|\u001b[39m       expect(encoder.encode(svg)).toEqual(new Uint8Array(await respons…\n    \u001b[90m   |\u001b[39m                                   \u001b[31m^\u001b[39m\n    \u001b[90m 35|\u001b[39m     })\u001b[33m;\u001b[39m\n    \u001b[90m 36|\u001b[39m   })\u001b[33m;\u001b[39m\n\n\u001b[31m\u001b[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/24]⎯\u001b[22m\u001b[39m\n\n\n\u001b[2m Test Files \u001b[22m \u001b[1m\u001b[31m1 failed\u001b[39m\u001b[22m\u001b[2m | \u001b[22m\u001b[1m\u001b[32m12 passed\u001b[39m\u001b[22m\u001b[90m (13)\u001b[39m\n\u001b[2m      Tests \u001b[22m \u001b[1m\u001b[31m24 failed\u001b[39m\u001b[22m\u001b[2m | \u001b[22m\u001b[1m\u001b[32m177 passed\u001b[39m\u001b[22m\u001b[90m (201)\u001b[39m\n\u001b[2m   Start at \u001b[22m 16:45:54\n\u001b[2m   Duration \u001b[22m 7.84s\u001b[2m (transform 3.30s, setup 0ms, import 8.68s, tests 9.65s, environment 0ms)\u001b[22m\n\nerror: script \"test\" exited with code 1\nbun run test falhou",
+      "ruleId": "1F5B433C-9DF2-4863-B9D4-F4A51F68C2D0",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "fail"
+    },
+    {
+      "exitCode": 0,
+      "note": ".vibedeck/tests/contribuicao/6efdb945.sh (exit 0)\n(sem saída)",
+      "ruleId": "6EFDB945-9962-4184-A195-4B71A6DD8B43",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "pass"
+    },
+    {
+      "exitCode": 0,
+      "note": ".vibedeck/tests/contribuicao/e3ceff99.sh (exit 0)\nChecked 1 file in 2ms. No fixes applied.",
+      "ruleId": "E3CEFF99-B1B6-4BCF-93DF-C124C2930B2F",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "pass"
+    },
+    {
+      "exitCode": 77,
+      "note": ".vibedeck/tests/contribuicao/f942375e.sh (exit 77)\n(sem saída)",
+      "ruleId": "F942375E-3652-4D89-A248-587D92811015",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "na"
+    }
+  ],
+  "task": "Subtarefa 5: paridade byte a byte lib × handler worker e documentação tint",
+  "topics": ["contribuicao"],
+  "warnings": []
+}

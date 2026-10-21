@@ -1,6 +1,7 @@
 // Shared between the Worker (API) and the site (builder).
 
 import { cleanTitle } from './badge-title';
+import type { Tint } from './tint';
 
 export type Theme = 'dark' | 'light';
 
@@ -71,6 +72,8 @@ export function shortestName(name: string): string {
 export interface IconsUrlOptions {
   icons: string[];
   theme?: Theme;
+  /** Redraws every icon in this color (see shared/tint.ts); the theme picks a dark or light tile. */
+  tint?: Tint;
   perLine?: number;
   /** Background of the link's cover card; the SVG ignores it. */
   bg?: Theme;
@@ -81,10 +84,11 @@ export interface IconsUrlOptions {
 /** Builds an /icons URL, omitting parameters that match the defaults. */
 export function buildIconsUrl(
   base: string,
-  { icons, theme, perLine, bg, title }: IconsUrlOptions,
+  { icons, theme, tint, perLine, bg, title }: IconsUrlOptions,
 ): string {
   const params = [`i=${icons.map(shortestName).join(',')}`];
   if (theme && theme !== DEFAULT_THEME) params.push(`theme=${theme}`);
+  if (tint) params.push(`tint=${tint}`);
   if (perLine && perLine !== DEFAULT_PER_LINE) params.push(`perline=${perLine}`);
   if (bg && bg !== DEFAULT_BG) params.push(`bg=${bg}`);
   const cleanedTitle = cleanTitle(title);

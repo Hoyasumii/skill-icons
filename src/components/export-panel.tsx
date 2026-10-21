@@ -22,6 +22,7 @@ import {
 } from '@/lib/snippets';
 import { cleanTitle } from '../../shared/badge-title';
 import { API_URL, buildIconsUrl, type Theme } from '../../shared/icons';
+import type { Tint } from '../../shared/tint';
 
 const FORMAT_ICONS: Record<Format, LucideIcon> = {
   markdown: HashIcon,
@@ -41,6 +42,9 @@ interface ExportPanelProps {
   onShuffle: () => void;
   onClear: () => void;
   onThemeChange: (theme: Theme) => void;
+  /** Undefined keeps the icons' own colors. */
+  tint: Tint | undefined;
+  onTintChange: (tint: Tint | undefined) => void;
   onPerLineChange: (perLine: number) => void;
   onFormatChange: (format: Format) => void;
   onFrameworkChange: (framework: FrameworkId) => void;
@@ -60,6 +64,8 @@ export function ExportPanel({
   onShuffle,
   onClear,
   onThemeChange,
+  tint,
+  onTintChange,
   onPerLineChange,
   onFormatChange,
   onFrameworkChange,
@@ -68,7 +74,7 @@ export function ExportPanel({
 }: ExportPanelProps) {
   const { t } = useI18n();
   const [packageOpen, setPackageOpen] = useState(false);
-  const options = { icons: stack.icons, theme: stack.theme, perLine };
+  const options = { icons: stack.icons, theme: stack.theme, tint, perLine };
   // A link copied from the dark site unfurls into the dark cover.
   const bg = useSiteTheme();
   const empty = stack.icons.length === 0;
@@ -137,9 +143,12 @@ export function ExportPanel({
         }
       />
       <ExportOptions
+        icons={stack.icons}
         theme={stack.theme}
+        tint={tint}
         perLine={perLine}
         onThemeChange={onThemeChange}
+        onTintChange={onTintChange}
         onPerLineChange={onPerLineChange}
       />
       <ReadmePreview

@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { useI18n } from '@/i18n';
-import { iconSrc } from '@/lib/icons';
+import { useIconSrc } from '@/hooks/use-icon-src';
 import { MAX_SAVED_STACKS, type SavedStack } from '@/lib/saved-stacks';
 import { isStackSelected } from '@/lib/stack-selection';
 import { cn } from '@/lib/utils';
@@ -35,6 +35,7 @@ export function SavedStacks({
   onRemove,
   onClear,
 }: SavedStacksProps) {
+  const iconSrc = useIconSrc();
   const { t } = useI18n();
   const [confirmOpen, setConfirmOpen] = useState(false);
   if (!stacks.length) return null;

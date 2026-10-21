@@ -14,7 +14,8 @@ import { Button } from '@/components/ui/button';
 import { Reveal } from '@/components/ui/reveal';
 import { SheetTitle } from '@/components/ui/sheet';
 import { useI18n } from '@/i18n';
-import { displayNameOf, iconSrc } from '@/lib/icons';
+import { displayNameOf } from '@/lib/icons';
+import { useIconSrc } from '@/hooks/use-icon-src';
 import { popClass } from '@/lib/motion';
 import { MAX_SAVED_STACKS } from '@/lib/saved-stacks';
 import { cn } from '@/lib/utils';
@@ -41,6 +42,7 @@ interface StackItemProps {
 
 /** Tapping an item lifts it; the yellow fill marks it in both the dock and the tray. */
 export function StackItem({ stack, name, index, className, children }: StackItemProps) {
+  const iconSrc = useIconSrc();
   const { t } = useI18n();
   const lifted = stack.lifted === name;
 

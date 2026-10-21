@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-check.schema.json",
+  "author": "ai",
+  "createdAt": "2026-10-20T15:50:03.229Z",
+  "failures": [],
+  "files": ["CHANGELOG.md", "bun.lock", "packages/skill-icons/package.json"],
+  "id": "783D9057-B26F-4ED7-8E24-764D3FC9480E",
+  "passed": true,
+  "results": [
+    {
+      "exitCode": 0,
+      "note": ".vibedeck/tests/contribuicao/1f5b433c.sh (exit 0)\n… (saída cortada)\ntextprotocol/sdk/dist/esm/server/mcp.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/index.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/protocol.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/zod-compat.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/types.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/interfaces.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/zod-json-schema-compat.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/validation/ajv-provider.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/server.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/helpers.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/completable.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/uriTemplate.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/toolNameValidation.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/mcp-server.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/webStandardStreamableHttp.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/mediaType.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/requestBody.js\" points to missing source files\nSourcemap for \"/Users/hoy/Documents/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/sseKeepAlive.js\" points to missing source files\n\n Test Files  11 passed (11)\n      Tests  155 passed (155)\n   Start at  12:49:57\n   Duration  5.61s (transform 1.44s, setup 0ms, import 7.85s, tests 3.13s, environment 1ms)",
+      "ruleId": "1F5B433C-9DF2-4863-B9D4-F4A51F68C2D0",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "pass"
+    },
+    {
+      "exitCode": 0,
+      "note": ".vibedeck/tests/contribuicao/6efdb945.sh (exit 0)\n(sem saída)",
+      "ruleId": "6EFDB945-9962-4184-A195-4B71A6DD8B43",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "pass"
+    },
+    {
+      "exitCode": 0,
+      "note": ".vibedeck/tests/contribuicao/e3ceff99.sh (exit 0)\nChecked 1 file in 16ms. No fixes applied.",
+      "ruleId": "E3CEFF99-B1B6-4BCF-93DF-C124C2930B2F",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "pass"
+    },
+    {
+      "exitCode": 0,
+      "note": ".vibedeck/tests/contribuicao/f942375e.sh (exit 0)\n(sem saída)",
+      "ruleId": "F942375E-3652-4D89-A248-587D92811015",
+      "source": "script",
+      "topic": "contribuicao",
+      "verdict": "pass"
+    }
+  ],
+  "task": "Release 26.10.2: bump @hoyasumii/skill-icons to 26.10.2",
+  "topics": ["contribuicao"],
+  "warnings": []
+}

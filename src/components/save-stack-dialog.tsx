@@ -4,7 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogClose, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { useI18n } from '@/i18n';
-import { displayNameOf, iconSrc } from '@/lib/icons';
+import { displayNameOf } from '@/lib/icons';
+import { useIconSrc } from '@/hooks/use-icon-src';
 import { MAX_SAVED_STACKS, MAX_STACK_NAME } from '@/lib/saved-stacks';
 import type { Theme } from '../../shared/icons';
 
@@ -26,6 +27,7 @@ export function SaveStackDialog({
   savedCount,
   onSave,
 }: SaveStackDialogProps) {
+  const iconSrc = useIconSrc();
   const { t } = useI18n();
   const [name, setName] = useState('');
   const valid = name.trim().length > 0;

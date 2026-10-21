@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { flushSync } from 'react-dom';
 import {
   Columns3Icon,
+  DropletIcon,
   MinusIcon,
   MoonIcon,
   PaletteIcon,
@@ -10,12 +11,15 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { SectionLabel } from '@/components/section-label';
+import { TintPicker } from '@/components/tint-picker';
 import { Button } from '@/components/ui/button';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { useI18n } from '@/i18n';
 import { circleReveal, imagesOnScreen } from '@/lib/circle-reveal';
+import { tintedSettled } from '@/lib/tinted-icons';
 import { cn } from '@/lib/utils';
 import { MAX_PER_LINE, MIN_PER_LINE, type Theme } from '../../shared/icons';
+import type { Tint } from '../../shared/tint';
 
 // The active segment's tile takes the color the icons' own tiles get in that theme.
 const THEMES: { value: Theme; Icon: LucideIcon; tile: string }[] = [
@@ -24,16 +28,23 @@ const THEMES: { value: Theme; Icon: LucideIcon; tile: string }[] = [
 ];
 
 interface ExportOptionsProps {
+  /** The stack: the tint's preview shows its first icons. */
+  icons: string[];
   theme: Theme;
+  tint: Tint | undefined;
   perLine: number;
   onThemeChange: (theme: Theme) => void;
+  onTintChange: (tint: Tint | undefined) => void;
   onPerLineChange: (perLine: number) => void;
 }
 
 export function ExportOptions({
+  icons,
   theme,
+  tint,
   perLine,
   onThemeChange,
+  onTintChange,
   onPerLineChange,
 }: ExportOptionsProps) {
   const { t } = useI18n();
@@ -53,82 +64,110 @@ export function ExportOptions({
     else void apply();
   };
 
+  // The same reveal for a tint picked with a click, growing from what was clicked; live edits
+  // (the hex field, the system picker) apply as they go.
+  const changeTint = (next: Tint | undefined, origin?: Element) => {
+    if (next === tint) return;
+    if (!origin) return onTintChange(next);
+    circleReveal(origin, async () => {
+      flushSync(() => onTintChange(next));
+      await tintedSettled();
+      await imagesOnScreen();
+    });
+  };
+
   return (
-    // Labels on the first row, controls side by side on the second; each wrapper is `contents`
-    // so its label and control land in the same column.
-    <div className="grid grid-flow-col grid-cols-[minmax(0,1fr)_auto] grid-rows-[auto_auto] items-end gap-x-4 gap-y-2">
-      <div className="contents">
-        <SectionLabel id="theme-label" icon={PaletteIcon}>
-          {t.options.iconTheme}
-        </SectionLabel>
-        <ToggleGroup
-          type="single"
-          ref={themeGroup}
-          value={theme}
-          onValueChange={value => value && changeTheme(value as Theme)}
-          aria-labelledby="theme-label"
-        >
-          {THEMES.map(({ value, Icon, tile }) => (
-            <ToggleGroupItem
-              key={value}
-              value={value}
-              data-value={value}
-              className="gap-[7px] pr-2 pl-1.5"
-            >
-              <span
-                aria-hidden="true"
-                className={cn(
-                  'inline-flex size-6 shrink-0 items-center justify-center rounded-[7px] transition-colors',
-                  theme === value && tile,
-                )}
+    <div className="flex flex-col gap-4">
+      {/* Labels on the first row, controls side by side on the second; each wrapper is `contents`
+        so its label and control land in the same column. */}
+      <div className="grid grid-flow-col grid-cols-[minmax(0,1fr)_auto] grid-rows-[auto_auto] items-end gap-x-4 gap-y-2">
+        <div className="contents">
+          <SectionLabel id="theme-label" icon={PaletteIcon}>
+            {t.options.iconTheme}
+          </SectionLabel>
+          <ToggleGroup
+            type="single"
+            ref={themeGroup}
+            value={theme}
+            onValueChange={value => value && changeTheme(value as Theme)}
+            aria-labelledby="theme-label"
+          >
+            {THEMES.map(({ value, Icon, tile }) => (
+              <ToggleGroupItem
+                key={value}
+                value={value}
+                data-value={value}
+                className="gap-[7px] pr-2 pl-1.5"
               >
-                <Icon className="size-[15px]" strokeWidth={2.2} />
-              </span>
-              {/* Under 360px only the tiles fit; the label stays in the accessible name. */}
-              <span className="max-[359px]:sr-only">{t.options[value]}</span>
-            </ToggleGroupItem>
-          ))}
-        </ToggleGroup>
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    'inline-flex size-6 shrink-0 items-center justify-center rounded-[7px] transition-colors',
+                    theme === value && tile,
+                  )}
+                >
+                  <Icon className="size-[15px]" strokeWidth={2.2} />
+                </span>
+                {/* Under 360px only the tiles fit; the label stays in the accessible name. */}
+                <span className="max-[359px]:sr-only">{t.options[value]}</span>
+              </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
+        </div>
+
+        <div className="contents">
+          {/* Zero width of its own: it wraps inside the column the stepper sets. */}
+          <SectionLabel
+            id="perline-label"
+            icon={Columns3Icon}
+            className="w-0 min-w-full leading-[15px] [&>svg]:h-[15px]"
+          >
+            {t.options.perLine}
+          </SectionLabel>
+          <div
+            role="group"
+            aria-labelledby="perline-label"
+            className="flex min-w-[132px] items-center justify-between gap-2 rounded-lg bg-muted p-[3px]"
+          >
+            <Button
+              variant="ghost"
+              size="control"
+              className={stepButton}
+              aria-label={t.options.fewer}
+              disabled={perLine <= MIN_PER_LINE}
+              onClick={() => step(-1)}
+            >
+              <MinusIcon strokeWidth={2.4} />
+            </Button>
+            <output aria-live="polite" className="font-mono text-lg font-semibold tabular-nums">
+              {perLine}
+            </output>
+            <Button
+              variant="ghost"
+              size="control"
+              className={stepButton}
+              aria-label={t.options.more}
+              disabled={perLine >= MAX_PER_LINE}
+              onClick={() => step(1)}
+            >
+              <PlusIcon strokeWidth={2.4} />
+            </Button>
+          </div>
+        </div>
       </div>
 
-      <div className="contents">
-        {/* Zero width of its own: it wraps inside the column the stepper sets. */}
-        <SectionLabel
-          id="perline-label"
-          icon={Columns3Icon}
-          className="w-0 min-w-full leading-[15px] [&>svg]:h-[15px]"
-        >
-          {t.options.perLine}
+      {/* The tint keeps the theme: it picks the dark or light tile the tint is laid on. */}
+      <div className="flex flex-col gap-2">
+        <SectionLabel id="tint-label" icon={DropletIcon}>
+          {t.options.tint}
         </SectionLabel>
-        <div
-          role="group"
-          aria-labelledby="perline-label"
-          className="flex min-w-[132px] items-center justify-between gap-2 rounded-lg bg-muted p-[3px]"
-        >
-          <Button
-            variant="ghost"
-            size="control"
-            className={stepButton}
-            aria-label={t.options.fewer}
-            disabled={perLine <= MIN_PER_LINE}
-            onClick={() => step(-1)}
-          >
-            <MinusIcon strokeWidth={2.4} />
-          </Button>
-          <output aria-live="polite" className="font-mono text-lg font-semibold tabular-nums">
-            {perLine}
-          </output>
-          <Button
-            variant="ghost"
-            size="control"
-            className={stepButton}
-            aria-label={t.options.more}
-            disabled={perLine >= MAX_PER_LINE}
-            onClick={() => step(1)}
-          >
-            <PlusIcon strokeWidth={2.4} />
-          </Button>
-        </div>
+        <TintPicker
+          tint={tint}
+          theme={theme}
+          icons={icons}
+          onChange={changeTint}
+          labelledBy="tint-label"
+        />
       </div>
     </div>
   );

@@ -26,6 +26,12 @@ describe('buildIconsUrl', () => {
     );
   });
 
+  it('includes the tint after the theme', () => {
+    expect(buildIconsUrl('', { icons: ['javascript'], theme: 'light', tint: '5fd3c4' })).toBe(
+      '/icons?i=js&theme=light&tint=5fd3c4',
+    );
+  });
+
   it('includes a dark cover background before the title, never the light default', () => {
     expect(buildIconsUrl('', { icons: ['javascript'], bg: 'dark', title: 'Mine' })).toBe(
       '/icons?i=js&bg=dark&title=Mine',

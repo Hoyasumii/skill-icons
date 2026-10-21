@@ -1,0 +1,187 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/idea.schema.json",
+  "author" : "human",
+  "body" : "## Problema\n\nA tonalização dos ícones (tint) já existe no site (`src/lib/tinted-icons.ts`, `src/components/tint-picker.tsx`) e na API (`worker/index.ts`, parâmetro `?tint=` em `/icons`), mas ainda falta em dois lugares:\n\n- **App Swift do icon-manager** (`tools/icon-manager/`): não dá para pré-visualizar os ícones tingidos.\n- **Libs web** (`packages/skill-icons`): `loadIcons`, `peekIcons`, `renderIcon`, `renderIcons` e `remoteIconsUrl` não aceitam tint, e nenhum entry point (react, vue, angular, solid, astro, element, svelte) o expõe.\n\n## Proposta\n\nReaproveitar o algoritmo que já existe em `shared/tint.ts` (`parseTint`, `tintIconSvg`) nas duas pontas, sem reimplementar:\n\n- **Lib**: `scripts/build-icons.ts` espelha `shared/tint.ts` em `packages/skill-icons/src/generated/`. O core importa de `../generated/` e ganha a opção `tint`, que é repassada como prop ou atributo em todos os entry points. A saída tingida tem que ser idêntica byte a byte à da API.\n- **icon-manager**: `tools/icon-manager/build.sh` empacota `shared/tint.ts` (ex.: `bun build`) em `Contents/Resources`, e o `index.html` usa esse bundle para exibir pré-visualizações tingidas. É só pré-visualização: nada é gravado em disco.\n- **Swatches**: `TINT_SWATCHES` sai de `src/lib/tinted-icons.ts:6` e vai para `shared/tint.ts`. A lista fica em um só lugar e é importada pelo site, pelo icon-manager e pela documentação da lib.\n\nRegra geral do algoritmo (igual à da API, `worker/index.ts:117-119`): com tint, parte-se da variante **dark** do ícone e o tema escolhido vai como `theme` de `tintIconSvg`. Ícones sem variantes (ex.: `adonis`, `astro`) usam o único SVG que têm.\n\n## Escopo\n\n- `shared/tint.ts`: passa a exportar `TINT_SWATCHES`. O algoritmo não muda.\n- `src/lib/tinted-icons.ts`: passa a importar `TINT_SWATCHES` de `shared/`.\n- `scripts/build-icons.ts` → `packages/skill-icons/src/generated/`: espelho de `tint.ts`. Rodar `bun run icons` e não editar `generated/` à mão.\n- `packages/skill-icons/src/core/index.ts`: `loadIcons`, `peekIcons`, `remoteIconsUrl` e a chave do cache de `loadIcon`/`peekIcon`.\n- `packages/skill-icons/src/core/html.ts`: `renderIcon`, `renderIcons`, `<picture>` com `LIGHT_MEDIA` e o modo `latest`.\n- Entry points em `packages/skill-icons/src/`: `react/index.tsx`, `vue/index.ts`, `angular/index.ts`, `solid/index.tsx`, `astro/*.astro` e `astro/types.ts`, `element/index.ts` (`observedAttributes`), `svelte/*.svelte` e `svelte/types.ts`.\n- `packages/skill-icons/README.md`: documentação da opção `tint`.\n- `tools/icon-manager/build.sh`: bundle de `shared/tint.ts`.\n- `tools/icon-manager/index.html`: controle de tint, `src`/`shownFile` (~linha 1322) e os dicionários i18n `en` e `pt` (~linhas 1013 e 1121).\n- `tools/icon-manager/main.swift`: rótulos `L(\"…\", \"…\")`.\n- Testes: `test/tint.test.ts`, um teste de paridade lib × worker em `test/` e os testes do pacote.\n\n## Critérios de aceite\n\n### Lib (`packages/skill-icons`)\n- [must] `src/` (fora de `generated/`) não contém `mix(`, `luminance(` nem `PAINT_ATTR`, e o core importa o tint de `../generated/`.\n- [must] `loadIcons`, `peekIcons`, `renderIcon` e `renderIcons` aceitam `tint`. Todo entry point (react, vue, angular, solid, astro, element, svelte) a expõe, o typecheck passa e há pelo menos um ícone tingido renderizado em teste por entry point.\n- [should] O tint é lido com `parseTint`. Uma cor inválida renderiza o ícone sem tint e não lança erro: `'xyz'` dá o mesmo SVG que sem tint, e `'#5FC'` e `'5fc'` dão o mesmo SVG que `'55ffcc'`.\n- [must] Com tint, parte-se da variante dark: o `react` tingido com theme `light` é igual a `tintIconSvg(react-dark, tint, 'light')`.\n- [must] Ícones sem variantes (ex.: `adonis`, `astro`) dão `tintIconSvg(svgÚnico, tint, theme)` nos dois temas, e o resultado não é vazio.\n- [must] Há paridade byte a byte com a API `/icons` para o mesmo ícone, tema e tint. Um teste em `test/` compara o core com o handler do worker em alguns ícones, incluindo um que tenha `<image>`.\n- [must] `remoteIconsUrl` adiciona `&tint=<6 hex minúsculos>` quando o tint é válido e não adiciona o parâmetro quando não há tint.\n- [must] A chave do cache do core inclui o tint: `peekIcons` com o tint A, chamado depois do B, devolve o SVG de A.\n- [must] Sem `tint`, `loadIcons`, `peekIcons`, `renderIcon`, `renderIcons` e `remoteIconsUrl` devolvem exatamente a mesma saída de antes. O teste cobre um ícone com tema e um sem tema, nos temas dark e light.\n- [must] Com `theme: 'auto'` e tint, o `<picture>` usa `tintIconSvg(svgDark, tint, 'dark')` no fallback e `tintIconSvg(svgDark, tint, 'light')` em `LIGHT_MEDIA`. O teste decodifica os dois data URIs de `renderIcon('react', { theme: 'auto', tint: '5fd3c4' })`.\n- [must] No modo `latest`, o tint vai para `remoteIconsUrl` em cada variante: `renderIcon('react', { latest: true, theme: 'auto', tint: '#5FD3C4' })` contém duas URLs, ambas com `&tint=5fd3c4`.\n- [should] O custom element tem `tint` em `observedAttributes` e re-renderiza ao mudar ou remover o atributo. Teste: `setAttribute('tint','ff3b30')` e depois `removeAttribute('tint')` atualizam o `src` do `<img>` interno.\n- [should] O `README.md` mostra `tint` em pelo menos um exemplo de componente e em `renderIcon`/`loadIcons`, e explica que o tint parte da variante dark.\n\n### icon-manager (`tools/icon-manager`)\n- [must] `build.sh` gera um bundle a partir de `shared/tint.ts` em `Contents/Resources`, e o `index.html` não contém `tintPalette` nem `rasterFilter`.\n- [must] Com tint ativo, os ícones aparecem como `data:` URL de `tintIconSvg` (variante dark mais o tema escolhido; ícones sem tema usam o único SVG). Sem tint, o `src` continua sendo o `file://` de `icons/` com `?v=version`, e o ramo sem tint de `src`/`shownFile` fica igual ao de hoje.\n- [must] O tint só muda a pré-visualização: depois de escolher um tint, `git status` não mostra mudança em `icons/`, `generated/` nem `public/svg/`.\n- [must] Copy e Reveal produzem os mesmos caminhos de `icons/` com ou sem tint, e Copy gera o mesmo JSON de `entry()`.\n- [must] Os rótulos aparecem em inglês e português: `L(\"…\", \"…\")` no `main.swift`, e toda chave nova aparece nos dois dicionários do `index.html`.\n- [should] O controle aceita uma cor digitada (lida com `parseTint`), oferece os swatches compartilhados e tem uma opção para remover o tint, que volta a mostrar os SVGs originais.\n\n### Compartilhado\n- [should] `TINT_SWATCHES` fica em `shared/tint.ts` e não existe outra lista de hex de swatches no repositório.\n- `shared/` continua sem `window`, `document`, `localStorage`, `fetch` nem bindings do Worker.\n- `bun run typecheck` e `bun run test` passam, knip não acusa nada sem uso, os arquivos estão formatados com Biome e os commits seguem Conventional Commits.",
+  "createdAt" : "2026-10-20T18:45:39Z",
+  "id" : "A0D4CE25-CB84-4406-97ED-3426C15BBF5F",
+  "paths" : [
+    "tools/icon-manager/main.swift",
+    "tools/icon-manager/index.html",
+    "shared/tint.ts",
+    "packages/skill-icons/src/core/*.ts",
+    "packages/skill-icons/README.md",
+    "test/tint.test.ts"
+  ],
+  "readiness" : {
+    "checkedAt" : "2026-10-20T19:16:10Z",
+    "fingerprint" : "af1d825f8d76aa30",
+    "viable" : true
+  },
+  "rules" : [
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "grep em packages/skill-icons/src (fora de generated/) não encontra mix(, luminance( nem PAINT_ATTR; o core importa tint de ../generated/.",
+      "id" : "BB0E3D43-504E-4B07-9377-B20BAE9FEF61",
+      "severity" : "must",
+      "text" : "A lib packages/skill-icons tinge os ícones com o tintIconSvg de shared/tint.ts, espelhado por scripts/build-icons.ts em packages/skill-icons/src/generated/, sem reimplementar o algoritmo em src/core."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "build.sh gera um bundle a partir de shared/tint.ts; index.html não contém tintPalette nem rasterFilter.",
+      "id" : "8A772E64-81AD-410F-8C6A-D1FAEE7D967F",
+      "severity" : "must",
+      "text" : "O index.html do icon-manager usa o tintIconSvg de shared/tint.ts, empacotado pelo tools/icon-manager/build.sh (ex.: bun build) em Contents/Resources, sem copiar o algoritmo para dentro do HTML."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "Typecheck do pacote passa com tint em cada componente; os testes do pacote renderizam pelo menos um ícone tingido por entry point.",
+      "id" : "D01BB08E-749E-4AD1-8183-60CCB5D1B6D4",
+      "severity" : "must",
+      "text" : "loadIcons, peekIcons, renderIcon e renderIcons do core aceitam uma opção tint, e todo entry point (react, vue, angular, solid, astro, element, svelte) a expõe como prop/atributo."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "Teste: tint 'xyz' gera o mesmo SVG que sem tint; '#5FC' e '5fc' geram o mesmo SVG que '55ffcc'.",
+      "id" : "4A939569-24C5-4A8E-8CFD-05729F8AB60C",
+      "severity" : "should",
+      "text" : "A lib lê o tint com parseTint e, se a cor for inválida, renderiza o ícone sem tint, sem lançar erro."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "Teste: o ícone tingido de react com theme light é igual a tintIconSvg(react-dark, tint, 'light').",
+      "id" : "ED97BD09-5BB8-4174-8FAC-7E6E2DFB2C7B",
+      "severity" : "must",
+      "text" : "Com tint, a lib e o icon-manager partem da variante dark do ícone e passam o tema escolhido como theme de tintIconSvg."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "Teste de paridade em test/ que compara a saída do core com o handler do worker para alguns ícones (incluindo um com <image>).",
+      "id" : "4394A624-BF40-4E2E-B7E6-2BA96FEE68A2",
+      "severity" : "must",
+      "text" : "Um ícone tingido pela lib é idêntico byte a byte ao que a API /icons devolve para o mesmo ícone, tema e tint."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "Teste do core comparando as duas URLs.",
+      "id" : "61283230-B724-4235-8DE8-A9D53368B4CB",
+      "severity" : "must",
+      "text" : "remoteIconsUrl adiciona &tint=<6 hex minúsculos> quando há tint válido e não adiciona o parâmetro quando não há."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "Teste: peekIcons com tint A depois de B devolve o SVG de A.",
+      "id" : "EEA1DC7E-96AD-4A39-826F-9E7FE7E4E87F",
+      "severity" : "must",
+      "text" : "O cache de SVGs carregados do core distingue o tint na chave, de modo que o mesmo ícone com e sem tint (ou com tints diferentes) nunca reaproveita a entrada errada."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "Depois de escolher um tint no app, git status não mostra mudança em icons/, generated/ nem public/svg/.",
+      "id" : "128EDE97-79CF-4EE2-B821-A5BF720A8888",
+      "severity" : "must",
+      "text" : "O tint no icon-manager só muda a pré-visualização: nada é gravado em icons/ nem em arquivos gerados."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "Toda chave nova de tint aparece nos dois dicionários do index.html (~linha 1013 e ~1121).",
+      "id" : "8BA98B34-BD83-4243-BD20-CE8A7C79DB8D",
+      "severity" : "must",
+      "text" : "O controle de tint do icon-manager tem rótulos em inglês e português: L(\"…\", \"…\") no main.swift e chaves nos blocos en e pt do index.html."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "TINT_SWATCHES sai de src/lib/tinted-icons.ts:6 para shared/tint.ts; não existe outra lista de hex de swatches no repo.",
+      "id" : "49660A79-88EA-4D1C-B9F1-A278554B09E2",
+      "severity" : "should",
+      "text" : "As cores sugeridas de tint ficam em shared/ e são importadas pelo site, pelo icon-manager e pela documentação da lib, sem uma lista própria em cada ponta."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T18:56:08Z",
+      "details" : "O README contém 'tint' em pelo menos um exemplo de componente e em renderIcon/loadIcons.",
+      "id" : "C08C9917-C411-42BA-ACB3-403D1A0B2D59",
+      "severity" : "should",
+      "text" : "O packages/skill-icons/README.md documenta a opção tint com um exemplo e explica que ela parte da variante dark."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T19:14:45Z",
+      "details" : "Teste comparando a saída sem tint com snapshots/strings atuais para um ícone com tema e um sem tema, nos temas dark e light.",
+      "id" : "82252913-4DEB-4E18-9F58-FDF95C462FA4",
+      "severity" : "must",
+      "text" : "Sem a opção tint, loadIcons, peekIcons, renderIcon, renderIcons e remoteIconsUrl devolvem exatamente a mesma saída de antes da mudança."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T19:14:45Z",
+      "details" : "Teste em renderIcon('react', { theme: 'auto', tint: '5fd3c4' }) decodificando os dois data URIs e comparando com tintIconSvg.",
+      "id" : "79FDBB5D-4D52-40F6-AE02-F920370AF19C",
+      "severity" : "must",
+      "text" : "Com tint e theme 'auto', renderIcon e renderIcons geram o <picture> com as duas variantes tingidas: a de fallback com tintIconSvg(svgDark, tint, 'dark') e a de LIGHT_MEDIA com tintIconSvg(svgDark, tint, 'light')."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T19:14:45Z",
+      "details" : "Teste na lib com um ícone sem tema e tint definido: o resultado é tintIconSvg(svgÚnico, tint, theme) e não é vazio.",
+      "id" : "4F5A6561-AC22-4FB3-A026-A4BDC0FF6241",
+      "severity" : "must",
+      "text" : "Ícones sem variantes dark/light (ex.: adonis, astro) são tingidos a partir do seu único SVG, nos dois temas, na lib e no icon-manager."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T19:14:45Z",
+      "details" : "renderIcon('react', { latest: true, theme: 'auto', tint: '#5FD3C4' }) contém duas URLs, ambas com &tint=5fd3c4.",
+      "id" : "D651700E-AA27-4E7E-9DF4-028070959B78",
+      "severity" : "must",
+      "text" : "No modo latest, renderIcon e renderIcons repassam o tint a remoteIconsUrl em cada variante de tema gerada."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T19:14:45Z",
+      "details" : "Teste: setAttribute('tint','ff3b30') e depois removeAttribute('tint') atualizam o src do <img> interno.",
+      "id" : "553D62AF-8759-488E-9F60-98CAE9B315EC",
+      "severity" : "should",
+      "text" : "O custom element (entry point element) inclui tint em observedAttributes e re-renderiza ao mudar ou remover o atributo."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T19:14:45Z",
+      "details" : "Inspecionar a função src/shownFile em tools/icon-manager/index.html: o ramo sem tint é o mesmo de hoje.",
+      "id" : "924B286E-2360-42AF-B198-F921CC1EA7D1",
+      "severity" : "must",
+      "text" : "No icon-manager, com tint ativo os ícones são exibidos como data: URL de tintIconSvg; sem tint, o src continua sendo o file:// de icons/ com ?v=version."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T19:14:45Z",
+      "details" : "Com tint ativo, Copy gera o mesmo JSON de entry() que sem tint.",
+      "id" : "358C0E12-6710-4FF6-B301-A650AB1412F2",
+      "severity" : "must",
+      "text" : "No icon-manager, as ações Copy e Reveal produzem os mesmos caminhos de icons/ com ou sem tint."
+    },
+    {
+      "author" : "ai",
+      "createdAt" : "2026-10-20T19:14:45Z",
+      "id" : "73D6B3B3-DC13-4F55-B355-DF619E8FC938",
+      "severity" : "should",
+      "text" : "O controle de tint do icon-manager aceita cor digitada via parseTint e tem uma opção para remover o tint, que volta a exibir os SVGs originais."
+    }
+  ],
+  "status" : "done",
+  "tags" : [
+    "padrao"
+  ],
+  "title" : "Adicionar suporte a Tonalização dos ícones, como já existe no site e na API, no app de swift e nas libs web",
+  "updatedAt" : "2026-10-20T20:03:20Z"
+}

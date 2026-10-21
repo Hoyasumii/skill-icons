@@ -1,0 +1,20 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/workflow-run.schema.json",
+  "createdAt" : "2026-10-21T12:50:05Z",
+  "cycle" : 1,
+  "history" : [
+    {
+      "at" : "2026-10-21T12:53:07Z",
+      "cycle" : 1,
+      "step" : "revisar-integracao",
+      "summary" : "Execução duplicada criada sem input durante retomada; mesma revisão final integral foi efetivamente executada na execução original implemente-a-ideia-adicionar-suporte-a-tonalizacao-dos-icone. Resultado APROVADO, check 1bdd034b e review-final.md originais; encerra duplicata sem trabalho restante.",
+      "verdict" : "APROVADO"
+    }
+  ],
+  "id" : "98C4A6A7-78B7-4673-9E95-7A9AAC549819",
+  "provider" : "codex",
+  "reason" : "a etapa revisar-integracao terminou com APROVADO e nenhuma transição se aplica",
+  "status" : "done",
+  "updatedAt" : "2026-10-21T12:53:07Z",
+  "workflow" : "ferramenta-com-revisao"
+}

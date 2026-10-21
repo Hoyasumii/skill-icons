@@ -1,7 +1,7 @@
 import { LayersIcon } from 'lucide-react';
 import { SectionLabel } from '@/components/section-label';
 import { useI18n } from '@/i18n';
-import { iconSrc } from '@/lib/icons';
+import { useIconSrc } from '@/hooks/use-icon-src';
 import { PRESETS } from '@/lib/presets';
 import { isStackSelected } from '@/lib/stack-selection';
 import { cn } from '@/lib/utils';
@@ -15,6 +15,7 @@ interface PresetListProps {
 
 /** A rail that bleeds to the screen edges on compact, four columns on wide. */
 export function PresetList({ selected, theme, onToggle }: PresetListProps) {
+  const iconSrc = useIconSrc();
   const { t } = useI18n();
 
   return (

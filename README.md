@@ -96,6 +96,18 @@ Change the `&theme=light` to either `dark` or `light`. The theme is the backgrou
 
 [![My Skills](https://skill-icons.alanreisanjo.workers.dev/icons?i=java,kotlin,nodejs,figma&theme=light)](https://skill-icons.alanreisanjo.workers.dev)
 
+# Tinted Icons
+
+Like the tinted icons on macOS, every icon can be redrawn in a single color of your choice. It's optional; without it, the icons keep their own colors.
+
+Add `&tint=5fd3c4` with any hex color (`5fd3c4`, `%235fd3c4` or the short `5fc`). The theme still applies: `dark` lays the tint on a deep tile, `light` on a washed-out one.
+
+```md
+[![My Skills](https://skill-icons.alanreisanjo.workers.dev/icons?i=java,kotlin,nodejs,figma&tint=5fd3c4)](https://skill-icons.alanreisanjo.workers.dev)
+```
+
+[![My Skills](https://skill-icons.alanreisanjo.workers.dev/icons?i=java,kotlin,nodejs,figma&tint=5fd3c4)](https://skill-icons.alanreisanjo.workers.dev)
+
 # Icons Per Line
 
 You can specify how many icons you would like per line! It's an optional argument, and the default is 15.

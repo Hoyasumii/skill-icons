@@ -13,6 +13,7 @@ import type { StackProps } from '@/components/stack-tray';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { Slide } from '@/components/ui/slide';
 import { useBuilderState } from '@/hooks/use-builder-state';
+import { IconTintContext } from '@/hooks/use-icon-src';
 import { useDocumentMeta } from '@/hooks/use-document-meta';
 import { useIsWide } from '@/hooks/use-is-wide';
 import { usePop } from '@/hooks/use-pop';
@@ -114,6 +115,8 @@ function Builder() {
       }}
       onClear={builder.clearIcons}
       onThemeChange={builder.setTheme}
+      tint={state.tint}
+      onTintChange={builder.setTint}
       onPerLineChange={builder.setPerLine}
       onFormatChange={setFormat}
       onFrameworkChange={setFramework}
@@ -123,75 +126,77 @@ function Builder() {
   );
 
   return (
-    <div className="flex h-dvh flex-col overflow-hidden">
-      <SiteHeader />
+    <IconTintContext value={state.tint}>
+      <div className="flex h-dvh flex-col overflow-hidden">
+        <SiteHeader />
 
-      <div className="flex min-h-0 flex-1 flex-col lg:grid lg:grid-cols-[232px_minmax(0,1fr)_400px]">
-        <CategorySidebar value={category} matches={matches} onChange={setCategory} />
+        <div className="flex min-h-0 flex-1 flex-col lg:grid lg:grid-cols-[232px_minmax(0,1fr)_400px]">
+          <CategorySidebar value={category} matches={matches} onChange={setCategory} />
 
-        <main className="flex min-h-0 flex-1 flex-col overflow-y-auto">
-          <div className="flex flex-[1_0_auto] flex-col gap-5 px-4 pt-4 pb-6 lg:px-7 lg:pt-6 lg:pb-10">
-            <SearchInput value={query} onChange={setQuery} />
-            <CategoryRail value={category} matches={matches} onChange={setCategory} />
-            <PresetList selected={state.icons} theme={state.theme} onToggle={selectStack} />
-            <SavedStacks
-              stacks={saved.stacks}
-              selected={state.icons}
-              theme={state.theme}
-              onToggle={selectStack}
-              onRemove={saved.remove}
-              onClear={saved.clear}
-            />
-            <IconGrid
-              icons={filtered}
-              title={t.picker.gridTitle(
-                category ? t.categories[category] : t.picker.allIcons,
-                filtered.length,
-              )}
-              titleIcon={categoryIcon(category)}
-              query={query}
-              selected={state.icons}
-              theme={state.theme}
-              isPopping={name => isPopping(name, false)}
-              onToggle={toggle}
-              onClearSearch={() => setQuery('')}
-            />
-            <SiteFooter page="builder" variant="compact" />
-          </div>
+          <main className="flex min-h-0 flex-1 flex-col overflow-y-auto">
+            <div className="flex flex-[1_0_auto] flex-col gap-5 px-4 pt-4 pb-6 lg:px-7 lg:pt-6 lg:pb-10">
+              <SearchInput value={query} onChange={setQuery} />
+              <CategoryRail value={category} matches={matches} onChange={setCategory} />
+              <PresetList selected={state.icons} theme={state.theme} onToggle={selectStack} />
+              <SavedStacks
+                stacks={saved.stacks}
+                selected={state.icons}
+                theme={state.theme}
+                onToggle={selectStack}
+                onRemove={saved.remove}
+                onClear={saved.clear}
+              />
+              <IconGrid
+                icons={filtered}
+                title={t.picker.gridTitle(
+                  category ? t.categories[category] : t.picker.allIcons,
+                  filtered.length,
+                )}
+                titleIcon={categoryIcon(category)}
+                query={query}
+                selected={state.icons}
+                theme={state.theme}
+                isPopping={name => isPopping(name, false)}
+                onToggle={toggle}
+                onClearSearch={() => setQuery('')}
+              />
+              <SiteFooter page="builder" variant="compact" />
+            </div>
 
-          <Dock stack={stack} exportRef={exportRef} onExport={() => setSheetOpen(true)} />
-        </main>
+            <Dock stack={stack} exportRef={exportRef} onExport={() => setSheetOpen(true)} />
+          </main>
 
-        {wide ? (
-          // The column keeps its width so the grid never reflows. Empty, it's a dashed rule
-          // like the badge title's; the panel slides in over it.
-          <div className="relative min-h-0 overflow-hidden">
-            <div
-              aria-hidden="true"
-              className="absolute inset-y-0 left-0 border-l-2 border-dashed"
-            />
-            <Slide open={hasIcons} from="right" className="relative h-full">
-              <aside
-                aria-label={t.stack.export}
-                className="h-full overflow-y-auto border-l bg-card p-6"
+          {wide ? (
+            // The column keeps its width so the grid never reflows. Empty, it's a dashed rule
+            // like the badge title's; the panel slides in over it.
+            <div className="relative min-h-0 overflow-hidden">
+              <div
+                aria-hidden="true"
+                className="absolute inset-y-0 left-0 border-l-2 border-dashed"
+              />
+              <Slide open={hasIcons} from="right" className="relative h-full">
+                <aside
+                  aria-label={t.stack.export}
+                  className="h-full overflow-y-auto border-l bg-card p-6"
+                >
+                  {exportPanel}
+                </aside>
+              </Slide>
+            </div>
+          ) : (
+            <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+              <SheetContent
+                onCloseAutoFocus={e => {
+                  e.preventDefault();
+                  exportRef.current?.focus();
+                }}
               >
                 {exportPanel}
-              </aside>
-            </Slide>
-          </div>
-        ) : (
-          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-            <SheetContent
-              onCloseAutoFocus={e => {
-                e.preventDefault();
-                exportRef.current?.focus();
-              }}
-            >
-              {exportPanel}
-            </SheetContent>
-          </Sheet>
-        )}
+              </SheetContent>
+            </Sheet>
+          )}
+        </div>
       </div>
-    </div>
+    </IconTintContext>
   );
 }
