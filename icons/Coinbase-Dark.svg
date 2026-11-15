@@ -1,0 +1,6 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="256" height="256" rx="60" fill="#262626"/>
+<svg x="28" y="28" width="200" height="200" viewBox="0 0 48 48" fill="#FFFFFF" preserveAspectRatio="xMidYMid meet">
+<g clip-path="url(#coinbase_clip0_2_2)"><path fill="#0052FF" d="M0 11.08C0 4.96 4.96 0 11.08 0h25.84C43.04 0 48 4.96 48 11.08v25.84C48 43.04 43.04 48 36.92 48H11.08A11.1 11.1 0 0 1 0 36.92z"/><path fill="#fff" d="M23.96 32.5a8.54 8.54 0 0 1-8.28-9.63 8.5 8.5 0 0 1 10.53-7.11 8.5 8.5 0 0 1 6.27 6.54H41A17 17 0 0 0 23.19 7.02 17.06 17.06 0 0 0 7 24a17 17 0 0 0 16.19 16.98A17.07 17.07 0 0 0 41 25.7h-8.52c0 3.4-5.11 6.8-8.52 6.8"/></g><defs><clipPath id="coinbase_clip0_2_2"><rect width="48" height="48" fill="#fff" rx="24"/></clipPath></defs>
+</svg>
+</svg>

@@ -60,6 +60,16 @@
     "category": "productivity"
   },
   {
+    "id": "alibaba",
+    "name": "Alibaba Cloud",
+    "category": "cloud"
+  },
+  {
+    "id": "alipay",
+    "name": "Alipay",
+    "category": "payments"
+  },
+  {
     "id": "alma",
     "name": "AlmaLinux",
     "category": "os"
@@ -73,6 +83,11 @@
     "id": "alpinejs",
     "name": "Alpine.js",
     "category": "frontend"
+  },
+  {
+    "id": "amplitude",
+    "name": "Amplitude",
+    "category": "observability"
   },
   {
     "id": "anaconda",
@@ -135,6 +150,16 @@
     "category": "ide"
   },
   {
+    "id": "appdynamics",
+    "name": "AppDynamics",
+    "category": "observability"
+  },
+  {
+    "id": "appium",
+    "name": "Appium",
+    "category": "testing"
+  },
+  {
     "id": "apple",
     "name": "Apple",
     "category": "os"
@@ -148,6 +173,11 @@
     "id": "applepay",
     "name": "Apple Pay",
     "category": "payments"
+  },
+  {
+    "id": "applitools",
+    "name": "Applitools",
+    "category": "testing"
   },
   {
     "id": "appwrite",
@@ -230,6 +260,11 @@
     "category": "design"
   },
   {
+    "id": "ava",
+    "name": "AVA",
+    "category": "testing"
+  },
+  {
     "id": "awesomewm",
     "name": "awesomeWM",
     "category": "os"
@@ -238,6 +273,11 @@
     "id": "aws",
     "name": "AWS",
     "category": "cloud"
+  },
+  {
+    "id": "axiom",
+    "name": "Axiom",
+    "category": "observability"
   },
   {
     "id": "azul",
@@ -263,6 +303,11 @@
     "id": "backbone",
     "name": "Backbone.js",
     "category": "frontend"
+  },
+  {
+    "id": "bamboo",
+    "name": "Bamboo",
+    "category": "devops"
   },
   {
     "id": "bandcamp",
@@ -300,9 +345,19 @@
     "category": "auth"
   },
   {
+    "id": "betterstack",
+    "name": "Better Stack",
+    "category": "observability"
+  },
+  {
     "id": "bevy",
     "name": "Bevy",
     "category": "game"
+  },
+  {
+    "id": "binance",
+    "name": "Binance",
+    "category": "payments"
   },
   {
     "id": "biome",
@@ -313,6 +368,11 @@
     "id": "bitbucket",
     "name": "Bitbucket",
     "category": "devops"
+  },
+  {
+    "id": "bitcoin",
+    "name": "Bitcoin",
+    "category": "payments"
   },
   {
     "id": "black",
@@ -340,6 +400,11 @@
     "category": "ide"
   },
   {
+    "id": "braintree",
+    "name": "Braintree",
+    "category": "payments"
+  },
+  {
     "id": "bruno",
     "name": "Bruno",
     "category": "tooling"
@@ -348,6 +413,16 @@
     "id": "bsd",
     "name": "BSD",
     "category": "os"
+  },
+  {
+    "id": "bugsnag",
+    "name": "Bugsnag",
+    "category": "observability"
+  },
+  {
+    "id": "buildkite",
+    "name": "Buildkite",
+    "category": "devops"
   },
   {
     "id": "bulma",
@@ -370,6 +445,11 @@
     "category": "language"
   },
   {
+    "id": "caddy",
+    "name": "Caddy",
+    "category": "devops"
+  },
+  {
     "id": "cal",
     "name": "Cal.com",
     "category": "productivity"
@@ -390,6 +470,16 @@
     "category": "frontend"
   },
   {
+    "id": "caprover",
+    "name": "CapRover",
+    "category": "cloud"
+  },
+  {
+    "id": "cashapp",
+    "name": "Cash App",
+    "category": "payments"
+  },
+  {
     "id": "cassandra",
     "name": "Cassandra",
     "category": "database"
@@ -403,6 +493,16 @@
     "id": "cesium",
     "name": "Cesium",
     "category": "frontend"
+  },
+  {
+    "id": "chai",
+    "name": "Chai",
+    "category": "testing"
+  },
+  {
+    "id": "chainlink",
+    "name": "Chainlink",
+    "category": "payments"
   },
   {
     "id": "chakraui",
@@ -430,14 +530,29 @@
     "category": "ai"
   },
   {
+    "id": "chef",
+    "name": "Chef",
+    "category": "devops"
+  },
+  {
     "id": "chocolatey",
     "name": "Chocolatey",
     "category": "tooling"
   },
   {
+    "id": "chromatic",
+    "name": "Chromatic",
+    "category": "testing"
+  },
+  {
     "id": "chromeos",
     "name": "ChromeOS",
     "category": "os"
+  },
+  {
+    "id": "circleci",
+    "name": "CircleCI",
+    "category": "devops"
   },
   {
     "id": "citty",
@@ -485,9 +600,19 @@
     "category": "cloud"
   },
   {
+    "id": "cloudflarepages",
+    "name": "Cloudflare Pages",
+    "category": "cloud"
+  },
+  {
     "id": "cmake",
     "name": "CMake",
     "category": "tooling"
+  },
+  {
+    "id": "codecov",
+    "name": "Codecov",
+    "category": "testing"
   },
   {
     "id": "codepen",
@@ -515,6 +640,11 @@
     "category": "language"
   },
   {
+    "id": "coinbase",
+    "name": "Coinbase",
+    "category": "payments"
+  },
+  {
     "id": "colab",
     "name": "Google Colab",
     "category": "tooling"
@@ -540,6 +670,11 @@
     "category": "productivity"
   },
   {
+    "id": "consul",
+    "name": "Consul",
+    "category": "devops"
+  },
+  {
     "id": "convex",
     "name": "Convex",
     "category": "backend"
@@ -550,9 +685,19 @@
     "category": "cloud"
   },
   {
+    "id": "coveralls",
+    "name": "Coveralls",
+    "category": "testing"
+  },
+  {
     "id": "cpp",
     "name": "C++",
     "category": "language"
+  },
+  {
+    "id": "crossplane",
+    "name": "Crossplane",
+    "category": "devops"
   },
   {
     "id": "crystal",
@@ -635,6 +780,16 @@
     "category": "backend"
   },
   {
+    "id": "dependabot",
+    "name": "Dependabot",
+    "category": "testing"
+  },
+  {
+    "id": "deta",
+    "name": "Deta",
+    "category": "cloud"
+  },
+  {
     "id": "devbox",
     "name": "Devbox",
     "category": "tooling"
@@ -680,6 +835,11 @@
     "category": "frontend"
   },
   {
+    "id": "dokku",
+    "name": "Dokku",
+    "category": "cloud"
+  },
+  {
     "id": "dotnet",
     "name": ".NET",
     "category": "backend"
@@ -695,6 +855,11 @@
     "category": "backend"
   },
   {
+    "id": "drone",
+    "name": "Drone",
+    "category": "devops"
+  },
+  {
     "id": "dropbox",
     "name": "Dropbox",
     "category": "productivity"
@@ -708,6 +873,11 @@
     "id": "dynamodb",
     "name": "DynamoDB",
     "category": "database"
+  },
+  {
+    "id": "dynatrace",
+    "name": "Dynatrace",
+    "category": "observability"
   },
   {
     "id": "echarts",
@@ -775,6 +945,11 @@
     "category": "tooling"
   },
   {
+    "id": "ethereum",
+    "name": "Ethereum",
+    "category": "payments"
+  },
+  {
     "id": "evernote",
     "name": "Evernote",
     "category": "productivity"
@@ -803,6 +978,11 @@
     "id": "facebook",
     "name": "Facebook",
     "category": "social"
+  },
+  {
+    "id": "faker",
+    "name": "Faker",
+    "category": "testing"
   },
   {
     "id": "farcaster",
@@ -870,9 +1050,24 @@
     "category": "frontend"
   },
   {
+    "id": "fluentbit",
+    "name": "Fluent Bit",
+    "category": "observability"
+  },
+  {
+    "id": "fluentd",
+    "name": "Fluentd",
+    "category": "observability"
+  },
+  {
     "id": "flutter",
     "name": "Flutter",
     "category": "os"
+  },
+  {
+    "id": "flux",
+    "name": "Flux",
+    "category": "devops"
   },
   {
     "id": "fly",
@@ -908,6 +1103,11 @@
     "id": "gamemakerstudio",
     "name": "GameMaker Studio",
     "category": "game"
+  },
+  {
+    "id": "gatling",
+    "name": "Gatling",
+    "category": "testing"
   },
   {
     "id": "gatsby",
@@ -1025,6 +1225,11 @@
     "category": "language"
   },
   {
+    "id": "googleanalytics",
+    "name": "Google Analytics",
+    "category": "observability"
+  },
+  {
     "id": "googledocs",
     "name": "Google Docs",
     "category": "productivity"
@@ -1090,6 +1295,11 @@
     "category": "tooling"
   },
   {
+    "id": "gumroad",
+    "name": "Gumroad",
+    "category": "payments"
+  },
+  {
     "id": "hackernews",
     "name": "Hacker News",
     "category": "social"
@@ -1098,6 +1308,11 @@
     "id": "haiku",
     "name": "Haiku",
     "category": "os"
+  },
+  {
+    "id": "harbor",
+    "name": "Harbor",
+    "category": "devops"
   },
   {
     "id": "harmonyos",
@@ -1150,6 +1365,11 @@
     "category": "cloud"
   },
   {
+    "id": "hetzner",
+    "name": "Hetzner",
+    "category": "cloud"
+  },
+  {
     "id": "hibernate",
     "name": "Hibernate",
     "category": "backend"
@@ -1173,6 +1393,11 @@
     "id": "hoppscotch",
     "name": "Hoppscotch",
     "category": "tooling"
+  },
+  {
+    "id": "hotjar",
+    "name": "Hotjar",
+    "category": "observability"
   },
   {
     "id": "html",
@@ -1265,9 +1490,24 @@
     "category": "devops"
   },
   {
+    "id": "istio",
+    "name": "Istio",
+    "category": "devops"
+  },
+  {
     "id": "iterm2",
     "name": "iTerm2",
     "category": "ide"
+  },
+  {
+    "id": "jaeger",
+    "name": "Jaeger",
+    "category": "observability"
+  },
+  {
+    "id": "jasmine",
+    "name": "Jasmine",
+    "category": "testing"
   },
   {
     "id": "java",
@@ -1300,6 +1540,11 @@
     "category": "productivity"
   },
   {
+    "id": "jmeter",
+    "name": "Apache JMeter",
+    "category": "testing"
+  },
+  {
     "id": "jotai",
     "name": "Jotai",
     "category": "frontend"
@@ -1330,6 +1575,11 @@
     "category": "language"
   },
   {
+    "id": "junit",
+    "name": "JUnit",
+    "category": "testing"
+  },
+  {
     "id": "jupyter",
     "name": "Jupyter",
     "category": "ai"
@@ -1338,6 +1588,21 @@
     "id": "just",
     "name": "just",
     "category": "tooling"
+  },
+  {
+    "id": "jwt",
+    "name": "JWT",
+    "category": "auth"
+  },
+  {
+    "id": "k3s",
+    "name": "K3s",
+    "category": "devops"
+  },
+  {
+    "id": "k6",
+    "name": "k6",
+    "category": "testing"
   },
   {
     "id": "kafka",
@@ -1365,6 +1630,11 @@
     "category": "os"
   },
   {
+    "id": "karma",
+    "name": "Karma",
+    "category": "testing"
+  },
+  {
     "id": "kate",
     "name": "Kate",
     "category": "ide"
@@ -1380,14 +1650,29 @@
     "category": "auth"
   },
   {
+    "id": "kibana",
+    "name": "Kibana",
+    "category": "observability"
+  },
+  {
     "id": "kick",
     "name": "Kick",
     "category": "social"
   },
   {
+    "id": "kinsta",
+    "name": "Kinsta",
+    "category": "cloud"
+  },
+  {
     "id": "kitty",
     "name": "kitty",
     "category": "ide"
+  },
+  {
+    "id": "klarna",
+    "name": "Klarna",
+    "category": "payments"
   },
   {
     "id": "knip",
@@ -1408,6 +1693,11 @@
     "id": "kotlinmultiplatform",
     "name": "Kotlin Multiplatform",
     "category": "os"
+  },
+  {
+    "id": "koyeb",
+    "name": "Koyeb",
+    "category": "cloud"
   },
   {
     "id": "ktor",
@@ -1495,6 +1785,11 @@
     "category": "social"
   },
   {
+    "id": "linode",
+    "name": "Linode",
+    "category": "cloud"
+  },
+  {
     "id": "linux",
     "name": "Linux",
     "category": "os"
@@ -1505,9 +1800,24 @@
     "category": "frontend"
   },
   {
+    "id": "locust",
+    "name": "Locust",
+    "category": "testing"
+  },
+  {
     "id": "logseq",
     "name": "Logseq",
     "category": "productivity"
+  },
+  {
+    "id": "logstash",
+    "name": "Logstash",
+    "category": "observability"
+  },
+  {
+    "id": "loki",
+    "name": "Grafana Loki",
+    "category": "observability"
   },
   {
     "id": "loom",
@@ -1523,6 +1833,11 @@
     "id": "lua",
     "name": "Lua",
     "category": "language"
+  },
+  {
+    "id": "lucia",
+    "name": "Lucia",
+    "category": "auth"
   },
   {
     "id": "lunarvim",
@@ -1590,6 +1905,11 @@
     "category": "language"
   },
   {
+    "id": "matomo",
+    "name": "Matomo",
+    "category": "observability"
+  },
+  {
     "id": "matrix",
     "name": "Matrix",
     "category": "social"
@@ -1630,6 +1950,11 @@
     "category": "tooling"
   },
   {
+    "id": "metamask",
+    "name": "MetaMask",
+    "category": "payments"
+  },
+  {
     "id": "micro",
     "name": "micro",
     "category": "ide"
@@ -1638,6 +1963,16 @@
     "id": "million",
     "name": "Million",
     "category": "frontend"
+  },
+  {
+    "id": "mimir",
+    "name": "Grafana Mimir",
+    "category": "observability"
+  },
+  {
+    "id": "minikube",
+    "name": "minikube",
+    "category": "devops"
   },
   {
     "id": "mint",
@@ -1658,6 +1993,11 @@
     "id": "mithril",
     "name": "Mithril.js",
     "category": "frontend"
+  },
+  {
+    "id": "mixpanel",
+    "name": "Mixpanel",
+    "category": "observability"
   },
   {
     "id": "mobx",
@@ -1700,6 +2040,11 @@
     "category": "frontend"
   },
   {
+    "id": "msw",
+    "name": "Mock Service Worker",
+    "category": "testing"
+  },
+  {
     "id": "mypy",
     "name": "mypy",
     "category": "tooling"
@@ -1713,6 +2058,11 @@
     "id": "n8n",
     "name": "n8n",
     "category": "productivity"
+  },
+  {
+    "id": "nagios",
+    "name": "Nagios",
+    "category": "observability"
   },
   {
     "id": "neo4j",
@@ -1740,6 +2090,11 @@
     "category": "os"
   },
   {
+    "id": "netdata",
+    "name": "Netdata",
+    "category": "observability"
+  },
+  {
     "id": "netflix",
     "name": "Netflix",
     "category": "social"
@@ -1750,6 +2105,11 @@
     "category": "cloud"
   },
   {
+    "id": "newrelic",
+    "name": "New Relic",
+    "category": "observability"
+  },
+  {
     "id": "nextjs",
     "name": "Next.js",
     "category": "frontend"
@@ -1758,6 +2118,16 @@
     "id": "nginx",
     "name": "NGINX",
     "category": "devops"
+  },
+  {
+    "id": "ngrok",
+    "name": "ngrok",
+    "category": "devops"
+  },
+  {
+    "id": "nightwatch",
+    "name": "Nightwatch.js",
+    "category": "testing"
   },
   {
     "id": "nim",
@@ -1783,6 +2153,11 @@
     "id": "nodemon",
     "name": "nodemon",
     "category": "tooling"
+  },
+  {
+    "id": "nomad",
+    "name": "Nomad",
+    "category": "devops"
   },
   {
     "id": "nostr",
@@ -1835,6 +2210,11 @@
     "category": "tooling"
   },
   {
+    "id": "oauth",
+    "name": "OAuth",
+    "category": "auth"
+  },
+  {
     "id": "observable",
     "name": "Observable",
     "category": "frontend"
@@ -1858,6 +2238,11 @@
     "id": "octave",
     "name": "Octave",
     "category": "language"
+  },
+  {
+    "id": "okta",
+    "name": "Okta",
+    "category": "auth"
   },
   {
     "id": "ollama",
@@ -1935,6 +2320,21 @@
     "category": "observability"
   },
   {
+    "id": "oracle",
+    "name": "Oracle",
+    "category": "cloud"
+  },
+  {
+    "id": "ory",
+    "name": "Ory",
+    "category": "auth"
+  },
+  {
+    "id": "ovh",
+    "name": "OVHcloud",
+    "category": "cloud"
+  },
+  {
     "id": "oxlint",
     "name": "Oxlint",
     "category": "tooling"
@@ -1943,6 +2343,11 @@
     "id": "p5js",
     "name": "p5.js",
     "category": "frontend"
+  },
+  {
+    "id": "packer",
+    "name": "Packer",
+    "category": "devops"
   },
   {
     "id": "paddle",
@@ -1970,6 +2375,11 @@
     "category": "frontend"
   },
   {
+    "id": "passport",
+    "name": "Passport.js",
+    "category": "auth"
+  },
+  {
     "id": "patreon",
     "name": "Patreon",
     "category": "social"
@@ -1977,6 +2387,11 @@
   {
     "id": "paypal",
     "name": "PayPal",
+    "category": "payments"
+  },
+  {
+    "id": "paytm",
+    "name": "Paytm",
     "category": "payments"
   },
   {
@@ -1990,6 +2405,11 @@
     "category": "social"
   },
   {
+    "id": "percy",
+    "name": "Percy",
+    "category": "testing"
+  },
+  {
     "id": "perl",
     "name": "Perl",
     "category": "language"
@@ -1998,6 +2418,11 @@
     "id": "perplexity",
     "name": "Perplexity",
     "category": "ai"
+  },
+  {
+    "id": "phonepe",
+    "name": "PhonePe",
+    "category": "payments"
   },
   {
     "id": "photoshop",
@@ -2060,6 +2485,11 @@
     "category": "database"
   },
   {
+    "id": "plausible",
+    "name": "Plausible Analytics",
+    "category": "observability"
+  },
+  {
     "id": "playwright",
     "name": "Playwright",
     "category": "testing"
@@ -2090,6 +2520,11 @@
     "category": "database"
   },
   {
+    "id": "podman",
+    "name": "Podman",
+    "category": "devops"
+  },
+  {
     "id": "poetry",
     "name": "Poetry",
     "category": "tooling"
@@ -2097,6 +2532,11 @@
   {
     "id": "polar",
     "name": "Polar",
+    "category": "payments"
+  },
+  {
+    "id": "polygon",
+    "name": "Polygon",
     "category": "payments"
   },
   {
@@ -2108,6 +2548,11 @@
     "id": "popos",
     "name": "Pop!_OS",
     "category": "os"
+  },
+  {
+    "id": "portainer",
+    "name": "Portainer",
+    "category": "devops"
   },
   {
     "id": "postcss",
@@ -2180,6 +2625,16 @@
     "category": "language"
   },
   {
+    "id": "pulumi",
+    "name": "Pulumi",
+    "category": "devops"
+  },
+  {
+    "id": "puppet",
+    "name": "Puppet",
+    "category": "devops"
+  },
+  {
     "id": "puppeteer",
     "name": "Puppeteer",
     "category": "testing"
@@ -2248,6 +2703,11 @@
     "id": "railway",
     "name": "Railway",
     "category": "cloud"
+  },
+  {
+    "id": "rancher",
+    "name": "Rancher",
+    "category": "devops"
   },
   {
     "id": "raspberrypi",
@@ -2340,6 +2800,16 @@
     "category": "frontend"
   },
   {
+    "id": "render",
+    "name": "Render",
+    "category": "cloud"
+  },
+  {
+    "id": "renovate",
+    "name": "Renovate",
+    "category": "testing"
+  },
+  {
     "id": "replit",
     "name": "Replit",
     "category": "cloud"
@@ -2348,6 +2818,11 @@
     "id": "resend",
     "name": "Resend",
     "category": "productivity"
+  },
+  {
+    "id": "revolut",
+    "name": "Revolut",
+    "category": "payments"
   },
   {
     "id": "rider",
@@ -2385,6 +2860,11 @@
     "category": "os"
   },
   {
+    "id": "rollbar",
+    "name": "Rollbar",
+    "category": "observability"
+  },
+  {
     "id": "rolldown",
     "name": "Rolldown",
     "category": "tooling"
@@ -2420,6 +2900,11 @@
     "category": "tooling"
   },
   {
+    "id": "rundeck",
+    "name": "Rundeck",
+    "category": "devops"
+  },
+  {
     "id": "rush",
     "name": "Rush",
     "category": "tooling"
@@ -2440,6 +2925,11 @@
     "category": "tooling"
   },
   {
+    "id": "saltstack",
+    "name": "Salt Project",
+    "category": "devops"
+  },
+  {
     "id": "sass",
     "name": "Sass",
     "category": "language"
@@ -2453,6 +2943,11 @@
     "id": "scalar",
     "name": "Scalar",
     "category": "tooling"
+  },
+  {
+    "id": "scaleway",
+    "name": "Scaleway",
+    "category": "cloud"
   },
   {
     "id": "scikitlearn",
@@ -2483,6 +2978,11 @@
     "id": "shadcnui",
     "name": "shadcn/ui",
     "category": "frontend"
+  },
+  {
+    "id": "shopify",
+    "name": "Shopify",
+    "category": "payments"
   },
   {
     "id": "shortcut",
@@ -2530,6 +3030,16 @@
     "category": "social"
   },
   {
+    "id": "snyk",
+    "name": "Snyk",
+    "category": "testing"
+  },
+  {
+    "id": "solana",
+    "name": "Solana",
+    "category": "payments"
+  },
+  {
     "id": "solidity",
     "name": "Solidity",
     "category": "language"
@@ -2540,6 +3050,11 @@
     "category": "frontend"
   },
   {
+    "id": "sonarqube",
+    "name": "SonarQube",
+    "category": "testing"
+  },
+  {
     "id": "soundcloud",
     "name": "SoundCloud",
     "category": "social"
@@ -2548,6 +3063,11 @@
     "id": "spacemacs",
     "name": "Spacemacs",
     "category": "ide"
+  },
+  {
+    "id": "splunk",
+    "name": "Splunk",
+    "category": "observability"
   },
   {
     "id": "spotify",
@@ -2645,6 +3165,11 @@
     "category": "tooling"
   },
   {
+    "id": "stytch",
+    "name": "Stytch",
+    "category": "auth"
+  },
+  {
     "id": "sublime",
     "name": "Sublime Text",
     "category": "ide"
@@ -2653,6 +3178,11 @@
     "id": "substack",
     "name": "Substack",
     "category": "social"
+  },
+  {
+    "id": "sumup",
+    "name": "SumUp",
+    "category": "payments"
   },
   {
     "id": "supabase",
@@ -2710,6 +3240,11 @@
     "category": "os"
   },
   {
+    "id": "tailscale",
+    "name": "Tailscale",
+    "category": "devops"
+  },
+  {
     "id": "tailwindcss",
     "name": "Tailwind CSS",
     "category": "frontend"
@@ -2730,9 +3265,19 @@
     "category": "tooling"
   },
   {
+    "id": "teamcity",
+    "name": "TeamCity",
+    "category": "devops"
+  },
+  {
     "id": "teams",
     "name": "Microsoft Teams",
     "category": "productivity"
+  },
+  {
+    "id": "tekton",
+    "name": "Tekton",
+    "category": "devops"
   },
   {
     "id": "telegram",
@@ -2748,6 +3293,11 @@
     "id": "terraform",
     "name": "Terraform",
     "category": "devops"
+  },
+  {
+    "id": "testcafe",
+    "name": "TestCafe",
+    "category": "testing"
   },
   {
     "id": "testinglibrary",
@@ -2792,6 +3342,11 @@
   {
     "id": "traefik",
     "name": "Traefik",
+    "category": "devops"
+  },
+  {
+    "id": "travisci",
+    "name": "Travis CI",
     "category": "devops"
   },
   {
@@ -2845,6 +3400,11 @@
     "category": "os"
   },
   {
+    "id": "umami",
+    "name": "Umami",
+    "category": "observability"
+  },
+  {
     "id": "unbuild",
     "name": "unbuild",
     "category": "tooling"
@@ -2870,6 +3430,11 @@
     "category": "database"
   },
   {
+    "id": "uptimekuma",
+    "name": "Uptime Kuma",
+    "category": "observability"
+  },
+  {
     "id": "uv",
     "name": "uv",
     "category": "tooling"
@@ -2880,14 +3445,34 @@
     "category": "language"
   },
   {
+    "id": "vagrant",
+    "name": "Vagrant",
+    "category": "devops"
+  },
+  {
     "id": "vala",
     "name": "Vala",
     "category": "language"
   },
   {
+    "id": "vault",
+    "name": "Vault",
+    "category": "devops"
+  },
+  {
     "id": "vcpkg",
     "name": "vcpkg",
     "category": "tooling"
+  },
+  {
+    "id": "vector",
+    "name": "Vector",
+    "category": "observability"
+  },
+  {
+    "id": "venmo",
+    "name": "Venmo",
+    "category": "payments"
   },
   {
     "id": "vercel",
@@ -2975,6 +3560,11 @@
     "category": "frontend"
   },
   {
+    "id": "vultr",
+    "name": "Vultr",
+    "category": "cloud"
+  },
+  {
     "id": "warp",
     "name": "Warp",
     "category": "ide"
@@ -2988,6 +3578,11 @@
     "id": "webassembly",
     "name": "WebAssembly",
     "category": "language"
+  },
+  {
+    "id": "webdriverio",
+    "name": "WebdriverIO",
+    "category": "testing"
   },
   {
     "id": "webflow",
@@ -3035,9 +3630,19 @@
     "category": "ide"
   },
   {
+    "id": "wireit",
+    "name": "Wireit",
+    "category": "tooling"
+  },
+  {
     "id": "wiremock",
     "name": "WireMock",
     "category": "tooling"
+  },
+  {
+    "id": "wise",
+    "name": "Wise",
+    "category": "payments"
   },
   {
     "id": "word",
@@ -3053,6 +3658,11 @@
     "id": "workers",
     "name": "Cloudflare Workers",
     "category": "cloud"
+  },
+  {
+    "id": "workos",
+    "name": "WorkOS",
+    "category": "auth"
   },
   {
     "id": "wsl",
@@ -3105,6 +3715,11 @@
     "category": "social"
   },
   {
+    "id": "zabbix",
+    "name": "Zabbix",
+    "category": "observability"
+  },
+  {
     "id": "zapier",
     "name": "Zapier",
     "category": "productivity"
@@ -3113,6 +3728,11 @@
     "id": "zed",
     "name": "Zed",
     "category": "ide"
+  },
+  {
+    "id": "zelle",
+    "name": "Zelle",
+    "category": "payments"
   },
   {
     "id": "zellij",
