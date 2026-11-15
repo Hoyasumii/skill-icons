@@ -25,7 +25,7 @@ export const categories = {
   backend: {
     actix: 1, adonis: 1, django: 1, elysia: 1, expressjs: 1, fastapi: 1, fastify: 1, flask: 1, hibernate: 1,
     hono: 1, ktor: 1, laravel: 1, nestjs: 1, nodejs: 1, rails: 1, spring: 1, symfony: 1, trpc: 1, deno: 1, bun: 1,
-    dotnet: 1, sequelize: 1, prisma: 1, drizzle: 1, mcp: 1, apollo: 1, appwrite: 1, convex: 1, gin: 1, strapi: 1, fiber: 1,
+    dotnet: 1, sequelize: 1, prisma: 1, drizzle: 1, mcp: 1, apollo: 1, appwrite: 1, convex: 1, gin: 1, strapi: 1, fiber: 1, afora: 1,
   },
   database: {
     cassandra: 1, clickhouse: 1, dynamodb: 1, elasticsearch: 1, mongodb: 1, mysql: 1, neon: 1, planetscale: 1,
@@ -91,6 +91,7 @@ export const categories = {
 export const displayNames: Record<string, string> = {
   adonis: 'AdonisJS',
   aftereffects: 'After Effects',
+  afora: 'afora',
   alma: 'AlmaLinux',
   alpine: 'Alpine Linux',
   alpinejs: 'Alpine.js',

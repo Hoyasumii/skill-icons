@@ -7,7 +7,7 @@ import { parseTint } from './tint';
 // What the MCP tools answer, without the SDK: the Worker serves it, the /mcp page shows it as examples.
 
 export const MCP_SERVER_NAME = 'skill-icons';
-export const MCP_SERVER_VERSION = '1.0.0';
+export const MCP_SERVER_VERSION = '26.11.1';
 export const SEARCH_TOOL = 'skill_icons_search';
 export const BADGE_TOOL = 'skill_icons_badge';
 export const SEARCH_DEFAULT_LIMIT = 50;
