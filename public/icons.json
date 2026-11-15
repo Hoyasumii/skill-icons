@@ -30,6 +30,11 @@
     "category": "payments"
   },
   {
+    "id": "afora",
+    "name": "afora",
+    "category": "backend"
+  },
+  {
     "id": "aftereffects",
     "name": "After Effects",
     "category": "design"
