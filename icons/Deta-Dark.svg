@@ -1,0 +1,6 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="256" height="256" rx="60" fill="#262626"/>
+<svg x="28" y="28" width="200" height="200" viewBox="0 0 128 128" fill="#FFFFFF" preserveAspectRatio="xMidYMid meet">
+<path fill="#f73b95" d="M128 64A64 64 0 1 1 0 64a64 64 0 0 1 128 0m0 0"/><path fill="#bd399c" d="M115.2 64a51.2 51.2 0 1 1-102.4 0 51.2 51.2 0 0 1 102.4 0m0 0"/><path fill="#93388e" d="M102.4 64a38.4 38.4 0 1 1-76.8 0 38.4 38.4 0 0 1 76.8 0m0 0"/><path fill="#6030a2" d="M89.6 64a25.6 25.6 0 1 1-51.2 0 25.6 25.6 0 0 1 51.2 0m0 0"/>
+</svg>
+</svg>

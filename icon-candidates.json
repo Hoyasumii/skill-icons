@@ -171,7 +171,7 @@
         "name": "JWT",
         "id": "jwt",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Kinde",
@@ -189,37 +189,37 @@
         "name": "Lucia",
         "id": "lucia",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "OAuth",
         "id": "oauth",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Okta",
         "id": "okta",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Ory",
         "id": "ory",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Passport",
         "id": "passport",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Stytch",
         "id": "stytch",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "SupabaseAuth",
@@ -231,7 +231,7 @@
         "name": "WorkOS",
         "id": "workos",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       }
     ],
     "backend": [
@@ -421,37 +421,37 @@
         "name": "Alibaba",
         "id": "alibaba",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "CapRover",
         "id": "caprover",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "CloudflarePages",
         "id": "cloudflarepages",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Deta",
         "id": "deta",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Dokku",
         "id": "dokku",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Hetzner",
         "id": "hetzner",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "IBMCloud",
@@ -463,19 +463,19 @@
         "name": "Kinsta",
         "id": "kinsta",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Koyeb",
         "id": "koyeb",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Linode",
         "id": "linode",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Northflank",
@@ -487,31 +487,31 @@
         "name": "Oracle",
         "id": "oracle",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "OVH",
         "id": "ovh",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Render",
         "id": "render",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Scaleway",
         "id": "scaleway",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Vultr",
         "id": "vultr",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       }
     ],
     "database": [
@@ -823,31 +823,31 @@
         "name": "Bamboo",
         "id": "bamboo",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Buildkite",
         "id": "buildkite",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Caddy",
         "id": "caddy",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Chef",
         "id": "chef",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "CircleCI",
         "id": "circleci",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Cloudflared",
@@ -859,145 +859,145 @@
         "name": "Consul",
         "id": "consul",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Crossplane",
         "id": "crossplane",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Drone",
         "id": "drone",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Flux",
         "id": "flux",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Harbor",
         "id": "harbor",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Istio",
         "id": "istio",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "K3s",
         "id": "k3s",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Minikube",
         "id": "minikube",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Ngrok",
         "id": "ngrok",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Nomad",
         "id": "nomad",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Packer",
         "id": "packer",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Podman",
         "id": "podman",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Portainer",
         "id": "portainer",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Pulumi",
         "id": "pulumi",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Puppet",
         "id": "puppet",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Rancher",
         "id": "rancher",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Rundeck",
         "id": "rundeck",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "SaltStack",
         "id": "saltstack",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Tailscale",
         "id": "tailscale",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "TeamCity",
         "id": "teamcity",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Tekton",
         "id": "tekton",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "TravisCI",
         "id": "travisci",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Vagrant",
         "id": "vagrant",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Vault",
         "id": "vault",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       }
     ],
     "frontend": [
@@ -2099,49 +2099,49 @@
         "name": "Amplitude",
         "id": "amplitude",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "AppDynamics",
         "id": "appdynamics",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Axiom",
         "id": "axiom",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "BetterStack",
         "id": "betterstack",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Bugsnag",
         "id": "bugsnag",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Dynatrace",
         "id": "dynatrace",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "FluentBit",
         "id": "fluentbit",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Fluentd",
         "id": "fluentd",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Glitchtip",
@@ -2153,7 +2153,7 @@
         "name": "GoogleAnalytics",
         "id": "googleanalytics",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Highlight",
@@ -2171,19 +2171,19 @@
         "name": "Hotjar",
         "id": "hotjar",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Jaeger",
         "id": "jaeger",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Kibana",
         "id": "kibana",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "LogRocket",
@@ -2195,67 +2195,67 @@
         "name": "Logstash",
         "id": "logstash",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Loki",
         "id": "loki",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Matomo",
         "id": "matomo",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Mimir",
         "id": "mimir",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Mixpanel",
         "id": "mixpanel",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Nagios",
         "id": "nagios",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Netdata",
         "id": "netdata",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "NewRelic",
         "id": "newrelic",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Plausible",
         "id": "plausible",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Rollbar",
         "id": "rollbar",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Splunk",
         "id": "splunk",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Telegraf",
@@ -2273,25 +2273,25 @@
         "name": "Umami",
         "id": "umami",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "UptimeKuma",
         "id": "uptimekuma",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Vector",
         "id": "vector",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Zabbix",
         "id": "zabbix",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Zipkin",
@@ -2529,19 +2529,19 @@
         "name": "Alipay",
         "id": "alipay",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Binance",
         "id": "binance",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Bitcoin",
         "id": "bitcoin",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Bradesco",
@@ -2553,7 +2553,7 @@
         "name": "Braintree",
         "id": "braintree",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "C6",
@@ -2565,13 +2565,13 @@
         "name": "CashApp",
         "id": "cashapp",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Chainlink",
         "id": "chainlink",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Checkout",
@@ -2583,19 +2583,19 @@
         "name": "Coinbase",
         "id": "coinbase",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Ethereum",
         "id": "ethereum",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Gumroad",
         "id": "gumroad",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Inter",
@@ -2613,7 +2613,7 @@
         "name": "Klarna",
         "id": "klarna",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Ledger",
@@ -2625,7 +2625,7 @@
         "name": "MetaMask",
         "id": "metamask",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Mollie",
@@ -2649,13 +2649,13 @@
         "name": "Paytm",
         "id": "paytm",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "PhonePe",
         "id": "phonepe",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Plaid",
@@ -2667,13 +2667,13 @@
         "name": "Polygon",
         "id": "polygon",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Revolut",
         "id": "revolut",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Santander",
@@ -2685,13 +2685,13 @@
         "name": "Shopify",
         "id": "shopify",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Solana",
         "id": "solana",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Stone",
@@ -2703,7 +2703,7 @@
         "name": "Sumup",
         "id": "sumup",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Uniswap",
@@ -2721,7 +2721,7 @@
         "name": "Venmo",
         "id": "venmo",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "WeChatPay",
@@ -2733,7 +2733,7 @@
         "name": "Wise",
         "id": "wise",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Woovi",
@@ -2745,7 +2745,7 @@
         "name": "Zelle",
         "id": "zelle",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       }
     ],
     "productivity": [
@@ -3267,49 +3267,49 @@
         "name": "Appium",
         "id": "appium",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Applitools",
         "id": "applitools",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Ava",
         "id": "ava",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Chai",
         "id": "chai",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Chromatic",
         "id": "chromatic",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Codecov",
         "id": "codecov",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Coveralls",
         "id": "coveralls",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Dependabot",
         "id": "dependabot",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Detox",
@@ -3327,49 +3327,49 @@
         "name": "Faker",
         "id": "faker",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Gatling",
         "id": "gatling",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Jasmine",
         "id": "jasmine",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "JMeter",
         "id": "jmeter",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "JUnit",
         "id": "junit",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "K6",
         "id": "k6",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Karma",
         "id": "karma",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Locust",
         "id": "locust",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Maestro",
@@ -3381,13 +3381,13 @@
         "name": "MSW",
         "id": "msw",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Nightwatch",
         "id": "nightwatch",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Pact",
@@ -3399,13 +3399,13 @@
         "name": "Percy",
         "id": "percy",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Renovate",
         "id": "renovate",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Sinon",
@@ -3417,13 +3417,13 @@
         "name": "Snyk",
         "id": "snyk",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "SonarQube",
         "id": "sonarqube",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "Supertest",
@@ -3441,13 +3441,13 @@
         "name": "TestCafe",
         "id": "testcafe",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "WebdriverIO",
         "id": "webdriverio",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       }
     ],
     "tooling": [
@@ -3935,7 +3935,7 @@
         "name": "Wireit",
         "id": "wireit",
         "priority": "normal",
-        "status": "pending"
+        "status": "added"
       },
       {
         "name": "WireMock",

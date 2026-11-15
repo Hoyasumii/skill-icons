@@ -1,0 +1,6 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="256" height="256" rx="60" fill="#262626"/>
+<svg x="28" y="28" width="200" height="200" viewBox="0 0 256 296" fill="#FFFFFF" preserveAspectRatio="xMidYMid meet">
+<defs><linearGradient id="bamboo_linearGradient-1" x1="50.02%" x2="50.02%" y1="-98.3%" y2="38.22%"><stop offset="0%" stop-color="#0052CC"/><stop offset="100%" stop-color="#2684FF"/></linearGradient><linearGradient id="bamboo_linearGradient-2" x1="50.02%" x2="50.02%" y1=".76%" y2="138.58%"><stop offset="0%" stop-color="#0052CC"/><stop offset="100%" stop-color="#2684FF"/></linearGradient></defs><g><path fill="#2684FF" d="M247.2 167.9h-61.4a8 8 0 0 0-8.03 6.82 50.5 50.5 0 0 1-50.03 43.5l16.62 75.93a127.74 127.74 0 0 0 110.88-117.66 8.03 8.03 0 0 0-8.03-8.6"/><path fill="#2684FF" d="m140.95 165.97 88.35-75.94a8.03 8.03 0 0 0 0-12.05L140.95 1.93a8.03 8.03 0 0 0-13.21 6.1v151.83a8.03 8.03 0 0 0 13.21 6.1"/><path fill="url(#bamboo_linearGradient-1)" d="M1.2 184.48a127.74 127.74 0 0 0 126.54 110.87v-77.14A50.44 50.44 0 0 1 77.3 167.9z"/><path fill="url(#bamboo_linearGradient-2)" d="M0 166.7v1.2h77.3a50.44 50.44 0 0 1 50.44-50.32l-16.59-75.94A127.66 127.66 0 0 0 0 166.7"/></g>
+</svg>
+</svg>

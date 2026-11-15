@@ -1,0 +1,86 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-check.schema.json",
+  "author" : "ai",
+  "createdAt" : "2026-11-01T16:19:00.538Z",
+  "failures" : [
+    "bun run typecheck e bun run test passam"
+  ],
+  "files" : [
+    "icon-candidates.json",
+    "icons/Alibaba-Dark.svg",
+    "icons/Klarna.svg",
+    "icons/Wise.svg",
+    "icons/Zelle-Light.svg",
+    "public/icons.json",
+    "shared/icon-categories.ts"
+  ],
+  "id" : "8D4BF4F6-1486-4557-8BC6-989014A3207C",
+  "passed" : false,
+  "pending" : [
+    "Lógica usada por mais de uma ponta (site, worker, scripts) vive em shared/ e é importada de lá, sem duplicar.",
+    "Logo vem da fonte oficial da marca",
+    "Nome de exibição usa a grafia oficial da marca",
+    "Ícone gerado com bun skill-icon generate e na categoria certa"
+  ],
+  "results" : [
+    {
+      "exitCode" : 0,
+      "note" : ".vibedeck/tests/padrao-icones-como-fonte-unica-icons-generated/10385057.sh (exit 0)\n(sem saída)",
+      "ruleId" : "10385057-A572-4955-BEA8-ABA70A477BDB",
+      "source" : "script",
+      "topic" : "padrao-icones-como-fonte-unica-icons-generated",
+      "verdict" : "pass"
+    },
+    {
+      "exitCode" : 0,
+      "note" : ".vibedeck/tests/padrao-logica-compartilhada-em-shared/b230ffc6.sh (exit 0)\n(sem saída)",
+      "ruleId" : "B230FFC6-C38F-41FB-8C46-A0E1BAC459CD",
+      "source" : "script",
+      "topic" : "padrao-logica-compartilhada-em-shared",
+      "verdict" : "pass"
+    },
+    {
+      "exitCode" : 1,
+      "note" : ".vibedeck/tests/contribuicao/1f5b433c.sh (exit 1)\n… (saída cortada)\n _WebSocket.#queuingDispatchToPair node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94428:12\n ❯ _WebSocket.[kClose] node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94486:37\n ❯ WebSocket.<anonymous> node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94522:19\n\nCaused by: Error: Worker exited unexpectedly\n ❯ _WebSocket.emitUnexpectedExit node_modules/.bun/vitest@4.1.11+e1826ce1558344d5/node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:3090:33\n ❯ _WebSocket.[nodejs.internal.kHybridDispatch] node:internal/event_target:843:20\n ❯ _WebSocket.dispatchEvent node:internal/event_target:776:26\n ❯ _WebSocket.dispatchEvent node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94125:18\n ❯ _WebSocket.#queuingDispatchToPair node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94428:12\n ❯ _WebSocket.[kClose] node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94486:37\n ❯ WebSocket.<anonymous> node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94522:19\n ❯ WebSocket.emit node:events:519:28\n ❯ WebSocket.emit node:domain:489:12\n ❯ WebSocket.emitClose node_modules/.bun/ws@8.21.0/node_modules/ws/lib/websocket.js:279:10\n\n\n⎯⎯⎯⎯⎯⎯ Unhandled Error ⎯⎯⎯⎯⎯⎯⎯\nError: [vitest-pool]: Worker cloudflare-pool emitted error.\n ❯ EventEmitter.onTaskError node_modules/.bun/vitest@4.1.11+e1826ce1558344d5/node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:3526:21\n ❯ EventEmitter.emit node:events:519:28\n ❯ EventEmitter.emit node:domain:489:12\n ❯ _WebSocket.emitUnexpectedExit node_modules/.bun/vitest@4.1.11+e1826ce1558344d5/node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:3092:22\n ❯ _WebSocket.[nodejs.internal.kHybridDispatch] node:internal/event_target:843:20\n ❯ _WebSocket.dispatchEvent node:internal/event_target:776:26\n ❯ _WebSocket.dispatchEvent node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94125:18\n ❯ _WebSocket.#queuingDispatchToPair node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94428:12\n ❯ _WebSocket.[kClose] node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94486:37\n ❯ WebSocket.<anonymous> node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94522:19\n\nCaused by: Error: Worker exited unexpectedly\n ❯ _WebSocket.emitUnexpectedExit node_modules/.bun/vitest@4.1.11+e1826ce1558344d5/node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:3090:33\n ❯ _WebSocket.[nodejs.internal.kHybridDispatch] node:internal/event_target:843:20\n ❯ _WebSocket.dispatchEvent node:internal/event_target:776:26\n ❯ _WebSocket.dispatchEvent node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94125:18\n ❯ _WebSocket.#queuingDispatchToPair node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94428:12\n ❯ _WebSocket.[kClose] node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94486:37\n ❯ WebSocket.<anonymous> node_modules/.bun/miniflare@5.20260815.0-alpha/node_modules/miniflare/dist/src/index.js:94522:19\n ❯ WebSocket.emit node:events:519:28\n ❯ WebSocket.emit node:domain:489:12\n ❯ WebSocket.emitClose node_modules/.bun/ws@8.21.0/node_modules/ws/lib/websocket.js:279:10\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\n\n Test Files  10 passed (13)\n      Tests  95 passed (181)\n     Errors  3 errors\n   Start at  13:18:44\n   Duration  6.23s (transform 1.99s, setup 0ms, import 5.67s, tests 35ms, environment 1ms)\n\nclose timed out after 10000ms\nTests closed successfully but something prevents Vite server from exiting\nYou can try to identify the cause by enabling \"hanging-process\" reporter. See https://vitest.dev/guide/reporters.html#hanging-process-reporter\nerror: script \"test\" exited with code 1\nbun run test falhou",
+      "ruleId" : "1F5B433C-9DF2-4863-B9D4-F4A51F68C2D0",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "fail"
+    },
+    {
+      "exitCode" : 0,
+      "note" : ".vibedeck/tests/contribuicao/6efdb945.sh (exit 0)\n(sem saída)",
+      "ruleId" : "6EFDB945-9962-4184-A195-4B71A6DD8B43",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "pass"
+    },
+    {
+      "exitCode" : 0,
+      "note" : ".vibedeck/tests/contribuicao/e3ceff99.sh (exit 0)\nChecked 2 files in 6ms. No fixes applied.",
+      "ruleId" : "E3CEFF99-B1B6-4BCF-93DF-C124C2930B2F",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "pass"
+    },
+    {
+      "exitCode" : 77,
+      "note" : ".vibedeck/tests/contribuicao/f942375e.sh (exit 77)\n(sem saída)",
+      "ruleId" : "F942375E-3652-4D89-A248-587D92811015",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "na"
+    }
+  ],
+  "runId" : "20261101-161840-81bb135e",
+  "task" : "Adicionar 124 ícones candidatos (tooling, testing, payments, observability, devops, cloud, auth)",
+  "topics" : [
+    "padrao-icones-como-fonte-unica-icons-generated",
+    "padrao-logica-compartilhada-em-shared",
+    "contribuicao",
+    "icones"
+  ],
+  "warnings" : [
+
+  ]
+}

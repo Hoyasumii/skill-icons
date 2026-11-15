@@ -31,17 +31,26 @@ na ordem, com `note` dizendo como o projeto usa cada uma. Antes de implementar a
 `remove_stack` / `vibedeck stack remove <ids…>`, `update_stack` / `vibedeck stack note <id> "..."`; ache ids com
 `search_stack_icons` / `vibedeck stack search <texto>`. O badge da stack no README.md (bloco
 `<!-- vibedeck:stack:start -->`) é regravado a cada mudança; não o edite à mão.
+Sem MCP, use o CLI; sem ambos, leia `stack` e suas notas diretamente em `vibedeck.json`.
+O badge mostra tecnologias, mas não inclui as notas de uso.
 
 ## Padrões de projeto — siga ao implementar
 
 `patterns` no `vibedeck.json` lista os padrões de código que o projeto adotou (TDD, arquitetura hexagonal, DDD,
 CQRS…), com `note` dizendo como o projeto aplica cada um. Antes de implementar, leia os padrões (`list_patterns` /
 `vibedeck patterns --json`) e escreva o código seguindo-os, para manter o projeto consistente.
-Cada padrão tem um tópico de regras em `.vibedeck/rules/` (`sourcePattern` aponta para ele; `paths` dá o escopo),
+Cada padrão aponta por `topic` para um tópico em `.vibedeck/rules/` (`paths` dá o escopo),
 então as regras dele chegam pelo `rules_for` e são cobradas no check como qualquer outra.
 Para mudar: `pattern_catalog` / `vibedeck patterns catalog` mostra o catálogo; `add_pattern` / `vibedeck patterns add <ids…> --ai`
 (ou `--custom "<nome>" --rule "..."`), `remove_pattern` / `vibedeck patterns remove <id>` (apaga o tópico),
 `update_pattern` / `vibedeck patterns note|paths <id> ...`. Apagar o tópico de um padrão retira o padrão.
+`list_patterns` e `vibedeck://patterns` incluem notas, regras e escopos. Já `vibedeck patterns --json`
+retorna os registros do manifesto: consulte também `rules_for` / `vibedeck rules for <arquivos> --json`
+antes de implementar. Sem MCP/CLI, leia `patterns` em `vibedeck.json`, abra os tópicos referidos por
+`topic` em `.vibedeck/rules/` e os demais tópicos aplicáveis: `paths` vazio é global; com globs,
+só vale quando algum arquivo da tarefa casa. `sourcePattern` no tópico identifica o padrão.
+Releia notas, regras e escopos após mudanças; o contexto não é uma cópia fixa no prompt.
+Ausência de `patterns` (ou lista vazia) significa nenhum padrão cadastrado, sem dispensar as outras regras.
 
 ## Estrutura
 
@@ -59,6 +68,8 @@ vibedeck.json                 # declara o projeto: nome, links, coleção Claude
   workflows/<slug>.json       # um workflow do VibeDeck por arquivo (etapas e transições condicionais)
   runs/<workflow>/<execução>/ # execuções de workflows: run.json (estado; não edite) + o que as etapas gravam
   tests/<tópico>/<regra>.sh   # scripts gerados a partir das regras (ver "Testes de regras")
+  tests/_tasks.json           # tarefas compartilhadas referenciadas por test.needs
+  tests/_kit/lib.sh           # helpers comuns dos scripts de regras
   checks/*.json               # verificações de regras registradas (histórico; não edite)
   attachments/<dono>-<nome>   # arquivos anexados a docs/ideias; no markdown: `![](../attachments/x.png)`
 ```
@@ -76,7 +87,7 @@ A sidebar aparece após o primeiro item; o botão Adicionar do Claude em Links p
 Só aceita URLs do claude.ai. O usuário escolhe o tipo e o título; não há importação automática nem API
 para apagar na conta. MCP: `list_claude_items` (filtro `kind`) e `add_claude_item` (`url`, `kind`, `title`, `tags`).
 
-Schemas: https://vibedeck-schema.alanreisanjo.workers.dev/v1/{project,review-group,rule-topic,idea,agent,command,skill,workflow,workflow-run,rule-check}.schema.json
+Schemas: https://vibedeck-schema.alanreisanjo.workers.dev/v1/{project,review-group,rule-topic,idea,agent,command,skill,workflow,workflow-run,rule-check,rule-tasks}.schema.json
 
 O botão **Reorganizar** nas listas de Regras, Docs, Ideias e Revisões analisa os quatro conceitos com
 Claude Code ou Codex somente leitura. A proposta mostra conflitos, mesclagens, movimentos, criação de
@@ -151,11 +162,42 @@ execução por projeto, com progresso e Cancelar.
 
 ## Testes de regras
 
-Uma regra pode ter um `test`: `{mode: script|manual, command, reason, ruleHash, generatedAt}`.
+Uma regra pode ter um `test`: `{mode: script|manual, command, reason, ruleHash, generatedAt,
+applies, platform, needs, inputs, timeoutSeconds, checks}`. Os campos do framework são opcionais:
+um teste antigo com `command` continua funcionando, e um teste `script` pode conter apenas `checks`.
+
+- `applies`: globs dos arquivos alterados; sem correspondência vira `na`. Vazio aplica ao projeto todo.
+- `platform`: sistemas aceitos (`macos`, `linux`); vazio aceita todos. Fora deles vira `na`.
+- `needs`: nomes de tarefas em `.vibedeck/tests/_tasks.json`, executadas uma vez por execução, usando
+  a mesma trava por ferramenta de build dos scripts. O script recebe `VIBEDECK_TASK_<NOME>_LOG`
+  (caminho do log) e `_STATUS` (código de saída); o nome vira maiúsculas com separadores `_`.
+  Use `need_task` para propagar o log e a falha; tarefas fora da plataforma entregam status 77.
+  Helpers mistos podem conservar checagens estáticas fora do macOS.
+- `inputs`: globs cujo conteúdo participa do cache local. Sem inputs não há cache. Só `pass` e `na`
+  podem ser reutilizados; alterações na regra, checks, scripts auxiliares, kit ou dependências invalidam
+  a chave. Entradas ilegíveis desabilitam cache. O cache fica fora do projeto, com retenção limitada.
+- `timeoutSeconds`: limite contado do início do script (padrão 120 s; tarefas compartilhadas, 900 s).
+- `checks`: checagens no Core, antes do shell: `contains`/`absent` usam `file` e `regex` ou `literal`;
+  `order` usa `file`, `first` e `then` (expressões regulares); `exists` usa `glob`. `message` é o motivo
+  opcional da falha. Tipo desconhecido reprova. Os arquivos são lidos uma vez por execução.
+
+Exemplo de `.vibedeck/tests/_tasks.json` (schema `rule-tasks`):
+
+```json
+{"tasks":{"cargo-test":{"command":"cargo test --workspace","tool":"cargo","timeoutSeconds":900}}}
+```
+
+Cada tarefa aceita `command`, `description`, `tool`, `inputs`, `platform` e `timeoutSeconds`.
+Só declare inputs quando cobrir todas as entradas; tarefas que produzem artefatos de build ficam sem cache.
+O catálogo MCP é compacto; `tool_schema(tool)` recupera descrições e parâmetros completos sob demanda.
+O kit único `.vibedeck/tests/_kit/lib.sh` oferece `need`, `deny`, `fail` e `applies` (saída 77).
+O Core fornece `VIBEDECK_PLATFORM`, `VIBEDECK_CI` e `VIBEDECK_NETWORK`; guardas comuns ficam na
+declaração do teste. Achados impressos como `arquivo:linha: motivo` são estruturados para abrir o arquivo.
+O check pode guardar `runId`, que identifica o diário e os logs locais daquela execução.
 
 - `script`: `command` roda na raiz do projeto (shell de login) com `$VIBEDECK_FILES` (arquivos alterados, um
   por linha; vazio = projeto todo), `$VIBEDECK_ROOT` e `$VIBEDECK_RULE_ID`. Exit `0` = cumpre, `77` = não se
-  aplica, outro = viola (imprima o motivo). Limite de 120 s. `submit_rule_check` roda o script e usa o
+  aplica, outro = viola (imprima o motivo). Limite padrão de 120 s. `submit_rule_check` roda o script e usa o
   resultado — a sua resposta para essa regra é ignorada.
 - `manual`: a regra não é testável objetivamente; ela só é verificada pela IA sob demanda (passo 4).
   Prefira transformar regras manuais em script sempre que der: script não gasta token.
@@ -182,6 +224,12 @@ estar pronta para implementar; qualquer mudança em título, body, paths ou regr
 a implementação só é iniciada depois de salvar uma avaliação positiva do conteúdo atual. Registre ideias que surgirem com `add_idea`.
 Ao clicar em "Salvar avaliação", um veredito viável em ideia com regras marca o status como `approved`, junto com o `readiness` em um único passo de desfazer. Isso não é promoção: `promotedTopic` continua vazio, nenhum tópico é criado e as regras continuam rascunho. Ideias fechadas ou já promovidas mantêm o status; vereditos não viáveis não alteram o status. Rodar Descubra/Verificar sem salvar não aprova a ideia.
 No app, ideias `approved` com avaliação viável atual oferecem **Workflow**, **Execução padrão** e **Cancelar** antes de promover regras ou iniciar a implementação. Sem workflows, só aparecem Execução padrão e Cancelar, sem catálogo. O seletor permite escolher um workflow existente ou adicionar itens do catálogo por seleção explícita. No chat, o modo explícito é respeitado; pedidos sem modo aguardam a escolha. Execução padrão usa `IdeaImplementation.prompt`. Workflows recebem o UUID recuperável da ideia; mudanças de título ou descrição não mudam o vínculo. Havendo execução anterior, **Retomar** preserva o estado e **Reiniciar** começa na primeira etapa. A confirmação relê a avaliação atual no disco. Cancelar não inicia nem promove. CLI e MCP continuam sem a pergunta de modo.
+`dependencies` lista UUIDs de outras ideias do projeto que precisam estar `done` antes de implementar esta
+(qualquer outro status, ou ideia ausente, bloqueia). Dependentes são derivados, nunca gravados. Edite com
+`vibedeck ideas depend|undepend <ideia> <deps…>` ou `update_idea` com `dependencies` (lista completa); o Core
+recusa autorreferência, ideia inexistente e ciclos sem gravar nada. `ideas show --json` e `get_idea` trazem
+`dependents` e `dependencyBlockers`. Dependências pendentes não impedem a aprovação; bloqueiam só a
+implementação (padrão ou workflow, app ou chat), antes de promover, criar run ou chamar o provedor.
 No app, "Copiar prompt" copia o pedido de implementação para usar em outra ferramenta, com o tópico
 promovido ou as regras rascunho, sem promover a ideia. Funciona mesmo sem provedor de IA e mostra "Copiado".
 
@@ -277,16 +325,6 @@ Docs (frontmatter `tags: [a, b]`), grupos de revisão, tópicos de regras, ideia
 tecnologias da stack e padrões aceitam `tags`.
 Use `set_tags` (MCP) ou `vibedeck tag <doc|review|rules|idea|agent|command|skill|workflow|stack|pattern> <ref> <tags...>`.
 
-## Sessões na nuvem
-
-Codex: use `provider: "codex"` e `environment` no MCP, ou `--provider codex --env <id>` na CLI.
-O ambiente também pode ficar em `codexCloudEnvironment` no projeto.
-
-`start_cloud_session` / `vibedeck cloud start "<tarefa>"` cria uma sessão do Claude Code na nuvem sobre o
-GitHub. Ela só é criada se a branch padrão local for **igual** à `origin` (`cloud_check` / `vibedeck cloud check`);
-se não for, peça ao usuário para dar push/pull. Alterações não commitadas exigem `allow_dirty`. Só crie
-sessões na nuvem quando o usuário pedir.
-
 ## Logs
 
 Ações `ui.*` (botões, menus, atalhos, seleções e confirmação de campos) e reações `store.*`, `ai.*`,
@@ -332,13 +370,13 @@ echo '[{"ruleId":"ab12","verdict":"pass","note":"..."}]' | vibedeck rules check 
 vibedeck rules test src/Login.tsx            # roda os scripts das regras aplicáveis (sem gravar check)
 vibedeck rules set-test ab12 --command .vibedeck/tests/geral/ab12cd34.sh   # ou --manual --reason "..." / --clear
 vibedeck ideas list | vibedeck ideas new "Modo offline"
+vibedeck ideas depend <ideia> <dependencia>... | vibedeck ideas undepend <ideia> <dependencia>...
 vibedeck agents list | vibedeck agents next <agente> <proximo> | vibedeck agents flow <agente>
 vibedeck commands list | vibedeck agents next <agente> <comando> --kind command | vibedeck commands flow <comando>
 vibedeck skills list | vibedeck agents next <agente> <skill> --kind skill | vibedeck skills flow <skill>
 vibedeck workflows new "Revisão" && vibedeck workflows step revisao <agente> && vibedeck workflows route revisao <de> <para> --when "..."
 vibedeck workflows show revisao | vibedeck workflows flow revisao --input "..."
 vibedeck runs start revisao --input "PR 12" | vibedeck runs next revisao/pr-12 | vibedeck runs show revisao/pr-12
-vibedeck cloud check --json                  # branch local == GitHub? (pré-requisito da nuvem)
 ```
 
 MCP: `vibedeck mcp install` (registra `vibedeck mcp` no Claude Code)

@@ -1,0 +1,87 @@
+{
+  "$schema" : "https://vibedeck-schema.alanreisanjo.workers.dev/v1/rule-check.schema.json",
+  "author" : "ai",
+  "createdAt" : "2026-11-15T23:26:11.954Z",
+  "failures" : [
+
+  ],
+  "files" : [
+    ".vibedeck/AGENTS.md",
+    ".vibedeck/guide.md",
+    "README.md",
+    "icon-candidates.json",
+    "icons/Alibaba-Dark.svg",
+    "icons/Zelle-Light.svg",
+    "public/icons.json",
+    "shared/icon-categories.ts"
+  ],
+  "id" : "77EE192D-3848-4FCD-8DAA-F317C6951768",
+  "passed" : true,
+  "pending" : [
+    "Lógica usada por mais de uma ponta (site, worker, scripts) vive em shared/ e é importada de lá, sem duplicar.",
+    "Logo vem da fonte oficial da marca",
+    "Nome de exibição usa a grafia oficial da marca",
+    "Ícone gerado com bun skill-icon generate e na categoria certa"
+  ],
+  "results" : [
+    {
+      "exitCode" : 0,
+      "note" : ".vibedeck/tests/padrao-icones-como-fonte-unica-icons-generated/10385057.sh (exit 0)\n(sem saída)",
+      "ruleId" : "10385057-A572-4955-BEA8-ABA70A477BDB",
+      "source" : "script",
+      "topic" : "padrao-icones-como-fonte-unica-icons-generated",
+      "verdict" : "pass"
+    },
+    {
+      "exitCode" : 0,
+      "note" : ".vibedeck/tests/padrao-logica-compartilhada-em-shared/b230ffc6.sh (exit 0)\n(sem saída)",
+      "ruleId" : "B230FFC6-C38F-41FB-8C46-A0E1BAC459CD",
+      "source" : "script",
+      "topic" : "padrao-logica-compartilhada-em-shared",
+      "verdict" : "pass"
+    },
+    {
+      "exitCode" : 0,
+      "note" : ".vibedeck/tests/contribuicao/1f5b433c.sh (exit 0)\n… (saída cortada)\n+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/index.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/protocol.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/zod-compat.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/types.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/interfaces.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/zod-json-schema-compat.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/validation/ajv-provider.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/server.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/helpers.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/completable.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/uriTemplate.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/toolNameValidation.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/mcp-server.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/webStandardStreamableHttp.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/shared/mediaType.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/requestBody.js\" points to missing source files\nSourcemap for \"/Users/hoy/dev/skill-icons/node_modules/.bun/@modelcontextprotocol+sdk@1.32.0+2b91fc17bf64bdfd/node_modules/@modelcontextprotocol/sdk/dist/esm/server/sseKeepAlive.js\" points to missing source files\n\n Test Files  13 passed (13)\n      Tests  201 passed (201)\n   Start at  20:26:01\n   Duration  8.90s (transform 4.10s, setup 0ms, import 13.27s, tests 11.79s, environment 1ms)\n\n$ vitest run --config scripts/release.vitest.config.ts\n\n RUN  v4.1.11 /Users/hoy/dev/skill-icons\n\n\n Test Files  1 passed (1)\n      Tests  7 passed (7)\n   Start at  20:26:10\n   Duration  981ms (transform 20ms, setup 0ms, import 27ms, tests 866ms, environment 0ms)",
+      "ruleId" : "1F5B433C-9DF2-4863-B9D4-F4A51F68C2D0",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "pass"
+    },
+    {
+      "exitCode" : 0,
+      "note" : ".vibedeck/tests/contribuicao/6efdb945.sh (exit 0)\n(sem saída)",
+      "ruleId" : "6EFDB945-9962-4184-A195-4B71A6DD8B43",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "pass"
+    },
+    {
+      "exitCode" : 0,
+      "note" : ".vibedeck/tests/contribuicao/e3ceff99.sh (exit 0)\nChecked 2 files in 9ms. No fixes applied.",
+      "ruleId" : "E3CEFF99-B1B6-4BCF-93DF-C124C2930B2F",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "pass"
+    },
+    {
+      "exitCode" : 77,
+      "note" : ".vibedeck/tests/contribuicao/f942375e.sh (exit 77)\n(sem saída)",
+      "ruleId" : "F942375E-3652-4D89-A248-587D92811015",
+      "source" : "script",
+      "topic" : "contribuicao",
+      "verdict" : "na"
+    }
+  ],
+  "runId" : "20261115-232559-69ad5f5b",
+  "task" : "PR com o trabalho local pendente: 124 ícones novos, categorias, icon-candidates, README e registros do VibeDeck",
+  "topics" : [
+    "padrao-icones-como-fonte-unica-icons-generated",
+    "padrao-logica-compartilhada-em-shared",
+    "contribuicao",
+    "icones"
+  ],
+  "warnings" : [
+
+  ]
+}
