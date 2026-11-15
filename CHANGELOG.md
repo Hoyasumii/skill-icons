@@ -4,6 +4,16 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [26.11.1] - 2026-11-15
+
+### Added icons
+
+- afora
+
+### Package
+
+- feat(icons): add afora
+
 ## [26.10.3] - 2026-10-21
 
 ### Package
