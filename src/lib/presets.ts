@@ -1,9 +1,9 @@
 /** Ready-made stacks: one tap appends whichever of these icons are missing, in this order. */
 export const PRESETS = [
-  { id: 'web', icons: ['typescript', 'react', 'tailwindcss', 'vite', 'vitest'] },
-  { id: 'backend', icons: ['nodejs', 'bun', 'postgresql', 'docker', 'aws'] },
-  { id: 'tooling', icons: ['git', 'github', 'figma', 'bash', 'biome'] },
-  { id: 'ai', icons: ['python', 'chatgpt', 'claude', 'anaconda'] },
+  { id: 'web', icons: ['typescript', 'nextjs', 'react', 'tailwindcss', 'shadcnui'] },
+  { id: 'backend', icons: ['bun', 'hono', 'drizzle', 'postgresql', 'docker'] },
+  { id: 'tooling', icons: ['git', 'github', 'vscode', 'biome', 'pnpm'] },
+  { id: 'ai', icons: ['python', 'pytorch', 'huggingface', 'langchain', 'claude'] },
 ] as const;
 
 export type PresetId = (typeof PRESETS)[number]['id'];
