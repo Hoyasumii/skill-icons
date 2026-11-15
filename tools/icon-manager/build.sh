@@ -1,7 +1,7 @@
 #!/bin/sh
 # Builds tools/icon-manager/build/Skill Icons Manager.app (universal: Apple silicon + Intel).
 #   RELEASE=1  leaves the repo path out, so the app asks for the skill-icons folder on first launch.
-#   VERSION=x  sets the app version (default 1.0).
+#   VERSION=x  sets the app version (default 26.11.1).
 set -eu
 
 DIR=$(cd "$(dirname "$0")" && pwd)
@@ -24,7 +24,7 @@ for arch in arm64 x86_64; do
 done
 lipo -create "$TMP"/SkillIconsManager-* -output "$APP/Contents/MacOS/SkillIconsManager"
 
-sed -e "s|__REPO_PATH__|$REPO_PATH|" -e "s|__VERSION__|${VERSION:-1.0}|" \
+sed -e "s|__REPO_PATH__|$REPO_PATH|" -e "s|__VERSION__|${VERSION:-26.11.1}|" \
   "$DIR/Info.plist" >"$APP/Contents/Info.plist"
 # Bundle the shared implementation; this entry only exposes its public preview API.
 cat >"$TMP/tint-entry.ts" <<EOF
