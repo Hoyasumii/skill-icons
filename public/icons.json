@@ -2,3781 +2,4618 @@
   {
     "id": "abacatepay",
     "name": "AbacatePay",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "ableton",
     "name": "Ableton",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "activitypub",
     "name": "ActivityPub",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "actix",
     "name": "Actix",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "adonis",
     "name": "AdonisJS",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "adyen",
     "name": "Adyen",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "afora",
     "name": "afora",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "aftereffects",
     "name": "After Effects",
-    "category": "design"
+    "category": "design",
+    "aliases": [
+      "ae"
+    ]
   },
   {
     "id": "airtable",
     "name": "Airtable",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "aiscript",
     "name": "AiScript",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "alacritty",
     "name": "Alacritty",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "alfred",
     "name": "Alfred",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "alibaba",
     "name": "Alibaba Cloud",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "alipay",
     "name": "Alipay",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "alma",
     "name": "AlmaLinux",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "alpine",
     "name": "Alpine Linux",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "alpinejs",
     "name": "Alpine.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "amplitude",
     "name": "Amplitude",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "anaconda",
     "name": "Anaconda",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "android",
     "name": "Android",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "androidstudio",
     "name": "Android Studio",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "angular",
     "name": "Angular",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "animejs",
     "name": "Anime.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "ansible",
     "name": "Ansible",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "antdesign",
     "name": "Ant Design",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "antigravity",
     "name": "Antigravity",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "anytype",
     "name": "Anytype",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "apidog",
     "name": "Apidog",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "apollo",
     "name": "Apollo",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "appcode",
     "name": "AppCode",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "appdynamics",
     "name": "AppDynamics",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "appium",
     "name": "Appium",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "apple",
     "name": "Apple",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "applemusic",
     "name": "Apple Music",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "applepay",
     "name": "Apple Pay",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "applitools",
     "name": "Applitools",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "appwrite",
     "name": "Appwrite",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "aqua",
     "name": "Aqua",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "arc",
     "name": "Arc",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "arch",
     "name": "Arch Linux",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "arduino",
     "name": "Arduino",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "argocd",
     "name": "Argo CD",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "arkui",
     "name": "Ark UI",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "asana",
     "name": "Asana",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "astro",
     "name": "Astro",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "astronvim",
     "name": "AstroNvim",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "asyncapi",
     "name": "AsyncAPI",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "atom",
     "name": "Atom",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "audition",
     "name": "Audition",
-    "category": "design"
+    "category": "design",
+    "aliases": [
+      "au"
+    ]
   },
   {
     "id": "auth0",
     "name": "Auth0",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "authjs",
     "name": "Auth.js",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "autocad",
     "name": "AutoCAD",
-    "category": "design"
+    "category": "design",
+    "aliases": []
   },
   {
     "id": "ava",
     "name": "AVA",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "awesomewm",
     "name": "awesomeWM",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "aws",
     "name": "AWS",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": [
+      "amazonwebservices"
+    ]
   },
   {
     "id": "axiom",
     "name": "Axiom",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "azul",
     "name": "Azul",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "azure",
     "name": "Azure",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "babel",
     "name": "Babel",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "babylonjs",
     "name": "Babylon.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "backbone",
     "name": "Backbone.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "bamboo",
     "name": "Bamboo",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "bandcamp",
     "name": "Bandcamp",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "basecamp",
     "name": "Basecamp",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "bash",
     "name": "Bash",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "bazel",
     "name": "Bazel",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "bear",
     "name": "Bear",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "behance",
     "name": "Behance",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "betterauth",
     "name": "Better Auth",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "betterstack",
     "name": "Better Stack",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "bevy",
     "name": "Bevy",
-    "category": "game"
+    "category": "game",
+    "aliases": []
   },
   {
     "id": "binance",
     "name": "Binance",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "biome",
     "name": "Biome",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "bitbucket",
     "name": "Bitbucket",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "bitcoin",
     "name": "Bitcoin",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "black",
     "name": "Black",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "blender",
     "name": "Blender",
-    "category": "design"
+    "category": "design",
+    "aliases": []
   },
   {
     "id": "bluesky",
     "name": "Bluesky",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "bootstrap",
     "name": "Bootstrap",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "brackets",
     "name": "Brackets",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "braintree",
     "name": "Braintree",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "bruno",
     "name": "Bruno",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "bsd",
     "name": "BSD",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "bugsnag",
     "name": "Bugsnag",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "buildkite",
     "name": "Buildkite",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "bulma",
     "name": "Bulma",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "bun",
     "name": "Bun",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "buymeacoffee",
     "name": "Buy Me a Coffee",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "c",
     "name": "C",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "caddy",
     "name": "Caddy",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "cal",
     "name": "Cal.com",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "calendly",
     "name": "Calendly",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "canva",
     "name": "Canva",
-    "category": "design"
+    "category": "design",
+    "aliases": []
   },
   {
     "id": "capacitor",
     "name": "Capacitor",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "caprover",
     "name": "CapRover",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "cashapp",
     "name": "Cash App",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "cassandra",
     "name": "Cassandra",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "centos",
     "name": "CentOS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "cesium",
     "name": "Cesium",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "chai",
     "name": "Chai",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "chainlink",
     "name": "Chainlink",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "chakraui",
     "name": "Chakra UI",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "chalk",
     "name": "Chalk",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "changesets",
     "name": "Changesets",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "chartjs",
     "name": "Chart.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "chatgpt",
     "name": "ChatGPT",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "chef",
     "name": "Chef",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "chocolatey",
     "name": "Chocolatey",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "chromatic",
     "name": "Chromatic",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "chromeos",
     "name": "ChromeOS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "circleci",
     "name": "CircleCI",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "citty",
     "name": "citty",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "claude",
     "name": "Claude",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "clerk",
     "name": "Clerk",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "clickhouse",
     "name": "ClickHouse",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "clickup",
     "name": "ClickUp",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "cline",
     "name": "Cline",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "clion",
     "name": "CLion",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "clojure",
     "name": "Clojure",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "cloudflare",
     "name": "Cloudflare",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": [
+      "cf"
+    ]
   },
   {
     "id": "cloudflarepages",
     "name": "Cloudflare Pages",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "cmake",
     "name": "CMake",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "codecov",
     "name": "Codecov",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "codepen",
     "name": "CodePen",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "codesandbox",
     "name": "CodeSandbox",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "codespaces",
     "name": "GitHub Codespaces",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "codex",
     "name": "Codex",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "coffeescript",
     "name": "CoffeeScript",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "coinbase",
     "name": "Coinbase",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "colab",
     "name": "Google Colab",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "commitlint",
     "name": "commitlint",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "conan",
     "name": "Conan",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "conda",
     "name": "conda",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "confluence",
     "name": "Confluence",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "consul",
     "name": "Consul",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "convex",
     "name": "Convex",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "coolify",
     "name": "Coolify",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "coveralls",
     "name": "Coveralls",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "cpp",
     "name": "C++",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "crossplane",
     "name": "Crossplane",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "crystal",
     "name": "Crystal",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "cs",
     "name": "C#",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "css",
     "name": "CSS",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "curl",
     "name": "curl",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "cursor",
     "name": "Cursor",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "cypress",
     "name": "Cypress",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "d3",
     "name": "D3",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "daisyui",
     "name": "daisyUI",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "dart",
     "name": "Dart",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "datadog",
     "name": "Datadog",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "datagrip",
     "name": "DataGrip",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "dataspell",
     "name": "DataSpell",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "debian",
     "name": "Debian",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "deepseek",
     "name": "DeepSeek",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "defold",
     "name": "Defold",
-    "category": "game"
+    "category": "game",
+    "aliases": []
   },
   {
     "id": "deno",
     "name": "Deno",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "dependabot",
     "name": "Dependabot",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "deta",
     "name": "Deta",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "devbox",
     "name": "Devbox",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "devto",
     "name": "DEV",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "digitalocean",
     "name": "DigitalOcean",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "discord",
     "name": "Discord",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "discordbots",
     "name": "Discord Bots",
-    "category": "social"
+    "category": "social",
+    "aliases": [
+      "bots"
+    ]
   },
   {
     "id": "discordjs",
     "name": "discord.js",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "django",
     "name": "Django",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "docker",
     "name": "Docker",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "docusaurus",
     "name": "Docusaurus",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "dokku",
     "name": "Dokku",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "dotnet",
     "name": ".NET",
-    "category": "backend"
+    "category": "backend",
+    "aliases": [
+      "net"
+    ]
   },
   {
     "id": "dribbble",
     "name": "Dribbble",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "drizzle",
     "name": "Drizzle",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "drone",
     "name": "Drone",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "dropbox",
     "name": "Dropbox",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "duckdb",
     "name": "DuckDB",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "dynamodb",
     "name": "DynamoDB",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "dynatrace",
     "name": "Dynatrace",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "echarts",
     "name": "Apache ECharts",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "eclipse",
     "name": "Eclipse",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "elasticsearch",
     "name": "Elasticsearch",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "electron",
     "name": "Electron",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "element",
     "name": "Element",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "elementary",
     "name": "elementary OS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "elixir",
     "name": "Elixir",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "elysia",
     "name": "Elysia",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "emacs",
     "name": "Emacs",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "ember",
     "name": "Ember.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "emotion",
     "name": "Emotion",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "esbuild",
     "name": "esbuild",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "eslint",
     "name": "ESLint",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "ethereum",
     "name": "Ethereum",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "evernote",
     "name": "Evernote",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "excel",
     "name": "Microsoft Excel",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "execa",
     "name": "Execa",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "expo",
     "name": "Expo",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "expressjs",
     "name": "Express",
-    "category": "backend"
+    "category": "backend",
+    "aliases": [
+      "express"
+    ]
   },
   {
     "id": "facebook",
     "name": "Facebook",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "faker",
     "name": "Faker",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "farcaster",
     "name": "Farcaster",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "fastapi",
     "name": "FastAPI",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "fastify",
     "name": "Fastify",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "fediverse",
     "name": "Fediverse",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "fedora",
     "name": "Fedora",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "fiber",
     "name": "Fiber",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "figma",
     "name": "Figma",
-    "category": "design"
+    "category": "design",
+    "aliases": []
   },
   {
     "id": "firebase",
     "name": "Firebase",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "fish",
     "name": "fish",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "flask",
     "name": "Flask",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "fleet",
     "name": "Fleet",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "flickr",
     "name": "Flickr",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "flowbite",
     "name": "Flowbite",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "fluentbit",
     "name": "Fluent Bit",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "fluentd",
     "name": "Fluentd",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "flutter",
     "name": "Flutter",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "flux",
     "name": "Flux",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "fly",
     "name": "Fly.io",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "formik",
     "name": "Formik",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "forth",
     "name": "Forth",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "fortran",
     "name": "Fortran",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "foundation",
     "name": "Foundation",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "freebsd",
     "name": "FreeBSD",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "gamemakerstudio",
     "name": "GameMaker Studio",
-    "category": "game"
+    "category": "game",
+    "aliases": []
   },
   {
     "id": "gatling",
     "name": "Gatling",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "gatsby",
     "name": "Gatsby",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": [
+      "gatsbyjs"
+    ]
   },
   {
     "id": "gcp",
     "name": "Google Cloud",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": [
+      "googlecloud"
+    ]
   },
   {
     "id": "geany",
     "name": "Geany",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "gedit",
     "name": "gedit",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "gemini",
     "name": "Gemini",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "gentoo",
     "name": "Gentoo",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "gherkin",
     "name": "Gherkin",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "ghostty",
     "name": "Ghostty",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "gin",
     "name": "Gin",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "git",
     "name": "Git",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "github",
     "name": "GitHub",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "githubactions",
     "name": "GitHub Actions",
-    "category": "devops"
+    "category": "devops",
+    "aliases": [
+      "ghactions"
+    ]
   },
   {
     "id": "githubcopilot",
     "name": "GitHub Copilot",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "githubsponsors",
     "name": "GitHub Sponsors",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "gitlab",
     "name": "GitLab",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "gitpod",
     "name": "Gitpod",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "gleam",
     "name": "Gleam",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "glitch",
     "name": "Glitch",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "gmail",
     "name": "Gmail",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "gnome",
     "name": "GNOME",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "godot",
     "name": "Godot",
-    "category": "game"
+    "category": "game",
+    "aliases": []
   },
   {
     "id": "goland",
     "name": "GoLand",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "golang",
     "name": "Go",
-    "category": "language"
+    "category": "language",
+    "aliases": [
+      "go"
+    ]
   },
   {
     "id": "googleanalytics",
     "name": "Google Analytics",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "googledocs",
     "name": "Google Docs",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "googledrive",
     "name": "Google Drive",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "googlemeet",
     "name": "Google Meet",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "googlepay",
     "name": "Google Pay",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "googlesheets",
     "name": "Google Sheets",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "gradle",
     "name": "Gradle",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "grafana",
     "name": "Grafana",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "graphql",
     "name": "GraphQL",
-    "category": "language"
+    "category": "language",
+    "aliases": [
+      "gql"
+    ]
   },
   {
     "id": "grok",
     "name": "Grok",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "gsap",
     "name": "GSAP",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "gtk",
     "name": "GTK",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "guilded",
     "name": "Guilded",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "gulp",
     "name": "Gulp",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "gumroad",
     "name": "Gumroad",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "hackernews",
     "name": "Hacker News",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "haiku",
     "name": "Haiku",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "harbor",
     "name": "Harbor",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "harmonyos",
     "name": "HarmonyOS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "hashnode",
     "name": "Hashnode",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "haskell",
     "name": "Haskell",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "hatch",
     "name": "Hatch",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "haxe",
     "name": "Haxe",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "haxeflixel",
     "name": "HaxeFlixel",
-    "category": "game"
+    "category": "game",
+    "aliases": []
   },
   {
     "id": "headlessui",
     "name": "Headless UI",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "helix",
     "name": "Helix",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "helm",
     "name": "Helm",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "heroku",
     "name": "Heroku",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "hetzner",
     "name": "Hetzner",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "hibernate",
     "name": "Hibernate",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "highcharts",
     "name": "Highcharts",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "homebrew",
     "name": "Homebrew",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "hono",
     "name": "Hono",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "hoppscotch",
     "name": "Hoppscotch",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "hotjar",
     "name": "Hotjar",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "html",
     "name": "HTML",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "htmx",
     "name": "htmx",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "httpie",
     "name": "HTTPie",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "huggingface",
     "name": "Hugging Face",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "husky",
     "name": "Husky",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "hyprland",
     "name": "Hyprland",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "i3",
     "name": "i3",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "icloud",
     "name": "iCloud",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "idea",
     "name": "IntelliJ IDEA",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "illustrator",
     "name": "Illustrator",
-    "category": "design"
+    "category": "design",
+    "aliases": [
+      "ai"
+    ]
   },
   {
     "id": "inferno",
     "name": "Inferno",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "inkscape",
     "name": "Inkscape",
-    "category": "design"
+    "category": "design",
+    "aliases": []
   },
   {
     "id": "inquirer",
     "name": "Inquirer.js",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "insomnia",
     "name": "Insomnia",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "instagram",
     "name": "Instagram",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "ionic",
     "name": "Ionic",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "ios",
     "name": "iOS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "ipfs",
     "name": "IPFS",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "istio",
     "name": "Istio",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "iterm2",
     "name": "iTerm2",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "jaeger",
     "name": "Jaeger",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "jasmine",
     "name": "Jasmine",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "java",
     "name": "Java",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "javascript",
     "name": "JavaScript",
-    "category": "language"
+    "category": "language",
+    "aliases": [
+      "js"
+    ]
   },
   {
     "id": "jenkins",
     "name": "Jenkins",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "jest",
     "name": "Jest",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "jetpackcompose",
     "name": "Jetpack Compose",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "jira",
     "name": "Jira",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "jmeter",
     "name": "Apache JMeter",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "jotai",
     "name": "Jotai",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "jquery",
     "name": "jQuery",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "jsfiddle",
     "name": "JSFiddle",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "json",
     "name": "JSON",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "jsr",
     "name": "JSR",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "julia",
     "name": "Julia",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "junit",
     "name": "JUnit",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "jupyter",
     "name": "Jupyter",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "just",
     "name": "just",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "jwt",
     "name": "JWT",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "k3s",
     "name": "K3s",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "k6",
     "name": "k6",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "kafka",
     "name": "Kafka",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "kaggle",
     "name": "Kaggle",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "kakaotalk",
     "name": "KakaoTalk",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "kakoune",
     "name": "Kakoune",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "kali",
     "name": "Kali Linux",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "karma",
     "name": "Karma",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "kate",
     "name": "Kate",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "kde",
     "name": "KDE",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "keycloak",
     "name": "Keycloak",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "kibana",
     "name": "Kibana",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "kick",
     "name": "Kick",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "kinsta",
     "name": "Kinsta",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "kitty",
     "name": "kitty",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "klarna",
     "name": "Klarna",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "knip",
     "name": "Knip",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "kofi",
     "name": "Ko-fi",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "kotlin",
     "name": "Kotlin",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "kotlinmultiplatform",
     "name": "Kotlin Multiplatform",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "koyeb",
     "name": "Koyeb",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "ktor",
     "name": "Ktor",
-    "category": "backend"
+    "category": "backend",
+    "aliases": [
+      "ktorio"
+    ]
   },
   {
     "id": "kubernetes",
     "name": "Kubernetes",
-    "category": "devops"
+    "category": "devops",
+    "aliases": [
+      "k8s"
+    ]
   },
   {
     "id": "langchain",
     "name": "LangChain",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "langfuse",
     "name": "Langfuse",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "lapce",
     "name": "Lapce",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "laravel",
     "name": "Laravel",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "latex",
     "name": "LaTeX",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "lazyvim",
     "name": "LazyVim",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "leaflet",
     "name": "Leaflet",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "lefthook",
     "name": "Lefthook",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "lemmy",
     "name": "Lemmy",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "lemonsqueezy",
     "name": "Lemon Squeezy",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "lerna",
     "name": "Lerna",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "less",
     "name": "Less",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "line",
     "name": "LINE",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "linear",
     "name": "Linear",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "linkedin",
     "name": "LinkedIn",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "linode",
     "name": "Linode",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "linux",
     "name": "Linux",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "lit",
     "name": "Lit",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "locust",
     "name": "Locust",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "logseq",
     "name": "Logseq",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "logstash",
     "name": "Logstash",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "loki",
     "name": "Grafana Loki",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "loom",
     "name": "Loom",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "lottie",
     "name": "Lottie",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "lua",
     "name": "Lua",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "lucia",
     "name": "Lucia",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "lunarvim",
     "name": "LunarVim",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "macos",
     "name": "macOS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "make",
     "name": "Make",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "manjaro",
     "name": "Manjaro",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "mantine",
     "name": "Mantine",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "mapbox",
     "name": "Mapbox",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "mariadb",
     "name": "MariaDB",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "markdown",
     "name": "Markdown",
-    "category": "language"
+    "category": "language",
+    "aliases": [
+      "md"
+    ]
   },
   {
     "id": "marko",
     "name": "Marko",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "mastercard",
     "name": "Mastercard",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "mastodon",
     "name": "Mastodon",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "materialui",
     "name": "Material UI",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": [
+      "mui"
+    ]
   },
   {
     "id": "matlab",
     "name": "MATLAB",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "matomo",
     "name": "Matomo",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "matrix",
     "name": "Matrix",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "matterjs",
     "name": "Matter.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "mattermost",
     "name": "Mattermost",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "maven",
     "name": "Maven",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "mcp",
     "name": "MCP",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "medium",
     "name": "Medium",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "mercadopago",
     "name": "Mercado Pago",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "meson",
     "name": "Meson",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "metamask",
     "name": "MetaMask",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "micro",
     "name": "micro",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "million",
     "name": "Million",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "mimir",
     "name": "Grafana Mimir",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "minikube",
     "name": "minikube",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "mint",
     "name": "Linux Mint",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "mise",
     "name": "mise",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "misskey",
     "name": "Misskey",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "mithril",
     "name": "Mithril.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "mixpanel",
     "name": "Mixpanel",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "mobx",
     "name": "MobX",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "mocha",
     "name": "Mocha",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "mockoon",
     "name": "Mockoon",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "mojo",
     "name": "Mojo",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "monday",
     "name": "monday.com",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "mongodb",
     "name": "MongoDB",
-    "category": "database"
+    "category": "database",
+    "aliases": [
+      "mongo"
+    ]
   },
   {
     "id": "moonrepo",
     "name": "moon",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "motion",
     "name": "Motion",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": [
+      "framermotion"
+    ]
   },
   {
     "id": "msw",
     "name": "Mock Service Worker",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "mypy",
     "name": "mypy",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "mysql",
     "name": "MySQL",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "n8n",
     "name": "n8n",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "nagios",
     "name": "Nagios",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "neo4j",
     "name": "Neo4j",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "neon",
     "name": "Neon",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "neovim",
     "name": "Neovim",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "nestjs",
     "name": "NestJS",
-    "category": "backend"
+    "category": "backend",
+    "aliases": [
+      "nest"
+    ]
   },
   {
     "id": "netbsd",
     "name": "NetBSD",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "netdata",
     "name": "Netdata",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "netflix",
     "name": "Netflix",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "netlify",
     "name": "Netlify",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "newrelic",
     "name": "New Relic",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "nextjs",
     "name": "Next.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": [
+      "next"
+    ]
   },
   {
     "id": "nginx",
     "name": "NGINX",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "ngrok",
     "name": "ngrok",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "nightwatch",
     "name": "Nightwatch.js",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "nim",
     "name": "Nim",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "nix",
     "name": "Nix",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "nixos",
     "name": "NixOS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "nodejs",
     "name": "Node.js",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "nodemon",
     "name": "nodemon",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "nomad",
     "name": "Nomad",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "nostr",
     "name": "Nostr",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "notepadplusplus",
     "name": "Notepad++",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "notion",
     "name": "Notion",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "nova",
     "name": "Nova",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "npm",
     "name": "npm",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "nubank",
     "name": "Nubank",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "numpy",
     "name": "NumPy",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "nuxtjs",
     "name": "Nuxt",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": [
+      "nuxt"
+    ]
   },
   {
     "id": "nvm",
     "name": "nvm",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "nx",
     "name": "Nx",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "oauth",
     "name": "OAuth",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "observable",
     "name": "Observable",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "obsidian",
     "name": "Obsidian",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "ocaml",
     "name": "OCaml",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "oclif",
     "name": "oclif",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "octave",
     "name": "Octave",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "okta",
     "name": "Okta",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "ollama",
     "name": "Ollama",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "onedrive",
     "name": "Microsoft OneDrive",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "onenote",
     "name": "Microsoft OneNote",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "openai",
     "name": "OpenAI",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "openapi",
     "name": "OpenAPI",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "openbsd",
     "name": "OpenBSD",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "openclaw",
     "name": "OpenClaw",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "opencode",
     "name": "OpenCode",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "opencollective",
     "name": "Open Collective",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "opencv",
     "name": "OpenCV",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "openlayers",
     "name": "OpenLayers",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "openshift",
     "name": "OpenShift",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "openstack",
     "name": "OpenStack",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "opensuse",
     "name": "openSUSE",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "opentelemetry",
     "name": "OpenTelemetry",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "oracle",
     "name": "Oracle",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "ory",
     "name": "Ory",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "ovh",
     "name": "OVHcloud",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "oxlint",
     "name": "Oxlint",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "p5js",
     "name": "p5.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "packer",
     "name": "Packer",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "paddle",
     "name": "Paddle",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "pagseguro",
     "name": "PagSeguro",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "pandas",
     "name": "pandas",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "parcel",
     "name": "Parcel",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "parkui",
     "name": "Park UI",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "passport",
     "name": "Passport.js",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "patreon",
     "name": "Patreon",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "paypal",
     "name": "PayPal",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "paytm",
     "name": "Paytm",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "pdm",
     "name": "PDM",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "peertube",
     "name": "PeerTube",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "percy",
     "name": "Percy",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "perl",
     "name": "Perl",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "perplexity",
     "name": "Perplexity",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "phonepe",
     "name": "PhonePe",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "photoshop",
     "name": "Photoshop",
-    "category": "design"
+    "category": "design",
+    "aliases": [
+      "ps"
+    ]
   },
   {
     "id": "php",
     "name": "PHP",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "phpstorm",
     "name": "PhpStorm",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "pinia",
     "name": "Pinia",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "pinterest",
     "name": "Pinterest",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "pix",
     "name": "Pix",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "pixelfed",
     "name": "Pixelfed",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "pixijs",
     "name": "PixiJS",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "pkl",
     "name": "Pkl",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "plan9",
     "name": "Plan 9",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "plane",
     "name": "Plane",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "planetscale",
     "name": "PlanetScale",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "plausible",
     "name": "Plausible Analytics",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "playwright",
     "name": "Playwright",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "plotly",
     "name": "Plotly",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "pm2",
     "name": "PM2",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "pnpm",
     "name": "pnpm",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "pocket",
     "name": "Pocket",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "pocketbase",
     "name": "PocketBase",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "podman",
     "name": "Podman",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "poetry",
     "name": "Poetry",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "polar",
     "name": "Polar",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "polygon",
     "name": "Polygon",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "polymer",
     "name": "Polymer",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "popos",
     "name": "Pop!_OS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "portainer",
     "name": "Portainer",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "postcss",
     "name": "PostCSS",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "postgresql",
     "name": "PostgreSQL",
-    "category": "database"
+    "category": "database",
+    "aliases": [
+      "postgres"
+    ]
   },
   {
     "id": "posthog",
     "name": "PostHog",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "postman",
     "name": "Postman",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "powerpoint",
     "name": "Microsoft PowerPoint",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "powershell",
     "name": "PowerShell",
-    "category": "language"
+    "category": "language",
+    "aliases": [
+      "pwsh"
+    ]
   },
   {
     "id": "preact",
     "name": "Preact",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "premiere",
     "name": "Premiere Pro",
-    "category": "design"
+    "category": "design",
+    "aliases": [
+      "pr"
+    ]
   },
   {
     "id": "prettier",
     "name": "Prettier",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "prisma",
     "name": "Prisma",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "processing",
     "name": "Processing",
-    "category": "game"
+    "category": "game",
+    "aliases": []
   },
   {
     "id": "producthunt",
     "name": "Product Hunt",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "prometheus",
     "name": "Prometheus",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "pug",
     "name": "Pug",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "pulumi",
     "name": "Pulumi",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "puppet",
     "name": "Puppet",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "puppeteer",
     "name": "Puppeteer",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "pycharm",
     "name": "PyCharm",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "pylint",
     "name": "Pylint",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "pytest",
     "name": "pytest",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "python",
     "name": "Python",
-    "category": "language"
+    "category": "language",
+    "aliases": [
+      "py"
+    ]
   },
   {
     "id": "pytorch",
     "name": "PyTorch",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "qt",
     "name": "Qt",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "qubes",
     "name": "Qubes OS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "qwik",
     "name": "Qwik",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "r",
     "name": "R",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "rabbitmq",
     "name": "RabbitMQ",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "radixui",
     "name": "Radix UI",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "rails",
     "name": "Ruby on Rails",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "railway",
     "name": "Railway",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "rancher",
     "name": "Rancher",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "raspberrypi",
     "name": "Raspberry Pi",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "raycast",
     "name": "Raycast",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "razorpay",
     "name": "Razorpay",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "react",
     "name": "React",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "reacthookform",
     "name": "React Hook Form",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "reactivex",
     "name": "ReactiveX",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": [
+      "rxjava",
+      "rxjs"
+    ]
   },
   {
     "id": "reactnative",
     "name": "React Native",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "reactos",
     "name": "ReactOS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "reactquery",
     "name": "TanStack Query",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "reactrouter",
     "name": "React Router",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "readwise",
     "name": "Readwise",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "recoil",
     "name": "Recoil",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "reddit",
     "name": "Reddit",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "redhat",
     "name": "Red Hat",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "redis",
     "name": "Redis",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "redux",
     "name": "Redux",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "regex",
     "name": "Regex",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "remix",
     "name": "Remix",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "render",
     "name": "Render",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "renovate",
     "name": "Renovate",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "replit",
     "name": "Replit",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "resend",
     "name": "Resend",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "revolut",
     "name": "Revolut",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "rider",
     "name": "Rider",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "rive",
     "name": "Rive",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "roam",
     "name": "Roam Research",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "robloxstudio",
     "name": "Roblox Studio",
-    "category": "game"
+    "category": "game",
+    "aliases": []
   },
   {
     "id": "rocket",
     "name": "Rocket",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "rocketchat",
     "name": "Rocket.Chat",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "rocky",
     "name": "Rocky Linux",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "rollbar",
     "name": "Rollbar",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "rolldown",
     "name": "Rolldown",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "rollupjs",
     "name": "Rollup",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": [
+      "rollup"
+    ]
   },
   {
     "id": "ros",
     "name": "ROS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "rspack",
     "name": "Rspack",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "ruby",
     "name": "Ruby",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "rubymine",
     "name": "RubyMine",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "ruff",
     "name": "Ruff",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "rundeck",
     "name": "Rundeck",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "rush",
     "name": "Rush",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "rust",
     "name": "Rust",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "rustrover",
     "name": "RustRover",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "rye",
     "name": "Rye",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "saltstack",
     "name": "Salt Project",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "sass",
     "name": "Sass",
-    "category": "language"
+    "category": "language",
+    "aliases": [
+      "scss"
+    ]
   },
   {
     "id": "scala",
     "name": "Scala",
-    "category": "language"
+    "category": "language",
+    "aliases": [
+      "sc"
+    ]
   },
   {
     "id": "scalar",
     "name": "Scalar",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "scaleway",
     "name": "Scaleway",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "scikitlearn",
     "name": "scikit-learn",
-    "category": "ai"
+    "category": "ai",
+    "aliases": [
+      "sklearn"
+    ]
   },
   {
     "id": "scoop",
     "name": "Scoop",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "selenium",
     "name": "Selenium",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "sentry",
     "name": "Sentry",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "sequelize",
     "name": "Sequelize",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "shadcnui",
     "name": "shadcn/ui",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "shopify",
     "name": "Shopify",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "shortcut",
     "name": "Shortcut",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "signal",
     "name": "Signal",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "signoz",
     "name": "SigNoz",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "skeleton",
     "name": "Skeleton",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "sketch",
     "name": "Sketch",
-    "category": "design"
+    "category": "design",
+    "aliases": []
   },
   {
     "id": "sketchup",
     "name": "SketchUp",
-    "category": "design"
+    "category": "design",
+    "aliases": []
   },
   {
     "id": "slack",
     "name": "Slack",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "slackware",
     "name": "Slackware",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "snapchat",
     "name": "Snapchat",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "snyk",
     "name": "Snyk",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "solana",
     "name": "Solana",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "solidity",
     "name": "Solidity",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "solidjs",
     "name": "SolidJS",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "sonarqube",
     "name": "SonarQube",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "soundcloud",
     "name": "SoundCloud",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "spacemacs",
     "name": "Spacemacs",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "splunk",
     "name": "Splunk",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "spotify",
     "name": "Spotify",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "spring",
     "name": "Spring",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "sql",
     "name": "SQL",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "sqlite",
     "name": "SQLite",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "sqlserver",
     "name": "SQL Server",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "square",
     "name": "Square",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "stackblitz",
     "name": "StackBlitz",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "stackoverflow",
     "name": "Stack Overflow",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "starlight",
     "name": "Starlight",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "starship",
     "name": "Starship",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "stencil",
     "name": "Stencil",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "stimulus",
     "name": "Stimulus",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "stoat",
     "name": "Stoat",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "stoplight",
     "name": "Stoplight",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "storybook",
     "name": "Storybook",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "strapi",
     "name": "Strapi",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "stripe",
     "name": "Stripe",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "styledcomponents",
     "name": "styled-components",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "stylelint",
     "name": "stylelint",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "stytch",
     "name": "Stytch",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "sublime",
     "name": "Sublime Text",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "substack",
     "name": "Substack",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "sumup",
     "name": "SumUp",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "supabase",
     "name": "Supabase",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "superhuman",
     "name": "Superhuman",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "svelte",
     "name": "Svelte",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "svg",
     "name": "SVG",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "swagger",
     "name": "Swagger",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "sway",
     "name": "Sway",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "swc",
     "name": "SWC",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "swift",
     "name": "Swift",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "swr",
     "name": "SWR",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "symfony",
     "name": "Symfony",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "tails",
     "name": "Tails",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "tailscale",
     "name": "Tailscale",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "tailwindcss",
     "name": "Tailwind CSS",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": [
+      "tailwind"
+    ]
   },
   {
     "id": "tanstack",
     "name": "TanStack",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "taskfile",
     "name": "Task",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "tauri",
     "name": "Tauri",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "teamcity",
     "name": "TeamCity",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "teams",
     "name": "Microsoft Teams",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "tekton",
     "name": "Tekton",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "telegram",
     "name": "Telegram",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "tensorflow",
     "name": "TensorFlow",
-    "category": "ai"
+    "category": "ai",
+    "aliases": []
   },
   {
     "id": "terraform",
     "name": "Terraform",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "testcafe",
     "name": "TestCafe",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "testinglibrary",
     "name": "Testing Library",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "things",
     "name": "Things",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "threads",
     "name": "Threads",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "threejs",
     "name": "three.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "tiktok",
     "name": "TikTok",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "tmux",
     "name": "tmux",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "todoist",
     "name": "Todoist",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "trae",
     "name": "Trae",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "traefik",
     "name": "Traefik",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "travisci",
     "name": "Travis CI",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "trello",
     "name": "Trello",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "trpc",
     "name": "tRPC",
-    "category": "backend"
+    "category": "backend",
+    "aliases": []
   },
   {
     "id": "tumblr",
     "name": "Tumblr",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "turbopack",
     "name": "Turbopack",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "turborepo",
     "name": "Turborepo",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "turso",
     "name": "Turso",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "twitch",
     "name": "Twitch",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "twitter",
     "name": "Twitter",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "typescript",
     "name": "TypeScript",
-    "category": "language"
+    "category": "language",
+    "aliases": [
+      "ts"
+    ]
   },
   {
     "id": "ubuntu",
     "name": "Ubuntu",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "umami",
     "name": "Umami",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "unbuild",
     "name": "unbuild",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "unity",
     "name": "Unity",
-    "category": "game"
+    "category": "game",
+    "aliases": []
   },
   {
     "id": "unocss",
     "name": "UnoCSS",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "unrealengine",
     "name": "Unreal Engine",
-    "category": "game"
+    "category": "game",
+    "aliases": [
+      "unreal"
+    ]
   },
   {
     "id": "upstash",
     "name": "Upstash",
-    "category": "database"
+    "category": "database",
+    "aliases": []
   },
   {
     "id": "uptimekuma",
     "name": "Uptime Kuma",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "uv",
     "name": "uv",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "v",
     "name": "V",
-    "category": "language"
+    "category": "language",
+    "aliases": [
+      "vlang"
+    ]
   },
   {
     "id": "vagrant",
     "name": "Vagrant",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "vala",
     "name": "Vala",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "vault",
     "name": "Vault",
-    "category": "devops"
+    "category": "devops",
+    "aliases": []
   },
   {
     "id": "vcpkg",
     "name": "vcpkg",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "vector",
     "name": "Vector",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "venmo",
     "name": "Venmo",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "vercel",
     "name": "Vercel",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "verdaccio",
     "name": "Verdaccio",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "verilog",
     "name": "Verilog",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "viber",
     "name": "Viber",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "victory",
     "name": "Victory",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "vim",
     "name": "Vim",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "vimeo",
     "name": "Vimeo",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "visa",
     "name": "Visa",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "visualstudio",
     "name": "Visual Studio",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "vite",
     "name": "Vite",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "vitest",
     "name": "Vitest",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "void",
     "name": "Void",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "volta",
     "name": "Volta",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "vscode",
     "name": "Visual Studio Code",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "vscodium",
     "name": "VSCodium",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "vuejs",
     "name": "Vue.js",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": [
+      "vue"
+    ]
   },
   {
     "id": "vuetify",
     "name": "Vuetify",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "vultr",
     "name": "Vultr",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "warp",
     "name": "Warp",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "wayland",
     "name": "Wayland",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "webassembly",
     "name": "WebAssembly",
-    "category": "language"
+    "category": "language",
+    "aliases": [
+      "wasm"
+    ]
   },
   {
     "id": "webdriverio",
     "name": "WebdriverIO",
-    "category": "testing"
+    "category": "testing",
+    "aliases": []
   },
   {
     "id": "webflow",
     "name": "Webflow",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "webpack",
     "name": "webpack",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "webstorm",
     "name": "WebStorm",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "wechat",
     "name": "WeChat",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "wezterm",
     "name": "WezTerm",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "whatsapp",
     "name": "WhatsApp",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "windicss",
     "name": "Windi CSS",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": [
+      "windi"
+    ]
   },
   {
     "id": "windows",
     "name": "Windows",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "windsurf",
     "name": "Windsurf",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "wireit",
     "name": "Wireit",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "wiremock",
     "name": "WireMock",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "wise",
     "name": "Wise",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "word",
     "name": "Microsoft Word",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "wordpress",
     "name": "WordPress",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "workers",
     "name": "Cloudflare Workers",
-    "category": "cloud"
+    "category": "cloud",
+    "aliases": []
   },
   {
     "id": "workos",
     "name": "WorkOS",
-    "category": "auth"
+    "category": "auth",
+    "aliases": []
   },
   {
     "id": "wsl",
     "name": "WSL",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "x11",
     "name": "X11",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "xcode",
     "name": "Xcode",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "xd",
     "name": "XD",
-    "category": "design"
+    "category": "design",
+    "aliases": []
   },
   {
     "id": "xfce",
     "name": "Xfce",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "xstate",
     "name": "XState",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "yaml",
     "name": "YAML",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "yarn",
     "name": "Yarn",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   },
   {
     "id": "yew",
     "name": "Yew",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "youtube",
     "name": "YouTube",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "zabbix",
     "name": "Zabbix",
-    "category": "observability"
+    "category": "observability",
+    "aliases": []
   },
   {
     "id": "zapier",
     "name": "Zapier",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "zed",
     "name": "Zed",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "zelle",
     "name": "Zelle",
-    "category": "payments"
+    "category": "payments",
+    "aliases": []
   },
   {
     "id": "zellij",
     "name": "Zellij",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "zig",
     "name": "Zig",
-    "category": "language"
+    "category": "language",
+    "aliases": []
   },
   {
     "id": "zod",
     "name": "Zod",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "zoom",
     "name": "Zoom",
-    "category": "productivity"
+    "category": "productivity",
+    "aliases": []
   },
   {
     "id": "zorin",
     "name": "Zorin OS",
-    "category": "os"
+    "category": "os",
+    "aliases": []
   },
   {
     "id": "zsh",
     "name": "Zsh",
-    "category": "ide"
+    "category": "ide",
+    "aliases": []
   },
   {
     "id": "zulip",
     "name": "Zulip",
-    "category": "social"
+    "category": "social",
+    "aliases": []
   },
   {
     "id": "zustand",
     "name": "Zustand",
-    "category": "frontend"
+    "category": "frontend",
+    "aliases": []
   },
   {
     "id": "zx",
     "name": "Zx",
-    "category": "tooling"
+    "category": "tooling",
+    "aliases": []
   }
 ]
