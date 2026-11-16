@@ -8,6 +8,7 @@ import {
   DEFAULT_THEME,
   MAX_PER_LINE,
   MIN_PER_LINE,
+  aliasesOf,
   shortNames,
 } from '../shared/icons';
 
@@ -72,11 +73,13 @@ const meta = names.map(name => ({
 }));
 writeFileSync(`${GENERATED_DIR}/icon-list.json`, JSON.stringify(meta));
 
-// Public catalog served at /icons.json: one entry per icon, with its display name and category.
+// Public catalog served at /icons.json: one entry per icon, with its display name, category and
+// the aliases /icons also accepts, so other sites can list and resolve icons without the package.
 const catalog = names.map(id => ({
   id,
   name: displayNameById.get(id)!,
   category: categoryById[id],
+  aliases: aliasesOf(id).sort(),
 }));
 writeFileSync('./public/icons.json', `${JSON.stringify(catalog, null, 2)}\n`);
 

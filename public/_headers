@@ -1,0 +1,3 @@
+# The icon catalog is read by other sites in the browser (pickers, dashboards).
+/icons.json
+  Access-Control-Allow-Origin: *
