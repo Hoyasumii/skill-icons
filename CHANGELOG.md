@@ -4,6 +4,12 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [26.11.3] - 2026-11-16
+
+### Package
+
+- feat(api): add aliases and CORS to the /icons.json catalog
+
 ## [26.11.2] - 2026-11-15
 
 ### Added icons
